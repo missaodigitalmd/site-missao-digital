@@ -1,0 +1,109 @@
+{
+    "hero": {
+        "title": "A missionary family in the digital field",
+        "highlight_words": "missionary,digital field",
+        "subtitle": "Navarro Lamounier, Tereza Gontijo, Lavínia, and Ravnos. Our calling is to serve as a bridge between the Gospel and the digital and gaming universe.",
+        "image_alt": "Digital Mission Family"
+    },
+    "navarro": {
+        "name": "Navarro Lamounier",
+        "image_alt": "Navarro Lamounier",
+        "tags": [
+            "Advertising and Public Relations",
+            "Management and Marketing",
+            "Theological Seminary"
+        ],
+        "quote": {
+            "pre": "I grew up in a family that did not know God, but my uncle, the only Christian, always took me to church. In my teenage years, I saw myself as clever and manipulative, believing I was untouchable. That false security was shattered at a Palavra da Vida camp. There,",
+            "highlight": "God confronted me",
+            "post": "showing me who I truly was: nothing before His greatness."
+        },
+        "stats": {
+            "years_missions": "years in missions",
+            "volunteers_led": "volunteers led",
+            "full_time_missionaries": "full-time missionaries"
+        },
+        "timeline": [
+            {
+                "year": "2009 - Calling",
+                "text": "My calling began the moment God saved me. In church, I joined the arts evangelism ministry, where God began shaping my heart for missions. I was called as a worker at MPC, taking on communication and later leading the mission in Brasília."
+            },
+            {
+                "year": "2016 - Digital Field",
+                "text": "God led me into the digital field, with strategies in games and platforms, giving birth to Missão Digital. Later, I served as communication coordinator at ALEM until 2024."
+            },
+            {
+                "year": "Today - Missão Digital",
+                "text": "I am fully dedicated to Missão Digital, lead teenagers at church, and attend seminary."
+            }
+        ]
+    },
+    "tereza": {
+        "name": "Tereza Gontijo",
+        "image_alt": "Tereza Gontijo",
+        "tags": [
+            "Social Work",
+            "Intermediate Sign Language",
+            "Integral Mission"
+        ],
+        "quote": {
+            "pre": "I did not grow up in an evangelical home and I am the youngest of four siblings. In 2006, I lost my mother, and years later I faced the pain of losing my father. Those moments brought a deep emptiness, but what seemed like the end, God turned into a new beginning. In 2009,",
+            "highlight": "the love of Christ reached my heart",
+            "post": "and gave meaning to my story."
+        },
+        "stats": {
+            "training_months": "months of training",
+            "years_asas": "years at Asas de Socorro",
+            "full_time_dedication": "full-time dedication"
+        },
+        "timeline": [
+            {
+                "year": "2017 - Calling",
+                "text": "At age 26, the missionary calling began to burn within me. I took part in A Cabana and 4SIM, where I understood that life only finds meaning in sharing the Gospel. Then I went to CTM, where I trained for nine months."
+            },
+            {
+                "year": "Mission Service",
+                "text": "I served for five years at Missão Asas de Socorro, taking Christ to many places."
+            },
+            {
+                "year": "Today - Missão Digital",
+                "text": "Married and living in Brasília, I am fully dedicated to Missão Digital and lead teenagers at church alongside my husband."
+            }
+        ]
+    },
+    "pilares": {
+        "badge": "Our Foundation",
+        "title": "What moves us",
+        "subtitle": "Everything we do stands on three pillars that guide every training, every project, and every conversation.",
+        "items": {
+            "despertar": {
+                "title": "Awaken",
+                "description": "Open the eyes of the church, leaders, and parents to see the digital world as a real missionary territory. God has already positioned our youth as missionaries in a field where they speak the language and know the culture."
+            },
+            "equipar": {
+                "title": "Equip",
+                "description": "Provide simple, practical tools. Teach the church to turn game time into mission time. Teach parents to engage with their children’s digital culture."
+            },
+            "alcancar": {
+                "title": "Reach",
+                "description": "Advance directly in social networks and games, and equip churches to do the same, both online and in person, using gamer language as a bridge."
+            }
+        }
+    },
+    "crenca": {
+        "title": "What we believe",
+        "paragraph_1": "We are Reformed Christians. Every idea, project, and training is born from solid biblical theology and a crystal-clear Gospel. We do not make doctrinal concessions. We do not dilute truth to be \"relevant\". The centrality of Christ is our compass.",
+        "highlight_title": "Our Conviction",
+        "highlight_pre": "We do not believe in digital churches. We believe that being part of the body of Christ means",
+        "highlight_span": "gathering in a local church",
+        "highlight_post": "We go into the digital environment to proclaim the Gospel so that, upon knowing Christ, a person becomes part of a local church.",
+        "paragraph_2": "We believe a young Christian does not need to leave the digital world to serve God. They need to be awakened to be missionaries there as well. And we believe the church can, and should, be intentional in reaching those immersed in this world."
+    },
+    "cta": {
+        "title_pre": "Want to learn more about how we can",
+        "title_span": "serve your church",
+        "subtitle": "Let’s talk.",
+        "button": "Talk to us on WhatsApp",
+        "whatsapp_message": "Hello! \ud83d\udcac\n\nI came from the **About Us** page, in the final invitation section, and clicked **\"Talk to us on WhatsApp\"**.\n\nAfter learning your story, I felt confident to talk about how you could serve our church too."
+    }
+}

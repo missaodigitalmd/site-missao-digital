@@ -1,0 +1,170 @@
+{
+    "whatsapp": {
+        "message": "¡Hola! \ud83d\udd25\n\nVengo de la página de **Inmersión Misionera** e hice clic en un botón de **conversación por WhatsApp** para hablar de la Inmersión.\n\nQuiero entender cómo podemos organizar esta experiencia en nuestra iglesia, con claridad de formato y próximos pasos."
+    },
+    "hero": {
+        "title": "Imagina a toda tu iglesia sumergiéndose en el campo misionero digital.",
+        "highlight_words": "sumergiéndose",
+        "subtitle": "Un fin de semana que lleva a tu iglesia a evangelizar de verdad en el mundo digital.",
+        "cta_whatsapp": "Quiero una Inmersión en mi iglesia",
+        "cta_scroll": "Mira cómo funciona"
+    },
+    "secao2": {
+        "title_pre": "Tu iglesia necesita más que una",
+        "title_span": "acción aislada.",
+        "paragraph_1": "Ya has oído hablar de evangelismo digital. Tal vez incluso intentaste implementar algo. Pero una sola acción, por buena que sea, no transforma la cultura de una iglesia.",
+        "paragraph_2": "La Inmersión existe porque creemos que la iglesia necesita vivir la experiencia completa: primero entender por qué el mundo digital es un campo misionero real. Después ser entrenada con herramientas prácticas para actuar en él. Y, por último, poner manos a la obra, evangelizando de verdad, allí mismo, en ese fin de semana.",
+        "pull_quote": "\"Internet es un país no alcanzado. La Inmersión es el viaje misionero hacia allí.\"",
+        "image_alt": "La iglesia como familia misionera en el mundo digital"
+    },
+    "timeline": {
+        "heading": "Despertar, Equipar, Acompañar.",
+        "subheading": "Todo en un solo fin de semana.",
+        "examples_label": "Ejemplos de acciones:",
+        "despertar": {
+            "title": "Despertar",
+            "heading": "Primero, la iglesia necesita ver el campo.",
+            "text": "La Inmersión comienza rompiendo paradigmas. A través de charlas, datos, testimonios reales y dinámicas impactantes, toda la iglesia (líderes, jóvenes, padres) es despertada para entender que el mundo digital no es enemigo: es un territorio misionero vasto donde millones buscan sentido y nadie está anunciando a Cristo.",
+            "items": [
+                {
+                    "title": "Charla 'Muros y Puentes'",
+                    "description": "Confrontando la visión de que la tecnología es amenaza y abriendo los ojos a la oportunidad."
+                },
+                {
+                    "title": "Choque de Realidad",
+                    "description": "Datos reales sobre el tiempo que los jóvenes pasan conectados y su impacto."
+                },
+                {
+                    "title": "La Gran Comisión Digital",
+                    "description": "Entendiendo que el 'Id' también se aplica a servidores y redes sociales."
+                }
+            ]
+        },
+        "equipar": {
+            "title": "Equipar",
+            "heading": "Después, cada uno recibe herramientas.",
+            "text": "No basta con ver el campo: hay que saber cómo cultivarlo. Entrenamos a la iglesia con herramientas prácticas: cómo evangelizar en juegos, cómo transformar conversaciones digitales en puentes hacia Cristo, y cómo los padres pueden pastorear a sus hijos en el mundo virtual. Cada público sale con habilidades concretas.",
+            "items": [
+                {
+                    "title": "Taller Gamer",
+                    "description": "Los jóvenes aprenden a ser misioneros en los juegos que ya juegan todos los días."
+                },
+                {
+                    "title": "Evangelismo Digital",
+                    "description": "Cómo iniciar conversaciones intencionales y compartir el evangelio online."
+                },
+                {
+                    "title": "Taller para Padres",
+                    "description": "Herramientas para pastorear el corazón de los hijos en un mundo hiperconectado."
+                }
+            ]
+        },
+        "acompanhar": {
+            "title": "Acompañar",
+            "heading": "Por fin, la iglesia va al campo, allí mismo.",
+            "text": "La Inmersión no termina en teoría. En el momento culminante del fin de semana, toda la iglesia es movilizada para una acción evangelística digital real. Celulares en mano, fe en el corazón y la valentía de anunciar a Cristo a alguien que necesita oír. Aquí nacen testimonios que marcan para siempre.",
+            "items": [
+                {
+                    "title": "Comunidad de Discipulado",
+                    "description": "Grupos de apoyo y crecimiento continuo para misioneros digitales."
+                },
+                {
+                    "title": "Mentoría",
+                    "description": "Acompañamiento cercano para fortalecer la fe y la práctica misionera."
+                },
+                {
+                    "title": "Multiplicación",
+                    "description": "Formando nuevos líderes para expandir el alcance de la iglesia en lo digital."
+                }
+            ]
+        }
+    },
+    "diferenciais": {
+        "title_pre": "La diferencia entre",
+        "title_span_1": "experimentar",
+        "title_middle": "y",
+        "title_span_2": "transformar.",
+        "items": [
+            {
+                "number": 1,
+                "highlight": "Contexto completo",
+                "text": "Un proyecto aislado resuelve un momento. La Inmersión crea un contexto: toda la iglesia, del pastor al adolescente, viviendo la misma experiencia, al mismo tiempo. Eso cambia la cultura, no solo la agenda."
+            },
+            {
+                "number": 2,
+                "highlight": "Frutos visibles",
+                "text": "Cuando despertar, entrenamiento y práctica suceden juntos y en secuencia, los resultados son inmediatos. La iglesia sale del fin de semana con historias reales de evangelismo, no con apuntes de cuaderno."
+            },
+            {
+                "number": 3,
+                "highlight": "Solución para conferencias",
+                "text": "Si organizas congresos misioneros, conferencias de jóvenes o retiros de liderazgo, la Inmersión encaja perfectamente como programación principal o como módulo completo dentro de tu evento."
+            }
+        ]
+    },
+    "impacto": {
+        "image_alt": "Portal digital",
+        "top_pre": "La iglesia que no sabe que el campo existe, o que aún no fue",
+        "typewriter_words": [
+            "equipada",
+            "entrenada",
+            "capacitada",
+            "despertada"
+        ],
+        "top_post": "para entrar en él...",
+        "bottom_pre": "...esa iglesia",
+        "bottom_span_pre": "necesita una",
+        "bottom_handwritten": "Inmersión"
+    },
+    "steps": {
+        "title_pre": "Tres pasos para llevar la Inmersión hasta",
+        "title_span": "tu iglesia.",
+        "cta": "¿Conversamos?",
+        "items": [
+            {
+                "number": 1,
+                "title": "Conversación",
+                "description": "Contáctanos por WhatsApp. Vamos a entender la realidad de tu iglesia, el contexto, el público y el momento."
+            },
+            {
+                "number": 2,
+                "title": "Planificación",
+                "description": "Juntos, diseñamos la programación ideal para tu fin de semana: qué acciones, qué secuencia y qué público priorizar."
+            },
+            {
+                "number": 3,
+                "title": "Inmersión",
+                "description": "Vamos a tu iglesia y conducimos la experiencia completa. De viernes a domingo (o en el formato que funcione), tu iglesia vive el trípode misionero en la práctica."
+            }
+        ]
+    },
+    "publico_alvo": {
+        "title_pre": "La Inmersión es para quien quiere",
+        "title_span": "ir más allá.",
+        "items": [
+            {
+                "title": "Iglesias locales",
+                "description": "Pastores y líderes que quieren capacitar a toda la comunidad para el campo misionero digital."
+            },
+            {
+                "title": "Congresos y conferencias",
+                "description": "Organizadores de eventos misioneros o de jóvenes que buscan una programación completa y transformadora."
+            },
+            {
+                "title": "Liderazgos y presbiterios",
+                "description": "Denominaciones y redes de iglesias que desean despertar múltiples comunidades para la misión digital."
+            },
+            {
+                "title": "Organizaciones misioneras",
+                "description": "Misiones que quieren alcanzar jóvenes conectados mediante un nuevo enfoque, sin abandonar la fidelidad al Evangelio."
+            }
+        ]
+    },
+    "cta_final": {
+        "title_pre": "Tu iglesia puede entrar en este",
+        "title_span": "país no alcanzado.",
+        "title_post": "¿Vamos juntos?",
+        "cta_whatsapp": "Agendar una conversación",
+        "cta_projects": "Conoce nuestros proyectos"
+    }
+}

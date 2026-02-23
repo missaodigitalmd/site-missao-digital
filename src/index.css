@@ -1,0 +1,707 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark mode only - Missão Digital Theme */
+    --background: 0 0% 5.1%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 11.8%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 11.8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 36 100% 54%;
+    --primary-foreground: 0 0% 5.1%;
+    --secondary: 0 0% 10.2%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 14.5%;
+    --muted-foreground: 0 0% 69%;
+    --accent: 36 100% 54%;
+    --accent-foreground: 0 0% 5.1%;
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 36 100% 54%;
+    --radius: 0.5rem;
+
+    /* Brand colors */
+    --brand-orange-light: #FFAC13;
+    --brand-orange-dark: #FE7003;
+
+    /* Surface colors */
+    --bg-primary: #0D0D0D;
+    --bg-secondary: #1A1A1A;
+    --bg-card: #1E1E1E;
+    --bg-elevated: #252525;
+
+    /* Text colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --text-muted: #6B6B6B;
+
+    /* Project colors */
+    --project-daod: #E040FB;
+    --project-daod-glow: rgba(224, 64, 251, 0.25);
+    --project-daod-bg-tint: rgba(224, 64, 251, 0.06);
+
+    --project-gank: #B388FF;
+    --project-gank-glow: rgba(179, 136, 255, 0.25);
+    --project-gank-bg-tint: rgba(179, 136, 255, 0.06);
+
+    --project-ninive: #FFD740;
+    --project-ninive-glow: rgba(255, 215, 64, 0.25);
+    --project-ninive-bg-tint: rgba(255, 215, 64, 0.06);
+
+    --project-campeonato: #FF5252;
+    --project-campeonato-glow: rgba(255, 82, 82, 0.25);
+    --project-campeonato-bg-tint: rgba(255, 82, 82, 0.06);
+
+    /* Functional colors */
+    --whatsapp: #25D366;
+    --success: #4CAF50;
+    --warning: #FF9800;
+    --error: #F44336;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-primary text-white font-body antialiased;
+    background-color: #0D0D0D;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(255, 172, 19, 0.3);
+    color: white;
+  }
+}
+
+@layer components {
+
+  /* Brand gradient text */
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #FFAC13, #FE7003);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Project gradient texts */
+  .text-gradient-daod {
+    background: linear-gradient(135deg, #E040FB, #AB47BC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gank {
+    background: linear-gradient(135deg, #B388FF, #7C4DFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-ninive {
+    background: linear-gradient(135deg, #FFD740, #FFC107);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-campeonato {
+    background: linear-gradient(135deg, #FF5252, #D32F2F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hero overlay gradient */
+  .hero-overlay {
+    background: linear-gradient(to bottom,
+        rgba(13, 13, 13, 0.7) 0%,
+        rgba(13, 13, 13, 0.4) 40%,
+        rgba(13, 13, 13, 0.6) 70%,
+        rgba(13, 13, 13, 0.95) 100%);
+  }
+
+  /* Project overlay with tint */
+  .hero-overlay-daod {
+    background: linear-gradient(to bottom,
+        rgba(13, 13, 13, 0.8) 0%,
+        rgba(224, 64, 251, 0.1) 30%,
+        rgba(13, 13, 13, 0.7) 70%,
+        rgba(13, 13, 13, 0.95) 100%);
+  }
+
+  /* Glow effects */
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(254, 112, 3, 0.4);
+  }
+
+  .glow-daod {
+    box-shadow: 0 0 24px rgba(224, 64, 251, 0.25);
+  }
+
+  .glow-gank {
+    box-shadow: 0 0 24px rgba(179, 136, 255, 0.25);
+  }
+
+  .glow-ninive {
+    box-shadow: 0 0 24px rgba(255, 215, 64, 0.25);
+  }
+
+  .glow-campeonato {
+    box-shadow: 0 0 24px rgba(255, 82, 82, 0.25);
+  }
+
+  /* Card base styles — glassmorphism default */
+  .card-base {
+    @apply rounded-2xl overflow-hidden;
+    background: rgba(30, 30, 30, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    perspective: 1000px;
+  }
+
+  .card-base:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-lg font-heading font-bold text-sm;
+    background: linear-gradient(135deg, #FFAC13, #FE7003);
+    color: #0D0D0D;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(254, 112, 3, 0.4);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-lg font-heading font-bold text-sm;
+    background: transparent;
+    border: 1px solid #FFAC13;
+    color: #FFAC13;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 172, 19, 0.1);
+  }
+
+  /* WhatsApp button */
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-lg font-heading font-bold text-sm;
+    background: #25D366;
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-whatsapp:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+  }
+
+  /* Section padding — premium breathing room */
+  .section-padding {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+
+  /* Glass card base — true glassmorphism */
+  .glass-card {
+    @apply relative rounded-2xl overflow-hidden;
+    background: rgba(30, 30, 30, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Glass card with accent tint */
+  .glass-card-accent {
+    @apply glass-card;
+    background: linear-gradient(135deg, rgba(255, 172, 19, 0.06) 0%, rgba(30, 30, 30, 0.55) 100%);
+  }
+
+  /* Container */
+  .container-custom {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+
+  /* Image breathing effect */
+  .image-breathe {
+    animation: breathe 8s ease-in-out infinite;
+  }
+
+  /* Scroll reveal animation */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tilt card glow */
+  .tilt-card-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 112, 3, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .tilt-card:hover .tilt-card-glow {
+    opacity: 1;
+  }
+
+  /* Particle container */
+  .particle-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0D0D0D;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444;
+  }
+}
+
+@layer utilities {
+
+  /* Animation delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  .animation-delay-1200 {
+    animation-delay: 1200ms;
+  }
+
+  .animation-delay-1400 {
+    animation-delay: 1400ms;
+  }
+
+  /* Stagger children delays */
+  .stagger-1 {
+    animation-delay: 0.08s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.16s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.24s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.32s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.40s;
+  }
+
+  .stagger-6 {
+    animation-delay: 0.48s;
+  }
+
+  .stagger-7 {
+    animation-delay: 0.56s;
+  }
+
+  .stagger-8 {
+    animation-delay: 0.64s;
+  }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scanlines animation for Gank page */
+@keyframes scanlineMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+/* Spotlight animation for Campeonato page */
+@keyframes spotlightMove {
+  0% {
+    background-position: 30% 50%;
+  }
+
+  50% {
+    background-position: 70% 50%;
+  }
+
+  100% {
+    background-position: 30% 50%;
+  }
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Slide up animation */
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Breathe animation for images */
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(254, 112, 3, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(254, 112, 3, 0.6);
+  }
+}
+
+/* Floating animation for standalone images */
+@keyframes float-image {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.image-float {
+  animation: float-image 4s ease-in-out infinite;
+}
+
+/* Scroll indicator animation */
+@keyframes scroll-indicator {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(8px);
+    opacity: 0.5;
+  }
+}
+
+/* Shine Button Effect */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in;
+}
+
+.btn-shine:hover {
+  background: #FFAC13 !important;
+  /* Brand Orange Light */
+  border-color: #FFAC13 !important;
+  color: #0D0D0D !important;
+  /* Contrast text */
+  box-shadow: 0 0 30px 5px rgba(254, 112, 3, 0.4);
+  /* Brand Orange Dark with opacity */
+  transition: all 0.2s ease-out;
+}
+
+.btn-shine::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.btn-shine:hover::before {
+  animation: shine-effect 0.5s 0s linear;
+}
+
+@keyframes shine-effect {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+/* Animated Underline */
+.hover-line-base {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+.hover-line-base::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  /* Subtle thin line */
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-line:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* For when the hover trigger is a parent group */
+.group:hover .group-hover-line::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.btn-shine:active {
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.2s ease-in;
+  transform: scale(0.98);
+}
+
+
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.btn-glow-border {
+  position: relative;
+  overflow: hidden;
+  padding: 2px;
+  border-radius: 0.75rem;
+  z-index: 0;
+}
+
+.btn-glow-border::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent 0deg,
+      transparent 60deg,
+      #FFAC13 120deg,
+      #FE7003 180deg,
+      #FFAC13 240deg,
+      transparent 300deg,
+      transparent 360deg);
+  animation: rotate 4s linear infinite;
+}
+
+.btn-glow-border::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent 0deg,
+      transparent 60deg,
+      rgba(255, 172, 19, 0.4) 120deg,
+      rgba(254, 112, 3, 0.4) 180deg,
+      rgba(255, 172, 19, 0.4) 240deg,
+      transparent 300deg,
+      transparent 360deg);
+  filter: blur(10px);
+  animation: rotate 4s linear infinite;
+}
+
+.btn-content-inner {
+  position: relative;
+  border-radius: 0.65rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}

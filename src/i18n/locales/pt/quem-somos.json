@@ -1,0 +1,109 @@
+{
+    "hero": {
+        "title": "Uma família missionária no campo digital",
+        "highlight_words": "missionária,campo digital",
+        "subtitle": "Navarro Lamounier, Tereza Gontijo, Lavínia e Ravnos. Nosso chamado é servir de ponte entre o Evangelho e o universo digital e gamer.",
+        "image_alt": "Família Missão Digital"
+    },
+    "navarro": {
+        "name": "Navarro Lamounier",
+        "image_alt": "Navarro Lamounier",
+        "tags": [
+            "Publicidade e Propaganda",
+            "Gestão e Marketing",
+            "Seminário Teológico"
+        ],
+        "quote": {
+            "pre": "Cresci em uma família que não conhecia a Deus, mas meu tio, o único cristão, sempre me levava à igreja. Na adolescência, eu me achava esperto e manipulador, acreditando ser intocável. Essa falsa segurança foi quebrada num acampamento do Palavra da Vida. Ali,",
+            "highlight": "Deus me confrontou",
+            "post": "mostrando quem eu realmente era: nada diante de Sua grandeza."
+        },
+        "stats": {
+            "years_missions": "anos em missões",
+            "volunteers_led": "voluntários liderados",
+            "full_time_missionaries": "missionários integrais"
+        },
+        "timeline": [
+            {
+                "year": "2009 - Chamado",
+                "text": "Meu chamado começou no momento em que Deus me salvou. Na igreja, participei do ministério de evangelização com artes, onde Deus começou a moldar meu coração para missões. Fui chamado como obreiro na MPC, assumindo a comunicação e depois a liderança da missão em Brasília."
+            },
+            {
+                "year": "2016 - Campo Digital",
+                "text": "Deus me conduziu ao campo digital, com estratégias em jogos e plataformas, germinando o Missão Digital. Depois servi como coordenador de comunicação na ALEM até 2024."
+            },
+            {
+                "year": "Hoje - Missão Digital",
+                "text": "Dedico-me integralmente à Missão Digital, lidero adolescentes na igreja e curso o seminário."
+            }
+        ]
+    },
+    "tereza": {
+        "name": "Tereza Gontijo",
+        "image_alt": "Tereza Gontijo",
+        "tags": [
+            "Serviço Social",
+            "Libras Intermediário",
+            "Missão Integral"
+        ],
+        "quote": {
+            "pre": "Não cresci em um lar evangélico e sou a caçula de quatro irmãos. Em 2006, perdi minha mãe, e anos depois enfrentei a dor de perder meu pai. Esses momentos trouxeram um vazio profundo, mas o que parecia ser o fim, Deus transformou em um novo começo. Em 2009,",
+            "highlight": "o amor de Cristo alcançou meu coração",
+            "post": "e deu sentido à minha história."
+        },
+        "stats": {
+            "training_months": "meses de treinamento",
+            "years_asas": "anos em Asas de Socorro",
+            "full_time_dedication": "dedicação integral"
+        },
+        "timeline": [
+            {
+                "year": "2017 - Chamado",
+                "text": "Aos 26 anos, o chamado missionário começou a arder em mim. Participei de A Cabana, do 4SIM, onde entendi que a vida só encontra sentido no compartilhamento do evangelho. Na sequência fui ao CTM, onde me preparei por nove meses."
+            },
+            {
+                "year": "Serviço Missionário",
+                "text": "Servi por cinco anos na Missão Asas de Socorro, levando Cristo a muitos lugares."
+            },
+            {
+                "year": "Hoje - Missão Digital",
+                "text": "Casada e em Brasília, dedico-me integralmente à Missão Digital e lidero adolescentes na igreja ao lado do meu esposo."
+            }
+        ]
+    },
+    "pilares": {
+        "badge": "Nossa Base",
+        "title": "O que nos move",
+        "subtitle": "Tudo o que fazemos se sustenta sobre três pilares que guiam cada treinamento, cada projeto e cada conversa.",
+        "items": {
+            "despertar": {
+                "title": "Despertar",
+                "description": "Abrir os olhos da igreja, líderes e pais para enxergarem o mundo digital como território missionário real. Deus já posicionou nossos jovens como missionários em um campo onde eles falam a língua e conhecem a cultura."
+            },
+            "equipar": {
+                "title": "Equipar",
+                "description": "Entregar ferramentas simples e práticas. Ensinar a igreja a transformar a hora do jogo em hora de missão. Ensinar pais a dialogarem com a cultura digital dos seus filhos."
+            },
+            "alcancar": {
+                "title": "Alcançar",
+                "description": "Avançar diretamente nas redes e nos jogos, e capacitar igrejas para fazerem o mesmo, tanto online quanto presencialmente, usando a linguagem gamer como ponte."
+            }
+        }
+    },
+    "crenca": {
+        "title": "Em que cremos",
+        "paragraph_1": "Somos cristãos reformados. Toda ideia, projeto e treinamento nasce de uma teologia bíblica sólida e de um Evangelho cristalino. Não fazemos concessões doutrinárias. Não diluímos a verdade para ser \"relevante\". A centralidade de Cristo é o nosso norte.",
+        "highlight_title": "Nossa Convicção",
+        "highlight_pre": "Não cremos em igrejas digitais. Cremos que fazer parte do corpo de Cristo significa",
+        "highlight_span": "congregar em uma igreja local",
+        "highlight_post": "Vamos até o ambiente digital para anunciar o Evangelho, para que, ao conhecer a Cristo, a pessoa faça parte de uma igreja local.",
+        "paragraph_2": "Acreditamos que o jovem cristão não precisa sair do digital para servir a Deus. Ele precisa ser despertado para ser missionário também no digital. E acreditamos que a igreja pode, e deve, ser intencional em alcançar quem vive imerso nesse mundo."
+    },
+    "cta": {
+        "title_pre": "Quer conhecer mais sobre como podemos",
+        "title_span": "servir sua igreja",
+        "subtitle": "Vamos conversar.",
+        "button": "Fale conosco pelo WhatsApp",
+        "whatsapp_message": "Olá! \ud83d\ude0a\n\nDepois de conhecer a história de vocês, cliquei em *Fale conosco pelo WhatsApp*.\n\nSenti confiança para conversar sobre como vocês podem servir nossa igreja também."
+    }
+}

@@ -1,0 +1,144 @@
+{
+    "hero": {
+        "title": "Caminhe conosco nessa missão",
+        "highlight_words": "Caminhe,missão",
+        "subtitle": "O Evangelho avança quando o corpo de Cristo se move junto. Existem formas reais de caminhar ao nosso lado.",
+        "image_alt": "Família Missão Digital"
+    },
+    "caminhos": {
+        "title": "Três caminhos para caminhar conosco",
+        "orar": {
+            "titulo": "Ore",
+            "descricao": "Sua intercessão é essencial para nos fortalecer e abrir caminhos para que o Evangelho avance. Cadastre-se para receber nossos pedidos de oração e caminhe conosco em espírito.",
+            "acao": "Quero orar por vocês"
+        },
+        "contribuir": {
+            "titulo": "Contribua",
+            "descricao": "Sua parceria financeira nos permite dedicar tempo e recursos para alcançar vidas e discipular cristãos. Cada oferta sustenta nossa família no campo e viabiliza ações em igrejas.",
+            "acao_parceiro": "Ser parceiro mensal",
+            "acao_oferta": "Realizar oferta pontual"
+        },
+        "cooperar": {
+            "titulo": "Coopere",
+            "descricao": "Participe ativamente cooperando com seus dons e talentos. Venha como voluntário em ações, como igreja parceira que nos envia ou como multiplicador que leva nossos recursos para outros líderes.",
+            "acao": "Cooperar"
+        }
+    },
+    "familia": {
+        "title": "Uma família no campo",
+        "text_1": "Somos Navarro Lamounier, Tereza Gontijo, Lavínia e Ravnos. Uma família missionária que se dedica integralmente a servir de ponte entre o Evangelho e o universo digital e gamer.",
+        "text_2": "Nosso dia a dia é treinar igrejas, produzir conteúdo evangelístico e avançar no campo digital onde milhões de jovens buscam sentido.",
+        "text_3": "Como família missionária, dependemos da provisão de Deus, que vem por meio de parceiros comprometidos com o Reino. Cada oração, cada contribuição e cada cooperação fazem diferença real.",
+        "image_alt": "Família Missão Digital"
+    },
+    "transparencia": {
+        "title": "Para onde vai sua oferta",
+        "text": "Sua contribuição é destinada ao sustento da nossa família no campo missionário e ao investimento direto na missão: deslocamentos para igrejas, materiais de treinamento, equipamentos para ações evangelísticas e produção de conteúdo. Somos uma família que vive pela fé e prestamos contas com alegria."
+    },
+    "versiculo": {
+        "text": "Como, porém, invocarão aquele em quem não creram? E como crerão naquele de quem nada ouviram? E como ouvirão, se não há quem pregue?",
+        "ref": "Romanos 10:14"
+    },
+    "cta": {
+        "title": "O campo digital está maduro. Vamos <highlight>colher juntos</highlight>?",
+        "cta": "Fale conosco",
+        "whatsapp_message": "Olá! \u2764\ufe0f\n\nCliquei em *Fale conosco* porque quero caminhar com vocês.\n\nQuero conversar sobre formas concretas de apoiar essa missão digital."
+    },
+    "form": {
+        "nome": "Nome",
+        "email": "E-mail",
+        "enviando": "Enviando...",
+        "placeholders": {
+            "nome": "Seu nome",
+            "email": "seu@email.com",
+            "whatsapp": "(00) 00000-0000",
+            "valor": "Ex: 50,00"
+        },
+        "invalid_phone": "O número inserido não é válido para o país selecionado."
+    },
+    "modal_orar": {
+        "title": "Quero orar por vocês",
+        "parceiro_label_pre": "Além de orar, desejo ser um",
+        "parceiro_label_highlight": "parceiro financeiro",
+        "valor_label": "Valor mensal pretendido (R$)",
+        "submit": "Quero orar por vocês",
+        "error": "Não foi possível enviar. Tente novamente.",
+        "success_title": "Obrigado, {{name}}!",
+        "success_text": "Você receberá nossos pedidos de oração em breve.",
+        "success_partner_text": "Nossa equipe entrará em contato sobre a parceria financeira."
+    },
+    "modal_parceria": {
+        "title": "Parceria Mensal",
+        "valor_label": "Valor mensal (R$)",
+        "intercessor_label_pre": "Deseja ser",
+        "intercessor_label_highlight": "intercessor",
+        "intercessor_label_post": "também?",
+        "submit": "Me tornar parceiro",
+        "oferta_pontual": "Desejo fazer uma oferta pontual",
+        "error": "Não foi possível enviar. Tente novamente.",
+        "success_title": "Obrigado, {{name}}!",
+        "success_text": "Sua parceria faz toda a diferença. Nossa equipe entrará em contato em breve."
+    },
+    "modal_cooperar": {
+        "title": "Quero cooperar",
+        "formas_label": "Formas de cooperação úteis para o ministério:",
+        "outra_label": "Conte-nos mais sobre sua habilidade",
+        "outra_placeholder": "Descreva como você gostaria de servir...",
+        "apoiador_label_pre": "Quero ser um",
+        "apoiador_label_highlight": "apoiador mensal",
+        "parceiro_label_pre": "Desejo ser um",
+        "parceiro_label_highlight": "parceiro financeiro",
+        "valor_label": "Valor que deseja contribuir (R$)",
+        "submit": "Quero cooperar",
+        "error": "Não foi possível enviar. Tente novamente.",
+        "success_title": "Obrigado, {{name}}!",
+        "success_text": "Nossa equipe entrará em contato em breve."
+    },
+    "modal_oferta": {
+        "title": "Oferta Pontual",
+        "pix_instruction": "Escaneie o QR Code ou copie a chave PIX para fazer sua contribuição.",
+        "pix_key_label": "Chave PIX:",
+        "favorecido_label": "Favorecido:",
+        "copy": "Copiar",
+        "copied": "Copiado!",
+        "parceria_mensal": "Ser parceiro mensal"
+    },
+    "modal_feedback": {
+        "title": "Sua opinião é importante",
+        "description": "Como tem sido sua experiência com nossos materiais e ferramentas? Seu feedback nos ajuda a melhorar nossa missão digital.",
+        "type_label": "Tipo de Feedback",
+        "types": {
+            "sugestao": "Sugestão",
+            "elogio": "Elogio",
+            "problema": "Relatar Problema",
+            "outro": "Outro"
+        },
+        "rating_label": "O que você achou da nossa plataforma?",
+        "message_label": "Sua mensagem",
+        "message_placeholder": "Conte-nos sua experiência, sugestão ou dúvida...",
+        "submit": "Enviar Feedback",
+        "success_title": "Sua voz foi ouvida!",
+        "success_text": "Obrigado por nos ajudar a crescer. Analisaremos seu feedback com carinho.",
+        "back": "Voltar para o site"
+    },
+    "modal_parceria_impact": {
+        "title_pre": "Para a",
+        "title_highlight": "Glória de Deus",
+        "text": "Sua oferta sustenta nossa família no campo e capacita igrejas para o digital. Somos profundamente gratos por sua vida e por caminhar conosco nesta missão.",
+        "impact_1": "Sustenta nossa família no campo",
+        "impact_2": "Viabiliza treinamentos em igrejas",
+        "impact_3": "Alcança jovens no digital com o Evangelho",
+        "verse": "Cada um contribua segundo propôs no seu coração, não com tristeza ou por necessidade; porque Deus ama ao que dá com alegria.",
+        "verse_ref": "2 Coríntios 9:7"
+    },
+    "formas_cooperacao": [
+        "Conexões com igrejas e líderes",
+        "Voluntariado em ações evangelísticas",
+        "Design e comunicação visual",
+        "Desenvolvimento web/tecnologia",
+        "Tradução/Libras",
+        "Produção de conteúdo (vídeo, áudio, texto)",
+        "Facilitação de workshops",
+        "Outra habilidade"
+    ]
+}

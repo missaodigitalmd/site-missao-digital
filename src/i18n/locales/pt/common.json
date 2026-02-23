@@ -1,0 +1,74 @@
+{
+    "nav": {
+        "home": "Home",
+        "quem_somos": "Quem Somos",
+        "projetos": "Projetos",
+        "imersao": "Imersão",
+        "recursos": "Recursos",
+        "apoie": "Apoie",
+        "contato": "Contato",
+        "toggle_menu": "Alternar menu",
+        "fale_conosco": "Fale Conosco",
+        "fale_conosco_whatsapp": "Fale Conosco pelo WhatsApp",
+        "whatsapp_message": "Olá! \ud83d\ude42\n\nEstava navegando no site e toquei em *Fale Conosco*.\n\nQueria entender como vocês podem ajudar nossa igreja a avançar no evangelismo digital."
+    },
+    "nav_dropdown": {
+        "daod": "DaoD",
+        "daod_desc": "Digital ao Discipulado",
+        "gank": "Gank",
+        "gank_desc": "Evangelismo em equipe",
+        "ninive": "Nínive Digital",
+        "ninive_desc": "Missão estratégica",
+        "campeonato": "Campeonato",
+        "campeonato_desc": "Eventos evangelísticos"
+    },
+    "footer": {
+        "description": "Despertamos, equipamos e acompanhamos igrejas no campo missionário digital.",
+        "menu": "Menu",
+        "social": "Redes Sociais",
+        "verse_title": "Versículo",
+        "verse_text": "Quer comais, quer bebais ou façais outra qualquer coisa, fazei tudo para a glória de Deus.",
+        "verse_ref": "1 Coríntios 10:31",
+        "copyright": "© {{year}} Missão Digital. Todos os direitos reservados.",
+        "made_with": "Feito com",
+        "and_purpose": "e propósito",
+        "pix_copied": "Copiado!",
+        "pix_copy_key": "Clique para copiar chave",
+        "pix_copied_success": "Chave copiada com sucesso",
+        "whatsapp_message": "Oi! \ud83d\ude0a\n\nPeguei o contato de vocês no rodapé do site e cliquei no WhatsApp.\n\nQuero conversar sobre os próximos passos da nossa igreja no campo digital."
+    },
+    "modals": {
+        "loading": "Processando...",
+        "error_generic": "Não foi possível enviar. Tente novamente.",
+        "success_title": "Obrigado!",
+        "close": "Fechar",
+        "send": "Enviar",
+        "required": "Campo obrigatório"
+    },
+    "fields": {
+        "nome": "Nome completo",
+        "nome_placeholder": "Seu nome",
+        "whatsapp": "WhatsApp",
+        "whatsapp_placeholder": "(00) 00000-0000",
+        "email": "E-mail",
+        "email_placeholder": "seu@email.com",
+        "cidade": "Cidade",
+        "cidade_placeholder": "Sua cidade",
+        "igreja": "Igreja",
+        "igreja_placeholder": "Nome da sua igreja"
+    },
+    "language": {
+        "pt": "Português",
+        "en": "English",
+        "es": "Español"
+    },
+    "whatsapp_button": {
+        "aria_label": "Fale conosco pelo WhatsApp",
+        "message": "Olá! \ud83d\ude80\n\nToquei no botão flutuante do WhatsApp aqui no site.\n\nQuero abrir uma conversa para entender como começar essa missão digital na nossa realidade."
+    },
+    "version_switcher": {
+        "imersao-v1": "V1: Hero-First",
+        "imersao-v2": "V2: Story-Driven",
+        "imersao-v3": "V3: Interactive-Rich"
+    }
+}

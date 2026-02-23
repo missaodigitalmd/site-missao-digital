@@ -1,0 +1,144 @@
+{
+    "hero": {
+        "title": "Walk with us in this mission",
+        "highlight_words": "Walk,mission",
+        "subtitle": "The Gospel advances when the body of Christ moves together. There are real ways to walk alongside us.",
+        "image_alt": "Digital Mission Family"
+    },
+    "caminhos": {
+        "title": "Three ways to walk with us",
+        "orar": {
+            "titulo": "Pray",
+            "descricao": "Your intercession is essential to strengthen us and open pathways for the Gospel to advance. Sign up to receive our prayer requests and walk with us in spirit.",
+            "acao": "I want to pray for you"
+        },
+        "contribuir": {
+            "titulo": "Contribute",
+            "descricao": "Your financial partnership allows us to devote time and resources to reach lives and disciple believers. Every offering sustains our family in the field and enables ministry actions in churches.",
+            "acao_parceiro": "Become a monthly partner",
+            "acao_oferta": "Make a one-time offering"
+        },
+        "cooperar": {
+            "titulo": "Cooperate",
+            "descricao": "Take part actively by cooperating with your gifts and talents. Join as a volunteer in outreach actions, as a partner church that sends us, or as a multiplier who shares our resources with other leaders.",
+            "acao": "Cooperate"
+        }
+    },
+    "familia": {
+        "title": "A family in the field",
+        "text_1": "We are Navarro Lamounier, Tereza Gontijo, Lavínia, and Ravnos. A missionary family fully dedicated to serving as a bridge between the Gospel and the digital and gaming universe.",
+        "text_2": "Our daily life is training churches, producing evangelistic content, and advancing in the digital field where millions of young people seek meaning.",
+        "text_3": "As a missionary family, we depend on God's provision, which comes through partners committed to the Kingdom. Every prayer, every contribution, and every cooperation makes a real difference.",
+        "image_alt": "Digital Mission Family"
+    },
+    "transparencia": {
+        "title": "Where your offering goes",
+        "text": "Your contribution supports our family in the mission field and directly invests in the mission: travel to churches, training materials, equipment for evangelistic actions, and content production. We are a family that lives by faith and joyfully gives account."
+    },
+    "versiculo": {
+        "text": "How, then, can they call on the one they have not believed in? And how can they believe in the one of whom they have not heard? And how can they hear without someone preaching to them?",
+        "ref": "Romans 10:14"
+    },
+    "cta": {
+        "title": "The digital field is ripe. Shall we <highlight>harvest together</highlight>?",
+        "cta": "Talk to us",
+        "whatsapp_message": "Hello! \u2764\ufe0f\n\nI came from the **Support** page, in the final invitation section, and clicked **\"Talk to us\"**.\n\nI’d like to discuss practical ways to walk with you in this digital mission."
+    },
+    "form": {
+        "nome": "Name",
+        "email": "Email",
+        "enviando": "Sending...",
+        "placeholders": {
+            "nome": "Your name",
+            "email": "your@email.com",
+            "whatsapp": "(00) 00000-0000",
+            "valor": "Ex: 50.00"
+        },
+        "invalid_phone": "The number entered is not valid for the selected country."
+    },
+    "modal_orar": {
+        "title": "I want to pray for you",
+        "parceiro_label_pre": "Besides praying, I want to become a",
+        "parceiro_label_highlight": "financial partner",
+        "valor_label": "Desired monthly amount (R$)",
+        "submit": "I want to pray for you",
+        "error": "Could not send. Please try again.",
+        "success_title": "Thank you, {{name}}!",
+        "success_text": "You will receive our prayer requests soon.",
+        "success_partner_text": "Our team will contact you about financial partnership."
+    },
+    "modal_parceria": {
+        "title": "Monthly Partnership",
+        "valor_label": "Monthly amount (R$)",
+        "intercessor_label_pre": "Would you like to be an",
+        "intercessor_label_highlight": "intercessor",
+        "intercessor_label_post": "as well?",
+        "submit": "Become a partner",
+        "oferta_pontual": "I want to make a one-time offering",
+        "error": "Could not send. Please try again.",
+        "success_title": "Thank you, {{name}}!",
+        "success_text": "Your partnership makes all the difference. Our team will contact you soon."
+    },
+    "modal_cooperar": {
+        "title": "I want to cooperate",
+        "formas_label": "Ways to cooperate that are useful for the ministry:",
+        "outra_label": "Tell us more about your skill",
+        "outra_placeholder": "Describe how you would like to serve...",
+        "apoiador_label_pre": "I want to be a",
+        "apoiador_label_highlight": "monthly supporter",
+        "parceiro_label_pre": "I want to become a",
+        "parceiro_label_highlight": "financial partner",
+        "valor_label": "Amount you wish to contribute (R$)",
+        "submit": "I want to cooperate",
+        "error": "Could not send. Please try again.",
+        "success_title": "Thank you, {{name}}!",
+        "success_text": "Our team will contact you soon."
+    },
+    "modal_oferta": {
+        "title": "One-time Offering",
+        "pix_instruction": "Scan the QR Code or copy the PIX key to make your contribution.",
+        "pix_key_label": "PIX Key:",
+        "favorecido_label": "Recipient:",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "parceria_mensal": "Become a monthly partner"
+    },
+    "modal_feedback": {
+        "title": "Your opinion matters",
+        "description": "How has your experience been with our materials and tools? Your feedback helps us improve our digital mission.",
+        "type_label": "Feedback type",
+        "types": {
+            "sugestao": "Suggestion",
+            "elogio": "Praise",
+            "problema": "Report an issue",
+            "outro": "Other"
+        },
+        "rating_label": "What did you think of our platform?",
+        "message_label": "Your message",
+        "message_placeholder": "Tell us about your experience, suggestion, or question...",
+        "submit": "Send feedback",
+        "success_title": "Your voice was heard!",
+        "success_text": "Thank you for helping us grow. We will review your feedback with care.",
+        "back": "Back to the site"
+    },
+    "modal_parceria_impact": {
+        "title_pre": "For the",
+        "title_highlight": "Glory of God",
+        "text": "Your offering sustains our family in the field and equips churches for digital mission. We are deeply grateful for your life and for walking with us in this mission.",
+        "impact_1": "Sustains our family in the field",
+        "impact_2": "Enables church training",
+        "impact_3": "Reaches young people in digital spaces with the Gospel",
+        "verse": "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
+        "verse_ref": "2 Corinthians 9:7"
+    },
+    "formas_cooperacao": [
+        "Connections with churches and leaders",
+        "Volunteer service in evangelistic actions",
+        "Design and visual communication",
+        "Web development/technology",
+        "Translation/Sign language",
+        "Content production (video, audio, text)",
+        "Workshop facilitation",
+        "Other skill"
+    ]
+}

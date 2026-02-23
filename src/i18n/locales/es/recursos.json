@@ -1,0 +1,74 @@
+{
+    "hero": {
+        "title": "Recursos gratuitos para tu misión digital",
+        "highlight_words": "gratuitos,misión digital",
+        "subtitle": "Materiales prácticos para líderes y padres que quieren entender el campo digital y actuar. Descarga, aplica y comparte."
+    },
+    "filters": {
+        "todos": "Todos",
+        "gamers": "Gamers",
+        "lideres": "Líderes",
+        "pais": "Padres"
+    },
+    "card": {
+        "em_breve": "Próximamente",
+        "baixar": "Descargar gratis"
+    },
+    "form": {
+        "nome": "Nombre completo",
+        "email": "Correo electrónico",
+        "cidade": "Ciudad",
+        "igreja": "Iglesia",
+        "placeholders": {
+            "nome": "Tu nombre",
+            "whatsapp": "(00) 00000-0000",
+            "email": "tu@email.com",
+            "cidade": "Tu ciudad",
+            "igreja": "Nombre de tu iglesia"
+        }
+    },
+    "modal": {
+        "form_title": "Completa tus datos",
+        "form_subtitle": "Para recibir el material gratuitamente en tu correo.",
+        "baixar_agora": "Descargar ahora",
+        "processando": "Procesando...",
+        "success_title": "¡Gracias, {{name}}!",
+        "success_text": "La descarga de {{resource}} comenzará en instantes.",
+        "success_email": "También recibirás el material en el correo: {{email}}",
+        "error": "No fue posible registrar. Intenta de nuevo."
+    },
+    "items": {
+        "checklist_mapa": {
+            "titulo": "Checklist del Nuevo Mapa Misionero",
+            "descricao": "Una guía práctica en formato checklist para ayudar a tu iglesia a mapear el campo misionero digital y dar los primeros pasos concretos.",
+            "descricao_completa": "Este checklist fue desarrollado para ayudar a pastores y líderes a identificar oportunidades de evangelismo en el mundo digital. Incluye preguntas prácticas sobre la realidad de la iglesia, el perfil de la comunidad, la presencia digital actual y los próximos pasos concretos. Al final, tendrás un mapa claro del campo misionero digital de tu iglesia."
+        },
+        "ia_reino": {
+            "titulo": "IA al Servicio del Reino",
+            "descricao": "Cómo la inteligencia artificial puede ser una aliada en el evangelismo y el discipulado. Conceptos prácticos para líderes e iglesias.",
+            "descricao_completa": "La inteligencia artificial está transformando el mundo. Esta guía explora cómo líderes e iglesias pueden usar herramientas de IA de forma ética y estratégica para mejorar la comunicación, crear contenido y alcanzar a más personas con el Evangelio."
+        },
+        "guia_daod": {
+            "titulo": "Guía del DaoD",
+            "descricao": "Paso a paso completo para implementar Digital al Discipulado en tu iglesia.",
+            "descricao_completa": "Digital al Discipulado (DaoD) es una metodología completa para transformar el entorno digital de la iglesia en un campo misionero. Esta guía incluye: preparación de la iglesia, estructuración del espacio, reclutamiento de voluntarios, cronograma de actividades, devocionales en lenguaje gamer y seguimiento de nuevos convertidos."
+        },
+        "checklist_gank": {
+            "titulo": "Checklist Gank",
+            "descricao": "Todo lo que necesitas preparar para realizar un Gank Evangelístico exitoso.",
+            "descricao_completa": "El Gank Evangelístico es una acción coordinada en la que la iglesia entra en masa en directos de streamers para compartir el Evangelio con amor. Este checklist incluye: preparación espiritual, organización de participantes, elección del objetivo, mensajes preparados, seguimiento posterior y mucho más."
+        },
+        "gamificacao": {
+            "titulo": "Ebook: Gamificación del Evangelio",
+            "descricao": "Cómo usar elementos de juegos para comunicar el mensaje de Cristo.",
+            "descricao_completa": "La gamificación es la aplicación de elementos de juegos en contextos no lúdicos. Este ebook explora cómo principios como recompensa, progresión, desafío y comunidad pueden utilizarse para hacer el discipulado más atractivo y efectivo para la nueva generación."
+        }
+    },
+    "cta": {
+        "title": "¿Quieres ir más allá de los materiales?",
+        "text": "Estos recursos son un punto de partida. Si quieres llevar el evangelismo digital a tu iglesia con entrenamiento práctico y acción real, conoce nuestros proyectos.",
+        "button_projects": "Ver proyectos para iglesias",
+        "button_contact": "Habla directamente con nosotros",
+        "whatsapp_message": "¡Hola! \ud83d\udcda\n\nVengo de la página de **Recursos**, en la sección final **\"¿Quieres ir más allá de los materiales?\"**, e hice clic en **\"Habla directamente con nosotros\"**.\n\nQuisiera conversar sobre cómo pasar del contenido gratuito a una implementación práctica en nuestra iglesia."
+    }
+}

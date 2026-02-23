@@ -1,0 +1,170 @@
+{
+    "whatsapp": {
+        "message": "Olá! \ud83d\udd25\n\nVi a página da Imersão e cliquei no botão de conversa pelo WhatsApp.\n\nQuero entender como podemos organizar essa experiência na nossa igreja, com clareza de formato e próximos passos."
+    },
+    "hero": {
+        "title": "Imagine sua igreja inteira mergulhando no campo missionário digital.",
+        "highlight_words": "mergulhando",
+        "subtitle": "Um fim de semana que leva sua igreja a evangelizar de verdade no mundo digital.",
+        "cta_whatsapp": "Quero uma Imersão na minha igreja",
+        "cta_scroll": "Veja como funciona"
+    },
+    "secao2": {
+        "title_pre": "Sua igreja precisa de mais do que uma",
+        "title_span": "ação isolada.",
+        "paragraph_1": "Você já ouviu falar de evangelismo digital. Talvez até tenha tentado implementar algo. Mas uma ação sozinha, por melhor que seja, não transforma a cultura de uma igreja.",
+        "paragraph_2": "A Imersão existe porque acreditamos que a igreja precisa viver a experiência completa: primeiro entender por que o mundo digital é um campo missionário real. Depois ser treinada com ferramentas práticas para atuar nele. E, por fim, colocar a mão na massa, evangelizando de verdade, ali mesmo, naquele fim de semana.",
+        "pull_quote": "\"A internet é um país não alcançado. A Imersão é a viagem missionária para lá.\"",
+        "image_alt": "A igreja como família missionária no mundo digital"
+    },
+    "timeline": {
+        "heading": "Despertar, Equipar, Acompanhar.",
+        "subheading": "Tudo num único fim de semana.",
+        "examples_label": "Exemplos de ações:",
+        "despertar": {
+            "title": "Despertar",
+            "heading": "Primeiro, a igreja precisa enxergar o campo.",
+            "text": "A Imersão começa quebrando paradigmas. Através de palestras, dados, testemunhos reais e dinâmicas impactantes, a igreja toda (líderes, jovens, pais) é despertada para entender que o mundo digital não é inimigo: é um território missionário vasto onde milhões buscam sentido e ninguém está anunciando Cristo.",
+            "items": [
+                {
+                    "title": "Palestra 'Muros e Pontes'",
+                    "description": "Confrontando a visão de que tecnologia é ameaça e abrindo os olhos para a oportunidade."
+                },
+                {
+                    "title": "Choque de Realidade",
+                    "description": "Dados reais sobre o tempo que jovens passam conectados e o impacto disso."
+                },
+                {
+                    "title": "A Grande Comissão Digital",
+                    "description": "Entendendo que o 'Ide' também se aplica aos servidores e redes sociais."
+                }
+            ]
+        },
+        "equipar": {
+            "title": "Equipar",
+            "heading": "Depois, cada um recebe ferramentas.",
+            "text": "Não basta enxergar o campo: é preciso saber como cultivá-lo. Treinamos a igreja com ferramentas práticas: como evangelizar em jogos, como transformar conversas digitais em pontes para Cristo, como os pais podem pastorear filhos no mundo virtual. Cada público sai com habilidades concretas.",
+            "items": [
+                {
+                    "title": "Workshop Gamer",
+                    "description": "Jovens aprendem a ser missionários nos jogos que já jogam todos os dias."
+                },
+                {
+                    "title": "Evangelismo Digital",
+                    "description": "Como iniciar conversas intencionais e compartilhar o evangelho online."
+                },
+                {
+                    "title": "Workshop para Pais",
+                    "description": "Ferramentas para pastorear o coração dos filhos em um mundo hiperconectado."
+                }
+            ]
+        },
+        "acompanhar": {
+            "title": "Acompanhar",
+            "heading": "Por fim, a igreja vai ao campo, ali mesmo.",
+            "text": "A Imersão não termina em teoria. No momento culminante do fim de semana, a igreja inteira é mobilizada para uma ação evangelística digital real. Celulares na mão, fé no coração, e a coragem de anunciar Cristo a alguém que precisa ouvir. É aqui que acontecem os testemunhos que marcam para sempre.",
+            "items": [
+                {
+                    "title": "Comunidade de Discipulado",
+                    "description": "Grupos de apoio e crescimento contínuo para missionários digitais."
+                },
+                {
+                    "title": "Mentoria",
+                    "description": "Acompanhamento próximo para fortalecer a fé e a prática missionária."
+                },
+                {
+                    "title": "Multiplicação",
+                    "description": "Formando novos líderes para expandir o alcance da igreja no digital."
+                }
+            ]
+        }
+    },
+    "diferenciais": {
+        "title_pre": "A diferença entre",
+        "title_span_1": "experimentar",
+        "title_middle": "e",
+        "title_span_2": "transformar.",
+        "items": [
+            {
+                "number": 1,
+                "highlight": "Contexto completo",
+                "text": "Um projeto isolado resolve um momento. A Imersão cria um contexto: a igreja inteira, do pastor ao adolescente, vivendo a mesma experiência, ao mesmo tempo. Isso muda a cultura, não só a agenda."
+            },
+            {
+                "number": 2,
+                "highlight": "Frutos visíveis",
+                "text": "Quando despertamento, treinamento e prática acontecem juntos e em sequência, os resultados são imediatos. A igreja sai do fim de semana com histórias reais de evangelismo, não com anotações de caderno."
+            },
+            {
+                "number": 3,
+                "highlight": "Solução para conferências",
+                "text": "Se você organiza congressos missionários, conferências de jovens ou retiros de liderança, a Imersão se encaixa perfeitamente como a programação principal ou como um módulo completo dentro do seu evento."
+            }
+        ]
+    },
+    "impacto": {
+        "image_alt": "Portal digital",
+        "top_pre": "A igreja que não sabe que o campo existe, ou ainda não foi",
+        "typewriter_words": [
+            "equipada",
+            "treinada",
+            "capacitada",
+            "despertada"
+        ],
+        "top_post": "para entrar nele...",
+        "bottom_pre": "...essa igreja",
+        "bottom_span_pre": "precisa de uma",
+        "bottom_handwritten": "Imersão"
+    },
+    "steps": {
+        "title_pre": "Três passos para levar a Imersão até",
+        "title_span": "sua igreja.",
+        "cta": "Vamos conversar?",
+        "items": [
+            {
+                "number": 1,
+                "title": "Conversa",
+                "description": "Entre em contato pelo WhatsApp. Vamos entender a realidade da sua igreja, o contexto, o público e o momento."
+            },
+            {
+                "number": 2,
+                "title": "Planejamento",
+                "description": "Juntos, formatamos a programação ideal para o seu fim de semana: quais ações, qual sequência, que público priorizar."
+            },
+            {
+                "number": 3,
+                "title": "Imersão",
+                "description": "Vamos até sua igreja e conduzimos a experiência completa. De sexta a domingo (ou no formato que funcionar), sua igreja vive o tripé missionário na prática."
+            }
+        ]
+    },
+    "publico_alvo": {
+        "title_pre": "A Imersão é para quem quer",
+        "title_span": "ir além.",
+        "items": [
+            {
+                "title": "Igrejas locais",
+                "description": "Pastores e líderes que querem capacitar toda a comunidade para o campo missionário digital."
+            },
+            {
+                "title": "Congressos e conferências",
+                "description": "Organizadores de eventos missionários ou de jovens que buscam uma programação completa e transformadora."
+            },
+            {
+                "title": "Lideranças e presbitérios",
+                "description": "Denominações e redes de igrejas que desejam despertar múltiplas comunidades para a missão digital."
+            },
+            {
+                "title": "Organizações missionárias",
+                "description": "Missões que querem alcançar jovens conectados através de uma nova abordagem, sem abandonar a fidelidade ao Evangelho."
+            }
+        ]
+    },
+    "cta_final": {
+        "title_pre": "Sua igreja pode entrar nesse",
+        "title_span": "país não alcançado.",
+        "title_post": "Vamos juntos?",
+        "cta_whatsapp": "Agendar uma conversa",
+        "cta_projects": "Conheça nossos projetos"
+    }
+}

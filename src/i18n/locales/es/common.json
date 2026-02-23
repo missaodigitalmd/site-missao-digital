@@ -1,0 +1,74 @@
+{
+    "nav": {
+        "home": "Inicio",
+        "quem_somos": "Quiénes Somos",
+        "projetos": "Proyectos",
+        "imersao": "Inmersión",
+        "recursos": "Recursos",
+        "apoie": "Apoya",
+        "contato": "Contacto",
+        "toggle_menu": "Alternar menú",
+        "fale_conosco": "Contáctanos",
+        "fale_conosco_whatsapp": "Contáctanos por WhatsApp",
+        "whatsapp_message": "¡Hola! \ud83d\udc4b\n\nVengo de la **navegación principal** del sitio de Missão Digital y hice clic en el botón de menú **\"Contáctanos\"**.\n\nQuiero entender mejor cómo pueden ayudar a nuestra iglesia a avanzar en el evangelismo digital."
+    },
+    "nav_dropdown": {
+        "daod": "DaoD",
+        "daod_desc": "Digital al Discipulado",
+        "gank": "Gank",
+        "gank_desc": "Evangelismo en equipo",
+        "ninive": "Nínive Digital",
+        "ninive_desc": "Misión estratégica",
+        "campeonato": "Torneo",
+        "campeonato_desc": "Eventos evangelísticos"
+    },
+    "footer": {
+        "description": "Despertamos, equipamos y acompañamos iglesias en el campo misionero digital.",
+        "menu": "Menú",
+        "social": "Redes Sociales",
+        "verse_title": "Versículo",
+        "verse_text": "Si coméis o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios.",
+        "verse_ref": "1 Corintios 10:31",
+        "copyright": "© {{year}} Misión Digital. Todos los derechos reservados.",
+        "made_with": "Hecho con",
+        "and_purpose": "y propósito",
+        "pix_copied": "¡Copiado!",
+        "pix_copy_key": "Clic para copiar clave",
+        "pix_copied_success": "Clave copiada con éxito",
+        "whatsapp_message": "¡Hola! \u2728\n\nVengo del **pie de página del sitio**, en la zona de contacto, e hice clic en el botón de **WhatsApp (+55 62 8642-5598)**.\n\nMe gustaría conversar sobre próximos pasos concretos para nuestra iglesia en el campo misionero digital."
+    },
+    "modals": {
+        "loading": "Procesando...",
+        "error_generic": "No fue posible enviar. Intenta de nuevo.",
+        "success_title": "¡Gracias!",
+        "close": "Cerrar",
+        "send": "Enviar",
+        "required": "Campo obligatorio"
+    },
+    "fields": {
+        "nome": "Nombre completo",
+        "nome_placeholder": "Tu nombre",
+        "whatsapp": "WhatsApp",
+        "whatsapp_placeholder": "(00) 00000-0000",
+        "email": "Correo electrónico",
+        "email_placeholder": "tu@correo.com",
+        "cidade": "Ciudad",
+        "cidade_placeholder": "Tu ciudad",
+        "igreja": "Iglesia",
+        "igreja_placeholder": "Nombre de tu iglesia"
+    },
+    "language": {
+        "pt": "Português",
+        "en": "English",
+        "es": "Español"
+    },
+    "whatsapp_button": {
+        "aria_label": "Habla con nosotros por WhatsApp",
+        "message": "¡Hola! \ud83d\ude0a\n\nHice clic en el **botón flotante de WhatsApp** que aparece en el sitio de Missão Digital.\n\nQuiero iniciar una conversación y entender cómo comenzar a aplicar esta visión misionera digital en nuestra realidad como iglesia."
+    },
+    "version_switcher": {
+        "imersao-v1": "V1: Hero-First",
+        "imersao-v2": "V2: Story-Driven",
+        "imersao-v3": "V3: Interactive-Rich"
+    }
+}
