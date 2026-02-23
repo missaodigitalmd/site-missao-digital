@@ -21,6 +21,8 @@ interface FormData {
   igreja: string;
 }
 
+import { SEOBox } from '@/components/seo/SEOBox';
+
 export const RecursosPage: React.FC = () => {
   const { t, i18n } = useTranslation('recursos');
   const whatsappUrl = `https://wa.me/556286425598?text=${encodeURIComponent(t('cta.whatsapp_message'))}`;
@@ -131,6 +133,11 @@ export const RecursosPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-surface-primary">
+      <SEOBox
+        title={t('seo.title')}
+        description={t('seo.description')}
+        url="https://missaodigitalmd.com/recursos"
+      />
       {/* Hero */}
       <HeroStandard
         title={t('hero.title')}

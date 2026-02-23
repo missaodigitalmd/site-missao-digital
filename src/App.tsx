@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Navbar, Footer, WhatsAppButton } from '@/components/layout';
 import { RouterProvider, useRouter } from '@/router';
 import {
@@ -57,37 +58,6 @@ function AppContent() {
       navigate('recursos');
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const renderPage = () => {
-    switch (currentRoute) {
-      case 'home':
-        return <HomePage />;
-      case 'quem-somos':
-        return <QuemSomosPage />;
-      case 'projetos':
-        return <ProjetosPage />;
-      case 'projetos/daod':
-        return <DaoDPage />;
-      case 'projetos/gank':
-        return <GankPage />;
-      case 'projetos/ninive-digital':
-        return <NinivePage />;
-      case 'projetos/campeonatos-evangelisticos':
-        return <CampeonatoPage />;
-      case 'imersao-missionaria':
-        return <ImersaoPage />;
-
-      case 'recursos':
-        return <RecursosPage />;
-      case 'apoie':
-        return <ApoiePage />;
-      case 'contato':
-        return <ContatoPage />;
-      case 'admin':
-        return <AdminPage />;
-      default:
-        return <HomePage />;
-    }
-  };
 
   const isAdmin = currentRoute === 'admin';
 
@@ -95,7 +65,21 @@ function AppContent() {
     <div className="min-h-screen bg-surface-primary">
       {!isAdmin && <Navbar transparent={currentRoute === 'home'} />}
       <main>
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/quem-somos" element={<QuemSomosPage />} />
+          <Route path="/projetos" element={<ProjetosPage />} />
+          <Route path="/projetos/daod" element={<DaoDPage />} />
+          <Route path="/projetos/gank" element={<GankPage />} />
+          <Route path="/projetos/ninive-digital" element={<NinivePage />} />
+          <Route path="/projetos/campeonatos-evangelisticos" element={<CampeonatoPage />} />
+          <Route path="/imersao-missionaria" element={<ImersaoPage />} />
+          <Route path="/recursos" element={<RecursosPage />} />
+          <Route path="/apoie" element={<ApoiePage />} />
+          <Route path="/contato" element={<ContatoPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
       </main>
       {!isAdmin && <Footer />}
       {!isAdmin && <WhatsAppButton />}

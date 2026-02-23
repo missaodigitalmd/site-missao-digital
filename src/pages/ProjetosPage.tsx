@@ -6,6 +6,8 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 import { THEME_COLOR } from '@/constants/theme';
 import { useTranslation } from 'react-i18next';
 
+import { SEOBox } from '@/components/seo/SEOBox';
+
 export const ProjetosPage: React.FC = () => {
   const { t } = useTranslation('projetos');
   const { navigate } = useRouter();
@@ -80,6 +82,11 @@ export const ProjetosPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-surface-primary">
+      <SEOBox
+        title={t('seo.title')}
+        description={t('seo.description')}
+        url="https://missaodigitalmd.com/projetos"
+      />
       {/* Hero */}
       <HeroStandard
         title={t('listPage.hero.title')}

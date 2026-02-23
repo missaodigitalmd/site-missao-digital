@@ -12,6 +12,8 @@ const THEME_COLOR_LIGHT = '#D1C4FF';
 
 
 
+import { SEOBox } from '@/components/seo/SEOBox';
+
 export const GankPage: React.FC = () => {
   const { t } = useTranslation('projetos');
   const whatsappUrl = `https://wa.me/556286425598?text=${encodeURIComponent(t('gank.whatsapp.message'))}`;
@@ -64,6 +66,11 @@ export const GankPage: React.FC = () => {
 
   return (
     <ProjectLayout themeColor={THEME_COLOR} themeColorLight={THEME_COLOR_LIGHT}>
+      <SEOBox
+        title={t('seo.gank.title')}
+        description={t('seo.gank.description')}
+        url="https://missaodigitalmd.com/projetos/gank"
+      />
       {/* Hero Fullscreen */}
       <HeroFullscreen
         backgroundImage="/images/projeto-gank.jpg"

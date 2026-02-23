@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@/router';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { Section } from '@/components/layout';
@@ -8,6 +7,8 @@ import { GlowCard } from '@/components/ui/GlowCard';
 import { MessageCircle, Instagram, Mail, MapPin } from 'lucide-react';
 
 import { THEME_COLOR } from '@/constants/theme';
+
+import { SEOBox } from '@/components/seo/SEOBox';
 
 export const ContatoPage: React.FC = () => {
   const { t } = useTranslation('contato');
@@ -40,6 +41,11 @@ export const ContatoPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-surface-primary">
+      <SEOBox
+        title={t('seo.title')}
+        description={t('seo.description')}
+        url="https://missaodigitalmd.com/contato"
+      />
       {/* Hero */}
       <HeroStandard
         title={t('hero.title')}
@@ -204,15 +210,6 @@ export const ContatoPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Botão Temporário Admin */}
-      <div className="flex justify-center pb-12 opacity-30 hover:opacity-100 transition-opacity">
-        <Link
-          to="admin"
-          className="px-4 py-2 text-xs text-white/40 hover:text-white border border-white/10 hover:border-white/20 rounded-lg transition-all"
-        >
-          {t('admin_link')}
-        </Link>
-      </div>
 
 
       <style>{`

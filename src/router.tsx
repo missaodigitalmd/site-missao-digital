@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate, Link as RouterLink, BrowserRouter } from 'react-router-dom';
 
-type Route =
+export type Route =
   | 'home'
   | 'quem-somos'
   | 'projetos'
@@ -23,72 +24,74 @@ interface RouterContextType {
   goBack: () => void;
 }
 
-const RouterContext = createContext<RouterContextType | null>(null);
-
 export function RouterProvider({ children }: { children: React.ReactNode }) {
-  const [currentRoute, setCurrentRoute] = useState<Route>('home');
-  const [, setHistory] = useState<Route[]>(['home']);
-
-  const navigate = useCallback((route: Route) => {
-    setCurrentRoute(route);
-    setHistory(prev => [...prev, route]);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  const goBack = useCallback(() => {
-    setHistory(prev => {
-      if (prev.length <= 1) return prev;
-      const newHistory = prev.slice(0, -1);
-      setCurrentRoute(newHistory[newHistory.length - 1]);
-      return newHistory;
-    });
-  }, []);
-
-  // Handle browser back/forward buttons
-  useEffect(() => {
-    const handlePopState = () => {
-      // Simple handling - just go to home for now
-      setCurrentRoute('home');
-      setHistory(['home']);
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
   return (
-    <RouterContext.Provider value={{ currentRoute, navigate, goBack }}>
+    <BrowserRouter>
+      <ScrollToTop />
       {children}
-    </RouterContext.Provider>
+    </BrowserRouter>
   );
 }
 
-export function useRouter() {
-  const context = useContext(RouterContext);
-  if (!context) {
-    throw new Error('useRouter must be used within RouterProvider');
+// Automatically scroll to top on navigation
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
+
+export function useRouter(): RouterContextType {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Extract the path from the URL, defaulting to 'home' if we are at '/'
+  let currentRoute: string = 'home';
+  if (location.pathname && location.pathname !== '/') {
+    // Remove leading slash
+    currentRoute = location.pathname.substring(1);
   }
-  return context;
+
+  const navigateWrapper = (route: Route) => {
+    // Navigate with the existing search params to not break deep links if any
+    const search = window.location.search;
+    if (route === 'home') {
+      navigate('/' + search);
+    } else {
+      navigate('/' + route + search);
+    }
+  };
+
+  const goBackWrapper = () => {
+    navigate(-1);
+  };
+
+  return {
+    currentRoute: currentRoute as Route,
+    navigate: navigateWrapper,
+    goBack: goBackWrapper
+  };
 }
 
 // Link component for navigation
-interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   to: Route;
   children: React.ReactNode;
 }
 
 export function Link({ to, children, className = '', onClick, ...props }: LinkProps) {
-  const { navigate } = useRouter();
-
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    navigate(to);
     onClick?.(e);
   };
 
+  const path = to === 'home' ? '/' : `/${to}`;
+
   return (
-    <a href={`#${to}`} onClick={handleClick} className={className} {...props}>
+    <RouterLink to={path} onClick={handleClick} className={className} {...props}>
       {children}
-    </a>
+    </RouterLink>
   );
 }

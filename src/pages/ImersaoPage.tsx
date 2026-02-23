@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 
 import { THEME_COLOR, THEME_COLOR_LIGHT } from '@/constants/theme';
+import { SEOBox } from '@/components/seo/SEOBox';
 
 export const ImersaoPage: React.FC = () => {
     const { t } = useTranslation('imersao');
@@ -190,6 +191,11 @@ export const ImersaoPage: React.FC = () => {
 
     return (
         <ProjectLayout themeColor={THEME_COLOR} themeColorLight={THEME_COLOR_LIGHT}>
+            <SEOBox
+                title={t('seo.title')}
+                description={t('seo.description')}
+                url="https://missaodigitalmd.com/imersao"
+            />
             <section ref={heroRef} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-4">
                 <div
                     className="absolute inset-0 z-0 will-change-transform"

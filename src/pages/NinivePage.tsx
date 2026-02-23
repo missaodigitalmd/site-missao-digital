@@ -12,6 +12,8 @@ const THEME_COLOR_LIGHT = '#FFECB3';
 
 
 
+import { SEOBox } from '@/components/seo/SEOBox';
+
 export const NinivePage: React.FC = () => {
   const { t } = useTranslation('projetos');
   const whatsappUrl = `https://wa.me/556286425598?text=${encodeURIComponent(t('ninive.whatsapp.message'))}`;
@@ -53,6 +55,11 @@ export const NinivePage: React.FC = () => {
 
   return (
     <ProjectLayout themeColor={THEME_COLOR} themeColorLight={THEME_COLOR_LIGHT}>
+      <SEOBox
+        title={t('seo.ninive.title')}
+        description={t('seo.ninive.description')}
+        url="https://missaodigitalmd.com/projetos/ninive-digital"
+      />
       {/* Hero Fullscreen */}
       <HeroFullscreen
         backgroundImage="/images/projeto-ninive.jpg"

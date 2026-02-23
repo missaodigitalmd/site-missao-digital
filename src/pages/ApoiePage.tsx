@@ -14,6 +14,8 @@ import { ParceriaMensalModal } from '@/components/modals/ParceriaMensalModal';
 import { OfertaPontualModal } from '@/components/modals/OfertaPontualModal';
 import { useDeepLink } from '@/hooks/useDeepLink';
 
+import { SEOBox } from '@/components/seo/SEOBox';
+
 export const ApoiePage: React.FC = () => {
   const { t } = useTranslation('apoie');
   const whatsappUrl = `https://wa.me/556286425598?text=${encodeURIComponent(t('cta.whatsapp_message'))}`;
@@ -63,6 +65,11 @@ export const ApoiePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-surface-primary">
+      <SEOBox
+        title={t('seo.title')}
+        description={t('seo.description')}
+        url="https://missaodigitalmd.com/apoie"
+      />
       {/* Hero */}
       <HeroApoie
         title={t('hero.title')}

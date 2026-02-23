@@ -1,329 +1,349 @@
 {
+  "hero": {
+    "title": "Nossos Projetos",
+    "subtitle": "Cada projeto é uma ferramenta para alcançar vidas no campo digital."
+  },
+  "listPage": {
     "hero": {
-        "title": "Nossos Projetos",
-        "subtitle": "Cada projeto é uma ferramenta para alcançar vidas no campo digital."
+      "title": "Projetos prontos para sua igreja",
+      "highlightWord1": "Projetos",
+      "highlightWord2": "igreja",
+      "subtitle": "Cada projeto combina treinamento e ação evangelística real. Sua igreja não apenas aprende, ela sai para o campo."
     },
-    "listPage": {
-        "hero": {
-            "title": "Projetos prontos para sua igreja",
-            "highlightWord1": "Projetos",
-            "highlightWord2": "igreja",
-            "subtitle": "Cada projeto combina treinamento e ação evangelística real. Sua igreja não apenas aprende, ela sai para o campo."
-        },
-        "logic": {
-            "title": "Treinamos e praticamos juntos",
-            "preamble": "Nossos projetos não são palestras. São experiências completas onde sua igreja é treinada e colocada em ação no mesmo processo. Trabalhamos sobre um tripé:",
-            "pillar1": "Despertar",
-            "connector1": "a igreja para o campo digital,",
-            "pillar2": "Equipar",
-            "connector2": "com ferramentas práticas e",
-            "pillar3": "Alcançar",
-            "ending": "vidas com o Evangelho."
-        },
-        "cards": {
-            "daod": {
-                "title": "DaoD",
-                "subtitle": "Digital ao Discipulado",
-                "description": "A igreja abre regularmente um espaço com jogos, convivência e devocional na linguagem gamer. A porta de entrada que não fecha.",
-                "cta": "Conhecer o DaoD"
-            },
-            "gank": {
-                "title": "Gank Evangelístico",
-                "subtitle": "Live Stream Missionária",
-                "description": "Sua igreja inteira entra junta na live de um streamer para compartilhar o Evangelho de forma coordenada e amorosa. Um ataque surpresa de amor.",
-                "cta": "Conhecer o Gank"
-            },
-            "ninive": {
-                "title": "Nínive Digital",
-                "subtitle": "Viagem Missionária Virtual",
-                "description": "Uma viagem missionária digital vivida em um fim de semana. Jovens gamers de várias igrejas se unem com uma missão: entrar no jogo e anunciar Cristo.",
-                "cta": "Conhecer o Nínive"
-            },
-            "campeonato": {
-                "title": "Campeonato Evangelístico",
-                "subtitle": "Torneio com Propósito",
-                "description": "Um torneio real onde cada time recebe um treinador que conduz devocionais semanais. O campeonato é o meio, o discipulado é o fim.",
-                "cta": "Conhecer o Campeonato"
-            }
-        },
-        "immersiveCta": {
-            "title": "Sua igreja precisa de algo mais completo?",
-            "paragraph1": "A Imersão Missionária é um fim de semana inteiro onde despertamos, equipamos e levamos sua igreja a evangelizar de verdade no mundo digital. Não é uma ação isolada, mas sim a experiência completa.",
-            "paragraph2": "Ideal para congressos missionários, conferências de jovens e retiros de liderança.",
-            "primaryButton": "Conheça a Imersão Missionária",
-            "secondaryButton": "Ou fale direto conosco"
-        },
-        "finalCta": {
-            "title": "Sua igreja pode ser um ponto de luz no mundo digital.",
-            "subtitle": "Vamos começar?",
-            "button": "Fale conosco pelo WhatsApp"
-        },
-        "whatsapp": {
-            "message": "Olá! \ud83c\udfaf\n\nEstava vendo os projetos e cliquei no botão de WhatsApp para falar com vocês.\n\nQuero entender qual projeto da Missão Digital combina melhor com o momento da nossa igreja."
-        }
+    "logic": {
+      "title": "Treinamos e praticamos juntos",
+      "preamble": "Nossos projetos não são palestras. São experiências completas onde sua igreja é treinada e colocada em ação no mesmo processo. Trabalhamos sobre um tripé:",
+      "pillar1": "Despertar",
+      "connector1": "a igreja para o campo digital,",
+      "pillar2": "Equipar",
+      "connector2": "com ferramentas práticas e",
+      "pillar3": "Alcançar",
+      "ending": "vidas com o Evangelho."
+    },
+    "cards": {
+      "daod": {
+        "title": "DaoD",
+        "subtitle": "Digital ao Discipulado",
+        "description": "A igreja abre regularmente um espaço com jogos, convivência e devocional na linguagem gamer. A porta de entrada que não fecha.",
+        "cta": "Conhecer o DaoD"
+      },
+      "gank": {
+        "title": "Gank Evangelístico",
+        "subtitle": "Live Stream Missionária",
+        "description": "Sua igreja inteira entra junta na live de um streamer para compartilhar o Evangelho de forma coordenada e amorosa. Um ataque surpresa de amor.",
+        "cta": "Conhecer o Gank"
+      },
+      "ninive": {
+        "title": "Nínive Digital",
+        "subtitle": "Viagem Missionária Virtual",
+        "description": "Uma viagem missionária digital vivida em um fim de semana. Jovens gamers de várias igrejas se unem com uma missão: entrar no jogo e anunciar Cristo.",
+        "cta": "Conhecer o Nínive"
+      },
+      "campeonato": {
+        "title": "Campeonato Evangelístico",
+        "subtitle": "Torneio com Propósito",
+        "description": "Um torneio real onde cada time recebe um treinador que conduz devocionais semanais. O campeonato é o meio, o discipulado é o fim.",
+        "cta": "Conhecer o Campeonato"
+      }
+    },
+    "immersiveCta": {
+      "title": "Sua igreja precisa de algo mais completo?",
+      "paragraph1": "A Imersão Missionária é um fim de semana inteiro onde despertamos, equipamos e levamos sua igreja a evangelizar de verdade no mundo digital. Não é uma ação isolada, mas sim a experiência completa.",
+      "paragraph2": "Ideal para congressos missionários, conferências de jovens e retiros de liderança.",
+      "primaryButton": "Conheça a Imersão Missionária",
+      "secondaryButton": "Ou fale direto conosco"
+    },
+    "finalCta": {
+      "title": "Sua igreja pode ser um ponto de luz no mundo digital.",
+      "subtitle": "Vamos começar?",
+      "button": "Fale conosco pelo WhatsApp"
+    },
+    "whatsapp": {
+      "message": "Olá! 🎯\n\nEstava vendo os projetos e cliquei no botão de WhatsApp para falar com vocês.\n\nQuero entender qual projeto da Missão Digital combina melhor com o momento da nossa igreja."
+    }
+  },
+  "daod": {
+    "titulo": "DaoD — Digital ao Discipulado",
+    "descricao": "Um método inovador que usa o mundo digital como ponte para o discipulado real.",
+    "hero": {
+      "title": "DaoD: Digital ao Discipulado",
+      "highlightWord": "Discipulado",
+      "subtitle": "A igreja abre as portas. O jogo atrai. O Evangelho transforma.",
+      "cta": "Leve o DaoD para sua igreja"
+    },
+    "about": {
+      "badge": "O Projeto",
+      "titlePrefix": "O que é o ",
+      "titleHighlight": "DaoD",
+      "titleSuffix": "?",
+      "paragraphPrefix": "DaoD (Digital ao Discipulado) é um projeto que desperta e equipa a igreja local para alcançar jovens e adolescentes do seu entorno e conduzir esses jovens ao discipulado. Não é um evento. É uma ",
+      "paragraphHighlight": "cultura que se instala na igreja",
+      "paragraphSuffix": "."
+    },
+    "how": {
+      "title": "Como funciona na prática",
+      "subtitle": "Quatro passos para transformar jogos em discipulado"
+    },
+    "steps": {
+      "1": {
+        "title": "A igreja abre um espaço",
+        "description": "Com regularidade, a igreja cria um ambiente acolhedor e equipado para jogos e convivência."
+      },
+      "2": {
+        "title": "Devocional gamer",
+        "description": "No encontro, há um devocional em linguagem gamer, claro e evangelístico."
+      },
+      "3": {
+        "title": "Convite ao próximo passo",
+        "description": "Quem se torna frequente ou aberto é convidado para estudo bíblico em pequenos grupos."
+      },
+      "4": {
+        "title": "Discipulado contínuo",
+        "description": "O caminho leva do pixel ao púlpito: leitura bíblica, oração, decisões por Cristo, batismo."
+      }
+    },
+    "why": {
+      "title": "Por que o DaoD funciona"
+    },
+    "reasons": {
+      "1": {
+        "title": "Linguagem nativa",
+        "description": "O jovem já vive nesse mundo. O DaoD não o tira de lá, o encontra ali."
+      },
+      "2": {
+        "title": "Relacionamento real",
+        "description": "Não é evangelismo de megafone. É presença, jogo junto, amizade que apresenta Cristo."
+      },
+      "3": {
+        "title": "Caminho claro",
+        "description": "Do primeiro jogo ao discipulado, cada passo é intencional."
+      }
+    },
+    "finalCta": {
+      "titlePrefix": "Sua igreja pode ser o lugar onde o ",
+      "titleHighlight": "gamer encontra o Evangelho",
+      "titleSuffix": ".",
+      "subtitle": "Vamos conversar sobre como implementar o DaoD na sua realidade.",
+      "button": "Leve o DaoD para sua igreja"
+    },
+    "whatsapp": {
+      "message": "Oi! 🎮\n\nVi o DaoD e cliquei em *levar o DaoD para minha igreja*.\n\nGostaria de conversar sobre como começar essa implementação de forma prática com vocês."
+    }
+  },
+  "gank": {
+    "titulo": "Gank Evangelístico",
+    "descricao": "Evangelismo em equipe no universo gamer.",
+    "hero": {
+      "title": "Gank Evangelístico",
+      "highlightWord": "Evangelístico",
+      "subtitle": "Um ataque surpresa coordenado. Só que de amor.",
+      "cta": "Leve o Gank para sua igreja"
+    },
+    "about": {
+      "badge": "O Conceito",
+      "titlePrefix": "O que é o ",
+      "titleHighlight": "Gank",
+      "titleSuffix": "?",
+      "paragraphPrefix": "No universo gamer, “gank” é um ataque surpresa coordenado em grupo. Adaptamos o conceito: um grupo de cristãos entrando juntos em uma live ou plataforma digital para compartilhar o Evangelho de forma ",
+      "paragraphHighlight": "coordenada e amorosa",
+      "paragraphSuffix": "."
+    },
+    "how": {
+      "title": "Como funciona na prática",
+      "subtitle": "Cinco passos para um Gank de amor"
+    },
+    "steps": {
+      "1": {
+        "title": "Mobilização",
+        "description": "Durante um culto jovem ou encontro, toda a igreja se prepara para a ação."
+      },
+      "2": {
+        "title": "Entrada coordenada",
+        "description": "Todos entram juntos na live de um streamer que está jogando."
+      },
+      "3": {
+        "title": "Conexão genuína",
+        "description": "A igreja interage no chat, cria conexão, mostra amor real."
+      },
+      "4": {
+        "title": "O Evangelho avança",
+        "description": "Quando o streamer pergunta quem somos, respondemos com amor e propósito."
+      },
+      "5": {
+        "title": "Continuidade",
+        "description": "A conversa continua além da live. O evangelho avança."
+      }
+    },
+    "testimonialsTitle": "O que dizem sobre o Gank",
+    "testimonials": {
+      "1": {
+        "quote": "Fiquei impressionado com a quantidade de pessoas que entraram na live com mensagens de apoio. Nunca vi uma comunidade tão positiva.",
+        "author": "Streamer participante"
+      },
+      "2": {
+        "quote": "O Gank nos mostrou que podemos usar a tecnologia para fazer o bem. Foi uma experiência transformadora para nossa juventude.",
+        "author": "Pastor de Jovens"
+      }
+    },
+    "finalCta": {
+      "titlePrefix": "Milhares de lives estão abertas agora, ",
+      "titleHighlight": "vamos entrar",
+      "titleSuffix": "?",
+      "button": "Leve o Gank para sua igreja"
+    },
+    "whatsapp": {
+      "message": "Olá! ⚔️\n\nVi o Gank Evangelístico e cliquei em *levar o Gank para minha igreja*.\n\nQuero entender como organizar essa mobilização com estratégia e cuidado pastoral."
+    }
+  },
+  "ninive": {
+    "titulo": "Nínive Digital",
+    "descricao": "Missão estratégica nos cantos mais improváveis do mundo digital.",
+    "hero": {
+      "title": "Nínive Digital",
+      "highlightWord": "Nínive",
+      "subtitle": "Uma viagem missionária digital. Um fim de semana. Um universo inteiro para alcançar.",
+      "cta": "Leve o Nínive para sua igreja"
+    },
+    "about": {
+      "badge": "A Missão",
+      "titlePrefix": "O que é o ",
+      "titleHighlight": "Nínive Digital",
+      "titleSuffix": "?",
+      "paragraphPrefix": "Inspirado em Jonas em Nínive, é pregar Cristo a um universo inteiro com unidade, coragem e urgência. Nínive Digital é uma ",
+      "paragraphHighlight": "viagem missionária digital",
+      "paragraphSuffix": ", intensa e focada, vivida em um único fim de semana."
+    },
+    "how": {
+      "title": "Como funciona na prática",
+      "subtitle": "Cinco passos para uma viagem missionária digital"
+    },
+    "steps": {
+      "1": {
+        "title": "Mobilização",
+        "description": "Várias igrejas se unem, seus jovens gamers se preparam para a “viagem”."
+      },
+      "2": {
+        "title": "A viagem",
+        "description": "Juntos, “viajam para um campo” (entram em um jogo). Não por level, mas por almas."
+      },
+      "3": {
+        "title": "Missão contínua",
+        "description": "De manhã, de tarde e de noite, a missão é uma só: logar, conhecer pessoas e anunciar o evangelho."
+      },
+      "4": {
+        "title": "Base missionária",
+        "description": "Nos bastidores, a igreja sustenta a ação com salas de oração, alinhamentos, testemunhos e cuidado mútuo."
+      },
+      "5": {
+        "title": "Colheita",
+        "description": "O fim de semana encerra, mas as conexões continuam. O discipulado avança."
+      }
+    },
+    "bible": {
+      "title": "Como Jonas em Nínive",
+      "paragraph1": "Deus mandou Jonas pregar para Nínive, uma cidade inteira que não o conhecia. Jonas foi, mesmo relutante. E Nínive se arrependeu.",
+      "paragraph2": "Hoje, o universo digital é a nossa Nínive: vasto, desconhecido para muitos cristãos, mas cheio de pessoas esperando ouvir a Verdade.",
+      "paragraph3": "Sua igreja pode ser Jonas.",
+      "quote": {
+        "text": "E Jonas começou a entrar pela cidade, caminho de um dia, e pregava, dizendo: Ainda quarenta dias, e Nínive será destruída.",
+        "reference": "Jonas 3:4"
+      }
+    },
+    "finalCta": {
+      "titlePrefix": "Nínive está esperando. Sua igreja vai ",
+      "titleHighlight": "responder ao chamado",
+      "titleSuffix": "?",
+      "button": "Leve o Nínive para sua igreja"
+    },
+    "whatsapp": {
+      "message": "Oi! 🧭\n\nVi o Nínive Digital e cliquei em *levar o Nínive para minha igreja*.\n\nQueria conversar sobre como preparar nossa juventude para essa viagem missionária digital."
+    }
+  },
+  "campeonato": {
+    "titulo": "Campeonatos Evangelísticos",
+    "descricao": "Eventos que unem competição saudável e o Evangelho de Cristo.",
+    "hero": {
+      "title": "Campeonato Evangelístico",
+      "highlightWord": "Evangelístico",
+      "subtitle": "O campeonato é o meio. O discipulado é o fim.",
+      "cta": "Leve o Campeonato para sua igreja"
+    },
+    "about": {
+      "badge": "O Torneio",
+      "titlePrefix": "O que é o ",
+      "titleHighlight": "Campeonato Evangelístico",
+      "titleSuffix": "?",
+      "paragraphPrefix": "Um campeonato de jogos online organizado pela igreja na própria cidade. Mas o foco não é o troféu. Cada time recebe um ",
+      "paragraphHighlight": "Treinador",
+      "paragraphSuffix": ", não para ensinar a jogar, mas um conselheiro bíblico que ama pessoas. O relacionamento é o campo, o evangelho é a missão."
+    },
+    "how": {
+      "title": "Como funciona na prática",
+      "subtitle": "Cinco passos para um campeonato com propósito"
+    },
+    "steps": {
+      "1": {
+        "title": "Divulgação",
+        "description": "A igreja divulga o torneio e inscreve times (squads de 4 jogadores)."
+      },
+      "2": {
+        "title": "Treinador designado",
+        "description": "Cada time recebe um Treinador, um conselheiro bíblico que ama pessoas."
+      },
+      "3": {
+        "title": "Devocionais semanais",
+        "description": "Durante a semana, o Treinador conduz 4 devocionais evangelísticos com deveres simples."
+      },
+      "4": {
+        "title": "Competição",
+        "description": "3 semanas de partidas online (Free Fire ou outro mobile)."
+      },
+      "5": {
+        "title": "Grande Final",
+        "description": "Evento presencial tipo feira gamer, reunindo times e famílias para comunhão e anúncio de Cristo."
+      }
+    },
+    "coach": {
+      "titlePrefix": "O Treinador: ",
+      "titleHighlight": "o coração do projeto",
+      "paragraph1": "O Treinador não é um coach de gameplay. É um crente maduro que ama pessoas.",
+      "paragraph2": "Ele conduz checkpoints semanais (devocionais), cuida do time, ora pelos jogadores e apresenta Cristo com naturalidade. É o discipulador encarnado no universo do campeonato.",
+      "dutiesTitle": "O Treinador faz:",
+      "duties": {
+        "1": "Conduz 4 devocionais durante o campeonato",
+        "2": "Acompanha o time em oração",
+        "3": "Cria conexão genuína com os jogadores",
+        "4": "Apresenta Cristo com naturalidade"
+      }
+    },
+    "finalCta": {
+      "titlePrefix": "A arena está montada. Sua igreja está pronta para ",
+      "titleHighlight": "jogar",
+      "titleSuffix": "?",
+      "button": "Leve o Campeonato para sua igreja"
+    },
+    "whatsapp": {
+      "message": "Olá! 🏆\n\nVi o Campeonato Evangelístico e cliquei em *levar o campeonato para minha igreja*.\n\nQuero entender os detalhes para aplicar esse formato com discipulado e acompanhamento."
+    }
+  },
+  "seo": {
+    "title": "Nossos Projetos | Estratégia Prática de Evangelismo Digital",
+    "description": "Conheça iniciativas como D&D, Nínive e a Gank. Ferramentas e comunidades criadas para sua igreja atuar com extrema relevância no ecossistema gamer.",
+    "campeonato": {
+      "title": "Campeonatos Cristãos de E-Sports | Evangelismo Estratégico",
+      "description": "Conectando a paixão pelos eSports ao Reino de Deus. Descubra como usamos campeonatos de jogos virtuais como isca e pontes para o Evangelho."
     },
     "daod": {
-        "titulo": "DaoD — Digital ao Discipulado",
-        "descricao": "Um método inovador que usa o mundo digital como ponte para o discipulado real.",
-        "hero": {
-            "title": "DaoD: Digital ao Discipulado",
-            "highlightWord": "Discipulado",
-            "subtitle": "A igreja abre as portas. O jogo atrai. O Evangelho transforma.",
-            "cta": "Leve o DaoD para sua igreja"
-        },
-        "about": {
-            "badge": "O Projeto",
-            "titlePrefix": "O que é o ",
-            "titleHighlight": "DaoD",
-            "titleSuffix": "?",
-            "paragraphPrefix": "DaoD (Digital ao Discipulado) é um projeto que desperta e equipa a igreja local para alcançar jovens e adolescentes do seu entorno e conduzir esses jovens ao discipulado. Não é um evento. É uma ",
-            "paragraphHighlight": "cultura que se instala na igreja",
-            "paragraphSuffix": "."
-        },
-        "how": {
-            "title": "Como funciona na prática",
-            "subtitle": "Quatro passos para transformar jogos em discipulado"
-        },
-        "steps": {
-            "1": {
-                "title": "A igreja abre um espaço",
-                "description": "Com regularidade, a igreja cria um ambiente acolhedor e equipado para jogos e convivência."
-            },
-            "2": {
-                "title": "Devocional gamer",
-                "description": "No encontro, há um devocional em linguagem gamer, claro e evangelístico."
-            },
-            "3": {
-                "title": "Convite ao próximo passo",
-                "description": "Quem se torna frequente ou aberto é convidado para estudo bíblico em pequenos grupos."
-            },
-            "4": {
-                "title": "Discipulado contínuo",
-                "description": "O caminho leva do pixel ao púlpito: leitura bíblica, oração, decisões por Cristo, batismo."
-            }
-        },
-        "why": {
-            "title": "Por que o DaoD funciona"
-        },
-        "reasons": {
-            "1": {
-                "title": "Linguagem nativa",
-                "description": "O jovem já vive nesse mundo. O DaoD não o tira de lá, o encontra ali."
-            },
-            "2": {
-                "title": "Relacionamento real",
-                "description": "Não é evangelismo de megafone. É presença, jogo junto, amizade que apresenta Cristo."
-            },
-            "3": {
-                "title": "Caminho claro",
-                "description": "Do primeiro jogo ao discipulado, cada passo é intencional."
-            }
-        },
-        "finalCta": {
-            "titlePrefix": "Sua igreja pode ser o lugar onde o ",
-            "titleHighlight": "gamer encontra o Evangelho",
-            "titleSuffix": ".",
-            "subtitle": "Vamos conversar sobre como implementar o DaoD na sua realidade.",
-            "button": "Leve o DaoD para sua igreja"
-        },
-        "whatsapp": {
-            "message": "Oi! \ud83c\udfae\n\nVi o DaoD e cliquei em *levar o DaoD para minha igreja*.\n\nGostaria de conversar sobre como começar essa implementação de forma prática com vocês."
-        }
+      "title": "Projeto D&D | Discipulado e Desenvolvimento de Gamers Cristãos",
+      "description": "Conheça o projeto voltado ao cuidado espiritual no ambiente competitivo. Uma rede de suporte para crentes inseridos no cenário de jogos eletrônicos."
     },
     "gank": {
-        "titulo": "Gank Evangelístico",
-        "descricao": "Evangelismo em equipe no universo gamer.",
-        "hero": {
-            "title": "Gank Evangelístico",
-            "highlightWord": "Evangelístico",
-            "subtitle": "Um ataque surpresa coordenado. Só que de amor.",
-            "cta": "Leve o Gank para sua igreja"
-        },
-        "about": {
-            "badge": "O Conceito",
-            "titlePrefix": "O que é o ",
-            "titleHighlight": "Gank",
-            "titleSuffix": "?",
-            "paragraphPrefix": "No universo gamer, “gank” é um ataque surpresa coordenado em grupo. Adaptamos o conceito: um grupo de cristãos entrando juntos em uma live ou plataforma digital para compartilhar o Evangelho de forma ",
-            "paragraphHighlight": "coordenada e amorosa",
-            "paragraphSuffix": "."
-        },
-        "how": {
-            "title": "Como funciona na prática",
-            "subtitle": "Cinco passos para um Gank de amor"
-        },
-        "steps": {
-            "1": {
-                "title": "Mobilização",
-                "description": "Durante um culto jovem ou encontro, toda a igreja se prepara para a ação."
-            },
-            "2": {
-                "title": "Entrada coordenada",
-                "description": "Todos entram juntos na live de um streamer que está jogando."
-            },
-            "3": {
-                "title": "Conexão genuína",
-                "description": "A igreja interage no chat, cria conexão, mostra amor real."
-            },
-            "4": {
-                "title": "O Evangelho avança",
-                "description": "Quando o streamer pergunta quem somos, respondemos com amor e propósito."
-            },
-            "5": {
-                "title": "Continuidade",
-                "description": "A conversa continua além da live. O evangelho avança."
-            }
-        },
-        "testimonialsTitle": "O que dizem sobre o Gank",
-        "testimonials": {
-            "1": {
-                "quote": "Fiquei impressionado com a quantidade de pessoas que entraram na live com mensagens de apoio. Nunca vi uma comunidade tão positiva.",
-                "author": "Streamer participante"
-            },
-            "2": {
-                "quote": "O Gank nos mostrou que podemos usar a tecnologia para fazer o bem. Foi uma experiência transformadora para nossa juventude.",
-                "author": "Pastor de Jovens"
-            }
-        },
-        "finalCta": {
-            "titlePrefix": "Milhares de lives estão abertas agora, ",
-            "titleHighlight": "vamos entrar",
-            "titleSuffix": "?",
-            "button": "Leve o Gank para sua igreja"
-        },
-        "whatsapp": {
-            "message": "Olá! \u2694\ufe0f\n\nVi o Gank Evangelístico e cliquei em *levar o Gank para minha igreja*.\n\nQuero entender como organizar essa mobilização com estratégia e cuidado pastoral."
-        }
+      "title": "A Gank | Comunidade Gamer Cristã e Missional",
+      "description": "Promovendo conexão genuína online. A Gank é o ponto de encontro seguro onde gamers encontram a Palavra e a Graça em meio às partidais virtuais."
     },
     "ninive": {
-        "titulo": "Nínive Digital",
-        "descricao": "Missão estratégica nos cantos mais improváveis do mundo digital.",
-        "hero": {
-            "title": "Nínive Digital",
-            "highlightWord": "Nínive",
-            "subtitle": "Uma viagem missionária digital. Um fim de semana. Um universo inteiro para alcançar.",
-            "cta": "Leve o Nínive para sua igreja"
-        },
-        "about": {
-            "badge": "A Missão",
-            "titlePrefix": "O que é o ",
-            "titleHighlight": "Nínive Digital",
-            "titleSuffix": "?",
-            "paragraphPrefix": "Inspirado em Jonas em Nínive, é pregar Cristo a um universo inteiro com unidade, coragem e urgência. Nínive Digital é uma ",
-            "paragraphHighlight": "viagem missionária digital",
-            "paragraphSuffix": ", intensa e focada, vivida em um único fim de semana."
-        },
-        "how": {
-            "title": "Como funciona na prática",
-            "subtitle": "Cinco passos para uma viagem missionária digital"
-        },
-        "steps": {
-            "1": {
-                "title": "Mobilização",
-                "description": "Várias igrejas se unem, seus jovens gamers se preparam para a “viagem”."
-            },
-            "2": {
-                "title": "A viagem",
-                "description": "Juntos, “viajam para um campo” (entram em um jogo). Não por level, mas por almas."
-            },
-            "3": {
-                "title": "Missão contínua",
-                "description": "De manhã, de tarde e de noite, a missão é uma só: logar, conhecer pessoas e anunciar o evangelho."
-            },
-            "4": {
-                "title": "Base missionária",
-                "description": "Nos bastidores, a igreja sustenta a ação com salas de oração, alinhamentos, testemunhos e cuidado mútuo."
-            },
-            "5": {
-                "title": "Colheita",
-                "description": "O fim de semana encerra, mas as conexões continuam. O discipulado avança."
-            }
-        },
-        "bible": {
-            "title": "Como Jonas em Nínive",
-            "paragraph1": "Deus mandou Jonas pregar para Nínive, uma cidade inteira que não o conhecia. Jonas foi, mesmo relutante. E Nínive se arrependeu.",
-            "paragraph2": "Hoje, o universo digital é a nossa Nínive: vasto, desconhecido para muitos cristãos, mas cheio de pessoas esperando ouvir a Verdade.",
-            "paragraph3": "Sua igreja pode ser Jonas.",
-            "quote": {
-                "text": "E Jonas começou a entrar pela cidade, caminho de um dia, e pregava, dizendo: Ainda quarenta dias, e Nínive será destruída.",
-                "reference": "Jonas 3:4"
-            }
-        },
-        "finalCta": {
-            "titlePrefix": "Nínive está esperando. Sua igreja vai ",
-            "titleHighlight": "responder ao chamado",
-            "titleSuffix": "?",
-            "button": "Leve o Nínive para sua igreja"
-        },
-        "whatsapp": {
-            "message": "Oi! \ud83e\udded\n\nVi o Nínive Digital e cliquei em *levar o Nínive para minha igreja*.\n\nQueria conversar sobre como preparar nossa juventude para essa viagem missionária digital."
-        }
-    },
-    "campeonato": {
-        "titulo": "Campeonatos Evangelísticos",
-        "descricao": "Eventos que unem competição saudável e o Evangelho de Cristo.",
-        "hero": {
-            "title": "Campeonato Evangelístico",
-            "highlightWord": "Evangelístico",
-            "subtitle": "O campeonato é o meio. O discipulado é o fim.",
-            "cta": "Leve o Campeonato para sua igreja"
-        },
-        "about": {
-            "badge": "O Torneio",
-            "titlePrefix": "O que é o ",
-            "titleHighlight": "Campeonato Evangelístico",
-            "titleSuffix": "?",
-            "paragraphPrefix": "Um campeonato de jogos online organizado pela igreja na própria cidade. Mas o foco não é o troféu. Cada time recebe um ",
-            "paragraphHighlight": "Treinador",
-            "paragraphSuffix": ", não para ensinar a jogar, mas um conselheiro bíblico que ama pessoas. O relacionamento é o campo, o evangelho é a missão."
-        },
-        "how": {
-            "title": "Como funciona na prática",
-            "subtitle": "Cinco passos para um campeonato com propósito"
-        },
-        "steps": {
-            "1": {
-                "title": "Divulgação",
-                "description": "A igreja divulga o torneio e inscreve times (squads de 4 jogadores)."
-            },
-            "2": {
-                "title": "Treinador designado",
-                "description": "Cada time recebe um Treinador, um conselheiro bíblico que ama pessoas."
-            },
-            "3": {
-                "title": "Devocionais semanais",
-                "description": "Durante a semana, o Treinador conduz 4 devocionais evangelísticos com deveres simples."
-            },
-            "4": {
-                "title": "Competição",
-                "description": "3 semanas de partidas online (Free Fire ou outro mobile)."
-            },
-            "5": {
-                "title": "Grande Final",
-                "description": "Evento presencial tipo feira gamer, reunindo times e famílias para comunhão e anúncio de Cristo."
-            }
-        },
-        "coach": {
-            "titlePrefix": "O Treinador: ",
-            "titleHighlight": "o coração do projeto",
-            "paragraph1": "O Treinador não é um coach de gameplay. É um crente maduro que ama pessoas.",
-            "paragraph2": "Ele conduz checkpoints semanais (devocionais), cuida do time, ora pelos jogadores e apresenta Cristo com naturalidade. É o discipulador encarnado no universo do campeonato.",
-            "dutiesTitle": "O Treinador faz:",
-            "duties": {
-                "1": "Conduz 4 devocionais durante o campeonato",
-                "2": "Acompanha o time em oração",
-                "3": "Cria conexão genuína com os jogadores",
-                "4": "Apresenta Cristo com naturalidade"
-            }
-        },
-        "finalCta": {
-            "titlePrefix": "A arena está montada. Sua igreja está pronta para ",
-            "titleHighlight": "jogar",
-            "titleSuffix": "?",
-            "button": "Leve o Campeonato para sua igreja"
-        },
-        "whatsapp": {
-            "message": "Olá! \ud83c\udfc6\n\nVi o Campeonato Evangelístico e cliquei em *levar o campeonato para minha igreja*.\n\nQuero entender os detalhes para aplicar esse formato com discipulado e acompanhamento."
-        }
+      "title": "Projeto Nínive | Evangelismo na Cultura Pop e Nerd",
+      "description": "Um olhar missionário para a cultura Pop, Anime e Geek. Entenda como o Projeto Nínive treina cristãos para serem luz nesses eventos e comunidades."
     }
+  }
 }

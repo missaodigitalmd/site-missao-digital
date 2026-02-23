@@ -1,109 +1,113 @@
 {
-    "hero": {
-        "title": "Una familia misionera en el campo digital",
-        "highlight_words": "misionera,campo digital",
-        "subtitle": "Navarro Lamounier, Tereza Gontijo, Lavínia y Ravnos. Nuestro llamado es servir como puente entre el Evangelio y el universo digital y gamer.",
-        "image_alt": "Familia Misión Digital"
+  "hero": {
+    "title": "Una familia misionera en el campo digital",
+    "highlight_words": "misionera,campo digital",
+    "subtitle": "Navarro Lamounier, Tereza Gontijo, Lavínia y Ravnos. Nuestro llamado es servir como puente entre el Evangelio y el universo digital y gamer.",
+    "image_alt": "Familia Misión Digital"
+  },
+  "navarro": {
+    "name": "Navarro Lamounier",
+    "image_alt": "Navarro Lamounier",
+    "tags": [
+      "Publicidad y Propaganda",
+      "Gestión y Marketing",
+      "Seminario Teológico"
+    ],
+    "quote": {
+      "pre": "Crecí en una familia que no conocía a Dios, pero mi tío, el único cristiano, siempre me llevaba a la iglesia. En la adolescencia, me creía astuto y manipulador, pensando que era intocable. Esa falsa seguridad se rompió en un campamento de Palavra da Vida. Allí,",
+      "highlight": "Dios me confrontó",
+      "post": "mostrándome quién era realmente: nada delante de Su grandeza."
     },
-    "navarro": {
-        "name": "Navarro Lamounier",
-        "image_alt": "Navarro Lamounier",
-        "tags": [
-            "Publicidad y Propaganda",
-            "Gestión y Marketing",
-            "Seminario Teológico"
-        ],
-        "quote": {
-            "pre": "Crecí en una familia que no conocía a Dios, pero mi tío, el único cristiano, siempre me llevaba a la iglesia. En la adolescencia, me creía astuto y manipulador, pensando que era intocable. Esa falsa seguridad se rompió en un campamento de Palavra da Vida. Allí,",
-            "highlight": "Dios me confrontó",
-            "post": "mostrándome quién era realmente: nada delante de Su grandeza."
-        },
-        "stats": {
-            "years_missions": "años en misiones",
-            "volunteers_led": "voluntarios liderados",
-            "full_time_missionaries": "misioneros de tiempo completo"
-        },
-        "timeline": [
-            {
-                "year": "2009 - Llamado",
-                "text": "Mi llamado comenzó en el momento en que Dios me salvó. En la iglesia, participé del ministerio de evangelización con artes, donde Dios empezó a moldear mi corazón para misiones. Fui llamado como obrero en la MPC, asumiendo la comunicación y después el liderazgo de la misión en Brasília."
-            },
-            {
-                "year": "2016 - Campo Digital",
-                "text": "Dios me condujo al campo digital, con estrategias en juegos y plataformas, dando origen a Missão Digital. Después serví como coordinador de comunicación en ALEM hasta 2024."
-            },
-            {
-                "year": "Hoy - Missão Digital",
-                "text": "Me dedico integralmente a Missão Digital, lidero adolescentes en la iglesia y curso el seminario."
-            }
-        ]
+    "stats": {
+      "years_missions": "años en misiones",
+      "volunteers_led": "voluntarios liderados",
+      "full_time_missionaries": "misioneros de tiempo completo"
     },
-    "tereza": {
-        "name": "Tereza Gontijo",
-        "image_alt": "Tereza Gontijo",
-        "tags": [
-            "Servicio Social",
-            "Lengua de Señas Intermedio",
-            "Misión Integral"
-        ],
-        "quote": {
-            "pre": "No crecí en un hogar evangélico y soy la menor de cuatro hermanos. En 2006, perdí a mi madre, y años después enfrenté el dolor de perder a mi padre. Esos momentos trajeron un vacío profundo, pero lo que parecía el fin, Dios lo transformó en un nuevo comienzo. En 2009,",
-            "highlight": "el amor de Cristo alcanzó mi corazón",
-            "post": "y dio sentido a mi historia."
-        },
-        "stats": {
-            "training_months": "meses de entrenamiento",
-            "years_asas": "años en Asas de Socorro",
-            "full_time_dedication": "dedicación integral"
-        },
-        "timeline": [
-            {
-                "year": "2017 - Llamado",
-                "text": "A los 26 años, el llamado misionero comenzó a arder en mí. Participé en A Cabana y en 4SIM, donde entendí que la vida solo encuentra sentido en compartir el evangelio. Después fui al CTM, donde me preparé por nueve meses."
-            },
-            {
-                "year": "Servicio Misionero",
-                "text": "Serví por cinco años en Missão Asas de Socorro, llevando a Cristo a muchos lugares."
-            },
-            {
-                "year": "Hoy - Missão Digital",
-                "text": "Casada y en Brasília, me dedico integralmente a Missão Digital y lidero adolescentes en la iglesia junto a mi esposo."
-            }
-        ]
+    "timeline": [
+      {
+        "year": "2009 - Llamado",
+        "text": "Mi llamado comenzó en el momento en que Dios me salvó. En la iglesia, participé del ministerio de evangelización con artes, donde Dios empezó a moldear mi corazón para misiones. Fui llamado como obrero en la MPC, asumiendo la comunicación y después el liderazgo de la misión en Brasília."
+      },
+      {
+        "year": "2016 - Campo Digital",
+        "text": "Dios me condujo al campo digital, con estrategias en juegos y plataformas, dando origen a Missão Digital. Después serví como coordinador de comunicación en ALEM hasta 2024."
+      },
+      {
+        "year": "Hoy - Missão Digital",
+        "text": "Me dedico integralmente a Missão Digital, lidero adolescentes en la iglesia y curso el seminario."
+      }
+    ]
+  },
+  "tereza": {
+    "name": "Tereza Gontijo",
+    "image_alt": "Tereza Gontijo",
+    "tags": [
+      "Servicio Social",
+      "Lengua de Señas Intermedio",
+      "Misión Integral"
+    ],
+    "quote": {
+      "pre": "No crecí en un hogar evangélico y soy la menor de cuatro hermanos. En 2006, perdí a mi madre, y años después enfrenté el dolor de perder a mi padre. Esos momentos trajeron un vacío profundo, pero lo que parecía el fin, Dios lo transformó en un nuevo comienzo. En 2009,",
+      "highlight": "el amor de Cristo alcanzó mi corazón",
+      "post": "y dio sentido a mi historia."
     },
-    "pilares": {
-        "badge": "Nuestra Base",
-        "title": "Lo que nos mueve",
-        "subtitle": "Todo lo que hacemos se sostiene sobre tres pilares que guían cada entrenamiento, cada proyecto y cada conversación.",
-        "items": {
-            "despertar": {
-                "title": "Despertar",
-                "description": "Abrir los ojos de la iglesia, líderes y padres para ver el mundo digital como territorio misionero real. Dios ya posicionó a nuestros jóvenes como misioneros en un campo donde hablan el idioma y conocen la cultura."
-            },
-            "equipar": {
-                "title": "Equipar",
-                "description": "Entregar herramientas simples y prácticas. Enseñar a la iglesia a transformar la hora del juego en hora de misión. Enseñar a los padres a dialogar con la cultura digital de sus hijos."
-            },
-            "alcancar": {
-                "title": "Alcanzar",
-                "description": "Avanzar directamente en las redes y en los juegos, y capacitar a las iglesias para hacer lo mismo, tanto online como presencialmente, usando el lenguaje gamer como puente."
-            }
-        }
+    "stats": {
+      "training_months": "meses de entrenamiento",
+      "years_asas": "años en Asas de Socorro",
+      "full_time_dedication": "dedicación integral"
     },
-    "crenca": {
-        "title": "En qué creemos",
-        "paragraph_1": "Somos cristianos reformados. Toda idea, proyecto y entrenamiento nace de una teología bíblica sólida y de un Evangelio cristalino. No hacemos concesiones doctrinales. No diluimos la verdad para ser \"relevantes\". La centralidad de Cristo es nuestro norte.",
-        "highlight_title": "Nuestra Convicción",
-        "highlight_pre": "No creemos en iglesias digitales. Creemos que formar parte del cuerpo de Cristo significa",
-        "highlight_span": "congregarse en una iglesia local",
-        "highlight_post": "Vamos al ambiente digital para anunciar el Evangelio para que, al conocer a Cristo, la persona forme parte de una iglesia local.",
-        "paragraph_2": "Creemos que el joven cristiano no necesita salir de lo digital para servir a Dios. Necesita ser despertado para ser misionero también en lo digital. Y creemos que la iglesia puede, y debe, ser intencional en alcanzar a quien vive inmerso en ese mundo."
-    },
-    "cta": {
-        "title_pre": "¿Quieres conocer más sobre cómo podemos",
-        "title_span": "servir a tu iglesia",
-        "subtitle": "Conversemos.",
-        "button": "Habla con nosotros por WhatsApp",
-        "whatsapp_message": "¡Hola! \ud83d\udcac\n\nVengo de la página **Quiénes Somos**, en la sección final de invitación, e hice clic en **\"Habla con nosotros por WhatsApp\"**.\n\nDespués de conocer su historia, sentí confianza para conversar sobre cómo podrían servir también a nuestra iglesia."
+    "timeline": [
+      {
+        "year": "2017 - Llamado",
+        "text": "A los 26 años, el llamado misionero comenzó a arder en mí. Participé en A Cabana y en 4SIM, donde entendí que la vida solo encuentra sentido en compartir el evangelio. Después fui al CTM, donde me preparé por nueve meses."
+      },
+      {
+        "year": "Servicio Misionero",
+        "text": "Serví por cinco años en Missão Asas de Socorro, llevando a Cristo a muchos lugares."
+      },
+      {
+        "year": "Hoy - Missão Digital",
+        "text": "Casada y en Brasília, me dedico integralmente a Missão Digital y lidero adolescentes en la iglesia junto a mi esposo."
+      }
+    ]
+  },
+  "pilares": {
+    "badge": "Nuestra Base",
+    "title": "Lo que nos mueve",
+    "subtitle": "Todo lo que hacemos se sostiene sobre tres pilares que guían cada entrenamiento, cada proyecto y cada conversación.",
+    "items": {
+      "despertar": {
+        "title": "Despertar",
+        "description": "Abrir los ojos de la iglesia, líderes y padres para ver el mundo digital como territorio misionero real. Dios ya posicionó a nuestros jóvenes como misioneros en un campo donde hablan el idioma y conocen la cultura."
+      },
+      "equipar": {
+        "title": "Equipar",
+        "description": "Entregar herramientas simples y prácticas. Enseñar a la iglesia a transformar la hora del juego en hora de misión. Enseñar a los padres a dialogar con la cultura digital de sus hijos."
+      },
+      "alcancar": {
+        "title": "Alcanzar",
+        "description": "Avanzar directamente en las redes y en los juegos, y capacitar a las iglesias para hacer lo mismo, tanto online como presencialmente, usando el lenguaje gamer como puente."
+      }
     }
+  },
+  "crenca": {
+    "title": "En qué creemos",
+    "paragraph_1": "Somos cristianos reformados. Toda idea, proyecto y entrenamiento nace de una teología bíblica sólida y de un Evangelio cristalino. No hacemos concesiones doctrinales. No diluimos la verdad para ser \"relevantes\". La centralidad de Cristo es nuestro norte.",
+    "highlight_title": "Nuestra Convicción",
+    "highlight_pre": "No creemos en iglesias digitales. Creemos que formar parte del cuerpo de Cristo significa",
+    "highlight_span": "congregarse en una iglesia local",
+    "highlight_post": "Vamos al ambiente digital para anunciar el Evangelio para que, al conocer a Cristo, la persona forme parte de una iglesia local.",
+    "paragraph_2": "Creemos que el joven cristiano no necesita salir de lo digital para servir a Dios. Necesita ser despertado para ser misionero también en lo digital. Y creemos que la iglesia puede, y debe, ser intencional en alcanzar a quien vive inmerso en ese mundo."
+  },
+  "cta": {
+    "title_pre": "¿Quieres conocer más sobre cómo podemos",
+    "title_span": "servir a tu iglesia",
+    "subtitle": "Conversemos.",
+    "button": "Habla con nosotros por WhatsApp",
+    "whatsapp_message": "¡Hola! 💬\n\nVengo de la página **Quiénes Somos**, en la sección final de invitación, e hice clic en **\"Habla con nosotros por WhatsApp\"**.\n\nDespués de conocer su historia, sentí confianza para conversar sobre cómo podrían servir también a nuestra iglesia."
+  },
+  "seo": {
+    "title": "Quiénes Somos | Misión Digital – El Nuevo Campo Misionero",
+    "description": "Somos una organización cristiana enfocada en despertar y equipar a la Iglesia local para el vasto campo misionero digital. Conoce nuestra visión y equipo."
+  }
 }

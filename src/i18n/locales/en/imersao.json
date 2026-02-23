@@ -1,170 +1,174 @@
 {
-    "whatsapp": {
-        "message": "Hello! \ud83d\udd25\n\nI came from the **Missionary Immersion page** and clicked a **WhatsApp conversation button** to talk about the Immersion.\n\nI’d like to understand how we can organize this experience in our church, with clear format and next steps."
-    },
-    "hero": {
-        "title": "Imagine your entire church diving into the digital mission field.",
-        "highlight_words": "diving",
-        "subtitle": "A weekend that leads your church to truly evangelize in the digital world.",
-        "cta_whatsapp": "I want an Immersion in my church",
-        "cta_scroll": "See how it works"
-    },
-    "secao2": {
-        "title_pre": "Your church needs more than an",
-        "title_span": "isolated action.",
-        "paragraph_1": "You have heard about digital evangelism. Maybe you have even tried to implement something. But a single action, no matter how good, does not transform a church's culture.",
-        "paragraph_2": "Immersion exists because we believe the church needs to live the complete experience: first, understand why the digital world is a real mission field. Then be trained with practical tools to act there. And finally, put hands to work, truly evangelizing right there, during that same weekend.",
-        "pull_quote": "\"The internet is an unreached country. Immersion is the missionary trip there.\"",
-        "image_alt": "The church as a missionary family in the digital world"
-    },
-    "timeline": {
-        "heading": "Awaken, Equip, Follow Through.",
-        "subheading": "All in a single weekend.",
-        "examples_label": "Examples of actions:",
-        "despertar": {
-            "title": "Awaken",
-            "heading": "First, the church needs to see the field.",
-            "text": "Immersion starts by breaking paradigms. Through talks, data, real testimonies, and impactful dynamics, the whole church (leaders, youth, parents) is awakened to understand that the digital world is not the enemy: it is a vast mission territory where millions seek meaning and no one is proclaiming Christ.",
-            "items": [
-                {
-                    "title": "Talk: 'Walls and Bridges'",
-                    "description": "Confronting the view that technology is a threat and opening eyes to the opportunity."
-                },
-                {
-                    "title": "Reality Check",
-                    "description": "Real data on how much time young people spend connected and its impact."
-                },
-                {
-                    "title": "The Great Digital Commission",
-                    "description": "Understanding that the 'Go' also applies to servers and social networks."
-                }
-            ]
+  "whatsapp": {
+    "message": "Hello! 🔥\n\nI came from the **Missionary Immersion page** and clicked a **WhatsApp conversation button** to talk about the Immersion.\n\nI’d like to understand how we can organize this experience in our church, with clear format and next steps."
+  },
+  "hero": {
+    "title": "Imagine your entire church diving into the digital mission field.",
+    "highlight_words": "diving",
+    "subtitle": "A weekend that leads your church to truly evangelize in the digital world.",
+    "cta_whatsapp": "I want an Immersion in my church",
+    "cta_scroll": "See how it works"
+  },
+  "secao2": {
+    "title_pre": "Your church needs more than an",
+    "title_span": "isolated action.",
+    "paragraph_1": "You have heard about digital evangelism. Maybe you have even tried to implement something. But a single action, no matter how good, does not transform a church's culture.",
+    "paragraph_2": "Immersion exists because we believe the church needs to live the complete experience: first, understand why the digital world is a real mission field. Then be trained with practical tools to act there. And finally, put hands to work, truly evangelizing right there, during that same weekend.",
+    "pull_quote": "\"The internet is an unreached country. Immersion is the missionary trip there.\"",
+    "image_alt": "The church as a missionary family in the digital world"
+  },
+  "timeline": {
+    "heading": "Awaken, Equip, Follow Through.",
+    "subheading": "All in a single weekend.",
+    "examples_label": "Examples of actions:",
+    "despertar": {
+      "title": "Awaken",
+      "heading": "First, the church needs to see the field.",
+      "text": "Immersion starts by breaking paradigms. Through talks, data, real testimonies, and impactful dynamics, the whole church (leaders, youth, parents) is awakened to understand that the digital world is not the enemy: it is a vast mission territory where millions seek meaning and no one is proclaiming Christ.",
+      "items": [
+        {
+          "title": "Talk: 'Walls and Bridges'",
+          "description": "Confronting the view that technology is a threat and opening eyes to the opportunity."
         },
-        "equipar": {
-            "title": "Equip",
-            "heading": "Then, each person receives tools.",
-            "text": "It is not enough to see the field: you need to know how to cultivate it. We train the church with practical tools: how to evangelize in games, how to turn digital conversations into bridges to Christ, and how parents can shepherd children in the virtual world. Each audience leaves with concrete skills.",
-            "items": [
-                {
-                    "title": "Gamer Workshop",
-                    "description": "Young people learn to be missionaries in the games they already play every day."
-                },
-                {
-                    "title": "Digital Evangelism",
-                    "description": "How to start intentional conversations and share the Gospel online."
-                },
-                {
-                    "title": "Parents Workshop",
-                    "description": "Tools to shepherd children's hearts in a hyper-connected world."
-                }
-            ]
+        {
+          "title": "Reality Check",
+          "description": "Real data on how much time young people spend connected and its impact."
         },
-        "acompanhar": {
-            "title": "Follow Through",
-            "heading": "Finally, the church goes into the field, right there.",
-            "text": "Immersion does not end in theory. At the culminating moment of the weekend, the whole church is mobilized for a real digital evangelistic action. Phones in hand, faith in heart, and the courage to proclaim Christ to someone who needs to hear. This is where testimonies are born that mark lives forever.",
-            "items": [
-                {
-                    "title": "Discipleship Community",
-                    "description": "Support groups and ongoing growth for digital missionaries."
-                },
-                {
-                    "title": "Mentoring",
-                    "description": "Close follow-up to strengthen faith and missionary practice."
-                },
-                {
-                    "title": "Multiplication",
-                    "description": "Forming new leaders to expand the church's reach in digital spaces."
-                }
-            ]
+        {
+          "title": "The Great Digital Commission",
+          "description": "Understanding that the 'Go' also applies to servers and social networks."
         }
+      ]
     },
-    "diferenciais": {
-        "title_pre": "The difference between",
-        "title_span_1": "experiencing",
-        "title_middle": "and",
-        "title_span_2": "transforming.",
-        "items": [
-            {
-                "number": 1,
-                "highlight": "Complete context",
-                "text": "An isolated project solves one moment. Immersion creates a context: the whole church, from pastor to teenager, living the same experience at the same time. That changes culture, not only schedule."
-            },
-            {
-                "number": 2,
-                "highlight": "Visible fruit",
-                "text": "When awakening, training, and practice happen together and in sequence, results are immediate. The church leaves the weekend with real evangelism stories, not notebook notes."
-            },
-            {
-                "number": 3,
-                "highlight": "Solution for conferences",
-                "text": "If you organize mission congresses, youth conferences, or leadership retreats, Immersion fits perfectly as the main program or as a complete module within your event."
-            }
-        ]
+    "equipar": {
+      "title": "Equip",
+      "heading": "Then, each person receives tools.",
+      "text": "It is not enough to see the field: you need to know how to cultivate it. We train the church with practical tools: how to evangelize in games, how to turn digital conversations into bridges to Christ, and how parents can shepherd children in the virtual world. Each audience leaves with concrete skills.",
+      "items": [
+        {
+          "title": "Gamer Workshop",
+          "description": "Young people learn to be missionaries in the games they already play every day."
+        },
+        {
+          "title": "Digital Evangelism",
+          "description": "How to start intentional conversations and share the Gospel online."
+        },
+        {
+          "title": "Parents Workshop",
+          "description": "Tools to shepherd children's hearts in a hyper-connected world."
+        }
+      ]
     },
-    "impacto": {
-        "image_alt": "Digital portal",
-        "top_pre": "A church that does not know the field exists, or has not yet been",
-        "typewriter_words": [
-            "equipped",
-            "trained",
-            "prepared",
-            "awakened"
-        ],
-        "top_post": "to enter it...",
-        "bottom_pre": "...that church",
-        "bottom_span_pre": "needs an",
-        "bottom_handwritten": "Immersion"
-    },
-    "steps": {
-        "title_pre": "Three steps to bring Immersion to",
-        "title_span": "your church.",
-        "cta": "Shall we talk?",
-        "items": [
-            {
-                "number": 1,
-                "title": "Conversation",
-                "description": "Contact us on WhatsApp. We will understand your church's reality, context, audience, and moment."
-            },
-            {
-                "number": 2,
-                "title": "Planning",
-                "description": "Together, we design the ideal weekend schedule: which actions, sequence, and audience priorities."
-            },
-            {
-                "number": 3,
-                "title": "Immersion",
-                "description": "We go to your church and lead the complete experience. From Friday to Sunday (or in the format that fits), your church lives the missionary tripod in practice."
-            }
-        ]
-    },
-    "publico_alvo": {
-        "title_pre": "Immersion is for those who want to",
-        "title_span": "go further.",
-        "items": [
-            {
-                "title": "Local churches",
-                "description": "Pastors and leaders who want to equip the whole community for the digital mission field."
-            },
-            {
-                "title": "Congresses and conferences",
-                "description": "Mission or youth event organizers seeking a complete and transformative program."
-            },
-            {
-                "title": "Leaderships and presbyteries",
-                "description": "Denominations and church networks that want to awaken multiple communities for digital mission."
-            },
-            {
-                "title": "Mission organizations",
-                "description": "Missions that want to reach connected youth through a new approach without abandoning fidelity to the Gospel."
-            }
-        ]
-    },
-    "cta_final": {
-        "title_pre": "Your church can enter this",
-        "title_span": "unreached country.",
-        "title_post": "Shall we go together?",
-        "cta_whatsapp": "Schedule a conversation",
-        "cta_projects": "See our projects"
+    "acompanhar": {
+      "title": "Follow Through",
+      "heading": "Finally, the church goes into the field, right there.",
+      "text": "Immersion does not end in theory. At the culminating moment of the weekend, the whole church is mobilized for a real digital evangelistic action. Phones in hand, faith in heart, and the courage to proclaim Christ to someone who needs to hear. This is where testimonies are born that mark lives forever.",
+      "items": [
+        {
+          "title": "Discipleship Community",
+          "description": "Support groups and ongoing growth for digital missionaries."
+        },
+        {
+          "title": "Mentoring",
+          "description": "Close follow-up to strengthen faith and missionary practice."
+        },
+        {
+          "title": "Multiplication",
+          "description": "Forming new leaders to expand the church's reach in digital spaces."
+        }
+      ]
     }
+  },
+  "diferenciais": {
+    "title_pre": "The difference between",
+    "title_span_1": "experiencing",
+    "title_middle": "and",
+    "title_span_2": "transforming.",
+    "items": [
+      {
+        "number": 1,
+        "highlight": "Complete context",
+        "text": "An isolated project solves one moment. Immersion creates a context: the whole church, from pastor to teenager, living the same experience at the same time. That changes culture, not only schedule."
+      },
+      {
+        "number": 2,
+        "highlight": "Visible fruit",
+        "text": "When awakening, training, and practice happen together and in sequence, results are immediate. The church leaves the weekend with real evangelism stories, not notebook notes."
+      },
+      {
+        "number": 3,
+        "highlight": "Solution for conferences",
+        "text": "If you organize mission congresses, youth conferences, or leadership retreats, Immersion fits perfectly as the main program or as a complete module within your event."
+      }
+    ]
+  },
+  "impacto": {
+    "image_alt": "Digital portal",
+    "top_pre": "A church that does not know the field exists, or has not yet been",
+    "typewriter_words": [
+      "equipped",
+      "trained",
+      "prepared",
+      "awakened"
+    ],
+    "top_post": "to enter it...",
+    "bottom_pre": "...that church",
+    "bottom_span_pre": "needs an",
+    "bottom_handwritten": "Immersion"
+  },
+  "steps": {
+    "title_pre": "Three steps to bring Immersion to",
+    "title_span": "your church.",
+    "cta": "Shall we talk?",
+    "items": [
+      {
+        "number": 1,
+        "title": "Conversation",
+        "description": "Contact us on WhatsApp. We will understand your church's reality, context, audience, and moment."
+      },
+      {
+        "number": 2,
+        "title": "Planning",
+        "description": "Together, we design the ideal weekend schedule: which actions, sequence, and audience priorities."
+      },
+      {
+        "number": 3,
+        "title": "Immersion",
+        "description": "We go to your church and lead the complete experience. From Friday to Sunday (or in the format that fits), your church lives the missionary tripod in practice."
+      }
+    ]
+  },
+  "publico_alvo": {
+    "title_pre": "Immersion is for those who want to",
+    "title_span": "go further.",
+    "items": [
+      {
+        "title": "Local churches",
+        "description": "Pastors and leaders who want to equip the whole community for the digital mission field."
+      },
+      {
+        "title": "Congresses and conferences",
+        "description": "Mission or youth event organizers seeking a complete and transformative program."
+      },
+      {
+        "title": "Leaderships and presbyteries",
+        "description": "Denominations and church networks that want to awaken multiple communities for digital mission."
+      },
+      {
+        "title": "Mission organizations",
+        "description": "Missions that want to reach connected youth through a new approach without abandoning fidelity to the Gospel."
+      }
+    ]
+  },
+  "cta_final": {
+    "title_pre": "Your church can enter this",
+    "title_span": "unreached country.",
+    "title_post": "Shall we go together?",
+    "cta_whatsapp": "Schedule a conversation",
+    "cta_projects": "See our projects"
+  },
+  "seo": {
+    "title": "Digital Mission Immersion | Equip Your Church for Gamer Evangelism",
+    "description": "A practical intensive program for pastors and leaders. Learn how to engage new generations and implement discipleship in the digital world and eSports."
+  }
 }

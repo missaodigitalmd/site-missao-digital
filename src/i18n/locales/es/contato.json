@@ -1,47 +1,51 @@
 {
-    "hero": {
-        "title": "Habla con nosotros",
-        "highlight_words": "Habla",
-        "subtitle": "Estamos listos para escucharte. Cuéntanos sobre tu iglesia, tus desafíos y tus sueños. Pensemos juntos."
-    },
-    "whatsapp_cta": {
-        "badge": "Respuesta rápida",
-        "title": "La forma más rápida de hablar con nosotros",
-        "text": "Haz clic en el botón de abajo e inicia una conversación directa con nosotros por WhatsApp. Cuéntanos un poco sobre tu iglesia y lo que estás buscando, y te respondemos lo más rápido posible.",
-        "button": "Iniciar conversación en WhatsApp",
-        "whatsapp_message": "¡Hola! \ud83d\udcf2\n\nVengo de la página **Contacto**, en la sección principal de WhatsApp, e hice clic en **\"Iniciar conversación en WhatsApp\"**.\n\nQuiero contarles un poco del momento de nuestra iglesia y entender cómo pueden orientarnos."
-    },
-    "outras_formas": {
-        "title": "Otras formas de contacto",
-        "subtitle": "Elige la forma que sea más conveniente para ti"
-    },
-    "localizacao": {
-        "badge": "Dónde estamos",
-        "title": "Base en Brasília",
-        "text": "Nuestra familia misionera tiene base en Brasília, DF, pero atendemos iglesias y misiones en todo Brasil y el mundo. Viajamos a donde Dios nos llame para entrenar, equipar y avanzar en el campo misionero digital."
-    },
-    "cta_final": {
-        "title": "Estamos esperando tu <highlight>mensaje</highlight>",
-        "text": "No importa el tamaño de tu iglesia ni dónde estés. Si hay un deseo de alcanzar vidas en el mundo digital, hablemos.",
-        "button": "Hablar por WhatsApp",
-        "whatsapp_message": "¡Hola! \ud83e\udd1d\n\nLlegué al **final de la página Contacto** e hice clic en **\"Hablar por WhatsApp\"**.\n\nMe gustaría abrir una conversación para discernir los próximos pasos de nuestra iglesia en lo digital."
-    },
-    "admin_link": "Acceso Administrativo (Temporal)",
-    "form": {
-        "nome": "Nombre",
-        "email": "Correo electrónico",
-        "assunto": "Asunto",
-        "mensagem": "Mensaje",
-        "enviar": "Enviar mensaje",
-        "enviando": "Enviando...",
-        "success": "¡Mensaje enviado con éxito! Responderemos pronto.",
-        "error": "No fue posible enviar. Intenta de nuevo."
-    },
-    "info": {
-        "title": "Otras formas de contactarnos",
-        "whatsapp": "WhatsApp",
-        "whatsapp_message": "¡Hola! \ud83d\udc4b\n\nVengo de la página **Contacto**, en la sección **Otras formas de contactarnos**, e hice clic en la tarjeta de **WhatsApp**.\n\nEscribo para conocer mejor su ministerio y cómo podemos caminar juntos.",
-        "email": "Correo electrónico",
-        "redes": "Redes Sociales"
-    }
+  "hero": {
+    "title": "Habla con nosotros",
+    "highlight_words": "Habla",
+    "subtitle": "Estamos listos para escucharte. Cuéntanos sobre tu iglesia, tus desafíos y tus sueños. Pensemos juntos."
+  },
+  "whatsapp_cta": {
+    "badge": "Respuesta rápida",
+    "title": "La forma más rápida de hablar con nosotros",
+    "text": "Haz clic en el botón de abajo e inicia una conversación directa con nosotros por WhatsApp. Cuéntanos un poco sobre tu iglesia y lo que estás buscando, y te respondemos lo más rápido posible.",
+    "button": "Iniciar conversación en WhatsApp",
+    "whatsapp_message": "¡Hola! 📲\n\nVengo de la página **Contacto**, en la sección principal de WhatsApp, e hice clic en **\"Iniciar conversación en WhatsApp\"**.\n\nQuiero contarles un poco del momento de nuestra iglesia y entender cómo pueden orientarnos."
+  },
+  "outras_formas": {
+    "title": "Otras formas de contacto",
+    "subtitle": "Elige la forma que sea más conveniente para ti"
+  },
+  "localizacao": {
+    "badge": "Dónde estamos",
+    "title": "Base en Brasília",
+    "text": "Nuestra familia misionera tiene base en Brasília, DF, pero atendemos iglesias y misiones en todo Brasil y el mundo. Viajamos a donde Dios nos llame para entrenar, equipar y avanzar en el campo misionero digital."
+  },
+  "cta_final": {
+    "title": "Estamos esperando tu <highlight>mensaje</highlight>",
+    "text": "No importa el tamaño de tu iglesia ni dónde estés. Si hay un deseo de alcanzar vidas en el mundo digital, hablemos.",
+    "button": "Hablar por WhatsApp",
+    "whatsapp_message": "¡Hola! 🤝\n\nLlegué al **final de la página Contacto** e hice clic en **\"Hablar por WhatsApp\"**.\n\nMe gustaría abrir una conversación para discernir los próximos pasos de nuestra iglesia en lo digital."
+  },
+  "admin_link": "Acceso Administrativo (Temporal)",
+  "form": {
+    "nome": "Nombre",
+    "email": "Correo electrónico",
+    "assunto": "Asunto",
+    "mensagem": "Mensaje",
+    "enviar": "Enviar mensaje",
+    "enviando": "Enviando...",
+    "success": "¡Mensaje enviado con éxito! Responderemos pronto.",
+    "error": "No fue posible enviar. Intenta de nuevo."
+  },
+  "info": {
+    "title": "Otras formas de contactarnos",
+    "whatsapp": "WhatsApp",
+    "whatsapp_message": "¡Hola! 👋\n\nVengo de la página **Contacto**, en la sección **Otras formas de contactarnos**, e hice clic en la tarjeta de **WhatsApp**.\n\nEscribo para conocer mejor su ministerio y cómo podemos caminar juntos.",
+    "email": "Correo electrónico",
+    "redes": "Redes Sociales"
+  },
+  "seo": {
+    "title": "Contáctanos | Misión Digital",
+    "description": "Queremos ayudar a tu iglesia local. Contáctanos para alianzas, invitaciones o conferencias sobre misiones entre comunidades digitales."
+  }
 }
