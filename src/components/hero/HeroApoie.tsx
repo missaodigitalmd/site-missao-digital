@@ -309,8 +309,8 @@ export const HeroApoie: React.FC<HeroApoieProps> = ({
                     </div>
                 </div>
 
-                {/* 3. Subtitle Area (Mid-Right) */}
-                <div className="absolute bottom-20 md:bottom-24 lg:bottom-28 right-8 md:right-12 lg:right-16 max-w-[360px] lg:max-w-[390px] text-right z-20 pointer-events-none select-none hidden md:block">
+                {/* 3. Subtitle Area (Mid-Right) - Visible only on Desktop (>= lg) */}
+                <div className="absolute bottom-20 md:bottom-24 lg:bottom-28 right-8 md:right-12 lg:right-16 max-w-[360px] lg:max-w-[420px] text-right z-20 pointer-events-none select-none hidden lg:block">
                     {subtitle && (
                         <div
                             className="text-xl md:text-2xl text-white/80 font-body"
@@ -324,20 +324,6 @@ export const HeroApoie: React.FC<HeroApoieProps> = ({
                     )}
                 </div>
 
-                {/* Mobile subtitle (always visible, without increasing section height) */}
-                <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[88%] max-w-[360px] text-center z-20 pointer-events-none select-none md:hidden">
-                    {subtitle && (
-                        <div
-                            className="text-[1.02rem] leading-snug text-white/80 font-body"
-                            style={{
-                                opacity: 0,
-                                animation: 'fade-in 0.6s ease-out 1s forwards',
-                            }}
-                        >
-                            <p>{subtitle}</p>
-                        </div>
-                    )}
-                </div>
 
             </div>
 
