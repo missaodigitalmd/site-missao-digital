@@ -33,7 +33,7 @@ export const socialCards: SocialCardData[] = [
   {
     id: 'tiktok',
     label: 'TIKTOK',
-    href: '#',
+    href: 'https://www.tiktok.com/@missaodigitalmd',
     glowColor: '#00F2EA',
     glowColorSecondary: '#FF0050',
     gradient: 'linear-gradient(135deg, #00F2EA, #FF0050)',
@@ -62,7 +62,7 @@ export const socialCards: SocialCardData[] = [
   {
     id: 'kwai',
     label: 'KWAI',
-    href: '#',
+    href: 'https://www.kwai.com/@missaodigitalmd',
     glowColor: '#FF6A00',
     gradient: 'linear-gradient(135deg, #FF6A00, #EE0979)',
     frames: [],

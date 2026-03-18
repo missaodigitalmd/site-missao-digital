@@ -6,11 +6,11 @@ import { GlowCard } from '@/components/ui/GlowCard';
 import { Modal } from '@/components/ui/Modal';
 import { useScrollReveal } from '@/hooks';
 import { useRouter } from '@/router';
-import { Download, ArrowRight, Sparkles, User, Phone, Mail, MapPin, Church, CheckCircle } from 'lucide-react';
+import { Download, ArrowRight, Sparkles, User, Phone, Mail, MapPin, Church, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { THEME_COLOR } from '@/constants/theme';
 import { getRecursos } from '@/services/recursos.service';
 import { registrarDownloadRecurso } from '@/services/cadastros.service';
-import { mapRecursoToUI, formatDownloadCount, type RecursoUI } from '@/utils/recursosUi';
+import { mapRecursoToUI, type RecursoUI } from '@/utils/recursosUi';
 
 interface FormData {
   nome: string;
@@ -256,12 +256,6 @@ export const RecursosSection: React.FC = () => {
                       {recurso.descricao}
                     </p>
 
-                    {/* Download count */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <Download className="w-4 h-4 text-white/40" />
-                      <span className="text-white/40 text-sm">{formatDownloadCount(recurso.downloads_count, i18n.language)} downloads</span>
-                    </div>
-
                     {/* CTA Button */}
                     <button
                       className="inline-flex items-center justify-center w-full py-3 rounded-xl font-medium text-sm transition-all hover:opacity-90 mt-auto"
@@ -316,7 +310,7 @@ export const RecursosSection: React.FC = () => {
         }
       `}</style>
 
-      {/* Download Modal - Same as RecursosPage */}
+      {/* Download Modal - Advanced 2 Column Layout (Synced from RecursosPage) */}
       <Modal
         isOpen={showModal && !!selectedRecurso}
         onClose={handleCloseModal}
@@ -325,7 +319,7 @@ export const RecursosSection: React.FC = () => {
         {!submitted ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 -m-6">
             {/* Column 1: Visual Content */}
-            <div className="relative h-64 lg:h-auto overflow-hidden">
+            <div className="relative h-64 lg:h-auto">
               {selectedRecurso && (
                 <>
                   <img
@@ -333,26 +327,37 @@ export const RecursosSection: React.FC = () => {
                     alt={selectedRecurso.titulo}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
+                  {/* Gradient overlay for text readability - Increased strength and range */}
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to bottom, rgba(13,13,13,0.7) 0%, rgba(13,13,13,0.4) 40%, rgba(13,13,13,0.9) 100%)`,
+                      background: `linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.6) 50%, rgba(13,13,13,1) 100%)`,
                     }}
                   />
-                  <div className="absolute inset-0 p-6 flex flex-col">
+                  {/* Content */}
+                  <div className="absolute inset-0 p-8 flex flex-col">
                     <div
-                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 relative z-10"
                       style={{ backgroundColor: `${selectedRecurso.cor}30`, backdropFilter: 'blur(10px)' }}
                     >
-                      <selectedRecurso.icone className="w-7 h-7" style={{ color: selectedRecurso.cor }} />
+                      {selectedRecurso.icone && <selectedRecurso.icone className="w-7 h-7" style={{ color: selectedRecurso.cor }} />}
                     </div>
-                    <h3 className="font-heading text-2xl font-bold text-white mb-2">
-                      {selectedRecurso.titulo}
-                    </h3>
-                    <div className="flex-grow overflow-y-auto pr-2 custom-scrollbar">
-                      <p className="text-white/80 leading-relaxed text-sm">
-                        {selectedRecurso.descricao_completa}
-                      </p>
+
+                    {/* Spacer to push everything to bottom */}
+                    <div className="flex-grow" />
+
+                    {/* Bottom Container: Title + Scrollable Description */}
+                    <div className="relative z-10 space-y-4">
+                      <h3 className="font-heading text-3xl font-bold text-white">
+                        {selectedRecurso.titulo}
+                      </h3>
+
+                      {/* Only description scrolls */}
+                      <div className="max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+                        <p className="text-white/80 text-lg leading-relaxed">
+                          {selectedRecurso.descricao_completa}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </>
@@ -438,19 +443,27 @@ export const RecursosSection: React.FC = () => {
                     required
                   />
                 </div>
+                {error && (
+                  <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    {error}
+                  </div>
+                )}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 rounded-xl font-heading font-bold text-sm transition-all hover:scale-[1.02] flex items-center justify-center"
+                  className="w-full py-4 rounded-xl font-heading font-bold text-sm transition-all hover:scale-[1.02] flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{
                     background: `linear-gradient(135deg, ${selectedRecurso?.cor || THEME_COLOR}, ${selectedRecurso?.cor ? selectedRecurso.cor + '99' : '#FF8C00'})`,
                     color: '#fff',
                   }}
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  {t('recursos_section.download_now')}
+                  {loading ? (
+                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processando...</>
+                  ) : (
+                    <><Download className="w-4 h-4 mr-2" /> {t('recursos_section.download_now')}</>
+                  )}
                 </button>
-                {error && <p className="text-red-400 text-sm">{error}</p>}
               </form>
             </div>
           </div>

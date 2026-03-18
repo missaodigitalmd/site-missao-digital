@@ -13,6 +13,7 @@ const THEME_COLOR_LIGHT = '#D1C4FF';
 
 
 import { SEOBox } from '@/components/seo/SEOBox';
+import { ResourcesProjectSection } from '@/sections/ResourcesProjectSection';
 
 export const GankPage: React.FC = () => {
   const { t } = useTranslation('projetos');
@@ -205,6 +206,13 @@ export const GankPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ResourcesProjectSection 
+        projectTag="Gank" 
+        title={t('features.title', { defaultValue: 'Recursos do Gank' })}
+        subtitle={t('features.subtitle', { defaultValue: 'Checklists, guias e materiais para sua ação evangelística.' })}
+        themeColor={THEME_COLOR}
+      />
 
       {/* CTA Final - Immersive */}
       <section className="py-24 px-4 relative overflow-hidden">

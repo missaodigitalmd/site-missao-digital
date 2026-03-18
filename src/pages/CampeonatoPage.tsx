@@ -13,6 +13,7 @@ const THEME_COLOR_LIGHT = '#FF8A80';
 
 
 import { SEOBox } from '@/components/seo/SEOBox';
+import { ResourcesProjectSection } from '@/sections/ResourcesProjectSection';
 
 export const CampeonatoPage: React.FC = () => {
   const { t } = useTranslation('projetos');
@@ -207,6 +208,13 @@ export const CampeonatoPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ResourcesProjectSection 
+        projectTag="Campeonato" 
+        title={t('features.title', { defaultValue: 'Recursos para Campeonatos' })}
+        subtitle={t('features.subtitle', { defaultValue: 'Materiais para organizar campeonatos evangelísticos.' })}
+        themeColor={THEME_COLOR}
+      />
 
       {/* CTA Final - Immersive */}
       <section className="py-24 px-4 relative overflow-hidden">

@@ -1,7 +1,7 @@
 import { BookOpen, ClipboardCheck, FileText, Sparkles, type LucideIcon } from 'lucide-react';
 import type { Recurso } from '@/services/recursos.service';
 
-export type RecursoCategoria = 'gamers' | 'lideres' | 'pais';
+export type RecursoCategoria = 'gamers' | 'lideres' | 'pais' | 'ia';
 
 export interface RecursoUI extends Recurso {
     categoria: RecursoCategoria;
@@ -12,10 +12,13 @@ export interface RecursoUI extends Recurso {
 }
 
 function resolveCategoria(tags: string[], tipo: string): RecursoCategoria {
-    if (tags.includes('gamers')) return 'gamers';
-    if (tags.includes('pais')) return 'pais';
-    if (tags.includes('lideres')) return 'lideres';
+    const tagsLower = tags.map(t => t.toLowerCase());
+    if (tagsLower.includes('ia')) return 'ia';
+    if (tagsLower.includes('gamers')) return 'gamers';
+    if (tagsLower.includes('pais')) return 'pais';
+    if (tagsLower.includes('lideres')) return 'lideres';
 
+    if (tipo.includes('ia')) return 'ia';
     if (tipo.includes('gamer')) return 'gamers';
     if (tipo.includes('pai')) return 'pais';
 

@@ -13,6 +13,7 @@ const THEME_COLOR_LIGHT = '#FFECB3';
 
 
 import { SEOBox } from '@/components/seo/SEOBox';
+import { ResourcesProjectSection } from '@/sections/ResourcesProjectSection';
 
 export const NinivePage: React.FC = () => {
   const { t } = useTranslation('projetos');
@@ -202,6 +203,13 @@ export const NinivePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ResourcesProjectSection 
+        projectTag="Ninive" 
+        title={t('features.title', { defaultValue: 'Recursos do Nínive' })}
+        subtitle={t('features.subtitle', { defaultValue: 'Materiais de apoio para o trabalho com crianças.' })}
+        themeColor={THEME_COLOR}
+      />
 
       {/* CTA Final - Immersive */}
       <section className="py-24 px-4 relative overflow-hidden">

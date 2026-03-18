@@ -87,7 +87,7 @@ interface Recurso {
 interface RecursoTraducao { id?: string; locale: string; titulo: string; descricao: string; descricao_completa: string; arquivo_url?: string | null; }
 
 const LOCALES = ['pt', 'en', 'es'];
-const TAGS_RECURSO = ['Líderes', 'Gamers', 'Pais'];
+const TAGS_RECURSO = ['Líderes', 'Gamers', 'Pais', 'IA', 'DaoD', 'Gank', 'Ninive', 'Campeonato'];
 const TIPOS_RECURSO = ['ebook', 'checklist', 'guia', 'ferramenta', 'video'];
 
 // ─── Recursos Tab ─────────────────────────────────────────────────────────────

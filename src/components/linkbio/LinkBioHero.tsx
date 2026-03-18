@@ -26,13 +26,9 @@ export function LinkBioHero() {
             <SocialIcon type="whatsapp" size={48} color="#25D366" />
           </div>
 
-          <span className="linkbio-hero-eyebrow">Comunidade Missão Digital</span>
           <h2 className="linkbio-hero-title">
             Bora trocar ideia, jogar junto e conhecer a Jesus?
           </h2>
-          <p className="linkbio-hero-subtitle">
-            Entre no nosso grupo do WhatsApp e faça parte da comunidade!
-          </p>
 
           <a
             href={WHATSAPP_LINK}

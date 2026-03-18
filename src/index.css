@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap');
-
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap');
+
 @layer base {
   :root {
-    /* Dark mode only - Missão Digital Theme */
+    /* Dark mode only - MissÃ£o Digital Theme */
     --background: 0 0% 5.1%;
     --foreground: 0 0% 100%;
     --card: 0 0% 11.8%;
@@ -181,7 +181,7 @@
     box-shadow: 0 0 24px rgba(255, 82, 82, 0.25);
   }
 
-  /* Card base styles — glassmorphism default */
+  /* Card base styles â€” glassmorphism default */
   .card-base {
     @apply rounded-2xl overflow-hidden;
     background: rgba(30, 30, 30, 0.55);
@@ -235,12 +235,12 @@
     box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
   }
 
-  /* Section padding — premium breathing room */
+  /* Section padding â€” premium breathing room */
   .section-padding {
     @apply py-24 md:py-32 lg:py-40;
   }
 
-  /* Glass card base — true glassmorphism */
+  /* Glass card base â€” true glassmorphism */
   .glass-card {
     @apply relative rounded-2xl overflow-hidden;
     background: rgba(30, 30, 30, 0.55);
@@ -707,7 +707,7 @@
 }
 
 /* ============================================================
-   LINK-IN-BIO PAGE — Missão Digital (Premium Clean)
+   LINK-IN-BIO PAGE â€” MissÃ£o Digital (Premium Clean)
    ============================================================ */
 
 body.linkbio-body {
@@ -769,47 +769,93 @@ body.linkbio-body {
 .linkbio-hero {
   position: relative;
   margin: 0.8rem 0 0;
-  border-radius: 26px;
-  overflow: hidden;
-  min-height: 480px;
   display: flex;
-  align-items: flex-end;
-  padding: 1.35rem 1.35rem 0;
+  flex-direction: column;
+  align-items: center;
 }
 
 .linkbio-hero-bg {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   z-index: 0;
 }
 
 .linkbio-hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  width: 110%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
 .linkbio-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(4, 8, 17, 0.28) 0%, rgba(4, 8, 17, 0.56) 44%, rgba(4, 8, 17, 0.9) 100%),
-    radial-gradient(80% 46% at 50% 100%, rgba(37, 211, 102, 0.2) 0%, transparent 75%);
+  display: none;
 }
 
 .linkbio-hero-card {
+  --card-glow: #25d366;
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 20px;
   padding: 1px;
   background: linear-gradient(132deg, rgba(37, 211, 102, 0.72), rgba(37, 211, 102, 0.18), rgba(37, 211, 102, 0.6));
-  transform: translateY(2rem);
+  margin-top: -8.5rem;
+  transition: transform 400ms ease;
+}
+
+.linkbio-hero-card:hover {
+  transform: translateY(-2px);
+}
+
+.linkbio-hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--card-glow) 64%, rgba(255, 255, 255, 0.18));
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--card-glow) 55%, transparent),
+    0 0 26px color-mix(in srgb, var(--card-glow) 35%, transparent);
+  transition: box-shadow 400ms ease, border-color 400ms ease, transform 400ms ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.linkbio-hero-card:hover::after {
+  border-color: color-mix(in srgb, var(--card-glow) 100%, rgba(255, 255, 255, 0.4));
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    0 0 0 2px color-mix(in srgb, var(--card-glow) 80%, transparent),
+    0 0 60px color-mix(in srgb, var(--card-glow) 60%, transparent);
+}
+
+.linkbio-hero-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: var(--card-glow);
+  opacity: 0;
+  filter: blur(15px);
+  transition: opacity 400ms ease, filter 400ms ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.linkbio-hero-card:hover::before {
+  opacity: 0.45;
+  filter: blur(25px);
 }
 
 .linkbio-hero-card-inner {
   position: relative;
+  z-index: 2;
   border-radius: 19px;
   background: rgba(13, 20, 34, 0.76);
   backdrop-filter: blur(14px);
@@ -883,15 +929,22 @@ body.linkbio-body {
   font-size: 0.84rem;
   letter-spacing: 0.07em;
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 220ms ease, filter 220ms ease;
+  transition: transform 400ms ease, box-shadow 400ms ease, filter 400ms ease, border-color 400ms ease;
   margin-top: 0.2rem;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.25), 
+    0 0 0 1px rgba(37, 211, 102, 0.3), 
+    0 0 20px rgba(37, 211, 102, 0.15);
 }
 
 .linkbio-hero-cta-btn:hover,
 .linkbio-hero-cta-btn:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.3);
-  filter: saturate(1.05);
+  transform: translateY(-2px);
+  filter: saturate(1.1) brightness(1.1);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.4), 
+    0 0 0 2px rgba(37, 211, 102, 0.8), 
+    0 0 45px rgba(37, 211, 102, 0.5);
 }
 
 .linkbio-hero-cta-btn:focus-visible,
@@ -912,7 +965,7 @@ body.linkbio-body {
 }
 
 .linkbio-site-section {
-  padding: 1.2rem 0 0.95rem;
+  padding: 3rem 0 0.95rem;
 }
 
 .linkbio-cards-section {
@@ -924,6 +977,9 @@ body.linkbio-body {
   position: relative;
   display: flex;
   align-items: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   min-height: 112px;
   border-radius: 22px;
   overflow: visible;
@@ -997,10 +1053,10 @@ body.linkbio-body {
 
 .linkbio-card-photo-slot {
   position: absolute;
-  left: 0;
+  left: -8%;
   bottom: 0;
-  width: 43%;
-  height: 164%;
+  width: 53%;
+  height: 220%;
   z-index: 3;
   display: flex;
   align-items: flex-end;
@@ -1054,7 +1110,7 @@ body.linkbio-body {
 .linkbio-card-content {
   position: relative;
   z-index: 2;
-  margin-left: 42.5%;
+  margin-left: 55%;
   padding: 1.15rem 1.2rem 1.15rem 0.58rem;
   display: flex;
   flex-direction: column;
@@ -1103,7 +1159,7 @@ body.linkbio-body {
   filter: brightness(1.04) contrast(1.04) drop-shadow(0 0 8px color-mix(in srgb, var(--card-glow, #dd2a7b) 25%, transparent));
 }
 
-/* ── Language Selector ── */
+/* â”€â”€ Language Selector â”€â”€ */
 .linkbio-lang-section {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   margin-top: 1.25rem;
@@ -1145,7 +1201,7 @@ body.linkbio-body {
   box-shadow: 0 0 14px rgba(255, 172, 19, 0.22);
 }
 
-/* ── Bible Verse ── */
+/* â”€â”€ Bible Verse â”€â”€ */
 .linkbio-bible-verse {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   margin-top: 0.8rem;
@@ -1217,12 +1273,16 @@ body.linkbio-body {
     padding-inline: 1.35rem;
   }
 
+  .linkbio-hero-img {
+    width: 130%;
+  }
+
   .linkbio-header {
     padding-top: 2.6rem;
   }
 
   .linkbio-hero {
-    min-height: 520px;
+    margin-top: 1.5rem;
   }
 
   .linkbio-social-card {

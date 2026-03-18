@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { SocialCardData } from '../../data/linkbioData';
-import { SocialIcon } from './SocialIcon';
+import { SocialIcon } from './SocialIcon.tsx';
 
 interface SocialCardProps {
   card: SocialCardData;

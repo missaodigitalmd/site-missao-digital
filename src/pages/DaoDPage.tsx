@@ -13,6 +13,7 @@ const THEME_COLOR_LIGHT = '#F3A5FF';
 
 
 import { SEOBox } from '@/components/seo/SEOBox';
+import { ResourcesProjectSection } from '@/sections/ResourcesProjectSection';
 
 export const DaoDPage: React.FC = () => {
   const { t } = useTranslation('projetos');
@@ -222,6 +223,13 @@ export const DaoDPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ResourcesProjectSection 
+        projectTag="DaoD" 
+        title={t('features.title', { defaultValue: 'Recursos do DaoD' })}
+        subtitle={t('features.subtitle', { defaultValue: 'Materiais exclusivos para implementar o projeto na sua igreja.' })}
+        themeColor={THEME_COLOR}
+      />
 
       {/* CTA Final - Immersive */}
       <section className="py-24 px-4 relative overflow-hidden">
