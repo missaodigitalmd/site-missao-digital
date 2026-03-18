@@ -100,6 +100,18 @@ export const QuemSomosPage: React.FC = () => {
               ))}
             </div>
 
+            <div className="mb-8 ml-[4.5rem] -mt-5">
+              <a
+                href="https://www.instagram.com/encontrovinhonovo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: THEME_COLOR }}></span>
+                Encontro Vinho Novo - IPB
+              </a>
+            </div>
+
             <div
               className="relative pl-8 py-6 pr-6 rounded-xl mb-10"
               style={{
@@ -130,7 +142,7 @@ export const QuemSomosPage: React.FC = () => {
                 <p className="text-xs text-white/50 mt-1">{t('navarro.stats.volunteers_led')}</p>
               </div>
               <div className="text-center py-3 px-2 rounded-xl" style={{ background: `${THEME_COLOR}08`, border: `1px solid ${THEME_COLOR}15` }}>
-                <p className="font-heading text-2xl font-bold" style={{ color: THEME_COLOR }}>7</p>
+                <p className="font-heading text-2xl font-bold" style={{ color: THEME_COLOR }}>10</p>
                 <p className="text-xs text-white/50 mt-1">{t('navarro.stats.full_time_missionaries')}</p>
               </div>
             </div>
@@ -235,6 +247,18 @@ export const QuemSomosPage: React.FC = () => {
                   {tag}
                 </span>
               ))}
+            </div>
+
+            <div className="mb-8 ml-[4.5rem] -mt-5">
+              <a
+                href="https://www.instagram.com/encontrovinhonovo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: THEME_COLOR }}></span>
+                Encontro Vinho Novo - IPB
+              </a>
             </div>
 
             <div

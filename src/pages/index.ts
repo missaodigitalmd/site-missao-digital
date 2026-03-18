@@ -10,3 +10,4 @@ export { RecursosPage } from './RecursosPage';
 export { ApoiePage } from './ApoiePage';
 export { ContatoPage } from './ContatoPage';
 export { AdminPage } from './AdminPage';
+export { LinkBioPage } from './LinkBioPage';

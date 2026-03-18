@@ -25,6 +25,7 @@ import {
   ApoiePage,
   ContatoPage,
   AdminPage,
+  LinkBioPage,
 } from '@/pages';
 
 function HomePage() {
@@ -60,6 +61,16 @@ function AppContent() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const isAdmin = currentRoute === 'admin';
+  const isLinkBio = currentRoute === 'link';
+
+  // Link-in-bio page renders completely standalone (no site chrome)
+  if (isLinkBio) {
+    return (
+      <Routes>
+        <Route path="/link" element={<LinkBioPage />} />
+      </Routes>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-surface-primary">
@@ -78,6 +89,7 @@ function AppContent() {
           <Route path="/apoie" element={<ApoiePage />} />
           <Route path="/contato" element={<ContatoPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/link" element={<LinkBioPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </main>

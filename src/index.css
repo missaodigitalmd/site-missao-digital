@@ -705,3 +705,543 @@
   justify-content: center;
   z-index: 1;
 }
+
+/* ============================================================
+   LINK-IN-BIO PAGE — Missão Digital (Premium Clean)
+   ============================================================ */
+
+body.linkbio-body {
+  background-image: none;
+}
+
+.linkbio-page {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(110% 60% at 50% -8%, rgba(96, 165, 250, 0.12) 0%, transparent 62%),
+    radial-gradient(95% 60% at 50% 108%, rgba(254, 112, 3, 0.1) 0%, transparent 64%),
+    linear-gradient(180deg, #050a14 0%, #060d1a 45%, #050a14 100%);
+  overflow-x: hidden;
+}
+
+.linkbio-scroll-container {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1rem 3.5rem;
+}
+
+.linkbio-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.2rem 0.75rem 0.85rem;
+  gap: 0.4rem;
+}
+
+.linkbio-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(254, 112, 3, 0.38));
+}
+
+.linkbio-kicker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.linkbio-logo-text {
+  font-family: 'Space Grotesk', 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, #ffb327, #fe7003);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.linkbio-hero {
+  position: relative;
+  margin: 0.8rem 0 0;
+  border-radius: 26px;
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.35rem 1.35rem 0;
+}
+
+.linkbio-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.linkbio-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.linkbio-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(4, 8, 17, 0.28) 0%, rgba(4, 8, 17, 0.56) 44%, rgba(4, 8, 17, 0.9) 100%),
+    radial-gradient(80% 46% at 50% 100%, rgba(37, 211, 102, 0.2) 0%, transparent 75%);
+}
+
+.linkbio-hero-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(132deg, rgba(37, 211, 102, 0.72), rgba(37, 211, 102, 0.18), rgba(37, 211, 102, 0.6));
+  transform: translateY(2rem);
+}
+
+.linkbio-hero-card-inner {
+  position: relative;
+  border-radius: 19px;
+  background: rgba(13, 20, 34, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 1.2rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.66rem;
+  overflow: hidden;
+}
+
+.linkbio-hero-border-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.38), 0 0 24px rgba(37, 211, 102, 0.24);
+  animation: linkbio-pulse-green 3s ease-in-out infinite;
+}
+
+.linkbio-hero-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: rgba(37, 211, 102, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(37, 211, 102, 0.44);
+}
+
+.linkbio-hero-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+}
+
+.linkbio-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.13rem, 3.7vw, 1.32rem);
+  line-height: 1.28;
+  color: #fff;
+  margin: 0;
+}
+
+.linkbio-hero-subtitle {
+  font-size: 0.91rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.42;
+}
+
+.linkbio-hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.52rem;
+  min-height: 44px;
+  padding: 0.76rem 1.42rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, #21c55d 0%, #25d366 58%, #3be278 100%);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.84rem;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 220ms ease, filter 220ms ease;
+  margin-top: 0.2rem;
+}
+
+.linkbio-hero-cta-btn:hover,
+.linkbio-hero-cta-btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.3);
+  filter: saturate(1.05);
+}
+
+.linkbio-hero-cta-btn:focus-visible,
+.linkbio-social-card:focus-visible,
+.linkbio-lang-btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.linkbio-hero-card--enter {
+  animation: linkbio-card-enter 0.64s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.linkbio-site-section,
+.linkbio-cards-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkbio-site-section {
+  padding: 1.2rem 0 0.95rem;
+}
+
+.linkbio-cards-section {
+  gap: 2.5rem;
+  padding: 0;
+}
+
+.linkbio-social-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 112px;
+  border-radius: 22px;
+  overflow: visible;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.44s ease, transform 0.44s ease;
+}
+
+.linkbio-social-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.linkbio-social-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(13, 21, 38, 0.8), rgba(10, 17, 30, 0.84));
+  border: 1px solid color-mix(in srgb, var(--card-glow, #60a5fa) 64%, rgba(255, 255, 255, 0.18));
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--card-glow, #60a5fa) 55%, transparent),
+    0 0 26px color-mix(in srgb, var(--card-glow, #60a5fa) 35%, transparent);
+  transition: box-shadow 400ms ease, border-color 400ms ease, transform 400ms ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.linkbio-social-card--hover::after,
+.linkbio-social-card:hover::after,
+.linkbio-social-card:focus-visible::after {
+  border-color: color-mix(in srgb, var(--card-glow, #60a5fa) 100%, rgba(255, 255, 255, 0.4));
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    0 0 0 2px color-mix(in srgb, var(--card-glow, #60a5fa) 80%, transparent),
+    0 0 60px color-mix(in srgb, var(--card-glow, #60a5fa) 60%, transparent);
+}
+
+.linkbio-social-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: var(--card-glow, #60a5fa);
+  opacity: 0;
+  filter: blur(15px);
+  transition: opacity 400ms ease, filter 400ms ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.linkbio-social-card--hover::before,
+.linkbio-social-card:hover::before,
+.linkbio-social-card:focus-visible::before {
+  opacity: 0.45;
+  filter: blur(25px);
+}
+
+.linkbio-card-border-spin {
+  display: none;
+}
+
+.linkbio-social-card--hover .linkbio-card-border-spin,
+.linkbio-social-card:hover .linkbio-card-border-spin,
+.linkbio-social-card:focus-visible .linkbio-card-border-spin {
+  display: none;
+}
+
+.linkbio-card-photo-slot {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 43%;
+  height: 164%;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.linkbio-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  mix-blend-mode: multiply;
+  filter: brightness(1.03) contrast(1.04);
+  transition: transform 260ms ease, filter 260ms ease;
+  will-change: transform, filter;
+}
+
+.linkbio-social-card--hover .linkbio-card-photo,
+.linkbio-social-card:hover .linkbio-card-photo,
+.linkbio-social-card:focus-visible .linkbio-card-photo {
+  transform: translateY(-2px);
+  filter: brightness(1.06) contrast(1.06) drop-shadow(0 0 10px color-mix(in srgb, var(--card-glow, #60a5fa) 34%, transparent));
+}
+
+.linkbio-card-photo-placeholder {
+  width: 76px;
+  height: 76px;
+  margin-left: 1rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--card-glow, #60a5fa) 24%, transparent) 0%, transparent 74%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.78;
+}
+
+.linkbio-card-mask {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 47%;
+  height: 100%;
+  z-index: 2;
+  background: transparent;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 34%, rgba(0, 0, 0, 1) 78%);
+  pointer-events: none;
+}
+
+.linkbio-card-content {
+  position: relative;
+  z-index: 2;
+  margin-left: 42.5%;
+  padding: 1.15rem 1.2rem 1.15rem 0.58rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.34rem;
+  flex: 1;
+}
+
+.linkbio-card-label {
+  font-family: 'Space Grotesk', 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.06rem, 3.7vw, 1.33rem);
+  letter-spacing: 0.06em;
+  color: #fff;
+  line-height: 1.06;
+  text-shadow: 0 0 14px color-mix(in srgb, var(--card-glow, white) 38%, transparent);
+  transition: text-shadow 220ms ease;
+}
+
+.linkbio-social-card--hover .linkbio-card-label,
+.linkbio-social-card:hover .linkbio-card-label,
+.linkbio-social-card:focus-visible .linkbio-card-label {
+  text-shadow: 0 0 20px color-mix(in srgb, var(--card-glow, white) 56%, transparent);
+}
+
+.linkbio-card-sublabel {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.04em;
+}
+
+.linkbio-card-shimmer {
+  display: none;
+}
+
+.linkbio-social-card--instagram-animated .linkbio-card-border-spin,
+.linkbio-social-card--instagram-animated:hover .linkbio-card-border-spin,
+.linkbio-social-card--instagram-animated:focus-visible .linkbio-card-border-spin {
+  animation-duration: 9.5s;
+  opacity: 0.38;
+}
+
+.linkbio-social-card--instagram-animated .linkbio-card-photo,
+.linkbio-social-card--instagram-animated:hover .linkbio-card-photo,
+.linkbio-social-card--instagram-animated:focus-visible .linkbio-card-photo {
+  transform: none;
+  filter: brightness(1.04) contrast(1.04) drop-shadow(0 0 8px color-mix(in srgb, var(--card-glow, #dd2a7b) 25%, transparent));
+}
+
+/* ── Language Selector ── */
+.linkbio-lang-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 1.25rem;
+}
+
+.linkbio-lang-title {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.56);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.linkbio-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.68);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.linkbio-lang-btn:hover {
+  border-color: rgba(255, 172, 19, 0.4);
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 172, 19, 0.06);
+  transform: translateY(-1px);
+}
+
+.linkbio-lang-btn--active {
+  border-color: #FFAC13;
+  color: #FFAC13;
+  background: rgba(255, 172, 19, 0.1);
+  box-shadow: 0 0 14px rgba(255, 172, 19, 0.22);
+}
+
+/* ── Bible Verse ── */
+.linkbio-bible-verse {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 0.8rem;
+}
+
+.linkbio-verse-line {
+  font-size: 1.25rem;
+  color: rgba(254, 112, 3, 0.5);
+}
+
+.linkbio-verse-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
+  max-width: 400px;
+  margin: 0 auto;
+  text-shadow: 0 0 18px rgba(254, 112, 3, 0.14);
+}
+
+.linkbio-verse-ref {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(254, 112, 3, 0.7);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   LINK-IN-BIO KEYFRAMES
+   ============================================================ */
+
+@keyframes linkbio-border-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes linkbio-pulse-green {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.33), 0 0 18px rgba(37, 211, 102, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.5), 0 0 28px rgba(37, 211, 102, 0.32);
+  }
+}
+
+@keyframes linkbio-card-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(14px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .linkbio-scroll-container {
+    padding-inline: 1.35rem;
+  }
+
+  .linkbio-header {
+    padding-top: 2.6rem;
+  }
+
+  .linkbio-hero {
+    min-height: 520px;
+  }
+
+  .linkbio-social-card {
+    min-height: 124px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .linkbio-hero-card--enter,
+  .linkbio-card-border-spin,
+  .linkbio-hero-border-pulse {
+    animation: none !important;
+  }
+
+  .linkbio-social-card,
+  .linkbio-hero-cta-btn,
+  .linkbio-card-photo,
+  .linkbio-lang-btn {
+    transition: none !important;
+  }
+}

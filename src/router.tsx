@@ -16,7 +16,8 @@ export type Route =
   | 'imersao-v1'
   | 'imersao-v2'
   | 'imersao-v3'
-  | 'admin';
+  | 'admin'
+  | 'link';
 
 interface RouterContextType {
   currentRoute: Route;
