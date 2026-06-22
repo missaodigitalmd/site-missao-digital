@@ -1,0 +1,16 @@
+# dependências
+node_modules
+
+# build
+dist
+dist-ssr
+
+# variáveis de ambiente (segredos locais; o app cai nos defaults se faltarem)
+.env
+.env.local
+.env.*.local
+
+# logs e temporários
+*.log
+.DS_Store
+.vite

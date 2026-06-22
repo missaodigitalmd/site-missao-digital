@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* Fontes embutidas (offline) - Design System secao 3.2 */
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/600.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+/* Tokens do Design System (secao 3) mapeados para o tema do Tailwind v4 */
+@theme {
+  --color-bg-base: #0a0e14;
+  --color-bg-surface: #121a26;
+  --color-bg-surface-2: #1e2837;
+  --color-hairline: #26303f;
+
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #8b98a9;
+  --color-text-muted: #5b6776;
+
+  --color-system: #3dd6d0;
+  --color-system-dim: #1e6e6b;
+
+  --color-success: #4ade80;
+  --color-notice: #9aa7b8;
+  --color-amber: #fbbf24;
+  --color-red: #ff3b30;
+
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* Trava o "pull to refresh" e seleção acidental durante o jogo no escuro */
+  overscroll-behavior-y: contain;
+}
+
+/* Grid/textura bem sutil de fundo (linguagem de HUD - Design System 1) */
+.hud-grid {
+  background-image:
+    linear-gradient(var(--color-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center;
+  opacity: 0.04;
+}
+
+/* Numeros tabulares para o cronometro nao "pular" */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Rotulo de HUD */
+.hud-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-system);
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes pulse-hard {
+  0%,
+  100% {
+    background-color: rgba(255, 59, 48, 0);
+  }
+  50% {
+    background-color: rgba(255, 59, 48, 0.16);
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 1.2s ease-in-out infinite;
+}
+.animate-pulse-hard {
+  animation: pulse-hard 0.7s ease-in-out infinite;
+}
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-soft,
+  .animate-pulse-hard,
+  .animate-shake {
+    animation: none !important;
+  }
+}

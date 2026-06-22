@@ -1,0 +1,100 @@
+import { useState } from "react";
+import { Play, Pause, Trash2, Settings2, BookOpen } from "lucide-react";
+import { usePanelStore } from "@/store/usePanelStore";
+import { Button } from "@/components/ui/Button";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
+import { formatTime } from "@/lib/helpers";
+
+export function GlobalBar() {
+  const { eventName, globalInitialSeconds, teams, startAll, pauseAll, addTimeAll, resetAll, backToConfig } =
+    usePanelStore();
+  const [confirmReset, setConfirmReset] = useState(false);
+
+  const running = teams.filter((t) => t.active && t.status === "rodando").length;
+  const paused = teams.filter((t) => t.active && t.status === "pausada").length;
+  const waiting = teams.filter((t) => t.active && t.status === "aguardando").length;
+  const done = teams.filter((t) => t.active && (t.status === "cumpriu" || t.status === "falhou")).length;
+  const anyRunning = running > 0;
+
+  return (
+    <header className="sticky top-0 z-20 border-b border-hairline bg-bg-base/95 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-3 px-5 py-3">
+        <div className="mr-auto">
+          <div className="hud-label" style={{ fontSize: 10 }}>
+            Evento
+          </div>
+          <div className="font-sans text-[15px] font-semibold text-text-primary">{eventName}</div>
+          <div className="font-mono text-xs text-text-muted">
+            inicial {formatTime(globalInitialSeconds)}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 font-mono text-xs">
+          <Pill label="rodando" value={running} color="var(--color-system)" />
+          <Pill label="pausadas" value={paused} color="var(--color-amber)" />
+          <Pill label="aguardando" value={waiting} color="var(--color-text-secondary)" />
+          <Pill label="encerradas" value={done} color="var(--color-success)" />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Button variant="system" onClick={startAll}>
+            <Play className="h-4 w-4" /> Start geral
+          </Button>
+          <Button variant="neutral" onClick={() => addTimeAll(-60)}>
+            -1
+          </Button>
+          <Button variant="neutral" onClick={() => addTimeAll(-300)}>
+            -5
+          </Button>
+          <Button variant="neutral" onClick={() => addTimeAll(60)}>
+            +1
+          </Button>
+          <Button variant="neutral" onClick={() => addTimeAll(300)}>
+            +5
+          </Button>
+          <Button variant="neutral" onClick={pauseAll}>
+            <Pause className="h-4 w-4" /> {anyRunning ? "Pausar" : "Despausar"}
+          </Button>
+          <Button variant="danger" onClick={() => setConfirmReset(true)}>
+            <Trash2 className="h-4 w-4" /> Zerar tudo
+          </Button>
+          <a
+            href="#/conteudo"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Ver todo o conteúdo liberado (prévia)"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[var(--radius-sm)] border border-hairline bg-transparent px-4 font-mono text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:border-system/40 hover:text-text-primary"
+          >
+            <BookOpen className="h-4 w-4" /> Conteúdo
+          </a>
+          <Button variant="ghost" onClick={backToConfig} title="Voltar à configuração">
+            <Settings2 className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      <ConfirmDialog
+        open={confirmReset}
+        title="Zerar tudo?"
+        message="Isto apaga o progresso de todas as equipes e volta ao tempo inicial (aguardando Start). Não dá para desfazer."
+        confirmLabel="Zerar tudo"
+        onConfirm={() => {
+          resetAll();
+          setConfirmReset(false);
+        }}
+        onCancel={() => setConfirmReset(false)}
+      />
+    </header>
+  );
+}
+
+function Pill({ label, value, color }: { label: string; value: number; color: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <span className="text-base font-bold" style={{ color }}>
+        {value}
+      </span>
+      <span className="text-[10px] uppercase tracking-wide text-text-muted">{label}</span>
+    </div>
+  );
+}
