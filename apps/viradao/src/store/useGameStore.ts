@@ -4,13 +4,34 @@ import {
   CARD_BY_CODE,
   DEFAULT_INITIAL_SECONDS,
   FINAL_FRACASSO,
+  PRINCIPAIS,
+  PRESET_TEAMS,
   URGENCY_AUDIO,
   URGENCY_CUES,
   type FinalKind,
   type StoryCard,
 } from "@/content/story";
-import { normalizeCode } from "@/lib/helpers";
-import { pushStart, pushUnlock, pushTeamUpdate, pushReset } from "@/lib/sync";
+import { normalizeCode, formatTime } from "@/lib/helpers";
+import {
+  pushStart,
+  pushUnlock,
+  pushTeamUpdate,
+  pushReset,
+  broadcastCompletion,
+  stationBonus,
+} from "@/lib/sync";
+import { serverNow } from "@/lib/serverTime";
+
+// Nome bonito da equipe a partir do token (para o cross-feed do Ponto 9).
+function teamName(token: string | null): string {
+  const m = token ? /team-(\d+)/.exec(token) : null;
+  return (m && PRESET_TEAMS[parseInt(m[1], 10) - 1]) || "Uma equipe";
+}
+
+// Carencia antes de declarar fracasso automatico: o tempo precisa ficar zerado de
+// forma consistente (confirmado pela hora do servidor) por esta janela. Protege
+// contra um glitch de um frame ou um snapshot transitorio matar a equipe. Ponto 7.
+const FAIL_GRACE_MS = 2500;
 
 export type GamePhase = "await" | "running" | "paused" | "failed" | "success";
 
@@ -25,7 +46,8 @@ export type SubmitResult =
   | { kind: "unknown" }
   | { kind: "already"; card: StoryCard }
   | { kind: "unlocked"; card: StoryCard; bonus: number }
-  | { kind: "final"; card: StoryCard };
+  | { kind: "final"; card: StoryCard }
+  | { kind: "locked"; card: StoryCard; needed?: string };
 
 export interface UnlockEntry {
   id: string;
@@ -50,6 +72,7 @@ export interface HydratePatch {
   phase: GamePhase;
   endsAt: number | null;
   remaining: number;
+  initialSeconds?: number; // tempo inicial real do evento (para o resumo da partida)
   mainUnlocked: string[];
   secondaryUnlocked: string[];
   log: UnlockEntry[];
@@ -77,6 +100,7 @@ interface GameState {
 
   audioUnlocked: boolean;
   firedCues: number[]; // marcos ja disparados (em segundos)
+  zeroSince: number | null; // serverNow do 1o frame zerado; carencia anti-glitch
 
   lastUnlockTick: number; // muda a cada destravamento (sinaliza auto-open)
   lastUnlockId: string | null;
@@ -94,10 +118,12 @@ interface GameState {
 }
 
 function unlockCard(state: GameState, card: StoryCard, now: number): Partial<GameState> {
+  // Bonus efetivo: tempo configurado no painel (banco), com fallback no story.ts. Ponto 8.
+  const bonus = stationBonus(card.id, card.bonusSeconds);
   const patch: Partial<GameState> = {
     lastUnlockTick: now,
     lastUnlockId: card.id,
-    log: [...state.log, { id: card.id, at: now, bonus: card.bonusSeconds }],
+    log: [...state.log, { id: card.id, at: now, bonus }],
   };
 
   if (card.tag === "secundaria") {
@@ -107,9 +133,9 @@ function unlockCard(state: GameState, card: StoryCard, now: number): Partial<Gam
   }
 
   // Bonus de tempo: muda o horario-alvo.
-  if (card.bonusSeconds > 0 && state.endsAt) {
-    patch.endsAt = state.endsAt + card.bonusSeconds * 1000;
-    patch.feedback = { ts: now, amount: card.bonusSeconds };
+  if (bonus > 0 && state.endsAt) {
+    patch.endsAt = state.endsAt + bonus * 1000;
+    patch.feedback = { ts: now, amount: bonus };
   }
 
   // Missao vigente: so principais atualizam.
@@ -137,6 +163,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   audioUnlocked: false,
   firedCues: [],
+  zeroSince: null,
 
   lastUnlockTick: 0,
   lastUnlockId: null,
@@ -161,6 +188,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       finalCardId: null,
       audioUnlocked: false,
       firedCues: [],
+      zeroSince: null,
       lastUnlockTick: 0,
       lastUnlockId: null,
       feedback: null,
@@ -181,18 +209,20 @@ export const useGameStore = create<GameState>((set, get) => ({
   start: () => {
     const { phase, initialSeconds, teamToken } = get();
     if (phase !== "await") return;
-    // O relogio que corre usa o tempo do APARELHO (Date.now), imune a drift de
-    // offset. A hora do servidor entra so no resume (sync.ts).
-    const device = Date.now();
-    const endsAt = device + initialSeconds * 1000;
+    // O relogio que corre e ancorado na HORA DO SERVIDOR (serverNow = Date.now +
+    // offset cacheado), nao no relogio cru do aparelho. Assim o cronometro local e
+    // o servidor falam a mesma lingua: uma ressincronizacao vira ajuste, nao tranco.
+    const anchor = serverNow();
+    const endsAt = anchor + initialSeconds * 1000;
     set({
       phase: "running",
       endsAt,
       remaining: initialSeconds,
       audioUnlocked: true,
+      zeroSince: null,
     });
     // Destrava a abertura (card 0), que abre sozinha.
-    set((s) => ({ ...s, ...unlockCard(get(), ABERTURA, device) }));
+    set((s) => ({ ...s, ...unlockCard(get(), ABERTURA, anchor) }));
     // Persiste so o inicio. O started_at e definido pelo now() do SERVIDOR (RPC
     // start_team no flush), nunca pelo relogio do cliente. A abertura nao e
     // gravada: e implicita (todo time que ja deu Start a tem aberta).
@@ -216,6 +246,21 @@ export const useGameStore = create<GameState>((set, get) => ({
       // Codigo ja usado: so realca, sem somar tempo.
       set({ lastUnlockTick: Date.now(), lastUnlockId: card.id });
       return { kind: "already", card };
+    }
+
+    // Ponto 5: encadeamento da historia. Uma etapa principal so abre se a anterior
+    // (order - 1) ja foi resolvida; o final (v1/v2) so com as 4 principais
+    // destravadas. Bloqueio puramente local: nao destrava nem da bonus. As
+    // secundarias seguem livres (podem ser pegas a qualquer momento).
+    if (card.tag === "principal" && typeof card.order === "number" && card.order > 1) {
+      const prev = PRINCIPAIS.find((p) => p.order === card.order! - 1);
+      if (prev && !state.mainUnlocked.includes(prev.id)) {
+        return { kind: "locked", card, needed: prev.title };
+      }
+    }
+    if (card.tag === "final") {
+      const missing = PRINCIPAIS.find((p) => !state.mainUnlocked.includes(p.id));
+      if (missing) return { kind: "locked", card, needed: missing.title };
     }
 
     const now = Date.now();
@@ -242,19 +287,33 @@ export const useGameStore = create<GameState>((set, get) => ({
           final_card_id: card.id,
           paused_remaining: Math.round(remaining),
         });
+        // Cross-feed (Ponto 9): conclusao do jogo, com o tempo que sobrou.
+        broadcastCompletion(token, `${teamName(token)} concluiu a missão com ${formatTime(remaining)} sobrando.`);
       }
       return { kind: "final", card };
     }
 
+    const effBonus = stationBonus(card.id, card.bonusSeconds); // Ponto 8
     set((s) => ({ ...s, ...unlockCard(get(), card, now) }));
-    if (token) pushUnlock(token, card.id, card.bonusSeconds, unlockKind(card));
-    return { kind: "unlocked", card, bonus: card.bonusSeconds };
+    if (token) {
+      pushUnlock(token, card.id, effBonus, unlockKind(card));
+      // Cross-feed (Ponto 9): principal anuncia a etapa; secundaria sem revelar qual.
+      const msg =
+        card.tag === "secundaria"
+          ? `${teamName(token)} descobriu uma missão secundária.`
+          : `${teamName(token)} concluiu a ${card.order}ª etapa.`;
+      broadcastCompletion(token, msg);
+    }
+    return { kind: "unlocked", card, bonus: effBonus };
   },
 
   tick: () => {
     const state = get();
     if (state.phase !== "running" || state.endsAt == null) return;
-    const remaining = Math.max(0, (state.endsAt - Date.now()) / 1000);
+    // Conta contra a hora do servidor (endsAt tambem esta no referencial do
+    // servidor), nao contra Date.now() cru. Se o SO do celular corrigir a hora no
+    // meio do jogo, o offset cacheado absorve, e o cronometro nao da salto.
+    const remaining = Math.max(0, (state.endsAt - serverNow()) / 1000);
     const patch: Partial<GameState> = { remaining };
 
     // Avisos de urgencia: dispara uma vez ao cruzar o marco para baixo.
@@ -270,8 +329,29 @@ export const useGameStore = create<GameState>((set, get) => ({
       }
     }
 
-    // Fracasso automatico ao zerar (dispara mesmo offline).
-    if (remaining <= 0) {
+    // Fracasso automatico ao zerar (dispara mesmo offline), porem com CARENCIA: o
+    // tempo precisa ficar zerado de forma consistente (FAIL_GRACE_MS, medido pela
+    // hora do servidor) antes de declarar fracasso. Um zero transitorio (glitch de
+    // relogio, snapshot de resync) nao mata mais a equipe. Ponto 7.
+    if (remaining > 0) {
+      if (state.zeroSince != null) patch.zeroSince = null; // recuperou tempo (bonus)
+      set(patch);
+      return;
+    }
+
+    const t = serverNow();
+    if (state.zeroSince == null) {
+      patch.zeroSince = t; // marca o inicio do zero; ainda nao falha
+      set(patch);
+      return;
+    }
+    if (t - state.zeroSince < FAIL_GRACE_MS) {
+      set(patch); // dentro da carencia: mostra 00:00, segura o fracasso
+      return;
+    }
+
+    // Zero confirmado por tempo suficiente: agora sim, fracasso.
+    {
       const now = Date.now();
       patch.phase = "failed";
       patch.finalKind = "fracasso";
@@ -311,6 +391,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       finalCardId: null,
       audioUnlocked: false,
       firedCues: [],
+      zeroSince: null,
       lastUnlockTick: 0,
       lastUnlockId: null,
       feedback: null,

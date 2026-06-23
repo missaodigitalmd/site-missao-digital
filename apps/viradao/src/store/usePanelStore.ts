@@ -38,6 +38,7 @@ export interface PanelTeam {
   secCount: number;
   successKind: "v1" | "v2" | null;
   unlocks: UnlockRow[];
+  unlockedIds: string[]; // card_ids destravados (para os toggles de missao, Ponto 4)
   // brutos do banco (para a matematica do relogio nos controles)
   startedAt: number | null;
   initialSeconds: number;
@@ -131,6 +132,7 @@ function buildTeam(row: DbTeam, unlocks: DbUnlock[]): PanelTeam {
     secCount: secs.length,
     successKind: status === "cumpriu" ? (row.final_kind as "v1" | "v2" | null) : null,
     unlocks: list,
+    unlockedIds: ordered.map((u) => u.card_id),
     startedAt,
     initialSeconds: row.initial_seconds,
     panelAdjust: row.panel_adjust_seconds,
@@ -145,12 +147,22 @@ interface PanelState {
   systemActive: boolean;
   loaded: boolean;
   teams: PanelTeam[];
+  // Celulares com o app aberto agora, por token (Fase 6, Pontos 2/3). Presenca ao
+  // vivo via Supabase Realtime Presence; vive fora de `teams` para o load() do
+  // banco nunca apagar a contagem.
+  presenceCounts: Record<string, number>;
+  // Toggle do log de conclusoes entre equipes nas telas dos jogadores (Ponto 9).
+  showCrossFeed: boolean;
+  // Bonus de tempo por estacao/missao (Ponto 8), editavel antes da partida.
+  stations: Record<string, number>;
 
   load: () => Promise<void>;
   subscribe: () => () => void;
 
   setEventName: (name: string) => void;
   setGlobalInitial: (s: number) => void;
+  setShowCrossFeed: (v: boolean) => void;
+  setStationBonus: (cardId: string, seconds: number) => void;
   toggleActive: (id: string) => void;
   activateSystem: () => void;
   backToConfig: () => void;
@@ -158,12 +170,19 @@ interface PanelState {
   startTeam: (id: string) => void;
   pauseTeam: (id: string) => void;
   addTime: (id: string, seconds: number) => void;
+  reviveTeam: (id: string, seconds: number) => void;
+  togglePanelUnlock: (
+    teamId: string,
+    card: { id: string; bonusSeconds: number; kind: "principal" | "secundaria" },
+    on: boolean,
+  ) => void;
   resetTeam: (id: string) => void;
 
   startAll: () => void;
   pauseAll: () => void;
   addTimeAll: (seconds: number) => void;
   resetAll: () => void;
+  archiveEvent: () => Promise<boolean>;
 
   tick: () => void;
 }
@@ -193,6 +212,29 @@ export const usePanelStore = create<PanelState>((set, get) => {
         .eq("id", t.id);
     }
   }
+  // Reviver: recoloca um time encerrado no jogo com tempo extra, sem perder o
+  // progresso (Ponto 6). A RPC e atomica e usa now() do SERVIDOR para o tempo nascer
+  // certo; remove o final, preserva estacoes/secundarias. A equipe reflete por realtime.
+  async function dbRevive(t: PanelTeam, sec: number) {
+    await supabase.rpc("revive_team", { p_token: t.token, p_seconds: Math.round(sec) });
+  }
+  // Marcar/desmarcar missao pelo painel (Ponto 4). Usa o MESMO caminho de bonus do
+  // codigo: marcar insere o unlock com o bonus normal; desmarcar remove o unlock (e o
+  // tempo). O unique (team_id, card_id) evita duplicata; a equipe reflete por realtime.
+  async function dbToggleUnlock(
+    teamId: string,
+    card: { id: string; bonusSeconds: number; kind: "principal" | "secundaria" },
+    on: boolean,
+  ) {
+    if (on) {
+      await supabase.from("unlocks").upsert(
+        { team_id: teamId, card_id: card.id, bonus_seconds: card.bonusSeconds, kind: card.kind },
+        { onConflict: "team_id,card_id", ignoreDuplicates: true },
+      );
+    } else {
+      await supabase.from("unlocks").delete().eq("team_id", teamId).eq("card_id", card.id);
+    }
+  }
   async function dbReset(t: PanelTeam) {
     await supabase
       .from("teams")
@@ -215,11 +257,14 @@ export const usePanelStore = create<PanelState>((set, get) => {
     systemActive: false,
     loaded: false,
     teams: [],
+    presenceCounts: {},
+    showCrossFeed: true,
+    stations: {},
 
     load: async () => {
       const { data: ev } = await supabase
         .from("events")
-        .select("id,name,initial_seconds")
+        .select("id,name,initial_seconds,show_cross_feed")
         .order("created_at")
         .limit(1)
         .single();
@@ -232,17 +277,26 @@ export const usePanelStore = create<PanelState>((set, get) => {
       const { data: unlockRows } = await supabase
         .from("unlocks")
         .select("team_id,card_id,bonus_seconds,kind,created_at");
+      const { data: stationRows } = await supabase
+        .from("stations")
+        .select("card_id,bonus_seconds");
 
       const unlocks = (unlockRows as DbUnlock[]) ?? [];
       const teams = ((teamRows as DbTeam[]) ?? []).map((r) =>
         buildTeam(r, unlocks.filter((u) => u.team_id === r.id)),
       );
+      const stations: Record<string, number> = {};
+      for (const s of (stationRows as { card_id: string; bonus_seconds: number }[]) ?? []) {
+        stations[s.card_id] = s.bonus_seconds;
+      }
       set({
         teams,
         loaded: true,
         eventId: ev?.id ?? null,
         eventName: ev?.name ?? get().eventName,
         globalInitialSeconds: ev?.initial_seconds ?? DEFAULT_INITIAL_SECONDS,
+        showCrossFeed: ev?.show_cross_feed ?? true,
+        stations,
       });
     },
 
@@ -256,16 +310,55 @@ export const usePanelStore = create<PanelState>((set, get) => {
         .channel("panel")
         .on("postgres_changes", { event: "*", schema: "viradao", table: "teams" }, refetch)
         .on("postgres_changes", { event: "*", schema: "viradao", table: "unlocks" }, refetch)
+        .on("postgres_changes", { event: "*", schema: "viradao", table: "events" }, refetch)
+        .on("postgres_changes", { event: "*", schema: "viradao", table: "stations" }, refetch)
         .subscribe();
+
+      // Presenca ao vivo: o painel so OUVE o canal compartilhado (nao se anuncia,
+      // pois nao e um celular de equipe) e conta os celulares por token. Pontos 2/3.
+      const presence = supabase.channel("presence-viradao");
+      const recount = () => {
+        const state = presence.presenceState<{ token: string }>();
+        const counts: Record<string, number> = {};
+        for (const key of Object.keys(state)) {
+          for (const meta of state[key]) {
+            if (meta.token) counts[meta.token] = (counts[meta.token] ?? 0) + 1;
+          }
+        }
+        set({ presenceCounts: counts });
+      };
+      presence
+        .on("presence", { event: "sync" }, recount)
+        .on("presence", { event: "join" }, recount)
+        .on("presence", { event: "leave" }, recount)
+        .subscribe();
+
       return () => {
         if (t) clearTimeout(t);
         void supabase.removeChannel(channel);
+        void supabase.removeChannel(presence);
       };
     },
 
     setEventName: (name) => {
       set({ eventName: name });
       if (get().eventId) void supabase.from("events").update({ name }).eq("id", get().eventId);
+    },
+
+    setShowCrossFeed: (v) => {
+      set({ showCrossFeed: v });
+      const eid = get().eventId;
+      if (eid) void supabase.from("events").update({ show_cross_feed: v }).eq("id", eid);
+    },
+
+    // Ponto 8: edita o tempo de uma estacao. So antes da partida (nenhuma equipe
+    // startou); vale para a proxima partida. Persiste e a equipe le no inicio.
+    setStationBonus: (cardId, seconds) => {
+      const anyStarted = get().teams.some((t) => t.status !== "aguardando");
+      if (anyStarted) return;
+      const s = Math.max(0, Math.round(seconds));
+      set((st) => ({ stations: { ...st.stations, [cardId]: s } }));
+      void supabase.from("stations").update({ bonus_seconds: s }).eq("card_id", cardId);
     },
 
     setGlobalInitial: (s) => {
@@ -304,6 +397,11 @@ export const usePanelStore = create<PanelState>((set, get) => {
       const t = get().teams.find(byId(id));
       if (t) void dbAddTime(t, sec);
     },
+    reviveTeam: (id, sec) => {
+      const t = get().teams.find(byId(id));
+      if (t && (t.status === "falhou" || t.status === "cumpriu")) void dbRevive(t, sec);
+    },
+    togglePanelUnlock: (teamId, card, on) => void dbToggleUnlock(teamId, card, on),
     resetTeam: (id) => {
       const t = get().teams.find(byId(id));
       if (t) void dbReset(t);
@@ -332,6 +430,26 @@ export const usePanelStore = create<PanelState>((set, get) => {
       get()
         .teams.filter((t) => t.active)
         .forEach((t) => void dbReset(t));
+    },
+
+    // C5: salva um snapshot do resultado da noite (antes de zerar tudo), para nao
+    // perder a memoria do que aconteceu. Append-only na tabela archives.
+    archiveEvent: async () => {
+      const summary = {
+        archivedAt: new Date().toISOString(),
+        teams: get().teams.map((t) => ({
+          name: t.name,
+          status: t.status,
+          successKind: t.successKind,
+          remaining: Math.round(t.remaining),
+          mainCount: t.mainCount,
+          secCount: t.secCount,
+        })),
+      };
+      const { error } = await supabase
+        .from("archives")
+        .insert({ event_name: get().eventName, summary });
+      return !error;
     },
 
     // So recalcula o relogio que corre (tempo do aparelho). O estado de verdade

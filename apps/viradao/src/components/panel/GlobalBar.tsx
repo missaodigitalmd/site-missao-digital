@@ -1,20 +1,29 @@
 import { useState } from "react";
-import { Play, Pause, Trash2, Settings2, BookOpen } from "lucide-react";
+import { Play, Pause, Trash2, Settings2, BookOpen, KeyRound, Megaphone, MegaphoneOff, Flag } from "lucide-react";
 import { usePanelStore } from "@/store/usePanelStore";
 import { Button } from "@/components/ui/Button";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
+import { CodesReference } from "./CodesReference";
+import { EndEventDialog } from "./EndEventDialog";
 import { formatTime } from "@/lib/helpers";
 
 export function GlobalBar() {
   const { eventName, globalInitialSeconds, teams, startAll, pauseAll, addTimeAll, resetAll, backToConfig } =
     usePanelStore();
+  const presenceCounts = usePanelStore((s) => s.presenceCounts);
+  const showCrossFeed = usePanelStore((s) => s.showCrossFeed);
+  const setShowCrossFeed = usePanelStore((s) => s.setShowCrossFeed);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [showCodes, setShowCodes] = useState(false);
+  const [endEvent, setEndEvent] = useState(false);
 
   const running = teams.filter((t) => t.active && t.status === "rodando").length;
   const paused = teams.filter((t) => t.active && t.status === "pausada").length;
   const waiting = teams.filter((t) => t.active && t.status === "aguardando").length;
   const done = teams.filter((t) => t.active && (t.status === "cumpriu" || t.status === "falhou")).length;
   const anyRunning = running > 0;
+  // Total de celulares com o app aberto agora, somando todas as equipes (Pontos 2/3).
+  const connected = Object.values(presenceCounts).reduce((a, b) => a + b, 0);
 
   return (
     <header className="sticky top-0 z-20 border-b border-hairline bg-bg-base/95 backdrop-blur">
@@ -34,6 +43,7 @@ export function GlobalBar() {
           <Pill label="pausadas" value={paused} color="var(--color-amber)" />
           <Pill label="aguardando" value={waiting} color="var(--color-text-secondary)" />
           <Pill label="encerradas" value={done} color="var(--color-success)" />
+          <Pill label="celulares" value={connected} color="var(--color-system)" />
         </div>
 
         <div className="flex items-center gap-2">
@@ -57,6 +67,24 @@ export function GlobalBar() {
           </Button>
           <Button variant="danger" onClick={() => setConfirmReset(true)}>
             <Trash2 className="h-4 w-4" /> Zerar tudo
+          </Button>
+          <Button variant="neutral" onClick={() => setEndEvent(true)} title="Encerrar evento e arquivar o resultado">
+            <Flag className="h-4 w-4" /> Encerrar
+          </Button>
+          <Button variant="neutral" onClick={() => setShowCodes(true)} title="Ver todos os códigos">
+            <KeyRound className="h-4 w-4" /> Códigos
+          </Button>
+          <Button
+            variant={showCrossFeed ? "system" : "ghost"}
+            onClick={() => setShowCrossFeed(!showCrossFeed)}
+            title={
+              showCrossFeed
+                ? "Log de conclusões LIGADO nas telas das equipes (clique para desligar)"
+                : "Log de conclusões DESLIGADO (clique para ligar)"
+            }
+          >
+            {showCrossFeed ? <Megaphone className="h-4 w-4" /> : <MegaphoneOff className="h-4 w-4" />}
+            Avisos
           </Button>
           <a
             href="#/conteudo"
@@ -84,6 +112,9 @@ export function GlobalBar() {
         }}
         onCancel={() => setConfirmReset(false)}
       />
+
+      <CodesReference open={showCodes} onClose={() => setShowCodes(false)} />
+      <EndEventDialog open={endEvent} onClose={() => setEndEvent(false)} />
     </header>
   );
 }

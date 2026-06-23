@@ -4,14 +4,17 @@ import { useGameStore } from "@/store/useGameStore";
 import { CARD_BY_ID, PRESET_TEAMS } from "@/content/story";
 import { urgencyFromSeconds } from "@/lib/helpers";
 import { attach } from "@/lib/sync";
+import { useWakeLock } from "@/lib/useWakeLock";
 import { Timer } from "./Timer";
 import { CodeInput } from "./CodeInput";
 import { CurrentMission } from "./CurrentMission";
 import { StoryCard } from "./StoryCard";
+import { GameSummary } from "./GameSummary";
 import { SecondaryMissions } from "./SecondaryMissions";
 import { StartScreen } from "./StartScreen";
 import { UrgencyBanner } from "./UrgencyBanner";
 import { PlusMinBalloon } from "./PlusMinBalloon";
+import { CrossFeed } from "./CrossFeed";
 
 function teamNameFromToken(token: string): string {
   const m = /team-(\d+)/.exec(token);
@@ -41,6 +44,9 @@ export function TeamScreen({ token }: { token: string }) {
     const id = setInterval(() => tick(), 250);
     return () => clearInterval(id);
   }, [tick]);
+
+  // C4: mantem a tela acesa enquanto o jogo corre (running/paused).
+  useWakeLock(phase === "running" || phase === "paused");
 
   // Vibracao nos ultimos 30s (se o aparelho permitir).
   const buzzed = useRef(false);
@@ -72,6 +78,9 @@ export function TeamScreen({ token }: { token: string }) {
 
       <UrgencyBanner />
 
+      {/* Ponto 9: log de conclusoes das outras equipes (toasts passageiros). */}
+      <CrossFeed />
+
       {/* 1a dobra (sticky): cronometro + input */}
       <header className="sticky top-0 z-20 border-b border-hairline bg-bg-base/95 backdrop-blur">
         <div className="hud-grid pointer-events-none absolute inset-0" />
@@ -100,18 +109,25 @@ export function TeamScreen({ token }: { token: string }) {
           </div>
 
           <CodeInput />
+
+          {/* Ponto 10: missao vigente no fim da 1a dobra (relogio + codigo + missao
+              no mesmo bloco visivel). Versao compacta; o texto completo fica no card. */}
+          <div className="mt-3">
+            <CurrentMission compact />
+          </div>
         </div>
       </header>
 
-      {/* 2a dobra: missao vigente + diario + secundarias */}
+      {/* 2a dobra: diario + secundarias */}
       <main className="mx-auto max-w-md px-4 pb-24 pt-4">
-        <CurrentMission />
-
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="flex flex-col gap-3">
           {mainUnlocked.map((id) => (
             <StoryCard key={id} card={CARD_BY_ID[id]} />
           ))}
         </div>
+
+        {/* Ponto 11: resumo da partida, logo apos o card de fechamento. */}
+        <GameSummary />
 
         <SecondaryMissions />
       </main>

@@ -4,6 +4,7 @@ node_modules
 # build
 dist
 dist-ssr
+*.tsbuildinfo
 
 # variáveis de ambiente (segredos locais; o app cai nos defaults se faltarem)
 .env

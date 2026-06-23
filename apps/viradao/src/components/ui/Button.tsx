@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "system" | "ghost" | "danger" | "neutral";
+type Variant = "system" | "ghost" | "danger" | "neutral" | "success";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
@@ -17,6 +17,8 @@ const variants: Record<Variant, string> = {
     "bg-transparent text-text-secondary border border-hairline hover:text-text-primary hover:border-system/40",
   danger: "bg-red/15 text-red border border-red/40 hover:bg-red/25",
   neutral: "bg-bg-surface-2 text-text-primary border border-hairline hover:border-system/40",
+  success:
+    "bg-success/15 text-success border border-success/40 hover:bg-success/25 active:bg-success/30",
 };
 
 export function Button({ variant = "neutral", className, ...rest }: Props) {

@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { useGameStore } from "@/store/useGameStore";
 import { normalizeCode } from "@/lib/helpers";
 import { cn } from "@/lib/cn";
-import { Send, Lock } from "lucide-react";
+import { Send, Lock, CheckCircle2 } from "lucide-react";
 
-type Notice = { kind: "ok" | "already" | "unknown"; text: string } | null;
+type Notice = { kind: "ok" | "already" | "unknown" | "locked"; text: string } | null;
+
+function bonusLabel(seconds: number) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return s === 0 ? `+${m} min` : `+${m}:${s.toString().padStart(2, "0")}`;
+}
 
 export function CodeInput() {
   const phase = useGameStore((s) => s.phase);
@@ -32,12 +39,28 @@ export function CodeInput() {
       setNotice({ kind: "unknown", text: "Código não reconhecido, tente de novo." });
       setShake(true);
       setTimeout(() => setShake(false), 450);
+    } else if (res.kind === "locked") {
+      setNotice({
+        kind: "locked",
+        text:
+          res.card.tag === "final"
+            ? "Ainda não é a hora do final. Concluam as 4 etapas principais primeiro."
+            : "Esse código ainda não é a hora. Resolvam a etapa anterior primeiro.",
+      });
+      setShake(true);
+      setTimeout(() => setShake(false), 450);
     } else if (res.kind === "already") {
       setNotice({ kind: "already", text: "Você já desbloqueou isto." });
       setValue("");
     } else {
-      setNotice({ kind: "ok", text: "Código aceito." });
+      // C2: confirmacao celebrativa. Mostra o bonus ganho e da um feedback tatil.
+      const bonus = res.kind === "unlocked" ? res.bonus : 0;
+      setNotice({
+        kind: "ok",
+        text: bonus > 0 ? `Código aceito! ${bonusLabel(bonus)}` : "Código aceito!",
+      });
       setValue("");
+      navigator.vibrate?.(60);
     }
   }
 
@@ -68,18 +91,33 @@ export function CodeInput() {
           <Send className="h-5 w-5" />
         </button>
       </div>
-      {notice && (
-        <div
-          className={cn(
-            "mt-2 font-sans text-[13px]",
-            notice.kind === "ok" && "text-success",
-            notice.kind === "already" && "text-notice",
-            notice.kind === "unknown" && "text-notice",
-          )}
-        >
-          {notice.text}
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {notice &&
+          (notice.kind === "ok" ? (
+            // C2: chip celebrativo com pop ao aceitar o codigo.
+            <motion.div
+              key={notice.text}
+              initial={{ opacity: 0, scale: 0.85, y: -4 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 500, damping: 22 }}
+              className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-success/50 bg-success/15 px-3 py-1 font-mono text-[13px] font-bold text-success"
+            >
+              <CheckCircle2 className="h-4 w-4" />
+              {notice.text}
+            </motion.div>
+          ) : (
+            <motion.div
+              key={notice.text}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="mt-2 font-sans text-[13px] text-notice"
+            >
+              {notice.text}
+            </motion.div>
+          ))}
+      </AnimatePresence>
     </div>
   );
 }

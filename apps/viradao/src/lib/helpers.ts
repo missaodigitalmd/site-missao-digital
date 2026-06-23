@@ -56,6 +56,41 @@ export function parseClock(mmss: string): number {
   return (m || 0) * 60 + (s || 0);
 }
 
+/**
+ * URL absoluta do link da equipe, resolvida a partir da URL atual. Em dev vira
+ * http://localhost:5173/viradao/#/equipe/team-1; no deploy, herda o host do site
+ * pai (ex.: https://missaodigitalmd.com/viradao/#/equipe/team-1). Mesma logica do
+ * QR Code, para o link mostrado e o QR apontarem exatamente para o mesmo lugar.
+ */
+export function teamUrl(token: string): string {
+  return new URL(`#/equipe/${token}`, window.location.href).href;
+}
+
+/** Copia texto para a area de transferencia (best-effort, com fallback legado). */
+export async function copyText(text: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    /* cai no fallback */
+  }
+  try {
+    const el = document.createElement("textarea");
+    el.value = text;
+    el.style.position = "fixed";
+    el.style.opacity = "0";
+    document.body.appendChild(el);
+    el.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(el);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
 /** True se o usuario pediu movimento reduzido (Design System 3.4). */
 export function prefersReducedMotion(): boolean {
   return (

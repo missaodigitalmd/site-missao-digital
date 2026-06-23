@@ -1,8 +1,12 @@
-import { Power, Link2, BookOpen } from "lucide-react";
+import { useState } from "react";
+import { Power, BookOpen, Copy, Check, Maximize2 } from "lucide-react";
 import { usePanelStore } from "@/store/usePanelStore";
 import { Button } from "@/components/ui/Button";
 import { TimeField } from "@/components/ui/TimeField";
 import { QrMock } from "@/components/ui/QrMock";
+import { QrFullscreen } from "@/components/ui/QrFullscreen";
+import { StationTimes } from "./StationTimes";
+import { teamUrl, copyText } from "@/lib/helpers";
 import { cn } from "@/lib/cn";
 
 export function ConfigMode() {
@@ -17,6 +21,15 @@ export function ConfigMode() {
   } = usePanelStore();
 
   const activeCount = teams.filter((t) => t.active).length;
+  const [qrTeam, setQrTeam] = useState<{ token: string; name: string } | null>(null);
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
+
+  async function copyLink(token: string) {
+    if (await copyText(teamUrl(token))) {
+      setCopiedToken(token);
+      setTimeout(() => setCopiedToken((c) => (c === token ? null : c)), 1600);
+    }
+  }
 
   return (
     <div className="relative min-h-full bg-bg-base">
@@ -74,6 +87,9 @@ export function ConfigMode() {
           </div>
         </div>
 
+        {/* Tempos por estacao (Ponto 8) */}
+        <StationTimes />
+
         {/* Equipes pre-configuradas */}
         <label className="hud-label mb-3 block">Equipes pré-configuradas</label>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -86,16 +102,37 @@ export function ConfigMode() {
               )}
             >
               <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="font-sans text-[15px] font-semibold text-text-primary">
                     {t.name}
                   </div>
-                  <div className="mt-1 flex items-center gap-1.5 font-mono text-[11px] text-text-muted">
-                    <Link2 className="h-3 w-3" />
-                    /equipe/{t.token.slice(0, 10)}…
-                  </div>
+                  {/* Link completo, clicavel para copiar (aponta para o host atual) */}
+                  <button
+                    onClick={() => void copyLink(t.token)}
+                    title="Clique para copiar o link"
+                    className="mt-1.5 flex w-full items-start gap-1.5 rounded-[var(--radius-sm)] border border-hairline bg-bg-base px-2 py-1.5 text-left font-mono text-[11px] text-text-secondary transition-colors hover:border-system/40 hover:text-text-primary"
+                  >
+                    {copiedToken === t.token ? (
+                      <Check className="mt-px h-3 w-3 shrink-0 text-success" />
+                    ) : (
+                      <Copy className="mt-px h-3 w-3 shrink-0" />
+                    )}
+                    <span className="break-all">
+                      {copiedToken === t.token ? "Link copiado!" : teamUrl(t.token)}
+                    </span>
+                  </button>
                 </div>
-                <QrMock token={t.token} size={64} />
+                {/* QR maior, clicavel para ampliar e distribuir (Ponto 1) */}
+                <button
+                  onClick={() => setQrTeam({ token: t.token, name: t.name })}
+                  title="Ampliar QR para escanear"
+                  className="group relative shrink-0 rounded-[2px]"
+                >
+                  <QrMock token={t.token} size={92} />
+                  <span className="absolute inset-0 flex items-center justify-center rounded-[2px] bg-black/0 opacity-0 transition-opacity group-hover:bg-black/40 group-hover:opacity-100">
+                    <Maximize2 className="h-5 w-5 text-white" />
+                  </span>
+                </button>
               </div>
 
               <div className="mt-4 flex items-center justify-between">
@@ -115,6 +152,13 @@ export function ConfigMode() {
           ))}
         </div>
       </div>
+
+      <QrFullscreen
+        open={qrTeam !== null}
+        token={qrTeam?.token ?? ""}
+        teamName={qrTeam?.name ?? ""}
+        onClose={() => setQrTeam(null)}
+      />
     </div>
   );
 }

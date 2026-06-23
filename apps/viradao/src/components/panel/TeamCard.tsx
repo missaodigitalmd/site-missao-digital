@@ -1,8 +1,10 @@
 import { useState, type ReactNode } from "react";
-import { Play, Pause, RotateCcw, Target } from "lucide-react";
+import { Play, Pause, RotateCcw, Target, HeartPulse, Smartphone, ListChecks } from "lucide-react";
 import { usePanelStore, type PanelTeam, type TeamStatus } from "@/store/usePanelStore";
 import { Button } from "@/components/ui/Button";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
+import { ReviveDialog } from "@/components/ui/ReviveDialog";
+import { MissionsDialog } from "./MissionsDialog";
 import { formatTime, urgencyColor, urgencyFromSeconds } from "@/lib/helpers";
 import { cn } from "@/lib/cn";
 
@@ -16,8 +18,14 @@ const STATUS_META: Record<TeamStatus, { label: string; color: string }> = {
 };
 
 export function TeamCard({ team }: { team: PanelTeam }) {
-  const { startTeam, pauseTeam, addTime, resetTeam } = usePanelStore();
+  const { startTeam, pauseTeam, addTime, reviveTeam, resetTeam } = usePanelStore();
+  // Celulares desta equipe com o app aberto agora (presenca ao vivo, Pontos 2/3).
+  const deviceCount = usePanelStore((s) => s.presenceCounts[team.token] ?? 0);
   const [confirm, setConfirm] = useState(false);
+  const [revive, setRevive] = useState(false);
+  const [missions, setMissions] = useState(false);
+  // Reviver so faz sentido para times encerrados (zeraram ou cumpriram).
+  const canRevive = team.status === "falhou" || team.status === "cumpriu";
 
   const meta = STATUS_META[team.status];
   const isLive = team.status === "rodando";
@@ -56,6 +64,14 @@ export function TeamCard({ team }: { team: PanelTeam }) {
             {meta.label}
           </span>
         </div>
+        <div
+          className="flex shrink-0 items-center gap-1 font-mono text-[13px] font-semibold"
+          title="Celulares com o app aberto agora"
+          style={{ color: deviceCount > 0 ? "var(--color-system)" : "var(--color-text-muted)" }}
+        >
+          <Smartphone className="h-4 w-4" />
+          {deviceCount}
+        </div>
       </div>
 
       {/* Cronometro */}
@@ -75,7 +91,7 @@ export function TeamCard({ team }: { team: PanelTeam }) {
           <span>principais {team.mainCount}/4</span>
           <span>secundárias {team.secCount}</span>
         </div>
-        <div className="max-h-24 space-y-1 overflow-y-auto">
+        <div className="space-y-1">
           {team.unlocks.length === 0 && (
             <div className="font-sans text-[12px] text-text-muted">Nada destravado ainda.</div>
           )}
@@ -109,7 +125,15 @@ export function TeamCard({ team }: { team: PanelTeam }) {
             <MiniBtn onClick={() => addTime(team.id, 300)}>+5</MiniBtn>
           </div>
         )}
-        <Button variant="ghost" className="col-span-2" onClick={() => setConfirm(true)}>
+        {canRevive && (
+          <Button variant="success" className="col-span-2" onClick={() => setRevive(true)}>
+            <HeartPulse className="h-4 w-4" /> Reviver
+          </Button>
+        )}
+        <Button variant="neutral" onClick={() => setMissions(true)} title="Marcar/desmarcar missões">
+          <ListChecks className="h-4 w-4" /> Missões
+        </Button>
+        <Button variant="ghost" onClick={() => setConfirm(true)}>
           <RotateCcw className="h-3.5 w-3.5" /> Reset
         </Button>
       </div>
@@ -125,6 +149,18 @@ export function TeamCard({ team }: { team: PanelTeam }) {
         }}
         onCancel={() => setConfirm(false)}
       />
+
+      <ReviveDialog
+        open={revive}
+        teamName={team.name}
+        onRevive={(seconds) => {
+          reviveTeam(team.id, seconds);
+          setRevive(false);
+        }}
+        onCancel={() => setRevive(false)}
+      />
+
+      <MissionsDialog open={missions} team={team} onClose={() => setMissions(false)} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import QRCode from "qrcode";
+import { teamUrl } from "@/lib/helpers";
 
 // QR Code real (Fase 4): codifica o link oculto da equipe (#/equipe/{token}),
 // resolvido a partir da URL atual, entao funciona em dev e no deploy sob o site.
@@ -9,7 +10,7 @@ export function QrMock({ token, size = 88 }: { token: string; size?: number }) {
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const url = new URL(`#/equipe/${token}`, window.location.href).href;
+    const url = teamUrl(token);
     void QRCode.toCanvas(canvas, url, {
       width: size,
       margin: 1,

@@ -12,11 +12,60 @@
 //    Fase 4 refletir ao vivo, e para varios aparelhos convergirem.
 
 import { supabase } from "./supabase";
-import { initServerTime } from "./serverTime";
+import { initServerTime, serverNow } from "./serverTime";
 import { useGameStore, type HydratePatch } from "@/store/useGameStore";
+import { useFeedStore } from "@/store/useFeedStore";
 import { CARD_BY_ID, URGENCY_CUES } from "@/content/story";
 
+// ---- cross-feed entre equipes (Fase 6, Ponto 9) ----
+// Canal compartilhado de Broadcast: quando uma equipe conclui algo, ela transmite a
+// frase pronta (ja sabe o proprio nome e o tempo restante), e as demais telas a
+// mostram como aviso passageiro. Broadcast (nao postgres_changes) porque a mensagem
+// e transitoria e a equipe emissora tem todo o contexto local, sem precisar mapear
+// team_id -> nome nem consultar o tempo de outra equipe.
+const FEED_CHANNEL = "feed-viradao";
+let feedChannel: ReturnType<typeof supabase.channel> | null = null;
+
+export function broadcastCompletion(fromToken: string, text: string): void {
+  void feedChannel?.send({
+    type: "broadcast",
+    event: "completion",
+    payload: { fromToken, text },
+  });
+}
+
+// ---- tempos por estacao (Fase 6, Ponto 8) ----
+// O bonus de cada card vem do banco (viradao.stations, editavel no painel antes da
+// partida), nao mais do numero chumbado no story.ts. Cache em memoria, carregado no
+// attach e atualizado por realtime. stationBonus cai no fallback (valor do story.ts)
+// enquanto o banco nao respondeu, para o jogo nunca ficar sem bonus.
+const stationBonuses = new Map<string, number>();
+export function stationBonus(cardId: string, fallback: number): number {
+  return stationBonuses.has(cardId) ? stationBonuses.get(cardId)! : fallback;
+}
+async function loadStations(): Promise<void> {
+  const { data } = await supabase.from("stations").select("card_id,bonus_seconds");
+  if (!data) return;
+  stationBonuses.clear();
+  for (const r of data as { card_id: string; bonus_seconds: number }[]) {
+    stationBonuses.set(r.card_id, r.bonus_seconds);
+  }
+}
+
 type Kind = "principal" | "secundaria" | "final";
+
+// Modo de uma sincronizacao com o banco (ver Fase 6, Ponto 7):
+//  - "resume":    carga inicial. Estabelece o relogio a partir do servidor; nunca
+//                 REGRIDE o progresso local (corrida de busca tardia).
+//  - "authority": mudanca vinda do painel via realtime. Pode regredir de proposito
+//                 (reset/pausa/reviver): o painel e a autoridade.
+//  - "resync":    reconexao de rede (evento online). NUNCA derruba bruscamente o
+//                 cronometro nem encerra um jogo que, para o aparelho, ainda corre.
+type SyncMode = "resume" | "authority" | "resync";
+
+// Em um resync, uma correcao PARA BAIXO do relogio e limitada a esta janela por
+// evento (converge suave, sem tranco). Ganho de tempo entra integral na hora.
+const MAX_RESYNC_DROP_MS = 5000;
 
 interface TeamRow {
   id: string;
@@ -67,8 +116,8 @@ function writeMirror(token: string, p: HydratePatch): void {
 
 // ---- deriva o estado do jogo a partir das linhas do banco ----
 // O tempo restante vem PRONTO do servidor (view team_state, remaining_seconds),
-// entao o cliente nunca depende do relogio/offset local para o resume. O relogio
-// que corre conta a partir de Date.now() + remaining (frame do aparelho, sem drift).
+// entao o cliente nunca depende de matematica de offset para o resume. O relogio
+// que corre conta a partir de serverNow() + remaining (mesmo referencial do tick).
 function deriveState(team: TeamRow, unlocks: UnlockRow[]): Partial<HydratePatch> {
   const remaining = Math.max(0, team.remaining_seconds);
 
@@ -77,6 +126,7 @@ function deriveState(team: TeamRow, unlocks: UnlockRow[]): Partial<HydratePatch>
       phase: "await",
       endsAt: null,
       remaining,
+      initialSeconds: team.initial_seconds,
       mainUnlocked: [],
       secondaryUnlocked: [],
       log: [],
@@ -109,7 +159,9 @@ function deriveState(team: TeamRow, unlocks: UnlockRow[]): Partial<HydratePatch>
   }
 
   const frozen = team.status === "success" || team.status === "failed";
-  const endsAt = frozen ? null : Math.round(Date.now() + remaining * 1000);
+  // endsAt no referencial da HORA DO SERVIDOR (serverNow), igual ao tick e ao start,
+  // para o cronometro local e o servidor falarem a mesma lingua. Ponto 7.
+  const endsAt = frozen ? null : Math.round(serverNow() + remaining * 1000);
 
   // Avisos de urgencia ja ultrapassados nao devem retocar ao reabrir.
   const firedCues = URGENCY_CUES.filter((c) => c.atSeconds >= remaining).map((c) => c.atSeconds);
@@ -118,6 +170,7 @@ function deriveState(team: TeamRow, unlocks: UnlockRow[]): Partial<HydratePatch>
     phase: team.status,
     endsAt,
     remaining,
+    initialSeconds: team.initial_seconds,
     mainUnlocked,
     secondaryUnlocked,
     log,
@@ -144,7 +197,7 @@ function progress(p: { phase?: string; mainUnlocked?: string[]; secondaryUnlocke
   };
 }
 
-async function fetchAndHydrate(token: string, force = false): Promise<boolean> {
+async function fetchAndHydrate(token: string, mode: SyncMode = "resume"): Promise<boolean> {
   const { data: team, error } = await supabase
     .from("team_state")
     .select("id,status,initial_seconds,final_kind,final_card_id,remaining_seconds")
@@ -157,17 +210,44 @@ async function fetchAndHydrate(token: string, force = false): Promise<boolean> {
     .select("card_id,bonus_seconds,kind,created_at")
     .eq("team_id", team.id);
   const patch = deriveState(team as TeamRow, (unlocks as UnlockRow[]) ?? []);
+  const store = useGameStore.getState();
 
-  // force=true: mudanca do painel (autoridade) pode regredir (ex.: reset).
-  // force=false (resume na carga): nunca regride o local (corrida de busca tardia).
-  if (!force) {
-    const local = progress(useGameStore.getState());
+  // Authority (painel via realtime) pode regredir de proposito (ex.: reset).
+  // Resume e resync nunca regridem o local (corrida de busca tardia / snapshot velho).
+  if (mode !== "authority") {
+    const local = progress(store);
     const incoming = progress(patch);
     if (incoming.r < local.r || (incoming.r === local.r && incoming.n < local.n)) {
       return true;
     }
   }
-  useGameStore.getState().hydrate(patch);
+
+  // Protecao do relogio na reconexao de rede (resync). Um snapshot que chega num
+  // evento "online" NUNCA pode derrubar bruscamente o cronometro nem encerrar um
+  // jogo que, para o aparelho, ainda corre. So o tick (com carencia) ou o painel
+  // (authority) tem direito de encerrar. Ponto 7, camadas 2 e 3.
+  if (mode === "resync" && store.phase === "running") {
+    if (patch.phase === "running" || patch.phase === "paused") {
+      const serverEndsAt = patch.endsAt;
+      const localEndsAt = store.endsAt;
+      if (typeof serverEndsAt === "number" && typeof localEndsAt === "number") {
+        const delta = serverEndsAt - localEndsAt; // >0 = servidor concede mais tempo
+        // Ganho de tempo entra na hora; perda converge limitada (sem tranco ate 0).
+        const endsAt =
+          delta >= 0 ? serverEndsAt : localEndsAt + Math.max(delta, -MAX_RESYNC_DROP_MS);
+        patch.endsAt = endsAt;
+        patch.remaining = Math.max(0, (endsAt - serverNow()) / 1000);
+      }
+      patch.phase = "running"; // resync jamais congela um jogo em andamento
+      patch.firedCues = store.firedCues; // relogio local manda: nao suprime avisos
+    } else {
+      // Servidor diz encerrado/aguardando, mas o aparelho ainda corre: nao confiamos
+      // num snapshot de resync para matar o jogo. Ignora este snapshot.
+      return true;
+    }
+  }
+
+  store.hydrate(patch);
   return true;
 }
 
@@ -281,11 +361,15 @@ export function attach(token: string): () => void {
   const mirror = readMirror(token);
   if (mirror) useGameStore.getState().hydrate(mirror);
 
-  // 2. hora do servidor + estado do banco (best-effort)
+  // 2. hora do servidor + estado do banco (best-effort). A ordem importa: o offset
+  // precisa estar pronto ANTES do resume, porque o relogio agora e ancorado nele.
   void initServerTime().then(() => {
-    void fetchAndHydrate(token);
+    void fetchAndHydrate(token, "resume");
     void flush();
   });
+
+  // Tempos por estacao do banco (Ponto 8): carrega antes/no inicio do jogo.
+  void loadStations();
 
   // 3. espelha cada mudanca do store no localStorage
   const unsubStore = useGameStore.subscribe((s) => {
@@ -293,6 +377,7 @@ export function attach(token: string): () => void {
       phase: s.phase,
       endsAt: s.endsAt,
       remaining: s.remaining,
+      initialSeconds: s.initialSeconds,
       mainUnlocked: s.mainUnlocked,
       secondaryUnlocked: s.secondaryUnlocked,
       log: s.log,
@@ -306,9 +391,10 @@ export function attach(token: string): () => void {
 
   // 4. quando a net voltar: primeiro drena a fila, depois re-sincroniza do banco
   // (a ordem importa, senao o fetch pegaria o estado antes dos unlocks subirem).
+  // Modo "resync": reconcilia sem deixar o snapshot derrubar/encerrar o relogio.
   const onOnline = async () => {
     await flush();
-    await fetchAndHydrate(token, true);
+    await fetchAndHydrate(token, "resync");
   };
   window.addEventListener("online", onOnline);
 
@@ -320,7 +406,74 @@ export function attach(token: string): () => void {
     .on(
       "postgres_changes",
       { event: "*", schema: "viradao", table: "teams", filter: `token=eq.${token}` },
-      () => void fetchAndHydrate(token, true),
+      () => void fetchAndHydrate(token, "authority"),
+    )
+    .subscribe();
+
+  // 5b. unlocks da PROPRIA equipe via realtime (Fase 6, Ponto 4): o painel pode
+  // marcar/desmarcar missoes (insert/delete em unlocks) a distancia, e a equipe tem
+  // de refletir ao vivo. Precisa do team_id (unlocks nao tem token); resolve async e
+  // cria um canal proprio. Modo "authority": pode regredir (desmarcar tira o bonus).
+  let unlockChannel: ReturnType<typeof supabase.channel> | null = null;
+  void resolveTeamId(token).then((id) => {
+    if (!id) return;
+    unlockChannel = supabase
+      .channel(`team-unlocks-${token}`)
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "viradao", table: "unlocks", filter: `team_id=eq.${id}` },
+        () => void fetchAndHydrate(token, "authority"),
+      )
+      .subscribe();
+  });
+
+  // 6. presenca ao vivo (Fase 6, Pontos 2/3): cada celular entra num canal
+  // compartilhado e se anuncia com seu token. O painel conta quantos celulares de
+  // cada equipe estao com o app aberto agora. Puramente aditivo: nao toca no
+  // relogio nem no estado do jogo, so anuncia presenca.
+  const presenceKey =
+    crypto?.randomUUID?.() ?? `c-${Math.random().toString(36).slice(2)}-${Date.now()}`;
+  const presence = supabase.channel("presence-viradao", {
+    config: { presence: { key: presenceKey } },
+  });
+  presence.subscribe((status) => {
+    if (status === "SUBSCRIBED") void presence.track({ token });
+  });
+
+  // 7. cross-feed entre equipes (Fase 6, Ponto 9): toggle global + avisos passageiros.
+  //  - estado inicial do toggle vem do evento (events.show_cross_feed);
+  //  - mudancas do toggle chegam ao vivo (events no realtime);
+  //  - conclusoes de OUTRAS equipes chegam por Broadcast e viram toast (o filtro do
+  //    proprio token evita anunciar a si mesmo; o useFeedStore respeita o toggle).
+  void supabase
+    .from("events")
+    .select("show_cross_feed")
+    .limit(1)
+    .single()
+    .then(({ data }) => {
+      if (data) useFeedStore.getState().setShowCrossFeed(!!data.show_cross_feed);
+    });
+
+  feedChannel = supabase
+    .channel(FEED_CHANNEL)
+    .on("broadcast", { event: "completion" }, ({ payload }) => {
+      const p = payload as { fromToken?: string; text?: string };
+      if (!p?.text || p.fromToken === token) return; // nao anuncia a si mesmo
+      useFeedStore.getState().push(p.text);
+    })
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "viradao", table: "events" },
+      ({ new: row }) => {
+        const r = row as { show_cross_feed?: boolean };
+        if (typeof r?.show_cross_feed === "boolean")
+          useFeedStore.getState().setShowCrossFeed(r.show_cross_feed);
+      },
+    )
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "viradao", table: "stations" },
+      () => void loadStations(), // Ponto 8: tempo editado no painel atualiza o cache
     )
     .subscribe();
 
@@ -328,5 +481,9 @@ export function attach(token: string): () => void {
     unsubStore();
     window.removeEventListener("online", onOnline);
     void supabase.removeChannel(channel);
+    if (unlockChannel) void supabase.removeChannel(unlockChannel);
+    void supabase.removeChannel(presence);
+    if (feedChannel) void supabase.removeChannel(feedChannel);
+    feedChannel = null;
   };
 }

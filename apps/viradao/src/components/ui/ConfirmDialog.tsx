@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { AlertTriangle } from "lucide-react";
 import { Button } from "./Button";
@@ -20,7 +21,9 @@ export function ConfirmDialog({
   onConfirm,
   onCancel,
 }: Props) {
-  return (
+  // Portal para o body: evita ficar preso em ancestrais com backdrop-filter/transform
+  // (ex.: a barra sticky do painel), que criam containing block para position:fixed.
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -55,6 +58,7 @@ export function ConfirmDialog({
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

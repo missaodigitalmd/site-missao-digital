@@ -1,4 +1,4 @@
-import { Footprints, Star, Flag, BookOpen, ArrowLeft } from "lucide-react";
+import { Footprints, Star, Flag, BookOpen } from "lucide-react";
 import { ABERTURA, PRINCIPAIS, SECUNDARIAS, FINAIS, DEFAULT_INITIAL_SECONDS } from "@/content/story";
 import { formatTime } from "@/lib/helpers";
 import { StoryCard } from "@/components/team/StoryCard";
@@ -13,21 +13,13 @@ export function ContentPreview() {
       <header className="sticky top-0 z-20 border-b border-hairline bg-bg-base/95 backdrop-blur">
         <div className="hud-grid pointer-events-none absolute inset-0" />
         <div className="relative mx-auto max-w-md px-4 pb-4 pt-3">
-          <div className="mb-3 flex items-center justify-between">
-            <div>
-              <div className="hud-label opacity-60" style={{ fontSize: 10 }}>
-                Modo
-              </div>
-              <div className="font-sans text-sm font-semibold text-text-secondary">
-                Conteúdo liberado (prévia)
-              </div>
+          <div className="mb-3">
+            <div className="hud-label opacity-60" style={{ fontSize: 10 }}>
+              Modo
             </div>
-            <a
-              href="#/painel"
-              className="flex items-center gap-1.5 rounded-[var(--radius-sm)] border border-hairline px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-wide text-text-muted hover:text-text-secondary"
-            >
-              <ArrowLeft className="h-3 w-3" /> Painel
-            </a>
+            <div className="font-sans text-sm font-semibold text-text-secondary">
+              Conteúdo liberado (prévia)
+            </div>
           </div>
 
           <div className="flex flex-col items-center pt-2">
