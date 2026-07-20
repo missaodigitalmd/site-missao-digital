@@ -8,8 +8,14 @@ interface NavbarProps {
   transparent?: boolean;
 }
 
+// Blog é uma propriedade WordPress externa, com um site independente por idioma.
+const BLOG_URLS: Record<string, string> = {
+  pt: 'https://blog.missaodigitalmd.com/',
+  en: 'https://blog.missaodigitalmd.com/en',
+  es: 'https://blog.missaodigitalmd.com/es',
+};
+
 const navLinks = [
-  { labelKey: 'nav.home', route: 'home' as const },
   { labelKey: 'nav.quem_somos', route: 'quem-somos' as const },
   {
     labelKey: 'nav.projetos',
@@ -23,6 +29,7 @@ const navLinks = [
   },
   { labelKey: 'nav.imersao', route: 'imersao-missionaria' as const },
   { labelKey: 'nav.recursos', route: 'recursos' as const },
+  { labelKey: 'nav.blog', route: 'blog' as const, external: true },
   { labelKey: 'nav.apoie', route: 'apoie' as const },
   { labelKey: 'nav.contato', route: 'contato' as const },
 ];
@@ -34,7 +41,9 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true }) => {
   const [hoveredDropdownItem, setHoveredDropdownItem] = useState<string | null>(null);
   const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { navigate, currentRoute } = useRouter();
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+
+  const blogUrl = BLOG_URLS[(i18n.language || 'pt').slice(0, 2)] ?? BLOG_URLS.pt;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -224,6 +233,17 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true }) => {
                           </div>
                         )}
                       </>
+                    ) : link.external ? (
+                      <a
+                        href={blogUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium transition-colors relative group text-white/80 hover:text-white"
+                        data-cursor="pointer"
+                      >
+                        {t(link.labelKey)}
+                        <span className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-orange-light to-brand-magenta rounded-full transition-all duration-300 w-0 group-hover:w-full" />
+                      </a>
                     ) : (
                       <button
                         onClick={() => handleNavigate(link.route)}
@@ -363,6 +383,16 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true }) => {
                         })}
                       </div>
                     </div>
+                  ) : link.external ? (
+                    <a
+                      href={blogUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-2 w-full text-left px-3 py-3 text-sm font-medium rounded-lg transition-colors text-white/80 hover:text-white hover:bg-white/5"
+                    >
+                      {t(link.labelKey)}
+                    </a>
                   ) : (
                     <button
                       onClick={() => handleNavigate(link.route)}
