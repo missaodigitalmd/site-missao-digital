@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uma pregação, muitas portas</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+<!-- ============ 1. O desafio ============ -->
+<section class="sec neon" id="desafio">
+  <div class="topo">Comunicação pastoral na era das mídias digitais</div>
+  <svg class="mundo" id="d-mundo" viewBox="0 0 1920 1080"></svg>
+  <figure class="live" id="d-live">
+    <img src="assets/img/alen.png" alt="Rev. Alen">
+    <span class="aovivo">ao vivo</span>
+    <figcaption><b>Rev. Alen</b>1ª Igreja Presbiteriana de Barretos</figcaption>
+  </figure>
+  <div class="frases">
+    <div class="num" id="d-num">1 de 3</div>
+    <blockquote class="frase">“A lógica das redes é muito desafiadora.”</blockquote>
+    <blockquote class="frase">“Se você deseja crescer nas redes sociais, ela demanda que você publique várias vezes por dia.”</blockquote>
+    <blockquote class="frase">“Corre o risco de trocar as prioridades, focando energia na internet do que no serviço da igreja local.”</blockquote>
+    <button class="btn" id="d-btn" data-next>Próxima frase</button>
+  </div>
+</section>
+
+<!-- ============ 2a. O fluxo ============ -->
+<section class="sec neon" id="fluxo">
+  <div class="legenda" id="f-leg"></div>
+  <svg class="grafo" id="f-grafo" viewBox="0 0 1920 1080"></svg>
+</section>
+
+<!-- ============ 2b. Os cortes ============ -->
+<section class="sec neon" id="cortes">
+  <h2 class="tit">3 cortes, cada um com uma mensagem completa</h2>
+  <div class="cortes">
+    <div class="corte"><div class="tela"><video src="assets/vid/c1-jesus-me-ama.mp4" poster="assets/vid/c1-jesus-me-ama.jpg" preload="metadata" playsinline></video><span class="play"></span></div><h3>Jesus me ama</h3><div class="redes"></div></div>
+    <div class="corte"><div class="tela"><video src="assets/vid/c2-o-guarda-pediu-perdao.mp4" poster="assets/vid/c2-o-guarda-pediu-perdao.jpg" preload="metadata" playsinline></video><span class="play"></span></div><h3>O guarda que pediu perdão</h3><div class="redes"></div></div>
+    <div class="corte"><div class="tela"><video src="assets/vid/c3-o-fardo-que-ele-tira.mp4" poster="assets/vid/c3-o-fardo-que-ele-tira.jpg" preload="metadata" playsinline></video><span class="play"></span></div><h3>O fardo que ele tira</h3><div class="redes"></div></div>
+  </div>
+  <div class="contador" id="c-cont"><b>0</b> postagens</div>
+</section>
+
+<!-- ============ 2c. Grupo e infográfico ============ -->
+<section class="sec neon" id="grupo">
+  <div class="col" id="g-estudo">
+    <div class="cel"><iframe src="assets/grupo/index.html" title="Estudo para pequenos grupos"></iframe></div>
+    <p class="rot">Estudo para os pequenos grupos<br><span>enviado às lideranças</span></p>
+  </div>
+  <div class="col" id="g-info">
+    <img src="assets/img/infografico.png" alt="Infográfico da pregação">
+    <p class="rot">Resumo da mensagem<br><span>nos stories e no grupo de avisos quando o culto acaba</span></p>
+  </div>
+  <div class="raio" id="g-raio"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>automático</div>
+</section>
+
+<!-- ============ 2d. O carrossel ============ -->
+<section class="sec neon" id="carrossel">
+  <div class="insta" id="k-insta">
+    <div class="ig-topo"><span class="ig-av"></span><b>suaigreja</b><span class="ig-mais">•••</span></div>
+    <div class="ig-img"><div class="ig-trilho" id="k-trilho"></div>
+      <button class="ig-seta e" id="k-ant" aria-label="Slide anterior">‹</button>
+      <button class="ig-seta d" id="k-prox" aria-label="Próximo slide">›</button>
+      <span class="ig-cont" id="k-cont">1/8</span>
+    </div>
+    <div class="ig-acoes"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.3 6c-2.3 4.4-9.3 9-9.3 9z"/></svg><svg viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><svg viewBox="0 0 24 24"><path d="M22 3 2 10l8 3 3 8z"/></svg><span class="ig-pontos" id="k-pontos"></span></div>
+    <p class="ig-leg"><b>suaigreja</b> Quase todo amor que a gente conhece cobra alguma coisa em troca...</p>
+  </div>
+  <div class="qr-col" id="k-qr">
+    <h2>Para quem ainda não conhece Jesus</h2>
+    <div class="qr"><img data-luz="qr" src="assets/img/qr-carrossel.jpeg" alt="QR code do post do carrossel"></div>
+  </div>
+</section>
+
+<!-- ============ 2e. Recapitulação ============ -->
+<section class="sec neon" id="recap">
+  <div class="legenda" id="r-leg"></div>
+  <svg class="grafo" id="r-grafo" viewBox="0 0 1920 1080"></svg>
+</section>
+
+<!-- ============ 2f. Fechamento ============ -->
+<section class="sec neon" id="fecho">
+  <p class="fecho-a" id="fe-a">O pastor continua focado naquilo para que foi chamado:</p>
+  <p class="fecho-b" id="fe-b">Pregar.</p>
+  <p class="fecho-c" id="fe-c">E agora usa a internet como praça pública do seu ministério.</p>
+</section>
+
+<!-- ============ 3. A régua ============ -->
+<section class="sec neon" id="regua">
+  <h2 class="grande" id="rg-tit">Todo pastor deveria fazer isso.</h2>
+  <p class="pergunta" id="rg-perg">Mas a quem isso alcança?</p>
+  <svg class="mundo" id="rg-mundo" viewBox="0 0 1920 1080"></svg>
+  <img class="preg" id="rg-preg" src="assets/img/pregador-ciano.png" alt="Pregador">
+  <p class="rodape" id="rg-rod">e não estão procurando ouvir sobre ele</p>
+</section>
+
+<!-- ============ 4. Meu foco ============ -->
+<section class="sec md" id="foco">
+  <div class="grade"></div>
+  <svg class="mundo" id="fo-mundo" viewBox="0 0 1920 1080"></svg>
+  <p class="md-tit" id="fo-a">Como missionário de tempo integral, meu foco está aqui.</p>
+  <p class="md-txt" id="fo-b">Comunicar o Evangelho na internet a quem não está procurando ouvir, até levar essa pessoa a uma igreja local na cidade dela.</p>
+  <img class="md3d" id="fo-chat" src="assets/img/balao-chat-laranja-3d.webp" alt="">
+  <img class="md3d" id="fo-igreja" src="assets/img/biblico-igreja-local.webp" alt="">
+  <div class="frentes" id="fo-frentes">
+    <img src="assets/img/md-logo.svg" alt="Missão Digital">
+    <div><span style="--c:#B388FF">Gank Evangelístico</span><span style="--c:#FFD740">Nínive Digital</span><span style="--c:#FE7003">Conteúdo com jogos</span></div>
+  </div>
+</section>
+
+<!-- ============ 5. Gank ============ -->
+<section class="sec md" id="gank">
+  <div class="grade"></div>
+  <div class="proj" style="--c:#B388FF"><h2>Gank Evangelístico</h2><p id="gk-leg"></p></div>
+  <div class="stream" id="gk-stream">
+    <div class="st-topo"><span class="aovivo">ao vivo</span><span class="st-views"><b id="gk-views">4</b> assistindo</span></div>
+    <div class="st-jogo"><div class="st-cam" id="gk-cam"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="18"/><path d="M14 100c4-26 20-36 36-36s32 10 36 36z"/></svg></div><div class="st-fala" id="gk-fala">gente, o que tá acontecendo aqui?</div></div>
+    <div class="st-chat" id="gk-chat"></div>
+  </div>
+  <div class="igreja-jovem" id="gk-jovens"></div>
+  <div class="msg-grande" id="gk-msg"><small>no chat</small>Somos uma igreja. Estamos aqui porque amamos Jesus e queremos falar dele com você.</div>
+  <div class="real" id="gk-real">
+    <img src="assets/img/gank.png" alt="Igreja reunida depois de um Gank">
+    <div class="tela v"><video src="assets/vid/gank.mp4" preload="metadata" playsinline></video><span class="play"></span></div>
+  </div>
+</section>
+
+<!-- ============ 6. Nínive Digital ============ -->
+<section class="sec md" id="ninive">
+  <div class="grade"></div>
+  <div class="proj" style="--c:#FFD740"><h2>Nínive Digital</h2><p id="nv-leg"></p></div>
+  <svg class="mapa" id="nv-mapa" viewBox="0 0 1100 760"></svg>
+  <div class="tela v" id="nv-video"><video src="assets/vid/emaion01.mp4" preload="metadata" playsinline></video><span class="play"></span></div>
+  <div class="audio" id="nv-audio">
+    <audio src="assets/atila.mp3" preload="auto"></audio>
+    <button class="a-play" id="nv-play" aria-label="Tocar depoimento"></button>
+    <div class="a-info"><b>Rev. Átila</b><span>depoimento do segundo dia de jogo</span></div>
+    <div class="a-ctrl"><span class="a-tempo" id="nv-tempo">0:00 / 1:01</span><button class="a-zero" id="nv-zero">↺ Do começo</button></div>
+    <div class="a-ondas" id="nv-ondas"></div>
+    <p class="a-trecho" id="nv-trecho"></p>
+  </div>
+</section>
+
+<!-- ============ 7. Conteúdo com jogos ============ -->
+<section class="sec md" id="conteudo">
+  <div class="grade"></div>
+  <div class="proj" style="--c:#FE7003"><h2>Conteúdo evangelístico com jogos</h2></div>
+  <svg class="trilha" id="ct-trilha" viewBox="0 0 1920 200"></svg>
+  <div class="tela v" id="ct-video"><video src="assets/vid/blasphemous.mp4" poster="assets/img/blas-thumb.png" preload="metadata" playsinline></video><span class="play"></span></div>
+  <div class="numeros" id="ct-num">
+    <div><img src="assets/img/blas-thumb.png" alt=""><div><b class="vis" data-n="193.7">0</b><span>mil visualizações, Blasphemous</span><ul class="stats"><li><b>24,4 mil</b>curtidas</li><li><b>306</b>comentários</li><li><b>3.903</b>salvamentos</li><li><b>2.929</b>compartilhamentos</li></ul></div></div>
+    <div><img src="assets/img/hk-thumb.png" alt=""><div><b class="vis" data-n="116.7">0</b><span>mil visualizações, Hollow Knight</span></div></div>
+  </div>
+  <div class="coments" id="ct-coments">
+    <img data-luz="coment" src="assets/img/coment-1.png" alt="Comentário: Sou ateu, e como ex-cristão eu adorei o vídeo.">
+    <img data-luz="coment" src="assets/img/coment-2.png" alt="Comentário: Não sou cristã mas esse vídeo é ótimo!">
+    <img data-luz="coment" src="assets/img/coment-3.png" alt="Comentário: Eu me distraí e o cara me evangelizou">
+    <img data-luz="coment" src="assets/img/coment-4.png" alt="Comentário: 7:54 da manhã eu aprendendo evangélico com um jogo">
+    <img data-luz="coment" src="assets/img/coment-5.png" alt="Comentário: Cara pregando no meio da explicação do jogo, não esperava, mas ficou top">
+  </div>
+  <div class="zap" id="ct-zap"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><b>Grupo no WhatsApp</b><span>para aprofundar a conversa</span></div>
+</section>
+
+<!-- ============ 8. Fim ============ -->
+<section class="sec neon" id="fim">
+  <p id="fim-obg">Obrigado</p>
+  <p id="fim-nomes">Bruno &amp; Navarro</p>
+</section>
+
+<!-- vídeo em tela cheia: abre no play, fecha no X ou no fundo -->
+<div id="modal" aria-hidden="true">
+  <button class="fecha" aria-label="Fechar vídeo">×</button>
+  <video controls playsinline></video>
+</div>
+
+<!-- imagem em tela cheia (QR e prints): setas ou botões passam, X, fundo ou Esc fecham -->
+<div id="luz" aria-hidden="true">
+  <button class="fecha" aria-label="Fechar">×</button>
+  <button class="ant" aria-label="Anterior">‹</button>
+  <img alt="">
+  <button class="prox" aria-label="Próxima">›</button>
+  <span class="cont"></span>
+</div>
+
+<div id="barra"><i></i></div>
+</div>
+
+<script src="assets/js/gsap.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
