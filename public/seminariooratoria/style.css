@@ -6,7 +6,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;color:var(--texto);font-family:var(--corpo)}
-#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:var(--noite)}
+#stage{position:fixed;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:var(--noite)}
 .sec{position:absolute;inset:0;visibility:hidden;opacity:0}
 .neon{background:radial-gradient(ellipse 70% 60% at 50% 45%,#0B1430 0%,var(--noite) 70%)}
 .md{background:var(--md-bg);font-family:var(--mont)}
@@ -281,3 +281,12 @@ video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
 #luz .fecha:hover,#luz .ant:hover,#luz .prox:hover{background:#ffffff33}
 #luz .cont{position:absolute;left:0;right:0;bottom:40px;text-align:center;font:700 24px var(--corpo);color:#ccc;display:none}
 #luz.varias .cont{display:block}
+
+/* ---------- tablet (toque) ---------- */
+html,body{touch-action:none;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+#nav{position:fixed;right:10px;bottom:6px;z-index:200;display:none;gap:8px;opacity:.6}
+#nav button{width:40px;height:40px;border-radius:50%;background:#00000066;border:1px solid #ffffff40;color:#fff;font:400 28px/36px var(--corpo)}
+#nav #nav-tela{font-size:20px}
+#nav button:active{background:#ffffff33}
+@media (pointer:coarse){#nav{display:flex}}
+img,svg image{-webkit-user-drag:none;user-drag:none}

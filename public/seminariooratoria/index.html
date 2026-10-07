@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Uma pregação, muitas portas</title>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="style.css">
@@ -189,6 +189,13 @@
 
 <div id="barra"><i></i></div>
 </div>
+
+<!-- só em tela de toque (tablet): fora do palco, no canto da tela, para não cobrir o conteúdo -->
+<nav id="nav" aria-label="Navegação">
+  <button id="nav-ant" aria-label="Voltar">‹</button>
+  <button id="nav-tela" aria-label="Tela cheia">⛶</button>
+  <button id="nav-prox" aria-label="Avançar">›</button>
+</nav>
 
 <script src="assets/js/gsap.min.js"></script>
 <script src="app.js"></script>

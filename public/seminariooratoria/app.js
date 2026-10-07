@@ -95,6 +95,8 @@ function mostra() {
   const total = secs.reduce((a, x) => a + x.n, 0);
   $("#barra i").style.width = ((antes + K + 1) / total) * 100 + "%";
   $("#barra").classList.toggle("md", s.node.classList.contains("md"));
+  // em tela 16:10 (tablet) sobra faixa em cima e embaixo: ela pega a cor do fundo da dobra
+  document.body.style.background = s.node.classList.contains("md") ? "#212121" : "#05070F";
   history.replaceState(null, "", "#" + (I + 1));
 }
 function vai(k) {
@@ -153,6 +155,37 @@ addEventListener("wheel", e => {
   setTimeout(() => (travado = false), 650);
 }, { passive: false });
 document.addEventListener("click", e => { if (e.target.closest("[data-next]")) proximo(); });
+
+// toque (tablet): arrastar para a esquerda ou para cima avança, para o outro lado volta.
+// No carrossel, o arrasto passa os slides; com uma imagem aberta, passa as imagens.
+let tx = null, ty = null, alvo = null;
+addEventListener("touchstart", e => {
+  if (e.touches.length !== 1) return (tx = null);
+  tx = e.touches[0].clientX; ty = e.touches[0].clientY; alvo = e.target;
+}, { passive: true });
+addEventListener("touchend", e => {
+  if (tx === null || (aberto() && alvo.closest("video"))) return (tx = null); // no vídeo aberto, os controles nativos cuidam do toque
+  const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty;
+  tx = null;
+  const dist = Math.max(Math.abs(dx), Math.abs(dy));
+  if (dist < 12) {
+    // toque curto vira clique aqui mesmo: o navegador às vezes não gera o clique depois de um arrasto
+    e.preventDefault(); // e assim o clique nativo não chega em dobro
+    alvo.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, clientX: t.clientX, clientY: t.clientY }));
+    return;
+  }
+  if (dist < 50 || aberto()) return;
+  const frente = Math.abs(dx) > Math.abs(dy) ? dx < 0 : dy < 0;
+  if (luzAberta()) return mostraLuz(at + (frente ? 1 : -1));
+  if (alvo && alvo.closest("#k-insta")) return $(frente ? "#k-prox" : "#k-ant").click();
+  frente ? proximo() : anterior();
+}, { passive: false });
+$("#nav-ant").onclick = e => { e.stopPropagation(); anterior(); };
+$("#nav-prox").onclick = e => { e.stopPropagation(); proximo(); };
+$("#nav-tela").onclick = e => {
+  e.stopPropagation();
+  document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+};
 function ajusta() {
   const k = Math.min(innerWidth / 1920, innerHeight / 1080);
   $("#stage").style.transform = `translate(-50%,-50%) scale(${k})`;
@@ -747,3 +780,7 @@ secao("fim", (tl, node, passo) => {
 // abre na seção do endereço (#n) ou na primeira
 const h = parseInt(location.hash.slice(1), 10);
 entra(h >= 1 && h <= secs.length ? h - 1 : 0, 0);
+
+// no tablet, arrastar o dedo sobre uma imagem iniciava o "arrastar imagem" nativo, que engolia os toques seguintes
+$$("img").forEach(i => (i.draggable = false));
+addEventListener("dragstart", e => e.preventDefault());
