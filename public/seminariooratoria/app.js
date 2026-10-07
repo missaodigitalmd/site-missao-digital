@@ -169,9 +169,14 @@ addEventListener("touchend", e => {
   tx = null;
   const dist = Math.max(Math.abs(dx), Math.abs(dy));
   if (dist < 12) {
-    // toque curto vira clique aqui mesmo: o navegador às vezes não gera o clique depois de um arrasto
-    e.preventDefault(); // e assim o clique nativo não chega em dobro
-    alvo.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, clientX: t.clientX, clientY: t.clientY }));
+    e.preventDefault(); // o clique nativo não chega: o toque é tratado só aqui
+    // toque em algo clicável (vídeo, botão, print, QR) ou com vídeo/imagem aberta: vira clique
+    if (aberto() || luzAberta() || alvo.closest("button,a,video,audio,.tela,[data-luz],.a-ondas,#nav")) {
+      alvo.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, clientX: t.clientX, clientY: t.clientY }));
+      return;
+    }
+    // toque no resto da tela: metade direita avança, metade esquerda volta
+    t.clientX > innerWidth / 2 ? proximo() : anterior();
     return;
   }
   if (dist < 50 || aberto()) return;

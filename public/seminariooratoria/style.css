@@ -289,4 +289,9 @@ html,body{touch-action:none;overscroll-behavior:none;-webkit-tap-highlight-color
 #nav #nav-tela{font-size:20px}
 #nav button:active{background:#ffffff33}
 @media (pointer:coarse){#nav{display:flex}}
+#gire{display:none}
+@media (pointer:coarse) and (orientation:portrait) and (max-width:600px){
+  #gire{display:flex;position:fixed;inset:0;z-index:300;align-items:center;justify-content:center;padding:32px;text-align:center;
+    background:#05070Fee;color:var(--texto);font:600 20px/1.4 var(--corpo)}
+}
 img,svg image{-webkit-user-drag:none;user-drag:none}
