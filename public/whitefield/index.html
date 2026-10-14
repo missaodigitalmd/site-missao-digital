@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<title>George Whitefield</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --bg:#110c07; --terra:#231a11; --tinta:#8c6b3f; --tinta2:#5a4329; --ouro:#e3b45b; --vela:#ffcf7a;
+  --creme:#efe2c4; --creme2:#c9b48e; --sangue:#8a2414;
+  --titulo:'IM Fell English SC',Georgia,serif; --fell:'IM Fell English',Georgia,serif; --corpo:'Cormorant Garamond',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;overflow:hidden;cursor:none}
+body.cursor{cursor:default}
+#palco{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:var(--bg);overflow:hidden;color:var(--creme);font-family:var(--corpo)}
+#mapa{position:absolute;inset:0}
+#img{position:absolute;inset:0;pointer-events:none}
+#sombra{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(17,12,7,.85) 0%,rgba(17,12,7,.5) 30%,rgba(17,12,7,0) 46%)}
+.quadro{position:absolute;inset:0;background-size:cover;background-position:center;will-change:clip-path}
+.quadro::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,7,4,.92) 0%,rgba(10,7,4,.55) 32%,rgba(10,7,4,0) 55%),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.6) 100%)}
+.quadro.kb{animation:kb 26s ease-out forwards}
+@keyframes kb{from{background-size:112%}to{background-size:100%}}
+#txt{position:absolute;inset:0;pointer-events:none}
+#txt > *{position:absolute}
+#grao{position:absolute;inset:-50%;pointer-events:none;opacity:.10;mix-blend-mode:overlay;animation:grao 1s steps(6) infinite}
+@keyframes grao{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+#vinheta{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 60% 50%,transparent 50%,rgba(0,0,0,.75) 100%)}
+#flash{position:absolute;inset:0;background:#fff8e6;opacity:0;pointer-events:none}
+#selos{position:absolute;left:120px;bottom:70px;display:flex;gap:26px;opacity:0}
+.selo{width:64px;height:64px;border-radius:50%;border:2px solid var(--tinta);display:grid;place-items:center;font-family:var(--titulo);font-size:30px;color:var(--tinta2);transition:all .6s}
+.selo.on{color:var(--bg);background:var(--ouro);border-color:var(--ouro)}
+.selo.alerta{background:#b8862e;border-color:#b8862e;color:var(--bg)}
+.selo.nao{background:var(--sangue);border-color:#c0392b;color:var(--creme)}
+
+.kick{font-family:var(--titulo);font-size:30px;letter-spacing:.18em;color:var(--ouro)}
+.h1{font-family:var(--titulo);font-size:150px;line-height:.95;color:var(--creme);letter-spacing:.01em}
+.h2{font-family:var(--titulo);font-size:84px;line-height:1;color:var(--creme)}
+.h3{font-family:var(--titulo);font-size:56px;line-height:1.05;color:var(--creme)}
+.p{font-size:42px;line-height:1.3;color:var(--creme2);font-weight:400}
+.p b{color:var(--creme);font-weight:600}
+.cit{font-family:var(--fell);font-style:italic;font-size:54px;line-height:1.25;color:var(--creme)}
+.cit.m{font-size:46px}
+.fonte{font-family:var(--corpo);font-size:28px;letter-spacing:.06em;color:var(--tinta);font-style:normal}
+.num{font-family:var(--titulo);font-size:200px;line-height:.9;color:var(--ouro);font-variant-numeric:lining-nums}
+.num.m{font-size:130px}
+.rot{font-family:var(--titulo);font-size:34px;letter-spacing:.12em;color:var(--creme2)}
+.linha{height:2px;background:linear-gradient(90deg,var(--ouro),transparent);transform-origin:left}
+.med{border-radius:50%;background-size:cover;background-position:center 20%;border:3px solid var(--ouro);box-shadow:0 0 0 10px rgba(227,180,91,.12),0 30px 80px rgba(0,0,0,.7)}
+.med-cap{font-family:var(--titulo);font-size:28px;letter-spacing:.1em;color:var(--creme2);text-align:center}
+.cartao{border-left:3px solid var(--ouro);padding:6px 0 6px 40px}
+.cartao.alerta{border-color:#c99436}
+.cartao.nao{border-color:#c0392b}
+.lista div{font-family:var(--fell);font-size:50px;line-height:1.2;color:var(--creme);margin-bottom:34px;padding-left:70px;position:relative}
+.lista div span{position:absolute;left:0;top:2px;font-family:var(--titulo);color:var(--ouro);font-size:46px}
+#inicio{position:absolute;inset:0;display:grid;place-items:center;background:var(--bg);z-index:5;text-align:center}
+#inicio .rot{opacity:.7}
+#notas{position:fixed;left:0;right:0;bottom:0;background:rgba(10,7,4,.94);color:#e8dcc0;font:20px/1.4 Georgia,serif;padding:14px 24px;display:none;z-index:10;border-top:1px solid #5a4329}
+#notas b{color:#e3b45b}
+#prog{position:absolute;left:0;bottom:0;height:3px;background:var(--ouro);opacity:.35;width:0}
+/* toque: celular e tablet */
+html,body{touch-action:none;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+#nav{position:fixed;right:max(10px,env(safe-area-inset-right));bottom:8px;z-index:20;display:none;gap:10px;opacity:.55}
+#nav button{width:44px;height:44px;border-radius:50%;background:#00000088;border:1px solid #e3b45b55;color:#efe2c4;font:400 28px/40px Georgia,serif;padding:0}
+#nav button:active{background:#e3b45b44}
+#gire{display:none}
+@media (pointer:coarse){#nav{display:flex}#grao{display:none}body{cursor:default}}
+@media (pointer:coarse) and (orientation:portrait){#gire{display:flex;position:fixed;inset:0;z-index:30;align-items:center;justify-content:center;flex-direction:column;gap:18px;padding:32px;text-align:center;background:#110c07f2;color:#efe2c4;font:400 22px/1.4 Georgia,serif}#gire b{font-size:54px;color:#e3b45b;font-weight:400}}
+</style>
+</head>
+<body>
+<div id="palco">
+  <svg id="mapa" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <radialGradient id="gradMancha"><stop offset="0" stop-color="#9b2a16" stop-opacity=".95"/><stop offset=".55" stop-color="#6e1a0c" stop-opacity=".75"/><stop offset="1" stop-color="#3a0d05" stop-opacity="0"/></radialGradient>
+      <radialGradient id="gLuz"><stop offset="0" stop-color="#ffd98a" stop-opacity=".9"/><stop offset=".35" stop-color="#e3b45b" stop-opacity=".35"/><stop offset="1" stop-color="#e3b45b" stop-opacity="0"/></radialGradient>
+      <mask id="mRevela"><rect width="1920" height="1080" fill="#000"/><circle id="revela" cx="0" cy="0" r="0" fill="#fff" filter="url(#fBorda)"/></mask>
+      <filter id="fBorda"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="140"/></filter>
+      <filter id="fTinta"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter>
+    </defs>
+    <g id="gMapa" mask="url(#mRevela)">
+      <path id="grade" fill="none" stroke="#3b2c1b" stroke-width="1" stroke-dasharray="2 6"/>
+      <path id="terra" fill="var(--terra)" stroke="var(--tinta)" stroke-width="1.6" filter="url(#fTinta)"/>
+    </g>
+    <g id="gMancha"></g>
+    <g id="gRotas"></g>
+    <g id="gOndas"></g>
+    <g id="gFrank"></g>
+    <g id="gPontos"></g>
+    <g id="gNavio"><path id="navio" d="M-16 4 L16 4 L11 11 L-11 11 Z M0 -18 L0 4 M0 -16 L12 0 L0 0 Z M0 -12 L-10 0 L0 0 Z" fill="#e3b45b" stroke="#e3b45b" stroke-width="2" opacity="0"/></g>
+  </svg>
+  <div id="sombra"></div>
+  <div id="img"></div>
+  <div id="txt"></div>
+  <div id="selos"><div class="selo">I</div><div class="selo">II</div><div class="selo">III</div><div class="selo">IV</div><div class="selo">V</div></div>
+  <div id="vinheta"></div>
+  <svg id="grao" width="200%" height="200%"><filter id="fGrao"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#fGrao)"/></svg>
+  <div id="flash"></div>
+  <div id="prog"></div>
+  <div id="inicio"><div><div class="kick" style="margin-bottom:30px">História da Igreja 4</div><div class="h2">George Whitefield</div><div class="rot" style="margin-top:50px">pressione → para começar</div></div></div>
+</div>
+<div id="notas"></div>
+<nav id="nav" aria-label="Navegação"><button id="nav-ant" aria-label="Voltar">‹</button><button id="nav-tela" aria-label="Tela cheia">⛶</button><button id="nav-prox" aria-label="Avançar">›</button></nav>
+<div id="gire"><b>⟳</b>Gire o celular para assistir deitado.</div>
+
+<script src="assets/lib/d3-array.min.js"></script>
+<script src="assets/lib/d3-geo.min.js"></script>
+<script src="assets/lib/topojson-client.min.js"></script>
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/land-50m.js"></script>
+<script>
+// ponytail: um arquivo só; o estado S guarda o mundo (mapa), e cada passo só anima S e o texto
+const W=1920,H=1080, $=s=>document.querySelector(s), palco=$('#palco');
+function ajusta(){const k=Math.min(innerWidth/W,innerHeight/H);palco.style.transform=`translate(${(innerWidth-W*k)/2}px,${(innerHeight-H*k)/2}px) scale(${k})`}
+addEventListener('resize',ajusta);ajusta();
+
+/* ---------- lugares e rotas ---------- */
+const P={
+  gloucester:{c:[-2.24,51.86],lab:'Gloucester',dx:-18,dy:-14,a:'end',k0:3},
+  oxford:{c:[-1.26,51.75],lab:'Oxford',dx:18,dy:-14,k0:3},
+  kingswood:{c:[-2.48,51.46],lab:'Kingswood · Bristol',dx:-18,dy:34,a:'end',k0:3},
+  londres:{c:[-0.12,51.51],lab:'Londres',dx:18,dy:34,k0:3},
+  savannah:{c:[-81.09,32.08],lab:'Savannah · Bethesda',dx:-18,dy:8,a:'end',k0:1},
+  charleston:{c:[-79.93,32.78],lab:'Charleston',dx:18,dy:24,k0:2},
+  filadelfia:{c:[-75.16,39.95],lab:'Filadélfia',dx:-18,dy:8,a:'end',k0:2},
+  novaiorque:{c:[-74.0,40.71],lab:'Nova York',dx:18,dy:26,k0:2},
+  newport:{c:[-71.31,41.49],lab:'Newport',dx:18,dy:28,k0:2.5},
+  boston:{c:[-71.06,42.36],lab:'Boston',dx:18,dy:8,k0:1},
+  northampton:{c:[-72.64,42.33],lab:'Northampton',dx:-18,dy:-14,a:'end',k0:2.5},
+  cambuslang:{c:[-4.16,55.81],lab:'Cambuslang',dx:-18,dy:-14,a:'end',k0:1},
+  newburyport:{c:[-70.88,42.81],lab:'Newburyport',dx:18,dy:-12,k0:1},
+};
+const ROT={
+  ida:['gloucester','oxford'],
+  travessia1:['londres',[-30,47],'savannah'],
+  turne1740:['savannah','charleston','filadelfia','novaiorque','newport','boston','northampton','novaiorque','filadelfia'],
+  escocia:['londres','cambuslang'],
+  fim:['boston','newburyport'],
+};
+const portos=['savannah','filadelfia','boston','charleston','novaiorque'];
+for(let i=0;i<13;i++){const am=portos[i%5],ida=i%2==0,lat=44+((i*7)%9)-4;ROT['x'+i]=ida?['londres',[-35,lat],am]:[am,[-35,lat+1.5],'londres']}
+
+/* ---------- estado ---------- */
+let S;
+function novoS(){S={cam:{lon:-40,lat:42,k:1,ox:150,oy:0},rev:{r:0,at:'gloucester'},pt:{},rt:{},onda:{},mancha:{r:0},navio:{o:0,rota:null},frank:{t:0,o:0}};
+  for(const k in P)S.pt[k]={o:0,g:0,lab:1};for(const k in ROT)S.rt[k]={t:0,o:1};for(const k in P)S.onda[k]=0}
+novoS();
+
+/* ---------- mapa ---------- */
+const proj=d3.geoMercator(), base=d3.geoMercator().fitExtent([[0,0],[W,H]],{type:'MultiPoint',coordinates:[[-88,24],[8,62]]});
+const S0=base.scale(), path=d3.geoPath(proj); let terra,grade=d3.geoGraticule().step([10,10])();
+terra=topojson.feature(LAND,LAND.objects.land);
+function cam(){const c=S.cam;proj.scale(S0*c.k).translate([0,0]).clipExtent(null);const p=proj([c.lon,c.lat]);proj.translate([W/2+c.ox-p[0],H/2+c.oy-p[1]]).clipExtent([[-60,-60],[W+60,H+60]])}
+const NS='http://www.w3.org/2000/svg', el=(t,a,pai)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);pai&&pai.appendChild(e);return e};
+const amostra={};function geo(id){if(amostra[id])return amostra[id];const w=ROT[id].map(x=>typeof x=='string'?P[x].c:x),out=[];
+  for(let i=0;i<w.length-1;i++){const f=d3.geoInterpolate(w[i],w[i+1]);for(let j=0;j<=40;j++)if(i==0||j>0)out.push(f(j/40))}return amostra[id]=out}
+// elementos persistentes
+const ePt={},eRt={},eOn={};
+for(const k in P){const g=el('g',{},$('#gPontos'));ePt[k]={g,luz:el('circle',{r:40,fill:'url(#gLuz)'},g),dot:el('circle',{r:7,fill:'#e3b45b',stroke:'#110c07','stroke-width':2},g),
+  t:Object.assign(el('text',{'font-family':"'IM Fell English SC',serif",'font-size':30,fill:'#efe2c4','text-anchor':P[k].a||'start',style:'paint-order:stroke;stroke:#110c07;stroke-width:6px;letter-spacing:.06em'},g),{textContent:P[k].lab})};
+  const go=el('g',{},$('#gOndas'));eOn[k]=[0,1,2].map(()=>el('circle',{fill:'none',stroke:'#e3b45b','stroke-width':2},go))}
+for(const k in ROT)eRt[k]=el('path',{fill:'none',stroke:k.startsWith('x')?'#c9a46a':'#e3b45b','stroke-width':k.startsWith('x')?2:3,'stroke-dasharray':k.startsWith('x')?'':'10 7','stroke-linecap':'round'},$('#gRotas'));
+const eMancha=el('circle',{fill:'url(#gradMancha)'},$('#gMancha'));
+const gF=$('#gFrank'), eSemi=el('path',{fill:'rgba(227,180,91,.10)',stroke:'#e3b45b','stroke-width':2},gF), eRaio=el('line',{stroke:'#ffcf7a','stroke-width':2,'stroke-dasharray':'6 6'},gF), gGente=el('g',{},gF);
+const gente=[];for(let i=0;i<900;i++){const r=Math.sqrt(Math.random()),a=Math.PI+Math.random()*Math.PI;gente.push({r,a,e:el('circle',{r:2.4,fill:'#efe2c4',opacity:0},gGente)})}
+let ultimaCam='';
+function xy(k){cam();return proj(P[k].c)}
+function desenha(forca){
+  if(!terra)return;cam();const c=S.cam,ck=[c.lon,c.lat,c.k,c.ox,c.oy].join();
+  if(forca||ck!=ultimaCam){$('#terra').setAttribute('d',path(terra)||'');$('#grade').setAttribute('d',path(grade)||'');ultimaCam=ck}
+  const rv=xy(S.rev.at),rc=$('#revela'),gm=$('#gMapa'),aberto=S.rev.r>=1e5;if(aberto!=gm._aberto){gm._aberto=aberto;aberto?gm.removeAttribute('mask'):gm.setAttribute('mask','url(#mRevela)')}if(!aberto){rc.setAttribute('cx',rv[0]);rc.setAttribute('cy',rv[1]);rc.setAttribute('r',S.rev.r)}
+  const tempo=performance.now()/1000;
+  for(const k in P){const s=S.pt[k],e=ePt[k],[x,y]=xy(k);e.g.setAttribute('transform',`translate(${x},${y})`);e.g.setAttribute('opacity',s.o);
+    e.luz.setAttribute('r',20+s.g*90+Math.sin(tempo*6+x)*s.g*4);e.luz.setAttribute('opacity',.25+s.g*.75);
+    const lv=S.cam.k>=P[k].k0?s.lab:0;e.t.setAttribute('x',P[k].dx);e.t.setAttribute('y',P[k].dy);e.t.setAttribute('opacity',lv);
+    eOn[k].forEach((c,j)=>{const f=(tempo*.35+j/3)%1;c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',10+f*170);c.setAttribute('opacity',S.onda[k]*(1-f)*.8)})}
+  for(const k in ROT){const s=S.rt[k];if(s.t<=0){eRt[k].setAttribute('d','');continue}const g=geo(k),n=(g.length-1)*s.t,i=Math.floor(n),pts=g.slice(0,i+1);
+    if(i<g.length-1)pts.push(d3.geoInterpolate(g[i],g[i+1])(n-i));eRt[k].setAttribute('d',path({type:'LineString',coordinates:pts})||'');eRt[k].setAttribute('opacity',s.o)}
+  const nv=$('#navio');nv.setAttribute('opacity',S.navio.o);if(S.navio.rota&&S.navio.o>0){const g=geo(S.navio.rota),t=S.rt[S.navio.rota].t,n=(g.length-1)*Math.min(t,.999),i=Math.floor(n),f=d3.geoInterpolate(g[i],g[i+1]);
+    const a=proj(f(n-i)),b=proj(f(Math.min(1,n-i+.05)));nv.setAttribute('transform',`translate(${a[0]},${a[1]-6+Math.sin(tempo*2)*3}) scale(${b[0]<a[0]?-1.4:1.4},1.4)`)}
+  const sv=xy('savannah');eMancha.setAttribute('cx',sv[0]);eMancha.setAttribute('cy',sv[1]);eMancha.setAttribute('r',S.mancha.r);
+  gF.setAttribute('opacity',S.frank.o);if(S.frank.o>0){const[fx,fy]=xy('filadelfia'),R=S.frank.t*420;
+    eSemi.setAttribute('d',`M${fx-R},${fy} A${R},${R} 0 0 1 ${fx+R},${fy} Z`);eRaio.setAttribute('x1',fx);eRaio.setAttribute('y1',fy);eRaio.setAttribute('x2',fx+R*Math.cos(-.6));eRaio.setAttribute('y2',fy+R*Math.sin(-.6));
+    for(const p of gente){const vis=p.r<=S.frank.t?1:0;p.e.setAttribute('cx',fx+Math.cos(p.a)*p.r*420*.97);p.e.setAttribute('cy',fy+Math.sin(p.a)*p.r*420*.97);p.e.setAttribute('opacity',vis*.75)}}
+}
+gsap.ticker.add(()=>desenha(false));
+
+/* ---------- som ---------- */
+let mudo=false,silencio=false,musica,amb={};const SFX='assets/sfx/';
+function som(n,v=.4){if(silencio||mudo)return;const a=new Audio(SFX+n);a.volume=v;a.play().catch(()=>{})}
+['mar','multidao'].forEach(n=>{const a=new Audio(SFX+n+'.mp3');a.loop=true;a.volume=0;amb[n]=a});
+function ambiente(n){for(const k in amb){const a=amb[k],alvo=(k==n&&!mudo)?(k=='mar'?.35:.3):0;if(alvo>0&&a.paused)a.play().catch(()=>{});gsap.to(a,{volume:alvo,duration:silencio?0:2.5,onComplete:()=>{if(alvo==0)a.pause()}})}}
+function trilha(v){if(!musica){musica=new Audio(SFX+'trilha.mp3');musica.loop=true;musica.volume=0;musica.play().catch(()=>{})}gsap.to(musica,{volume:mudo?0:v,duration:3})}
+
+/* ---------- texto e imagem ---------- */
+const TX=$('#txt');
+function limpa(){[...TX.children].forEach(c=>{if(silencio){c.remove();return}gsap.to(c,{opacity:0,y:'-=12',duration:.5,onComplete:()=>c.remove()})})}
+function T(html,x,y,cls='p',w=760,extra=''){const d=document.createElement('div');d.className=cls;d.innerHTML=html;d.style.cssText=`left:${x}px;top:${y}px;width:${w}px;${extra}`;TX.appendChild(d);return d}
+function med(src,x,y,s,cap){const d=document.createElement('div');d.style.cssText=`left:${x}px;top:${y}px;width:${s}px`;d.innerHTML=`<div class="med" style="width:${s}px;height:${s}px;background-image:url(${src})"></div>`+(cap?`<div class="med-cap" style="margin-top:22px">${cap}</div>`:'');TX.appendChild(d);return d}
+function entra(tl,e,at,d=1,dy=30){tl.fromTo(e,{opacity:0,y:dy},{opacity:1,y:0,duration:d,ease:'power3.out'},at);return e}
+function letras(tl,e,at,dur=2.2){const t=e.innerHTML;e.innerHTML=t.replace(/(<[^>]+>)|([^<])/g,(m,tag,ch)=>tag?tag:`<span>${ch}</span>`);tl.fromTo(e,{opacity:1},{opacity:1,duration:.01},at);tl.fromTo(e.querySelectorAll('span'),{opacity:0},{opacity:1,duration:.05,stagger:dur/e.querySelectorAll('span').length,ease:'none'},at);return e}
+function conta(tl,e,ate,at,dur=2.5,suf=''){const o={v:0};tl.fromTo(o,{v:0},{v:ate,duration:dur,ease:'power2.out',onUpdate:()=>e.textContent=Math.round(o.v).toLocaleString('pt-BR')+suf},at);return e}
+let imgAtual=null,imgEl=null;
+function imagem(nome,ancora){
+  if(nome==imgAtual)return;const velho=imgEl,anV=imgAtual&&IMG[imgAtual].a;
+  if(velho){if(silencio)velho.remove();else{const[x,y]=anV?xy(anV):[W/2,H/2];const o={r:150};gsap.to(o,{r:0,duration:1.1,ease:'power3.in',onUpdate:()=>velho.style.clipPath=`circle(${o.r}% at ${x}px ${y}px)`,onComplete:()=>velho.remove()});som('whoosh2.wav',.25)}}
+  imgAtual=nome;imgEl=null;if(!nome)return;
+  const d=document.createElement('div');d.className='quadro kb';d.style.backgroundImage=`url(${IMG[nome].src})`;$('#img').appendChild(d);imgEl=d;
+  const[x,y]=IMG[nome].a?xy(IMG[nome].a):[W/2,H/2];
+  if(silencio){d.style.clipPath='none';return}
+  const o={r:0};d.style.clipPath=`circle(0% at ${x}px ${y}px)`;gsap.to(o,{r:150,duration:1.6,ease:'power3.inOut',delay:velho?.5:0,onUpdate:()=>d.style.clipPath=`circle(${o.r}% at ${x}px ${y}px)`});som('whoosh1.wav',.3)
+}
+const IMG={bell:{src:'assets/img/gerada/bell-inn.jpg',a:'gloucester'},kingswood:{src:'assets/img/gerada/kingswood.jpg',a:'kingswood'},atlantico:{src:'assets/img/gerada/atlantico.jpg',a:null},
+  boston:{src:'assets/img/gerada/boston.jpg',a:'boston'},cambuslang:{src:'assets/img/gerada/cambuslang.jpg',a:'cambuslang'},bethesda:{src:'assets/img/gerada/bethesda.jpg',a:'savannah'},newburyport:{src:'assets/img/gerada/newburyport.jpg',a:'newburyport'}};
+Object.values(IMG).forEach(i=>{const im=new Image();im.src=i.src});
+const R='assets/img/';
+const CAM={ING:{lon:-1.9,lat:52.2,k:7.5,ox:380,oy:30},ATL:{lon:-41,lat:45,k:.8,ox:255,oy:40},AME:{lon:-76.5,lat:37.6,k:3.4,ox:300,oy:0},
+  FIL:{lon:-75.16,lat:40.4,k:6,ox:330,oy:180},NE:{lon:-72,lat:42.2,k:8,ox:320,oy:40},ESC:{lon:-3,lat:53.8,k:4.6,ox:300,oy:20},NBP:{lon:-71,lat:42.6,k:14,ox:330,oy:60}};
+function vai(tl,c,at=0,d=2.4){tl.to(S.cam,{...CAM[c],duration:d,ease:'power2.inOut'},at)}
+function liga(tl,ks,at=0,g=.6){[].concat(ks).forEach((k,i)=>{tl.to(S.pt[k],{o:1,duration:.6},at+i*.25);tl.fromTo(S.pt[k],{g:1.2},{g,duration:1.4,ease:'power2.out'},at+i*.25);tl.call(()=>som('pop.mp3',.35),null,at+i*.25)})}
+function apaga(tl,ks,at=0,g=.15){[].concat(ks).forEach(k=>tl.to(S.pt[k],{g,duration:1},at))}
+function rota(tl,k,at,d=2.5){tl.fromTo(S.rt[k],{t:0},{t:1,duration:d,ease:'power1.inOut'},at)}
+function selo(i,cls){const s=$('#selos').children[i];s.className='selo '+cls}
+
+/* ---------- os passos ---------- */
+const PASSOS=[
+{n:'Abertura. Fale devagar: um rapaz de 24 anos, filho de dono de estalagem, foi ouvido por mais gente do que qualquer pregador antes dele.',
+ f(tl){trilha(.16);
+  const a=T('Uma voz atravessou o Atlântico.',0,300,'cit',1920,'text-align:center');letras(tl,a,.6,2);
+  tl.to(a,{opacity:0,duration:.8},4.2);
+  const k=T('1714 · 1770',0,330,'kick',1920,'text-align:center;font-size:34px');entra(tl,k,4.8);
+  const h=T('George Whitefield',0,400,'h1',1920,'text-align:center');entra(tl,h,5.1,1.6,50);tl.call(()=>som('drone-hit.mp3',.3),null,5.1);
+  const l=T('',760,600,'linha',400);tl.fromTo(l,{scaleX:0},{scaleX:1,duration:1.4},6);
+  const s=T('o pregador do Grande Despertamento',0,640,'cit m',1920,'text-align:center;color:var(--creme2)');entra(tl,s,6.6)}},
+
+{n:'Os números. 18 mil sermões, 13 travessias do Atlântico, 7 viagens à América (NOLL, 2003, p. 145). Retrato de John Wollaston, c. 1742, National Portrait Gallery.',
+ f(tl){limpa();const m=med(R+'retrato-wollaston.jpg',1180,170,560,'John Wollaston, c. 1742');entra(tl,m,0,1.4);
+  const n1=T('0',120,200,'num',700);conta(tl,n1,18000,.6,3);entra(tl,T('sermões, aproximadamente',124,400,'rot',700),.9);
+  const n2=T('0',120,520,'num',700);conta(tl,n2,13,1.6,2.4);entra(tl,T('travessias do Atlântico',124,720,'rot',700),1.9);
+  entra(tl,T('Ministro da Igreja da Inglaterra. <b>Calvinista. Itinerante.</b>',124,830,'p',800),2.8);tl.call(()=>som('hit1.wav',.35),null,.6)}},
+
+/* ---- I. preparação ---- */
+{n:'Gloucester, dezembro de 1714. Caçula de Thomas e Elizabeth, donos da Bell Inn (DALLIMORE, 1970, p. 39). Menino serviu mesas na estalagem.',
+ img:'bell', f(tl){limpa();Object.assign(S.cam,CAM.ING);liga(tl,'gloucester',0);tl.set(S.rev,{r:4000,at:'gloucester'},0);
+  entra(tl,T('I · Preparação',120,180,'kick'),.4);entra(tl,T('O filho da estalagem',120,240,'h2',760),.7);
+  entra(tl,T('Gloucester, 1714. A Bell Inn era a maior estalagem da cidade. O menino servia as mesas de avental azul.',124,470,'p',640),1.3);
+  entra(tl,T('DALLIMORE, 1970, p. 39-43',124,760,'fonte'),1.8)}},
+
+{n:'A imagem volta para o ponto: o mapa nasce. Oxford como servitor, que pagava os estudos servindo os colegas ricos (p. 56). Clube Santo com os Wesley. O livro de Scougal (p. 72-73).',
+ f(tl){limpa();tl.fromTo(S.rev,{r:0},{r:3000,duration:4,ease:'power2.in'},.6);tl.set(S.rev,{r:1e5},4.7);tl.call(()=>som('papel.wav',.5),null,.6);
+  rota(tl,'ida',1.8,1.6);liga(tl,'oxford',3.2);tl.to(S.pt.gloucester,{g:.2,duration:1},3.2);
+  entra(tl,T('Oxford, 1732',120,180,'kick'),2);entra(tl,T('<i>Servitor</i> e Clube Santo',120,240,'h2',760),2.3);
+  entra(tl,T('Pagava os estudos servindo os colegas ricos. Jejuava com os irmãos Wesley. Então leu Henry Scougal:',124,470,'p',640),3);
+  const c=T('“a verdadeira religião é a união da alma com Deus, e Cristo formado em nós.”',124,700,'cit m',680);letras(tl,c,4.4,3);
+  entra(tl,T('DALLIMORE, 1970, p. 56, 72-73',124,960,'fonte'),6)}},
+
+{n:'Conversão: depois de meses de angústia, pouco depois da Páscoa de 1735 (DALLIMORE, p. 75). O primeiro do Clube Santo a experimentar o novo nascimento.',
+ f(tl){limpa();tl.to(S.pt.oxford,{g:3.2,duration:3,ease:'power2.out'},.4);tl.call(()=>som('magica.mp3',.45),null,.4);
+  entra(tl,T('Primavera de 1735',120,260,'kick'),.8);entra(tl,T('O novo nascimento',120,320,'h2',800),1.1);
+  entra(tl,T('“Se alguém está em Cristo, é nova criatura.”',124,520,'cit',680),1.8);entra(tl,T('2 Coríntios 5.17',124,700,'fonte'),2.2);
+  entra(tl,T('O primeiro do Clube Santo a receber o que ele pregaria pelo resto da vida.',124,780,'p',640),2.8)}},
+
+{n:'Ordenado diácono em 20 de junho de 1736 pelo bispo Benson (p. 95). Primeiro sermão: queixa de que enlouqueceu quinze; o bispo desejou que a loucura não passasse até o domingo seguinte (p. 97).',
+ f(tl){limpa();tl.to(S.pt.oxford,{g:.4,duration:1.2},0);tl.to(S.pt.gloucester,{g:1.4,duration:1.2},0);
+  entra(tl,T('Gloucester, 20 de junho de 1736',120,200,'kick'),.3);entra(tl,T('Ordenado aos 21 anos',120,260,'h2',800),.6);
+  const c=T('“Fizeram uma queixa ao bispo de que eu enlouqueci quinze pessoas no primeiro sermão.”',124,460,'cit m',700);letras(tl,c,1.4,2.6);
+  entra(tl,T('O bispo respondeu que desejava que a loucura durasse até o domingo seguinte.',124,700,'p',640),4.4);
+  entra(tl,T('DALLIMORE, 1970, p. 95-97',124,950,'fonte'),4.8)}},
+
+/* ---- II. ao ar livre ---- */
+{n:'Púlpitos fechados em 1739. 17 de fevereiro de 1739, Rose Green, Kingswood: mineiros sem igreja e sem escola (p. 250, 256). A citação é do próprio Whitefield (p. 263).',
+ f(tl){limpa();tl.to(S.pt.gloucester,{g:.15,duration:1},0);liga(tl,'kingswood',.4,1.2);tl.to(S.onda,{kingswood:1,duration:1},1);
+  entra(tl,T('II · Ao ar livre',120,200,'kick'),.4);entra(tl,T('Os púlpitos se fecharam',120,260,'h2',760),.7);
+  entra(tl,T('Em 1739, as igrejas que o recebiam passaram a recusá-lo. Ele foi até quem nunca tinha entrado numa igreja.',124,480,'p',640),1.4)}},
+
+{n:'Leia a citação devagar. É o momento mais forte da primeira metade.',
+ img:'kingswood', amb:'multidao', f(tl){limpa();
+  entra(tl,T('Kingswood, 17 de fevereiro de 1739',120,170,'kick'),1.4);
+  const c=T('“O primeiro sinal de que eram tocados foram os sulcos brancos feitos pelas lágrimas, que corriam pelas faces negras ao saírem das minas.”',120,260,'cit',700);letras(tl,c,2.2,5);
+  entra(tl,T('George Whitefield, citado em DALLIMORE, 1970, p. 263',124,800,'fonte',700),7.4)}},
+
+{n:'Moorfields e Kennington em Londres: multidões de dezenas de milhares. Whitefield entregou Bristol a John Wesley e o levou a pregar ao ar livre.',
+ f(tl){limpa();liga(tl,'londres',.6,1);tl.to(S.onda,{londres:1,duration:1},1);
+  entra(tl,T('Bristol e Londres, 1739',120,200,'kick'),.4);entra(tl,T('O campo aberto',120,260,'h2',760),.7);
+  entra(tl,T('Nos campos de Moorfields e Kennington, em Londres, as multidões não cabiam em igreja nenhuma.',124,460,'p',620),1.4);
+  const m=med(R+'wesley.jpg',130,740,170);entra(tl,m,2.2);entra(tl,T('Foi Whitefield quem levou <b>John Wesley</b> a pregar ao ar livre, e a ele entregou o trabalho de Bristol.',340,750,'p',440,'font-size:34px'),2.4)}},
+
+/* ---- III. o Atlântico ---- */
+{n:'Primeira travessia em 1738: missionário na Geórgia. Lá decide fundar o orfanato Bethesda, “a Casa da Misericórdia” (p. 446). Guarde esse ponto: ele volta na análise.',
+ img:'atlantico', amb:'mar', f(tl){limpa();tl.to(S.onda,{kingswood:0,londres:0,duration:1},0);
+  entra(tl,T('III · O Atlântico',120,200,'kick'),1.2);entra(tl,T('Uma paróquia do tamanho de um oceano',120,260,'h2',720),1.5);
+  entra(tl,T('Em 1738 cruzou o mar pela primeira vez, como missionário na Geórgia.',124,560,'p',600),2.4)}},
+
+{n:'O mapa se abre. O navio leva até Savannah. Bethesda: orfanato no modelo do de Francke em Halle (NOLL, p. 99).',
+ amb:'mar', f(tl){limpa();vai(tl,'ATL',0,3.2);tl.to(S.pt.oxford,{lab:0,duration:.5},0);['gloucester','kingswood','londres'].forEach(k=>tl.to(S.pt[k],{lab:0,g:.1,duration:.5},0));
+  tl.set(S.navio,{rota:'travessia1'},2.6);tl.to(S.navio,{o:1,duration:.5},2.6);rota(tl,'travessia1',2.6,5);liga(tl,'savannah',7.4,1);tl.to(S.navio,{o:0,duration:.6},7.6);
+  entra(tl,T('1738',120,200,'kick'),2.6);entra(tl,T('Bethesda',120,260,'h2',700),7.6);
+  entra(tl,T('Um orfanato nos pinheirais da Geórgia. Ele o chamou de <b>Casa da Misericórdia</b>.',124,370,'p',560),8)}},
+
+{n:'1740 inteiro na América. Ao menos 200 sermões em dez semanas; ouvintes iguais a metade da população de sete colônias (NOLL, p. 11, 97).',
+ f(tl){limpa();ambiente(null);vai(tl,'AME',0,3);rota(tl,'turne1740',2.6,6);
+  liga(tl,['charleston','filadelfia','novaiorque','newport','boston','northampton'],2.8);tl.to(S.pt.savannah,{g:.25,duration:1},2.6);
+  entra(tl,T('As colônias, 1740',120,200,'kick'),.6);entra(tl,T('Sete colônias, dez semanas',120,260,'h2',640),.9);
+  const n=T('0',120,520,'num m',600);conta(tl,n,200,3,5);entra(tl,T('sermões, no mínimo',124,660,'rot'),3.2);
+  entra(tl,T('Os ouvintes somaram cerca de <b>metade da população</b> das sete colônias.',124,760,'p',560),6.5);entra(tl,T('NOLL, 2003, p. 11, 97',124,920,'fonte'),7)}},
+
+{n:'Boston Common, 12 de outubro de 1740: 23 mil, mais que a população da cidade (NOLL, p. 98). O próprio Whitefield falou em 20 mil.',
+ img:'boston', amb:'multidao', f(tl){limpa();tl.to(S.onda,{boston:1,duration:1},0);
+  entra(tl,T('Boston, 12 de outubro de 1740',120,190,'kick'),1.4);const n=T('0',114,250,'num',800);conta(tl,n,23000,1.8,4);tl.call(()=>som('drone-hit.mp3',.35),null,5.6);
+  entra(tl,T('pessoas no sermão de despedida, no parque da cidade.',124,470,'p',600),2.4);
+  entra(tl,T('Mais do que a população de Boston.',124,620,'h3',640,'color:var(--ouro)'),5.6);entra(tl,T('NOLL, 2003, p. 98',124,800,'fonte'),6)}},
+
+{n:'Franklin não era crente. Mediu até onde a voz chegava e calculou que mais de 30 mil podiam ouvi-lo ao ar livre (Autobiografia). Deixe o semicírculo encher.',
+ f(tl){limpa();ambiente(null);tl.to(S.onda,{boston:0,duration:1},0);vai(tl,'FIL',0,2.6);tl.to(S.frank,{o:1,duration:.4},2.4);
+  tl.fromTo(S.frank,{t:0},{t:1,duration:6,ease:'power1.inOut'},2.6);
+  const m=med(R+'franklin.jpg',130,190,190);entra(tl,m,.6);entra(tl,T('Benjamin Franklin, Filadélfia',360,230,'kick',460),.9);
+  entra(tl,T('Ele não era crente. Andou para trás até a voz sumir, mediu a distância e fez a conta.',124,450,'p',600),1.5);
+  const n=T('0',120,640,'num m',600);conta(tl,n,30000,2.6,6);entra(tl,T('pessoas podiam ouvi-lo ao mesmo tempo, sem microfone.',124,790,'p',560),3);entra(tl,T('FRANKLIN, Autobiografia, 1791',124,950,'fonte'),8)}},
+
+{n:'Um trovão no meio de um sermão em Boston virou ilustração. Pediram o texto para imprimir: “só se imprimirem junto o relâmpago, o trovão e o arco-íris” (NOLL, p. 98).',
+ f(tl){limpa();tl.to(S.frank,{o:0,duration:.8},0);vai(tl,'NE',0,2.4);liga(tl,'northampton',0,.2);
+  tl.call(()=>som('trovao.mp3',.7),null,1.4);tl.fromTo('#flash',{opacity:0},{opacity:.85,duration:.06,yoyo:true,repeat:3,ease:'none'},1.6);tl.set('#flash',{opacity:0},2.2);
+  entra(tl,T('Pediram o sermão para imprimir.',120,230,'p',700),2.6);
+  const c=T('“Não me oponho, se imprimirem junto o relâmpago, o trovão e o arco-íris.”',120,330,'cit',700);letras(tl,c,3.4,3);
+  entra(tl,T('Sarah Edwards, em Northampton:',124,640,'p',640,'font-size:34px'),6.6);
+  entra(tl,T('“Um orador nato. Prende mil pessoas em silêncio, sem fôlego, com as verdades mais simples da Bíblia.”',124,700,'cit m',680,'font-size:40px'),7);
+  entra(tl,T('NOLL, 2003, p. 98',124,960,'fonte'),7.6)}},
+
+/* ---- IV. divisão e Escócia ---- */
+{n:'1740: Wesley publica “Free Grace” contra a predestinação, pregado entre os convertidos que Whitefield lhe deixara. Whitefield responde com Romanos 8 (NOLL, p. 113-114). Reconciliaram-se: Wesley pregou no funeral dele.',
+ f(tl){limpa();vai(tl,'ATL',0,2.6);['charleston','filadelfia','novaiorque','newport','northampton'].forEach(k=>tl.to(S.pt[k],{g:.1,duration:1},0));
+  entra(tl,T('IV · Divisão',120,180,'kick'),.6);entra(tl,T('Graça livre para quem?',120,240,'h2',720),.9);
+  const a=med(R+'wesley.jpg',140,470,210,'Wesley');const b=med(R+'retrato-wollaston.jpg',520,470,210,'Whitefield');
+  tl.fromTo(a,{opacity:0,x:190},{opacity:1,x:0,duration:1.6,ease:'power3.inOut'},1.6);tl.fromTo(b,{opacity:0,x:-190},{opacity:1,x:0,duration:1.6,ease:'power3.inOut'},1.6);tl.call(()=>som('hit1.wav',.35),null,2.6);
+  entra(tl,T('<i>Free Grace</i>, 1740',140,780,'rot',260),2.8);entra(tl,T('Romanos 8',520,780,'rot',260),3);
+  entra(tl,T('Nasceram ali os metodistas arminianos e os calvinistas. Os dois se reconciliaram, e Wesley pregou no funeral de Whitefield.',124,880,'p',740,'font-size:34px'),4)}},
+
+{n:'Cambuslang, 11 de julho de 1742: mais de 20 mil no sábado, cerca de 30 mil no domingo da Ceia, 1.700 comungantes, quase o dobro de Glasgow (NOLL, p. 104).',
+ f(tl){limpa();vai(tl,'ESC',0,2.8);rota(tl,'escocia',2,2.4);liga(tl,'cambuslang',4.2,1.2);tl.to(S.onda,{cambuslang:1,duration:1},4.4);
+  entra(tl,T('Escócia, 1742',120,200,'kick'),.6);entra(tl,T('Cambuslang',120,260,'h2',700),.9);
+  entra(tl,T('Os pastores escoceses oravam havia anos por avivamento. Quando ele chegou, a igreja inteira saiu ao campo para a Ceia.',124,460,'p',600),2)}},
+
+{n:'Os presbiterianos separatistas exigiam que ele tomasse partido no governo da igreja. Ele respondeu que era “um presbítero sem fronteiras” (NOLL, p. 103). Essa frase volta na análise.',
+ img:'cambuslang', amb:'multidao', f(tl){limpa();
+  entra(tl,T('11 de julho de 1742',120,170,'kick'),1.4);const n=T('0',114,230,'num',800);conta(tl,n,30000,1.8,4);
+  entra(tl,T('pessoas, quase o dobro de Glasgow. <b>1.700</b> comungaram nas mesas da Ceia.',124,450,'p',620),2.6);
+  const c=T('“Meu ofício é evangelizar, ser um presbítero sem fronteiras.”',124,640,'cit',680);letras(tl,c,5,2.4);
+  entra(tl,T('NOLL, 2003, p. 103-104',124,880,'fonte'),7.6)}},
+
+{n:'Treze travessias: cada linha é uma viagem de semanas no mar. Sete visitas à América.',
+ amb:'mar', f(tl){limpa();tl.to(S.onda,{cambuslang:0,duration:1},0);vai(tl,'ATL',0,2.6);
+  for(const k in P)if(S.pt[k].o>0)tl.to(S.pt[k],{g:.15,lab:k=='boston'||k=='savannah'||k=='cambuslang'?1:0,duration:1},0);
+  const n=T('0',120,520,'num',500,'opacity:0');entra(tl,T('1739 · 1770',120,200,'kick'),.6);entra(tl,T('Treze travessias',120,260,'h2',640),.9);
+  for(let i=0;i<13;i++){rota(tl,'x'+i,2.2+i*.55,1.6);tl.call(()=>{n.textContent=i+1;som('click.mp3',.35)},null,2.2+i*.55+1.4)}
+  tl.set(n,{opacity:1},2.2);entra(tl,T('vezes atravessou o oceano, num navio a vela.',124,720,'p',540),3)}},
+
+{n:'Newburyport, 30 de setembro de 1770, na sétima viagem (NOLL, p. 145). Sepultado sob o púlpito da igreja presbiteriana. Pausa antes de passar para a análise.',
+ f(tl){limpa();ambiente(null);trilha(.1);vai(tl,'NBP',0,3.2);rota(tl,'fim',2.4,1.6);liga(tl,'newburyport',3.8,1.6);
+  for(let i=0;i<13;i++)tl.to(S.rt['x'+i],{o:.25,duration:1.5},0);
+  entra(tl,T('Massachusetts, 30 de setembro de 1770',120,240,'kick'),.6);entra(tl,T('A última viagem',120,300,'h2',700),.9);
+  entra(tl,T('Morreu aos 55 anos em Newburyport, na sétima viagem à América.',124,500,'p',600),3.8)}},
+
+{n:'Silêncio. Deixe a imagem falar alguns segundos.',
+ img:'newburyport', f(tl){limpa();
+  entra(tl,T('Newburyport, 1770',120,300,'kick'),1.6);
+  entra(tl,T('Sepultado sob o púlpito da igreja presbiteriana da cidade.',120,370,'h3',680),2.2);
+  entra(tl,T('Old South Presbyterian Church',124,600,'fonte'),3)}},
+
+/* ---- V. análise ---- */
+{n:'Análise crítica: cinco pontos, cada um com a Escritura e Westminster. Dourado é acerto, âmbar é ressalva, vermelho é erro.',
+ f(tl){limpa();trilha(.14);vai(tl,'ATL',0,2.6);for(let i=0;i<13;i++)tl.to(S.rt['x'+i],{o:.12,duration:1},0);
+  entra(tl,T('V · À luz das Escrituras',0,360,'kick',1920,'text-align:center'),1);entra(tl,T('e dos Símbolos de Westminster',0,420,'h2',1920,'text-align:center'),1.3);
+  tl.fromTo('#selos',{opacity:0,y:20},{opacity:1,y:0,duration:1},2.2);tl.to('#gMapa,#gRotas,#gOndas,#gPontos,#gNavio',{opacity:.22,duration:1.5},.5);tl.set('#selos',{left:'50%',xPercent:-50},0)}},
+
+{n:'I. A teologia da graça soberana: CFW X.2 e CFW III.8; CM 67, a pregação é o meio pelo qual Deus chama os eleitos. A vida dele desmente a acusação de Wesley.',
+ f(tl){limpa();tl.call(()=>selo(0,'on'),null,.4);tl.call(()=>som('magica.mp3',.4),null,.4);tl.to(S.pt.oxford,{g:1.2,duration:1},.3);
+  const c=T('',120,180,'cartao',900);c.innerHTML='<div class="kick">I · Acerto</div><div class="h3" style="margin:16px 0 30px">O evangelho da graça soberana</div><div class="cit m">“Esta vocação eficaz provém unicamente da livre e especial graça de Deus.”</div><div class="fonte" style="margin-top:18px">Confissão de Fé de Westminster X.2 · Rm 8.28-30 · Jo 3.3-7</div><div class="p" style="margin-top:34px">Calvinista, pregou a todos, porque a pregação é o meio pelo qual Deus chama os seus.</div>';entra(tl,c,.4,1.2)}},
+
+{n:'II. A pregação: CM 159 pede zelo e amor fervoroso (acerto), mas também “não em palavras persuasivas de humana sabedoria”. Comparado ao ator Garrick (DALLIMORE, p. 16); Sarah Edwards: menos doutrina, mais afetar o coração.',
+ f(tl){limpa();tl.call(()=>selo(1,'alerta'),null,.4);tl.call(()=>som('pop.mp3',.4),null,.4);
+  const c=T('',120,180,'cartao alerta',900);c.innerHTML='<div class="kick" style="color:#d9a344">II · Acerto e ressalva</div><div class="h3" style="margin:16px 0 30px">Zelo, e o risco do espetáculo</div><div class="cit m">“…zelosamente, com amor fervoroso para com Deus e para com as almas… não em palavras persuasivas de humana sabedoria.”</div><div class="fonte" style="margin-top:18px">Catecismo Maior 159 · 1 Co 2.4</div><div class="p" style="margin-top:34px">Foi comparado ao ator David Garrick. O risco para os herdeiros é medir o sermão pelo efeito na plateia.</div>';entra(tl,c,.4,1.2)}},
+
+{n:'III. Ordem da igreja: “presbítero sem fronteiras” contra CM 158 (devidamente aprovados e chamados) e CFW XXV.3. Noll: herdeiros com indiferença às tradições e juízo apressado sobre ministros (p. 100).',
+ f(tl){limpa();tl.call(()=>selo(2,'alerta'),null,.4);tl.call(()=>som('pop.mp3',.4),null,.4);tl.to(S.pt.cambuslang,{g:1.2,duration:1},.3);
+  const c=T('',120,180,'cartao alerta',900);c.innerHTML='<div class="kick" style="color:#d9a344">III · Ressalva</div><div class="h3" style="margin:16px 0 30px">O presbítero sem fronteiras</div><div class="cit m">“A Palavra de Deus deve ser pregada somente por aqueles que têm dons suficientes, e são devidamente aprovados e chamados para o ministério.”</div><div class="fonte" style="margin-top:18px">Catecismo Maior 158 · CFW XXV.3</div><div class="p" style="margin-top:34px">Ele amou a igreja universal. Mas o pregador que não presta contas a nenhum concílio virou modelo.</div>';entra(tl,c,.4,1.2)}},
+
+{n:'IV. Impressões tratadas como revelação, na juventude; até amigos o repreenderam, e ele abandonou o traço com o tempo (DALLIMORE, p. 342-344). CFW I.6.',
+ f(tl){limpa();tl.call(()=>selo(3,'alerta'),null,.4);tl.call(()=>som('pop.mp3',.4),null,.4);
+  const c=T('',120,180,'cartao alerta',900);c.innerHTML='<div class="kick" style="color:#d9a344">IV · Ressalva corrigida</div><div class="h3" style="margin:16px 0 30px">Impressões como revelação</div><div class="cit m">“Às Escrituras nada se acrescentará em tempo algum, nem por novas revelações do Espírito.”</div><div class="fonte" style="margin-top:18px">Confissão de Fé de Westminster I.6</div><div class="p" style="margin-top:34px">Na juventude falava de impressões como vozes do céu. Foi repreendido, e abandonou o hábito com o tempo.</div>';entra(tl,c,.4,1.2)}},
+
+{n:'V. O ponto mais grave. Pregou aos escravos e denunciou a crueldade dos senhores (NOLL, p. 100). Mas decidiu que era “impraticável” manter o orfanato sem comprar “alguns negros” e virou senhor de escravos (p. 100-101). Dallimore chama de “trágica” essa direção (p. 207).',
+ img:'bethesda', f(tl){limpa();trilha(.06);tl.call(()=>selo(4,'nao'),null,1.2);tl.call(()=>som('drone-hit.mp3',.4),null,1.2);
+  entra(tl,T('V · Erro',120,190,'kick',700,'color:#d5503a'),1.4);entra(tl,T('A Casa da Misericórdia',120,250,'h2',720),1.7);
+  entra(tl,T('Pregou aos escravos com alegria e denunciou a crueldade dos senhores.',124,470,'p',600),2.6);
+  entra(tl,T('E decidiu que seria “impraticável” manter o orfanato sem comprar “alguns negros”.',124,640,'p',600,'color:var(--creme)'),4);
+  entra(tl,T('NOLL, 2003, p. 100-101 · DALLIMORE, 1970, p. 207',124,860,'fonte',700),4.6)}},
+
+{n:'Fez campanha pela legalização na Geórgia (aprovada em 1751) e deixou Bethesda com 49 escravizados ao morrer. CM 142 condena “o tráfico de seres humanos” (1 Tm 1.10). At 17.26. A época não desculpa.',
+ f(tl){limpa();tl.to('#gMapa,#gRotas,#gOndas,#gPontos,#gNavio',{opacity:.5,duration:1},0);tl.to(S.mancha,{r:240,duration:5,ease:'power2.out'},.6);tl.to(S.pt.savannah,{g:0,duration:1},.6);
+  entra(tl,T('Ao morrer, deixou Bethesda com',120,220,'p',600),.6);const n=T('0',114,280,'num',600,'color:#d5503a');conta(tl,n,49,1,3);
+  entra(tl,T('pessoas escravizadas.',124,480,'p',600),1.4);
+  entra(tl,T('“…o tráfico de seres humanos…”',124,600,'cit m',640),3.4);entra(tl,T('Catecismo Maior 142 · 1 Tm 1.10',124,680,'fonte'),3.6);
+  entra(tl,T('“De um só fez toda a raça humana.”',124,760,'cit m',640),4.4);entra(tl,T('Atos 17.26',124,840,'fonte'),4.6)}},
+
+/* ---- VI. hoje ---- */
+{n:'Aplicação, quatro pontos. Fale de Kingswood hoje: periferias, escolas e o campo digital onde vivem os jovens.',
+ f(tl){limpa();trilha(.16);tl.to('#gMapa,#gRotas,#gOndas,#gPontos,#gNavio',{opacity:.22,duration:1},0);tl.to(S.mancha,{r:90,duration:2},0);tl.to('#selos',{opacity:0,duration:.8},0);
+  entra(tl,T('VI · Para a igreja de hoje',120,170,'kick'),.4);
+  const l=T('',120,280,'lista',1000);l.innerHTML='<div><span>1</span>Doutrina reformada e zelo evangelístico andam juntos.</div><div><span>2</span>Clareza e calor no púlpito, sem trocar o texto pelo espetáculo.</div><div><span>3</span>Zelo dentro da ordem da igreja, enviado por ela (At 13.1-3).</div><div><span>4</span>A ética faz parte do evangelho. Quais são os nossos pontos cegos?</div>';
+  tl.set(l,{opacity:1},0);l.querySelectorAll('div').forEach((d,i)=>{entra(tl,d,1+i*1.6);tl.call(()=>som('click.mp3',.5),null,1+i*1.6)})}},
+
+{n:'Conclusão. O mapa inteiro aceso. Ler Whitefield com as Escrituras e com Westminster.',
+ f(tl){limpa();tl.to('#gMapa,#gRotas,#gOndas,#gPontos,#gNavio',{opacity:1,duration:2},0);for(const k in P)if(S.pt[k].o>0)tl.to(S.pt[k],{g:.8,lab:0,duration:2},.3);for(let i=0;i<13;i++)tl.to(S.rt['x'+i],{o:.55,duration:2},.3);
+  tl.call(()=>som('magica.mp3',.4),null,.4);
+  entra(tl,T('Receber dele o que é de Cristo.',120,300,'h3',760),1.4);entra(tl,T('Rejeitar o que é do homem.',120,400,'h3',760,'color:var(--creme2)'),2.6);
+  const l=T('',124,560,'linha',300);tl.fromTo(l,{scaleX:0,opacity:1},{scaleX:1,duration:1.2},3.6);
+  const c=T('Pregar com a urgência dele, dentro da igreja e debaixo de toda a Palavra.',124,610,'cit',660);letras(tl,c,4,3)}},
+
+{n:'Encerramento. Agradeça e abra para perguntas.',
+ f(tl){limpa();trilha(.12);tl.to('#gMapa,#gRotas,#gOndas,#gPontos,#gNavio',{opacity:.3,duration:2},0);
+  const m=med(R+'retrato-wollaston.jpg',820,140,280);entra(tl,m,.3,1.4);
+  entra(tl,T('George Whitefield',0,500,'h2',1920,'text-align:center'),.8);entra(tl,T('1714 · 1770',0,600,'kick',1920,'text-align:center'),1.1);
+  entra(tl,T('Navarro Wanderley Dantas Lamounier · História da Igreja 4 · Seminário Presbiteriano de Brasília · 2026',0,800,'rot',1920,'text-align:center;font-size:26px'),1.6);
+  entra(tl,T('DALLIMORE, A. <i>George Whitefield</i>, v. 1, 1970 · NOLL, M. <i>The rise of evangelicalism</i>, 2003 · Confissão de Fé e Catecismo Maior de Westminster',0,860,'fonte',1920,'text-align:center;font-size:22px'),1.9)}},
+];
+
+/* ---------- motor ---------- */
+let atual=-1,tlAtual=null;
+function monta(i){const p=PASSOS[i],tl=gsap.timeline({paused:true});if(!silencio)ambiente(p.amb||null);p.f(tl);imagem(p.img||null);return tl}
+function zera(){gsap.globalTimeline.getChildren().forEach(t=>t.kill());TX.innerHTML='';$('#img').innerHTML='';imgAtual=null;imgEl=null;novoS();
+  [...$('#selos').children].forEach(s=>s.className='selo');gsap.set('#selos',{opacity:0});gsap.set('#gMapa,#gRotas,#gOndas,#gPontos,#gNavio',{opacity:1});gsap.set('#flash',{opacity:0})}
+function vaiPara(n,animar){n=Math.max(0,Math.min(PASSOS.length-1,n));
+  if(animar&&n==atual+1){if(tlAtual){silencio=true;tlAtual.progress(1,false);silencio=false}atual=n;tlAtual=monta(n);tlAtual.play()}
+  else{zera();silencio=true;for(let i=0;i<=n;i++){const t=monta(i);t.progress(1,false);t.kill()}silencio=false;ambiente(PASSOS[n].amb||null);atual=n;tlAtual=null}
+  $('#prog').style.width=((atual+1)/PASSOS.length*100)+'%';$('#notas').innerHTML=`<b>${atual+1}/${PASSOS.length}</b> · ${PASSOS[atual].n}`;try{location.hash=atual+1}catch(e){}}
+let comecou=false;
+function comeca(n=0){if(comecou)return;comecou=true;const ini=$('#inicio');ini.style.transition='opacity 1s';ini.style.opacity=0;setTimeout(()=>ini.remove(),1100);if(n>0){trilha(.14);vaiPara(n,false)}else vaiPara(0,true)}
+addEventListener('keydown',e=>{const k=e.key;
+  if(!comecou){if(['ArrowRight',' ','PageDown','Enter'].includes(k)){comeca(parseInt(location.hash.slice(1)||'1')-1);e.preventDefault()}return}
+  if(['ArrowRight',' ','PageDown','Enter'].includes(k)){vaiPara(atual+1,true);e.preventDefault()}
+  else if(['ArrowLeft','PageUp','Backspace'].includes(k)){vaiPara(atual-1,false);e.preventDefault()}
+  else if(k=='Home')vaiPara(0,false);
+  else if(k=='f'||k=='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  else if(k=='n'||k=='N'){const s=$('#notas');s.style.display=s.style.display=='block'?'none':'block'}
+  else if(k=='m'||k=='M'){mudo=!mudo;if(musica)musica.volume=mudo?0:.14;ambiente(mudo?null:PASSOS[atual].amb||null)}
+  else if(k=='c'||k=='C'){document.body.classList.toggle('cursor')}});
+addEventListener('click',()=>{if(!comecou)comeca(parseInt(location.hash.slice(1)||'1')-1)});
+// toque: metade direita avança, metade esquerda volta; arrastar para a esquerda ou para cima avança
+const telaCheia=()=>{const d=document.documentElement;document.fullscreenElement?document.exitFullscreen():(d.requestFullscreen||d.webkitRequestFullscreen||(()=>{})).call(d)};
+function avanca(){comecou?vaiPara(atual+1,true):comeca(parseInt(location.hash.slice(1)||'1')-1)}
+function recua(){if(comecou)vaiPara(atual-1,false)}
+$('#nav-ant').addEventListener('click',e=>{e.stopPropagation();recua()});$('#nav-prox').addEventListener('click',e=>{e.stopPropagation();avanca()});$('#nav-tela').addEventListener('click',e=>{e.stopPropagation();telaCheia()});
+let tx=null,ty=null;
+addEventListener('touchstart',e=>{if(e.touches.length!==1)return tx=null;tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{if(tx===null||e.target.closest('#nav'))return tx=null;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty,dist=Math.max(Math.abs(dx),Math.abs(dy));tx=null;e.preventDefault();
+  if(dist<12)return t.clientX>innerWidth/3?avanca():recua();
+  if(dist<50)return;(Math.abs(dx)>Math.abs(dy)?dx<0:dy<0)?avanca():recua()},{passive:false});
+addEventListener('orientationchange',()=>setTimeout(ajusta,300));if(window.visualViewport)visualViewport.addEventListener('resize',ajusta);
+</script>
+</body>
+</html>
