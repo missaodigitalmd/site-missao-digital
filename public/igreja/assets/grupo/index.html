@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Generosidade no amor</title>
+<meta name="description" content="Estudo para grupos familiares a partir de Oseias 11.1-4 e 14.4, com base na pregação do Rev. Fábio Bezerra.">
+<style>
+@font-face{font-family:Figtree;font-weight:300 900;src:url(fonts/figtree-normal-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Figtree;font-weight:300 900;src:url(fonts/figtree-normal-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA}
+@font-face{font-family:Newsreader;font-weight:200 800;src:url(fonts/newsreader-normal-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Newsreader;font-weight:200 800;src:url(fonts/newsreader-normal-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA}
+@font-face{font-family:Newsreader;font-style:italic;font-weight:200 800;src:url(fonts/newsreader-italic-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Newsreader;font-style:italic;font-weight:200 800;src:url(fonts/newsreader-italic-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA}
+</style>
+<style>
+:root{
+  --anil:#1F2C52; --anil-2:#2C3B66;
+  --algodao:#F1EFE8; --algodao-2:#E4E1D6;
+  --la:#E2A33B; --la-escura:#8C5A0E;
+  --cinza:#5B6178; --nevoa:#B7BDD0;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Figtree",system-ui,sans-serif;
+  /* papéis */
+  --fundo:var(--algodao); --cartao:var(--algodao-2); --texto:var(--anil);
+  --suave:var(--cinza); --fio:var(--la-escura);
+  --gutter:44px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fundo:#18223F; --cartao:var(--anil-2); --texto:var(--algodao);
+    --suave:var(--nevoa); --fio:var(--la);
+  }
+}
+:root[data-theme="dark"]{
+  --fundo:#18223F; --cartao:var(--anil-2); --texto:var(--algodao);
+  --suave:var(--nevoa); --fio:var(--la);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fundo);color:var(--texto);font:500 18px/1.6 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--la);outline-offset:3px;border-radius:4px}
+
+.pagina{position:relative;max-width:640px;margin:0 auto;padding:0 16px 0 var(--gutter)}
+/* o fio */
+#fio{position:absolute;left:0;top:0;width:var(--gutter);pointer-events:none;overflow:visible;z-index:2}
+#fio path{fill:none;stroke:var(--fio);stroke-width:3;stroke-linecap:round}
+#fio circle{fill:var(--fundo);stroke:var(--fio);stroke-width:3;transition:fill .4s}
+#fio circle.preso{fill:var(--fio)}
+
+/* abertura */
+.abertura{background:var(--anil);color:var(--algodao);margin:0 -16px 0 calc(-1 * var(--gutter));padding:56px 16px 48px var(--gutter)}
+.abertura .ref{color:var(--nevoa)}
+.abertura h1{font:600 46px/1.05 var(--serif);margin:10px 0 22px;letter-spacing:-.01em;font-variation-settings:"opsz" 72}
+.abertura blockquote{margin:0 0 26px;font:italic 400 23px/1.45 var(--serif);color:var(--algodao)}
+.abertura blockquote cite{display:block;margin-top:6px;font:700 15px var(--sans);font-style:normal;font-variant:small-caps;color:var(--la);letter-spacing:.03em}
+.abertura p{margin:0 0 20px;color:var(--nevoa);max-width:34ch}
+.botao{display:inline-flex;align-items:center;gap:10px;background:var(--la);color:var(--anil);font:800 16px var(--sans);text-decoration:none;padding:13px 18px;border-radius:999px;border:0;cursor:pointer}
+.botao svg{width:18px;height:18px}
+.botao.leve{background:transparent;color:var(--texto);box-shadow:inset 0 0 0 2px var(--fio)}
+
+.ref{font:700 15px var(--sans);font-variant:small-caps;letter-spacing:.03em;color:var(--suave)}
+
+section{padding:44px 0 8px;position:relative}
+section h2{font:600 31px/1.15 var(--serif);margin:4px 0 14px;font-variation-settings:"opsz" 48}
+section h3{font:600 22px/1.25 var(--serif);margin:26px 0 8px}
+p{margin:0 0 14px;max-width:62ch}
+.tempo{color:var(--suave);font-size:15px}
+
+/* roteiro */
+ol.roteiro{list-style:none;padding:0;margin:8px 0 0;counter-reset:r}
+ol.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr auto;gap:4px 10px;padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--suave) 30%,transparent)}
+ol.roteiro li::before{content:counter(r);font:600 22px/1.2 var(--serif);color:var(--fio)}
+ol.roteiro a{text-decoration:none;font-weight:700}
+ol.roteiro span{color:var(--suave);font-size:15px;white-space:nowrap}
+
+details{background:var(--cartao);border-radius:14px;padding:4px 16px;margin:18px 0}
+summary{cursor:pointer;font-weight:800;padding:12px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:600 24px/1 var(--serif);color:var(--fio);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details ul{margin:0 0 14px;padding-left:20px}
+details li{margin-bottom:8px}
+
+.acordo{border-left:3px solid var(--fio);padding:4px 0 4px 14px;margin:18px 0;font:italic 400 20px/1.5 var(--serif)}
+
+/* texto bíblico */
+.escritura{font:400 21px/1.7 var(--serif);margin:10px 0 16px}
+.escritura sup{font:700 12px var(--sans);color:var(--suave);margin-right:3px}
+.escritura .v{border-radius:4px;transition:background-color .5s,color .5s,box-shadow .5s}
+.escritura.verbos .v{background:color-mix(in srgb,var(--la) 32%,transparent);box-shadow:0 2px 0 var(--fio)}
+.salto{font:700 14px var(--sans);color:var(--suave);margin:4px 0 8px}
+
+/* os três pontos */
+.ponto{display:grid;grid-template-columns:auto 1fr;gap:0 14px;margin:22px 0}
+.ponto .n{font:600 46px/1 var(--serif);color:var(--fio);font-variation-settings:"opsz" 72}
+.ponto h3{margin:4px 0 6px}
+
+/* o filho que cresce */
+.cresce{list-style:none;padding:0;margin:16px 0}
+.cresce li{margin:0 0 10px}
+.cresce > li > button{width:100%;text-align:left;background:var(--cartao);color:var(--texto);border:0;border-radius:14px;padding:14px 16px;font:inherit;cursor:pointer;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center}
+.cresce svg{width:44px;height:44px}
+.cresce svg *{fill:none;stroke:var(--fio);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cresce .t{font:600 19px/1.25 var(--serif)}
+.cresce .t small{display:block;font:700 14px var(--sans);font-variant:small-caps;color:var(--suave);letter-spacing:.03em}
+.cresce .corpo{display:none;padding:12px 16px 4px}
+.cresce li.aberto .corpo{display:block;animation:abre .35s ease-out}
+@keyframes abre{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* laço e nó */
+.laco{background:var(--cartao);border-radius:14px;padding:16px;margin:12px 0 16px}
+.laco .par{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center}
+.laco svg{width:100%;height:110px;overflow:visible}
+.laco path{fill:none;stroke:var(--fio);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.laco .legenda{font:700 15px var(--sans);color:var(--suave)}
+.laco .resultado{min-height:3.2em;margin:10px 0 0;font:italic 400 19px/1.45 var(--serif)}
+
+/* perguntas */
+.nivel{margin:24px 0 6px}
+.perguntas{margin:0;padding-left:22px}
+.perguntas li{margin:0 0 12px}
+.perguntas li::marker{color:var(--fio);font-weight:800}
+
+.partilha{display:grid;gap:12px;margin:16px 0}
+.cartao{background:var(--cartao);border-radius:14px;padding:16px}
+.cartao p:last-child{margin:0}
+.cartao strong{font:600 20px/1.3 var(--serif);display:block;margin-bottom:4px}
+
+.cuidado{border:2px solid var(--fio);border-radius:14px;padding:14px 16px;margin:20px 0;font-size:16px}
+
+.pratica{background:var(--anil);color:var(--algodao);margin:28px -16px 0 calc(-1 * var(--gutter));padding:40px 16px 40px var(--gutter)}
+.pratica h2{color:var(--algodao)}
+.pratica .ref{color:var(--nevoa)}
+.pratica p{color:var(--algodao)}
+.pratica .grande{font:italic 400 24px/1.45 var(--serif);color:var(--la)}
+
+.trechos{list-style:none;padding:0;margin:10px 0 0}
+.trechos li{padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--suave) 30%,transparent)}
+.trechos a{font-weight:700}
+.trechos span{display:block;color:var(--suave);font-size:15px}
+
+footer{padding:36px 0 56px;color:var(--suave);font-size:14px}
+footer p{max-width:none}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<div class="pagina" id="pagina">
+<svg id="fio" aria-hidden="true"><path id="fio-traco"/></svg>
+
+<header class="abertura" data-no>
+  <div class="ref">Estudo para grupos familiares</div>
+  <h1>Generosidade no amor</h1>
+  <blockquote>Curarei a sua infidelidade, eu de mim mesmo os amarei, porque a minha ira se apartou deles.<cite>Oseias 14.4</cite></blockquote>
+  <p>Um encontro de 75 a 90 minutos para 6 a 12 pessoas, a partir da pregação do Rev. Fábio Bezerra em Oseias 11.</p>
+  <a class="botao" href="https://www.youtube.com/watch?v=SV1QgxXVIrA&t=1320s" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    Assistir à pregação (41 min)
+  </a>
+</header>
+
+<section id="roteiro" data-no>
+  <h2>Como o encontro corre</h2>
+  <ol class="roteiro">
+    <li><a href="#chegar">Chegar</a><span>10 min</span></li>
+    <li><a href="#ler">Ler o texto</a><span>10 min</span></li>
+    <li><a href="#entender">Entender a mensagem</a><span>20 min</span></li>
+    <li><a href="#conversar">Conversar</a><span>20 min</span></li>
+    <li><a href="#cuidar">Cuidar uns dos outros</a><span>20 min</span></li>
+    <li><a href="#levar">Levar para casa</a><span>5 min</span></li>
+  </ol>
+  <details>
+    <summary>Para quem conduz</summary>
+    <ul>
+      <li>Assista à pregação antes do encontro. O grupo não precisa ter assistido: o resumo da parte 3 basta.</li>
+      <li>O centro do encontro são as partes 4 e 5. Se o tempo apertar, encurte a 3, e não a 5.</li>
+      <li>Escolha três ou quatro perguntas da parte 4. Ninguém precisa responder a todas.</li>
+      <li>Silêncio depois de uma pergunta é gente pensando. Conte até dez antes de responder você mesmo.</li>
+      <li>Pais de filhos afastados e pessoas feridas pela família vão se reconhecer neste texto. Acolha antes de explicar.</li>
+    </ul>
+  </details>
+</section>
+
+<section id="chegar">
+  <div class="ref">Parte 1</div>
+  <h2>Chegar</h2>
+  <p>Comece pela vida de cada um. Uma rodada rápida, uma frase por pessoa:</p>
+  <div class="cartao"><strong>Um presente que você não mereceu</strong><p>Conte de algo que você recebeu sem ter feito nada para merecer. Pode ser de quando você era criança.</p></div>
+  <p style="margin-top:16px">Antes de seguir, combinem em voz alta:</p>
+  <p class="acordo">O que for contado aqui fica aqui. Ouvimos sem julgar e oramos uns pelos outros.</p>
+</section>
+
+<section id="ler">
+  <div class="ref">Parte 2</div>
+  <h2>Ler o texto</h2>
+  <p>Leiam duas vezes, em vozes diferentes. Na segunda leitura, prestem atenção no que Deus faz.</p>
+  <div class="escritura" id="escritura">
+    <sup>1</sup>Quando Israel era menino, eu o <span class="v">amei</span>; e do Egito <span class="v">chamei</span> o meu filho.
+    <sup>2</sup>Quanto mais eu os <span class="v">chamava</span>, tanto mais se iam da minha presença; sacrificavam a baalins e queimavam incenso às imagens de escultura.
+    <sup>3</sup>Todavia, eu <span class="v">ensinei a andar</span> a Efraim; <span class="v">tomei-os nos meus braços</span>, mas não atinaram que eu os <span class="v">curava</span>.
+    <sup>4</sup><span class="v">Atraí-os</span> com cordas humanas, com laços de amor; fui para eles como quem <span class="v">alivia o jugo</span> de sobre as suas queixadas e <span class="v">me inclinei para dar-lhes de comer</span>.
+    <div class="salto">Oseias 11.1-4, e então o salto para o fim do livro:</div>
+    <sup>4</sup>Curarei a sua infidelidade, eu de mim mesmo os <span class="v">amarei</span>, porque a minha ira se apartou deles.
+    <div class="salto">Oseias 14.4 (ARA)</div>
+  </div>
+  <button class="botao leve" id="btn-verbos" aria-pressed="false">Mostrar o que Deus faz</button>
+  <p style="margin-top:16px">Repare: quase todos os verbos são de Deus. O povo aparece indo embora (v. 2) e sem perceber o cuidado (v. 3).</p>
+</section>
+
+<section id="entender">
+  <div class="ref">Parte 3</div>
+  <h2>Entender a mensagem</h2>
+  <p>Nos capítulos 1 a 3, o casamento de Oseias com uma mulher infiel retrata a infidelidade de Israel, e a acusação de prostituição espiritual atravessa os capítulos seguintes. No capítulo 11, a imagem muda para a de um pai com o seu filho pequeno, amado antes de poder dar qualquer coisa em troca. A pregação pode ser resumida em três pontos.</p>
+
+  <div class="ponto"><div class="n">1</div><div>
+    <h3>A fonte: Deus ama de si mesmo</h3>
+    <p>"Eu de mim mesmo os amarei." A causa do amor de Deus está nele, e não em nós. Israel não tinha nada que atraísse esse amor, e nós também não. Conta-se que Karl Barth, perguntado sobre a maior descoberta de uma vida de estudo, respondeu com um cântico de criança: Jesus me ama, isto eu sei.</p>
+  </div></div>
+
+  <div class="ponto"><div class="n">2</div><div>
+    <h3>O caminho: o amor que acompanha um filho crescendo</h3>
+    <p>O texto segue a imagem de uma criança: no colo, chamada para fora do Egito, aprendendo a andar, sendo puxada para perto, aliviada de um peso, alimentada. Toque em cada etapa.</p>
+  </div></div>
+
+  <ul class="cresce" id="cresce">
+    <li><button aria-expanded="false"><svg viewBox="0 0 44 44"><circle cx="22" cy="16" r="7"/><path d="M10 38c2-9 8-13 12-13s10 4 12 13"/></svg><span class="t"><small>Versículo 1</small>Um amor sem condição</span></button>
+      <div class="corpo"><div><p>"Quando Israel era menino, eu o amei." Um bebê não tem o que oferecer. Deus amou o povo antes de qualquer resposta. É por isso que o amor de Deus não se compra (Is 55.1, "sem dinheiro e sem preço"), e é esse amor que deu a Corrie ten Boom força para perdoar um antigo guarda de Ravensbrück, o campo de concentração onde a sua irmã Betsie morreu.</p></div></div></li>
+    <li><button aria-expanded="false"><svg viewBox="0 0 44 44"><path d="M8 30h28M14 30V18M22 30V14M30 30V18"/><path d="M22 8v2"/></svg><span class="t"><small>Versículo 1</small>Um amor que liberta</span></button>
+      <div class="corpo"><div><p>"Do Egito chamei o meu filho." Deus viu, ouviu e desceu para livrar o povo (Êx 3.7-8). O amor dele não é prisão. A pregação usa uma imagem para isso: o amor é um laço, e não um nó. Experimente:</p>
+        <div class="laco">
+          <div class="par">
+            <div><svg viewBox="0 0 120 110" id="svg-laco"><path id="p-laco" d="M60 58c-14-18-40-22-40-6s26 12 40 6c14-6 40-10 40 6s-26 12-40-6M60 58l-14 34M60 58l14 34"/></svg><div class="legenda">Laço</div></div>
+            <div><svg viewBox="0 0 120 110" id="svg-no"><path id="p-no" d="M10 62C30 62 38 36 56 36C74 36 76 64 60 68C44 72 38 50 52 44C66 38 82 52 88 60C92 66 102 64 112 60"/></svg><div class="legenda">Nó</div></div>
+          </div>
+          <div style="text-align:center;margin-top:10px"><button class="botao leve" id="btn-puxar">Puxar a ponta</button></div>
+          <p class="resultado" id="laco-resultado" aria-live="polite"></p>
+        </div>
+        <p>Com filhos pequenos, o "não" basta. Quando crescem, é preciso explicar e ganhar o coração, porque as pessoas ouvem quem elas amam.</p></div></div></li>
+    <li><button aria-expanded="false"><svg viewBox="0 0 44 44"><path d="M12 36l4-8 6 2 4-8 6 2"/><circle cx="32" cy="12" r="5"/></svg><span class="t"><small>Versículo 3</small>Um amor que protege</span></button>
+      <div class="corpo"><div><p>"Ensinei a andar a Efraim; tomei-os nos meus braços." Deus ensina a andar, carrega no colo e cura quem se fere. Proteger é diferente de superproteger: "como a águia desperta a sua ninhada e voeja sobre os seus filhotes, estende as asas e, tomando-os, os leva sobre elas" (Dt 32.11). Ela tira os filhotes do ninho, e não os deixa sozinhos.</p><p>Para pais de filhos que se afastaram: o povo de Deus também era "inclinado a desviar-se" (v. 7). Se você cumpriu o seu papel, não carregue a culpa. Ore e confie na semente plantada.</p></div></div></li>
+    <li><button aria-expanded="false"><svg viewBox="0 0 44 44"><path d="M6 22c8-10 16 10 24 0s8-4 8-4"/><circle cx="38" cy="18" r="3"/></svg><span class="t"><small>Versículo 4</small>Um amor que atrai</span></button>
+      <div class="corpo"><div><p>"Atraí-os com cordas humanas, com laços de amor." Deus não precisava de nada, e mesmo assim deseja estar com o seu povo. Jesus atraiu Nicodemos, a samaritana, os cegos. Uma casa onde se ama assim puxa os filhos para perto, sem força e sem medo.</p></div></div></li>
+    <li><button aria-expanded="false"><svg viewBox="0 0 44 44"><path d="M8 18h28M14 18c0 8 4 14 8 14s8-6 8-14"/><path d="M22 10v-4"/></svg><span class="t"><small>Versículo 4</small>Um amor que alivia</span></button>
+      <div class="corpo"><div><p>"Fui para eles como quem alivia o jugo." O amor de Deus tira peso, a começar pela culpa do pecado. Jesus repete o convite: "Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos aliviarei" (Mt 11.28). "Bendito seja o Senhor que, dia a dia, leva o nosso fardo!" (Sl 68.19).</p></div></div></li>
+    <li><button aria-expanded="false"><svg viewBox="0 0 44 44"><path d="M10 26h24c0 7-5 12-12 12s-12-5-12-12z"/><path d="M18 18c0-3 2-3 2-6M24 18c0-3 2-3 2-6"/></svg><span class="t"><small>Versículo 4</small>Um amor que serve</span></button>
+      <div class="corpo"><div><p>"Me inclinei para dar-lhes de comer." O Deus que governa as nações se abaixa como uma mãe que insiste para o filho provar a comida nova. Amor que não serve fica na teoria.</p></div></div></li>
+  </ul>
+
+  <div class="ponto"><div class="n">3</div><div>
+    <h3>O custo: amar é ser vulnerável</h3>
+    <p>Israel respondeu com afastamento, idolatria e descaso (v. 2-3). Deus amou sem garantia de retorno. C. S. Lewis, em <em>Os quatro amores</em>, diz que amar qualquer coisa é ser vulnerável. Na família, amar com generosidade inclui aceitar que nem sempre seremos amados na mesma medida.</p>
+  </div></div>
+</section>
+
+<section id="conversar">
+  <div class="ref">Parte 4</div>
+  <h2>Conversar</h2>
+  <p>Escolham três ou quatro. Comece pelo texto e termine em casa.</p>
+  <h3 class="nivel">Sobre o texto</h3>
+  <ol class="perguntas">
+    <li>No v. 3, eles "não atinaram" que Deus os curava. Por que é tão fácil não perceber o cuidado de quem nos ama?</li>
+    <li>O que muda quando você lê "eu de mim mesmo os amarei" sabendo que o amor de Deus não depende de você?</li>
+  </ol>
+  <h3 class="nivel">Sobre nós</h3>
+  <ol class="perguntas" start="3">
+    <li>Das seis etapas (sem condição, liberta, protege, atrai, alivia, serve), qual você mais viu Deus fazer na sua vida? Conte um momento.</li>
+    <li>Onde o amor costuma virar troca, um "eu faço se você fizer"?</li>
+    <li>Laço ou nó: em que relação você está segurando alguém com força demais?</li>
+  </ol>
+  <h3 class="nivel">Sobre a minha casa</h3>
+  <ol class="perguntas" start="6">
+    <li>Quem na sua família é mais difícil de amar sem esperar retorno? O que seria um passo pequeno em direção a essa pessoa?</li>
+    <li>Pense em proteger e superproteger. Em que você precisa soltar um pouco, e em que precisa estar mais perto?</li>
+  </ol>
+</section>
+
+<section id="cuidar">
+  <div class="ref">Parte 5</div>
+  <h2>Cuidar uns dos outros</h2>
+  <p>Agora o grupo se divide em duplas ou trios, de preferência do mesmo sexo. Cada um escolhe uma das frases abaixo e completa em voz alta. Quem ouve não dá conselho: só agradece e ora pelo que ouviu.</p>
+  <div class="partilha">
+    <div class="cartao"><strong>Estou carregando sozinho...</strong><p>Um peso que você ainda não entregou a Deus nem contou a ninguém.</p></div>
+    <div class="cartao"><strong>Preciso pedir ou dar perdão a...</strong><p>Não precisa dizer o nome. Basta dizer que existe.</p></div>
+    <div class="cartao"><strong>Quero amar melhor...</strong><p>Uma pessoa da sua casa e um jeito concreto de servir a ela nesta semana.</p></div>
+  </div>
+  <details>
+    <summary>Como ouvir bem</summary>
+    <ul>
+      <li>Olhe para quem fala e não prepare a sua resposta enquanto a pessoa ainda está falando.</li>
+      <li>Não tente consertar. Uma frase como "obrigado por confiar isso a mim" basta.</li>
+      <li>Ore usando as palavras que a pessoa usou, e não as suas conclusões sobre ela.</li>
+      <li>Combine de perguntar durante a semana: "como foi aquilo que você contou?"</li>
+    </ul>
+  </details>
+  <div class="cuidado">Se alguém contar de violência, abuso ou risco dentro de casa, agradeça a confiança e procure o pastor ainda nesta semana, com a pessoa. Perdoar não significa voltar a um lugar onde há perigo.</div>
+</section>
+
+<section class="pratica" id="levar">
+  <div class="ref">Parte 6</div>
+  <h2>Levar para casa</h2>
+  <p>Nesta semana, faça um gesto de generosidade para alguém da sua família sem contar a ninguém e sem esperar que a pessoa perceba.</p>
+  <p class="grande">"Eu de mim mesmo os amarei." Oseias 14.4</p>
+  <p>Leiam juntos esse versículo no começo do próximo encontro e contem como foi.</p>
+</section>
+
+<section id="rever" data-no>
+  <h2>Para rever a pregação</h2>
+  <ul class="trechos">
+    <li><a href="https://www.youtube.com/watch?v=SV1QgxXVIrA&t=1320s" target="_blank" rel="noopener">A pregação inteira</a><span>41 minutos, a partir de 22:00 no vídeo</span></li>
+    <li><a href="https://www.youtube.com/watch?v=SV1QgxXVIrA&t=1380s" target="_blank" rel="noopener">Jesus me ama, isso eu sei</a><span>Karl Barth e o cântico de criança</span></li>
+    <li><a href="https://www.youtube.com/watch?v=SV1QgxXVIrA&t=2280s" target="_blank" rel="noopener">O guarda que pediu perdão</a><span>Corrie ten Boom e o amor ao inimigo</span></li>
+    <li><a href="https://www.youtube.com/watch?v=SV1QgxXVIrA&t=3395s" target="_blank" rel="noopener">O fardo que ele tira</a><span>O amor que alivia e o amor que serve</span></li>
+  </ul>
+</section>
+
+<footer data-no>
+  <p>Estudo preparado a partir da pregação "Generosidade no amor", do Rev. Fábio Bezerra, em Oseias 11.1-4 e 14.4. Texto bíblico na Almeida Revista e Atualizada.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* verbos de Deus */
+  var esc = document.getElementById('escritura'), bv = document.getElementById('btn-verbos');
+  bv.addEventListener('click', function(){
+    var on = esc.classList.toggle('verbos');
+    bv.setAttribute('aria-pressed', on);
+    bv.textContent = on ? 'Esconder o que Deus faz' : 'Mostrar o que Deus faz';
+  });
+
+  /* etapas do filho que cresce */
+  document.querySelectorAll('#cresce > li > button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var li = b.parentNode, on = !li.classList.contains('aberto');
+      li.classList.toggle('aberto', on);
+      b.setAttribute('aria-expanded', on);
+      requestAnimationFrame(desenhaFio);
+      setTimeout(desenhaFio, 400);
+    });
+  });
+
+  /* laço e nó: o laço se solta, o nó aperta */
+  var pl = document.getElementById('p-laco'), pn = document.getElementById('p-no'),
+      bp = document.getElementById('btn-puxar'), res = document.getElementById('laco-resultado'), solto = false;
+  var LACO = pl.getAttribute('d'), RETO = 'M60 58c-14 0-40 0-40 0s26 0 40 0c14 0 40 0 40 0s-26 0-40 0M60 58l-48 0M60 58l48 0';
+  var NO = pn.getAttribute('d'), APERTADO = 'M10 62C30 62 46 52 56 52C64 52 64 61 58 62C52 63 50 57 56 55C64 52 80 58 88 60C92 66 102 64 112 60';
+  function anima(p, de, para, ms){
+    if (reduz) { p.setAttribute('d', para); return; }
+    var a = de.match(/-?\d*\.?\d+/g).map(Number), z = para.match(/-?\d*\.?\d+/g).map(Number), t0 = null, i = 0;
+    var partes = para.split(/-?\d*\.?\d+/g);
+    function f(t){
+      t0 = t0 || t; var k = Math.min(1,(t-t0)/ms); k = k<.5 ? 2*k*k : 1-Math.pow(-2*k+2,2)/2;
+      var s = partes[0]; for (i=0;i<z.length;i++) s += (a[i]+(z[i]-a[i])*k).toFixed(2) + partes[i+1];
+      p.setAttribute('d', s); if (k<1) requestAnimationFrame(f);
+    }
+    requestAnimationFrame(f);
+  }
+  bp.addEventListener('click', function(){
+    if (!solto){
+      anima(pl, LACO, RETO, 900); anima(pn, NO, APERTADO, 600);
+      res.textContent = 'O laço se desfez sem rasgar nada. O nó apertou mais.';
+      bp.textContent = 'Amarrar de novo';
+    } else {
+      anima(pl, RETO, LACO, 900); anima(pn, APERTADO, NO, 600);
+      res.textContent = '';
+      bp.textContent = 'Puxar a ponta';
+    }
+    solto = !solto;
+  });
+
+  /* o fio que desce pela página */
+  var pag = document.getElementById('pagina'), svg = document.getElementById('fio'),
+      traco = document.getElementById('fio-traco'), pontos = [], len = 0;
+  function desenhaFio(){
+    var alvos = [].slice.call(pag.querySelectorAll('section:not([data-no]) h2'));
+    var h = pag.scrollHeight, top0 = pag.getBoundingClientRect().top + scrollY;
+    svg.setAttribute('height', h); svg.setAttribute('viewBox', '0 0 44 ' + h); svg.style.height = h + 'px';
+    var inicio = document.querySelector('.abertura').offsetHeight;
+    var ys = alvos.map(function(e){ return e.getBoundingClientRect().top + scrollY - top0 + 18; });
+    var d = 'M22 ' + inicio, y0 = inicio;
+    ys.forEach(function(y, i){
+      var m = (y0 + y)/2, x = i % 2 ? 14 : 30;
+      d += ' C' + x + ' ' + m + ' ' + (44 - x) + ' ' + m + ' 22 ' + y;
+      y0 = y;
+    });
+    traco.setAttribute('d', d);
+    pontos.forEach(function(c){ c.remove(); });
+    pontos = ys.map(function(y){
+      var c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx', 22); c.setAttribute('cy', y); c.setAttribute('r', 6);
+      svg.appendChild(c); c._y = y; return c;
+    });
+    len = traco.getTotalLength();
+    traco.style.strokeDasharray = len;
+    rola();
+  }
+  function rola(){
+    var top0 = pag.getBoundingClientRect().top + scrollY;
+    var nivel = scrollY + innerHeight * 0.62 - top0;
+    if (reduz) nivel = Infinity;
+    var desenhado = 0;
+    /* comprimento do traço até a altura "nivel" */
+    if (nivel > 0){
+      var lo = 0, hi = len;
+      for (var k = 0; k < 18; k++){ var mid = (lo+hi)/2; if (traco.getPointAtLength(mid).y < nivel) lo = mid; else hi = mid; }
+      desenhado = lo;
+    }
+    traco.style.strokeDashoffset = len - desenhado;
+    pontos.forEach(function(c){ c.classList.toggle('preso', c._y < nivel); });
+  }
+  addEventListener('scroll', rola, {passive:true});
+  addEventListener('resize', desenhaFio);
+  addEventListener('load', desenhaFio);
+  if (document.fonts) document.fonts.ready.then(desenhaFio);
+  desenhaFio();
+})();
+</script>
+</body>
+</html>

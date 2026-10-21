@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Times de agentes para igrejas</title>
+<meta name="description" content="Uma igreja com IA a serviço do Reino: o que acontece quando um time de agentes entra, e o pastor continua pregando.">
+<link rel="icon" href="assets/img/md-icone.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="barra" aria-label="Navegação">
+  <a href="#inicio" data-v="inicio">Início</a>
+  <a href="#times" data-v="times">Times</a>
+  <span id="barra-time"></span>
+</nav>
+<nav id="pontos" aria-label="Cenas"></nav>
+
+<!-- ================= INÍCIO: visão geral ================= -->
+<div class="vista" id="v-inicio">
+  <section class="dobra" id="i1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <svg class="cena" id="i1-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="txt t1">
+        <h1 id="i1-h">Domingo de manhã,<br>o pastor prega.</h1>
+        <p id="i1-p">Hoje a mesma pregação também chega a quem está no celular, longe do templo. Ele continua com a vocação dele. Uma equipe cuida do que vem depois.</p>
+      </div>
+      <div class="dica" id="i1-dica">Deslize para cima<i></i></div>
+    </div>
+  </section>
+  <section class="dobra" id="i2">
+    <div class="palco">
+      <div class="fundo"></div>
+      <div class="txt t1 i2t">
+        <h2 id="i2-h">Uma igreja com IA a serviço do Reino</h2>
+        <p id="i2-p">Cinco times de agentes trabalham nos bastidores, cada um num ministério. O pastor prega, a liderança cuida das pessoas, e o trabalho repetido da semana tem quem faça.</p>
+        <a class="cta" id="i2-cta" href="#times">Conhecer os times</a>
+      </div>
+      <svg class="cena" id="i2-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TIMES ================= -->
+<div class="vista" id="v-times" hidden>
+  <section class="dobra" id="t1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="t1-tit">Os times</h2>
+      <p class="sub" id="t1-sub">Escolha um time e veja a igreja mudar.</p>
+      <div class="cartoes" id="t1-cartoes"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TIME DA PALAVRA ================= -->
+<div class="vista" id="v-palavra" data-nome="Time da Palavra" hidden>
+
+  <!-- 1. a chamada -->
+  <section class="dobra" id="p1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <div class="txt p1t">
+        <span class="kicker" id="p1-k">Time da Palavra</span>
+        <h2 id="p1-h">Sua pregação de domingo chega a quem não estava no culto?</h2>
+        <p id="p1-p">Cada sermão vira cortes, estudo e posts para a semana inteira, e quem assistiu encontra o caminho até a igreja.</p>
+        <div class="equipe" id="p1-eq"></div>
+      </div>
+      <div class="orbita" id="p1-orb">
+        <img class="nucleo" src="assets/img/sermao.jpg" alt="Culto de domingo">
+        <img class="sat" src="assets/vid/c1-jesus-me-ama.jpg" alt="">
+        <img class="sat" src="assets/img/carr-1.webp" alt="">
+        <img class="sat" src="assets/img/infografico.webp" alt="">
+        <img class="sat" src="assets/vid/c3-o-fardo-que-ele-tira.jpg" alt="">
+        <img class="sat" src="assets/img/carr-3.webp" alt="">
+      </div>
+      <div class="dica" id="p1-dica">Deslize para ver o caminho<i></i></div>
+    </div>
+  </section>
+
+  <!-- 2. o que sai da pregação -->
+  <section class="dobra" id="p2">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="p2-tit">O que sai de uma pregação</h2>
+      <svg class="liga" id="p2-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="fonte" id="p2-fonte"><img src="assets/img/sermao.jpg" alt="Culto no YouTube"><span class="pl"></span><b>Culto de domingo</b></div>
+      <div class="assina big" id="p2-gid" style="left:520px;top:665px"><img src="assets/avatares/gideao.webp" alt=""><b>Gideão Garimpo</b><i>acha os trechos</i></div>
+
+      <div class="assina" id="p2-eli" style="left:860px;top:410px"><img src="assets/avatares/eliseu.webp" alt=""><b>Eliseu Edição</b></div>
+      <div class="assina" id="p2-luc" style="left:1360px;top:410px"><img src="assets/avatares/lucas.webp" alt=""><b>Lucas Lição</b></div>
+      <div class="assina" id="p2-mar" style="left:1720px;top:410px"><img src="assets/avatares/marcos.webp" alt=""><b>Marcos Mensagem</b></div>
+
+      <div class="prod cortes" id="p2-cortes" style="left:640px;top:530px">
+        <button class="corte" data-v="c1-jesus-me-ama"><img src="assets/vid/c1-jesus-me-ama.jpg" alt="Corte: Jesus me ama"><span class="pl"></span></button>
+        <button class="corte" data-v="c2-o-guarda-pediu-perdao"><img src="assets/vid/c2-o-guarda-pediu-perdao.jpg" alt="Corte: O guarda que pediu perdão"><span class="pl"></span></button>
+        <button class="corte" data-v="c3-o-fardo-que-ele-tira"><img src="assets/vid/c3-o-fardo-que-ele-tira.jpg" alt="Corte: O fardo que ele tira"><span class="pl"></span></button>
+        <em>Cortes legendados</em>
+      </div>
+      <button class="prod estudo" id="p2-estudo" style="left:1140px;top:530px">
+        <div class="folha"><small>Estudo do grupo</small><strong>Oseias 11</strong><u></u><u></u><u></u><u class="c"></u><u></u><u></u></div>
+        <em>Estudo do grupo</em>
+      </button>
+      <button class="prod info" id="p2-info" style="left:1380px;top:530px">
+        <img src="assets/img/infografico.webp" alt="Resumo ilustrado da mensagem">
+        <em>Resumo ilustrado</em>
+      </button>
+      <button class="prod carr" id="p2-carr" style="left:1620px;top:530px">
+        <span class="leque"><img src="assets/img/carr-3.webp" alt=""><img src="assets/img/carr-2.webp" alt=""><img src="assets/img/carr-1.webp" alt="Carrossel"></span>
+        <em>Carrossel</em>
+      </button>
+
+      <div class="selo-rute" id="p2-rute"><img src="assets/avatares/rute.webp" alt=""><span><b>Rute Revisão</b> conferiu tudo com o que foi pregado</span></div>
+      <div class="cap" id="p2-cap">Toque para ver o material de verdade.</div>
+    </div>
+  </section>
+
+  <!-- 3. para todas as redes -->
+  <section class="dobra" id="p3">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="p3-tit">Para todas as redes</h2>
+      <p class="sub" id="p3-sub">Uma pregação, cinco canais.</p>
+      <svg class="liga" id="p3-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="pilha" id="p3-pilha">
+        <img src="assets/vid/c2-o-guarda-pediu-perdao.jpg" alt=""><img src="assets/img/infografico.webp" alt=""><img src="assets/img/carr-1.webp" alt="">
+      </div>
+      <div class="assina big" id="p3-dor" style="left:640px;top:680px"><img src="assets/avatares/dorcas.webp" alt=""><b>Dorcas Disparo</b><i>da Comunicação</i></div>
+      <div class="canais" id="p3-canais"></div>
+      <div class="voo" id="p3-voo"></div>
+    </div>
+  </section>
+
+  <!-- 4. o mês preenchido -->
+  <section class="dobra" id="p4">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="p4-tit">O mês inteiro agendado</h2>
+      <p class="sub" id="p4-sub">Cada domingo vira um pacote. O mês fica cheio.</p>
+      <div class="fila" id="p4-fila"></div>
+      <div class="assina" id="p4-dor" style="left:280px;top:1090px"><img src="assets/avatares/dorcas.webp" alt=""><b>Dorcas Disparo</b></div>
+      <div class="mes" id="p4-mes"><div class="mes-cab">Outubro</div><div class="sem"></div><div class="grade"></div></div>
+      <div class="conta" id="p4-conta"><b>0</b> publicações agendadas</div>
+    </div>
+  </section>
+
+  <!-- 5. gente chegando -->
+  <section class="dobra" id="p5">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="p5-tit">Gente chegando à igreja</h2>
+      <p class="sub" id="p5-sub">Quem viu, escreve. A Lídia responde. A igreja vai ao encontro.</p>
+      <svg class="liga" id="p5-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="msgs" id="p5-msgs"></div>
+      <div class="assina big lidia" id="p5-lid" style="left:1040px;top:640px"><img src="assets/avatares/lidia.webp" alt=""><b>Lídia Lar</b><i>responde na hora</i></div>
+      <div class="cel visita" id="p5-cel">
+        <div class="cel-cab"><svg viewBox="0 0 48 32" aria-hidden="true"><circle cx="14" cy="10" r="6"/><circle cx="34" cy="10" r="6"/><path d="M2 30c1-8 6-12 12-12s11 4 12 12M22 30c1-8 6-12 12-12s11 4 12 12"/></svg><span>Time de visita</span></div>
+        <div class="avisos" id="p5-avisos"></div>
+      </div>
+      <div class="conta" id="p5-conta"><b>0</b> pessoas pediram contato esta semana <small>(exemplo)</small></div>
+      <div class="fecho" id="p5-fecho">
+        <p>O pastor continuou pregando. A igreja ganhou portas abertas a semana inteira.</p>
+        <a class="cta" href="#times">Ver os outros times</a>
+        <a class="cta sec" href="#inicio">Voltar ao início</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TIME DO ENSINO ================= -->
+<div class="vista" id="v-ensino" data-nome="Time do Ensino" hidden>
+
+  <!-- 1. a chamada -->
+  <section class="dobra" id="e1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <div class="txt p1t">
+        <span class="kicker" id="e1-k">Time do Ensino</span>
+        <h2 id="e1-h">A EBD depende de um professor que prepara tudo sozinho na véspera?</h2>
+        <p class="frase" id="e1-f">Uma trilha inteira para cada classe.</p>
+        <div class="equipe" id="e1-eq"></div>
+      </div>
+      <div class="torre" id="e1-torre"></div>
+      <div class="dica" id="e1-dica">Deslize para ver<i></i></div>
+    </div>
+  </section>
+
+  <!-- 2. como é hoje -->
+  <section class="dobra" id="e2">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="e2-tit">Hoje, na escola dominical</h2>
+      <p class="sub" id="e2-sub">Uma revista genérica, ou um livro dividido entre professores.</p>
+      <svg class="cena" id="e2-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <p class="frase-baixo" id="e2-f">Cada um aplica do seu jeito. O fio se perde.</p>
+    </div>
+  </section>
+
+  <!-- 3. o líder dá a essência -->
+  <section class="dobra" id="e3">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="e3-tit">O líder dá a essência</h2>
+      <p class="sub" id="e3-sub">Toque numa classe e veja o curso nascer.</p>
+      <svg class="liga" id="e3-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div id="e3-mats"></div>
+      <div id="e3-classes"></div>
+      <div id="e3-chips"></div>
+      <div class="assina big" id="e3-pri" style="left:960px;top:520px"><img src="assets/avatares/priscila.webp" alt=""><b>Priscila Programa</b><i>orquestra e entrega</i></div>
+      <div class="assina" id="e3-apo" style="left:700px;top:880px"><img src="assets/avatares/apolo.webp" alt=""><b>Apolo Aula</b></div>
+      <div class="assina" id="e3-sar" style="left:880px;top:880px"><img src="assets/avatares/sara.webp" alt=""><b>Sara Slide</b></div>
+      <div class="assina" id="e3-cal" style="left:1060px;top:880px"><img src="assets/avatares/calebe.webp" alt=""><b>Calebe Catecismo</b></div>
+      <div class="assina" id="e3-nat" style="left:1240px;top:880px"><img src="assets/avatares/natanael.webp" alt=""><b>Natanael Norma</b></div>
+      <div class="curso" id="e3-curso"></div>
+    </div>
+  </section>
+
+  <!-- 4. cada classe, sua trilha -->
+  <section class="dobra" id="e4">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="e4-tit">Cada classe, sua trilha</h2>
+      <svg class="liga fio" id="e4-fio" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div id="e4-trilhas"></div>
+      <p class="frase-baixo" id="e4-f">Cada classe com sua cara. A mesma teologia.</p>
+      <div class="selo-rute" id="e4-nat"><img src="assets/avatares/natanael.webp" alt=""><span><b>Teologia conferida</b></span></div>
+    </div>
+  </section>
+
+  <!-- 5. domingo na sala -->
+  <section class="dobra" id="e5">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="e5-tit">Domingo, na sala da EBD</h2>
+      <svg class="cena" id="e5-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <img class="tela-ebd" id="e5-tela" src="assets/ebd/capa-08.webp" alt="Slide do encontro">
+      <div class="frases" id="e5-frases">
+        <p>Os professores recebem material para se preparar.</p>
+        <p>Teologia conferida, aula a aula.</p>
+        <p>Uma aula bem amarrada na outra.</p>
+        <p>Conteúdo e visual no estilo da sua igreja.</p>
+      </div>
+      <div class="fecho" id="e5-fecho" style="left:130px;top:1000px">
+        <a class="cta" href="#times">Ver os outros times</a>
+        <a class="cta sec" href="#inicio">Voltar ao início</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= modal ================= -->
+<div id="modal" aria-hidden="true">
+  <div class="caixa" id="m-caixa"></div>
+  <button class="fecha" aria-label="Fechar">&times;</button>
+</div>
+
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/ebd/ebd.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
