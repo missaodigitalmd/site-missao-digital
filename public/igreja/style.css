@@ -339,3 +339,249 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .mat b { font-size: 21px; font-weight: 800; line-height: 1.2; }
 .mat.nota { background: #2e2616; border-color: var(--ac); }
 .mat-rot { position: absolute; z-index: 4; left: 60px; top: 292px; font-size: 20px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--apagado); }
+
+/* cuidado, cena 3: do primeiro oi ao grupo */
+.etapa { position: absolute; z-index: 4; top: 690px; width: 300px; margin-left: -150px; text-align: center; }
+.etapa .ic { width: 88px; height: 88px; margin: 0 auto 14px; display: grid; place-items: center; border-radius: 50%; background: #262626; border: 3px solid #ffffff22; }
+.etapa .ic svg { width: 54px; height: 54px; fill: none; stroke: var(--o1); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.etapa .ic text { fill: var(--texto); stroke: none; font-size: 14px; font-weight: 800; }
+.etapa small { display: block; font-size: 21px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--o1); }
+.etapa b { display: block; margin-top: 8px; font-size: 27px; font-weight: 700; line-height: 1.3; }
+#c3 .frase-baixo { top: 1030px; }
+
+/* cuidado, cena 4: o boletim da noite */
+.grupo { position: absolute; z-index: 4; left: 110px; width: 520px; height: 96px; padding: 0 18px; border-radius: 20px; background: #2a2a2a; border: 2px solid #ffffff1c; display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 16px; }
+.grupo .ini { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; font-weight: 800; color: #1a1a1a; }
+.grupo div { min-width: 0; }
+.grupo b { display: block; font-size: 24px; font-weight: 800; }
+.grupo div span { display: block; font-size: 19px; font-weight: 500; color: var(--apagado); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.grupo em { min-width: 44px; height: 36px; padding: 0 10px; border-radius: 999px; background: #25d366; color: #111; font-style: normal; font-size: 18px; font-weight: 800; display: grid; place-items: center; }
+.relogio { position: absolute; z-index: 5; left: 860px; top: 390px; width: 200px; text-align: center; font-size: 60px; font-weight: 800; color: var(--o1); font-variant-numeric: tabular-nums; }
+.cel.boletim { top: 300px; height: 720px; }
+.aviso small { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.aviso.acao { border-left-color: #ff5a3c; } .aviso.acao small { color: #ff7a5c; }
+.aviso.grat { border-left-color: #25d366; } .aviso.grat small { color: #25d366; }
+
+/* cuidado, cena 5: a semana do pastor */
+.agenda { position: absolute; z-index: 4; left: 130px; top: 340px; width: 1000px; display: flex; flex-direction: column; gap: 16px; }
+.compromisso { height: 118px; padding: 0 26px; border-radius: 22px; background: #2a2a2a; border: 2px solid #ffffff1c; display: flex; align-items: center; gap: 22px; }
+.compromisso .dia-c { flex: none; width: 76px; height: 76px; border-radius: 50%; background: var(--grad); color: #1a1a1a; display: grid; place-items: center; font-size: 22px; font-weight: 800; text-transform: uppercase; }
+.compromisso svg { flex: none; width: 54px; height: 54px; fill: none; stroke: var(--o1); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.compromisso b { display: block; font-size: 30px; font-weight: 800; }
+.compromisso div span { display: block; margin-top: 4px; font-size: 21px; font-weight: 600; color: var(--apagado); }
+.lema { position: absolute; z-index: 5; left: 1200px; top: 640px; width: 700px; }
+.lema p { font-size: 62px; font-weight: 800; line-height: 1.15; }
+.lema p + p { color: var(--o1); }
+
+/* comunicação: peças na identidade da igreja de exemplo */
+.peca { position: absolute; z-index: 3; overflow: hidden; border-radius: 14px; background: var(--pb); color: var(--pt); display: flex; flex-direction: column; justify-content: flex-end; padding: 1em 1.1em; text-align: left; box-shadow: 0 16px 34px rgba(0,0,0,.55); }
+.peca .mk { position: absolute; left: .9em; top: .9em; width: 2.6em; height: 2.6em; color: var(--pt); }
+.peca .faixa { position: absolute; right: 0; top: 0; width: 38%; height: .55em; background: var(--pa); }
+.peca small { font-size: .85em; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--pa); }
+.peca strong { font-size: 1.7em; font-weight: 900; line-height: 1.02; margin-top: .15em; }
+.peca span { font-size: .95em; font-weight: 600; opacity: .85; margin-top: .35em; }
+.duo { display: flex; gap: 14px; align-items: flex-end; }
+.duo .peca { position: relative; }
+.legenda-m, .zap-m { width: 280px; border-radius: 16px; font-size: 18px; line-height: 1.4; font-weight: 500; }
+.legenda-m { padding: 16px 18px; background: #f2f2f2; color: #222; }
+.legenda-m b { font-weight: 800; }
+.zap-m { margin-top: 14px; padding: 14px 16px; background: #1f3d2c; color: #e8f5ec; border-radius: 4px 16px 16px 16px; }
+.pagina-m { width: 200px; height: 360px; border-radius: 26px; border: 5px solid #3a3a3a; background: #f6efe4; overflow: hidden; color: #1d2b53; }
+.pg-cab { display: flex; align-items: center; gap: 8px; padding: 12px 12px; background: #1d2b53; color: #f6efe4; font-size: 13px; font-weight: 800; --pa: #ff6b4a; }
+.pg-cab .mk { width: 24px; height: 24px; }
+.pg-corpo { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.pg-corpo small { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #ff6b4a; }
+.pg-corpo b { font-size: 19px; font-weight: 900; line-height: 1; }
+.pg-corpo span { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+.pg-corpo u { text-decoration: none; display: block; padding: 8px 10px; border-radius: 8px; border: 2px solid #1d2b5333; font-size: 12px; color: #1d2b5399; font-weight: 600; }
+.pg-corpo i { margin-top: 4px; font-style: normal; text-align: center; padding: 10px; border-radius: 999px; background: #ff6b4a; color: #fff; font-size: 14px; font-weight: 800; }
+.pedido { position: absolute; z-index: 4; left: 90px; top: 470px; width: 380px; padding: 22px 24px; border-radius: 22px; background: #2a2a2a; border: 2px solid #ffffff1c; }
+.pedido small { font-size: 17px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.pedido p { margin-top: 10px; font-size: 23px; line-height: 1.4; font-weight: 600; }
+.pedido span { display: block; margin-top: 8px; font-size: 16px; color: #8a8a8a; text-align: right; }
+.aprova { position: absolute; z-index: 5; left: 1580px; top: 580px; padding: 14px 22px; border-radius: 999px; background: var(--grad); color: #1a1a1a; font-size: 22px; font-weight: 800; white-space: nowrap; }
+.agd { position: absolute; z-index: 5; left: 1630px; top: 880px; display: flex; flex-direction: column; gap: 10px; }
+.agd span { padding: 10px 16px; border-radius: 14px; background: #2a2a2a; border: 2px solid #ffffff1c; font-size: 19px; font-weight: 700; white-space: nowrap; }
+
+/* comunicação, como é hoje */
+.papel-avisos { position: absolute; z-index: 4; left: 160px; top: 340px; width: 520px; padding: 34px 36px; border-radius: 10px; background: #f4efe6; color: #2a2a2a; box-shadow: 0 16px 34px rgba(0,0,0,.55); }
+.papel-avisos b { display: block; font-size: 30px; font-weight: 800; margin-bottom: 14px; }
+.papel-avisos ol { list-style: decimal inside; }
+.papel-avisos li { height: 54px; display: flex; align-items: center; font-size: 23px; font-weight: 600; border-bottom: 1px solid #00000014; }
+.papel-avisos li i { font-style: normal; margin-right: 10px; color: #fe7003; font-weight: 800; }
+.papel-avisos ol { list-style: none; }
+.lendo { position: absolute; left: 20px; right: 20px; top: 84px; height: 54px; border-radius: 8px; background: #ffac1355; }
+.cel.zap { left: 1220px; top: 320px; height: 680px; padding: 22px 18px; }
+.ini-g { width: 44px; height: 44px; border-radius: 50%; background: #25d366; color: #111; display: grid; place-items: center; font-size: 22px; }
+.cel.zap .cel-cab span:nth-child(2) { flex: 1; font-size: 24px; }
+.cel.zap .cel-cab em { font-style: normal; min-width: 44px; height: 36px; padding: 0 10px; border-radius: 999px; background: #25d366; color: #111; font-size: 18px; display: grid; place-items: center; }
+.janela { height: 540px; overflow: hidden; }
+.conversa { display: flex; flex-direction: column; gap: 10px; }
+.zm { align-self: flex-start; max-width: 340px; padding: 10px 14px; border-radius: 4px 14px 14px 14px; background: #262626; font-size: 18px; line-height: 1.35; font-weight: 500; }
+.zm b { display: block; font-size: 15px; color: #25d366; margin-bottom: 2px; }
+.arte-ruim { display: block; width: 220px; padding: 18px 10px; text-align: center; background: linear-gradient(135deg, #ff00cc, #ffee00 50%, #00ccff); color: #1a1a1a; font: italic 900 30px/1 'Comic Sans MS', cursive; text-shadow: 2px 2px 0 #fff; }
+
+/* comunicação, o bairro */
+.pauta { position: absolute; z-index: 5; max-width: 270px; padding: 10px 16px; border-radius: 14px; background: #2a2a2a; border: 2px solid #ffffff22; font-size: 20px; font-weight: 700; line-height: 1.25; }
+.pauta-card { position: absolute; z-index: 4; left: 1200px; top: 330px; width: 660px; padding: 24px 28px; border-radius: 22px; background: #2e2616; border: 2px solid var(--o1); }
+.pauta-card small { font-size: 17px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.pauta-card b { display: block; margin-top: 8px; font-size: 34px; font-weight: 800; line-height: 1.15; }
+.pauta-card p { margin-top: 12px; font-size: 23px; font-weight: 600; line-height: 1.4; color: #dcdcdc; }
+.lema.mini { left: 1515px; top: 680px; width: 330px; }
+.lema.mini p { font-size: 40px; }
+/* ligações desenhadas dentro de uma cena, e não numa camada .liga */
+.cena path.lig { fill: none; stroke: #4a4a4a; stroke-width: 4; stroke-linecap: round; }
+.cena path.lig.on { stroke: url(#grad-l); }
+.cena circle.pulso { fill: #ffac13; }
+
+/* abertura em 3D: a tela fica fixa atrás das duas cenas do Início, e o texto rola por cima */
+#ab-canvas { position: fixed; inset: 0; width: 100vw; height: 100dvh; display: block; z-index: 0; background: #15120e; }
+.ab-veu { position: fixed; inset: 0; z-index: 1; pointer-events: none; background:
+  linear-gradient(90deg, rgba(14,12,9,.88) 0%, rgba(14,12,9,.55) 34%, rgba(14,12,9,0) 58%),
+  radial-gradient(ellipse 80% 75% at 62% 52%, transparent 55%, rgba(0,0,0,.55) 100%); }
+#v-inicio .dobra { z-index: 2; }
+.ab-t1, .ab-t2 { left: 130px; width: 860px; }
+.ab-t1 { top: 300px; }
+.ab-t1 h1 { font-size: 80px; line-height: 1.06; }
+.ab-t1 h1 span { display: block; white-space: nowrap; }
+.txt .ab-frase { margin-top: 46px; font-size: 50px; white-space: nowrap; font-weight: 800; color: var(--o1); line-height: 1.15; }
+.ab-t2 { top: 190px; }
+.ab-t2 h2 { font-size: 66px; line-height: 1.08; }
+.ab-verso { margin-top: 40px; padding: 4px 0 4px 30px; border-left: 6px solid var(--o1); font-size: 36px; font-style: italic; font-weight: 600; line-height: 1.4; color: #f3e6cf; }
+.ab-verso cite { display: block; margin-top: 12px; font-size: 24px; font-style: normal; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--o1); }
+.ab-t2 p { font-size: 34px; color: #d9d2c8; }
+body.sem3d #ab-canvas { background: radial-gradient(ellipse at 65% 55%, #3a2a12, #15120e 70%); }
+@media (orientation: portrait) {
+  .ab-veu { background: linear-gradient(180deg, rgba(14,12,9,.9) 0%, rgba(14,12,9,.6) 38%, rgba(14,12,9,0) 60%); }
+}
+
+/* comunicação v2: o feed da igreja */
+.ig-cel { position: absolute; z-index: 4; left: 1280px; top: 210px; width: 470px; padding: 70px 20px 30px; border-radius: 52px; background: #111; border: 8px solid #333; box-shadow: 0 30px 70px rgba(0,0,0,.6); perspective: 900px; }
+.ig-cel::before { content: ""; position: absolute; left: 50%; top: 24px; width: 120px; height: 22px; margin-left: -60px; border-radius: 12px; background: #000; }
+.ig-cel.grande { left: 700px; top: 300px; width: 500px; }
+.ig-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.casa { aspect-ratio: 4 / 5; transform-style: preserve-3d; }
+.casa.vazia { border: 2px dashed #ffffff22; border-radius: 8px; }
+.tile { width: 100%; height: 100%; aspect-ratio: 4 / 5; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; color: #fff; font-family: "Montserrat", sans-serif; }
+.tile b { font-size: 19px; font-weight: 900; line-height: 1.08; }
+.tile i { font-style: normal; font-size: 13px; font-weight: 600; opacity: .85; margin-top: 4px; }
+.tile .cor { position: absolute; left: 10px; top: 8px; font-size: 13px; font-weight: 800; opacity: .9; }
+.t-av { background: linear-gradient(160deg, #7a5fa8, #4f3c78); }
+.t-den { background: linear-gradient(160deg, #3557a8, #1d2b53); }
+.t-fora { background: linear-gradient(160deg, #ff8a3c, #fe5a03); }
+.legenda-feed { position: absolute; z-index: 5; left: 700px; top: 1030px; width: 520px; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 21px; font-weight: 700; }
+.legenda-feed span { display: flex; align-items: center; gap: 8px; }
+.legenda-feed span::before { content: ""; width: 20px; height: 20px; border-radius: 5px; }
+.legenda-feed .den::before { background: #3557a8; } .legenda-feed .fora::before { background: #fe7003; } .legenda-feed .av::before { background: #6b5b8c; }
+.ig-perfil { position: absolute; z-index: 4; left: 130px; top: 320px; width: 600px; height: 760px; padding: 26px; border-radius: 30px; background: #141414; border: 2px solid #ffffff1a; overflow: hidden; }
+.ig-topo { display: flex; gap: 18px; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #ffffff1a; margin-bottom: 14px; }
+.ig-av { width: 76px; height: 76px; border-radius: 50%; background: linear-gradient(135deg, #feda75, #d62976, #4f5bd5); flex: none; }
+.ig-topo b { display: block; font-size: 24px; font-weight: 800; }
+.ig-topo span { font-size: 17px; color: var(--apagado); }
+.ig-janela { height: 590px; overflow: hidden; }
+.balao-v { position: absolute; z-index: 6; left: 1240px; top: 470px; padding: 20px 28px; border-radius: 26px 26px 26px 6px; background: #f2f2f2; color: #222; font-size: 34px; font-weight: 800; }
+.conversas { position: absolute; z-index: 4; left: 1270px; top: 330px; width: 600px; display: flex; flex-direction: column; gap: 14px; }
+.cv { align-self: flex-start; max-width: 520px; padding: 14px 20px; border-radius: 6px 22px 22px 22px; background: #2a2a2a; font-size: 22px; line-height: 1.35; font-weight: 600; }
+.cv small { display: block; font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--o1); margin-bottom: 3px; }
+.cv.lid { align-self: flex-end; border-radius: 22px 6px 22px 22px; background: var(--grad); color: #1a1a1a; }
+.cv.lid small { color: #5a2a00; }
+.papo { position: absolute; z-index: 4; left: 90px; top: 548px; width: 560px; display: flex; flex-direction: column; gap: 14px; }
+.pp { max-width: 470px; padding: 12px 18px; font-size: 21px; line-height: 1.35; font-weight: 600; border-radius: 22px; }
+.pp small { display: block; font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+.pp.p { align-self: flex-end; background: #2e2e2e; border-radius: 22px 6px 22px 22px; }
+.pp.p small { color: var(--apagado); }
+.pp.j { align-self: flex-start; background: #3a2a14; border: 2px solid var(--o1); border-radius: 6px 22px 22px 22px; }
+.pp.j small { color: var(--o1); }
+.pacote-ev { position: absolute; z-index: 4; left: 740px; top: 330px; width: 1120px; display: grid; grid-template-columns: 420px 250px 1fr; gap: 26px 30px; align-items: end; }
+.pv { position: relative; }
+.pv em { display: block; margin-top: 12px; font-style: normal; font-size: 20px; color: var(--apagado); font-weight: 600; }
+.pv em b { color: var(--texto); font-weight: 800; }
+.pv.ondas { grid-column: 1 / -1; }
+.onda-linha { --p: 0; position: relative; display: flex; justify-content: space-between; padding-top: 30px; }
+.onda-linha::before { content: ""; position: absolute; left: 0; right: 0; top: 40px; height: 4px; background: #3a3a3a; }
+.onda-linha::after { content: ""; position: absolute; left: 0; top: 40px; height: 4px; width: calc(var(--p) * 100%); background: var(--grad); }
+.marco { position: relative; z-index: 2; width: 180px; text-align: center; }
+.marco i { display: block; width: 24px; height: 24px; margin: 0 auto 12px; border-radius: 50%; background: var(--o1); border: 4px solid #212121; }
+.marco b { display: block; font-size: 22px; font-weight: 800; }
+.marco span { font-size: 19px; color: var(--apagado); font-weight: 600; }
+.pv.vol { align-self: center; padding: 22px 24px; border-radius: 22px; background: #2a2a2a; border: 2px solid #ffffff1c; }
+.vol-n { display: block; font-size: 26px; font-weight: 700; color: var(--apagado); }
+.vol-n b { font-size: 60px; font-weight: 900; color: var(--o1); }
+.pv.vol > span:nth-child(2) { display: block; font-size: 21px; font-weight: 700; }
+.inscr { position: absolute; z-index: 4; left: 130px; top: 320px; width: 920px; padding: 28px 34px; border-radius: 26px; background: #2a2a2a; border: 2px solid #ffffff1c; }
+.inscr > small { font-size: 18px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--o1); }
+.inscr-n { display: flex; align-items: baseline; gap: 14px; margin-top: 4px; }
+.inscr-n b { font-size: 96px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.inscr-n span { font-size: 30px; font-weight: 700; color: var(--apagado); }
+.barra-i { height: 16px; margin-top: 16px; border-radius: 8px; background: #3a3a3a; overflow: hidden; }
+.barra-i i { display: block; height: 100%; width: 0; background: var(--grad); }
+.inscr-meta { display: block; margin-top: 10px; font-size: 20px; color: var(--apagado); font-weight: 600; }
+.inscr-meta small { color: #7c7c7c; }
+.chegam { position: absolute; z-index: 4; left: 130px; top: 610px; width: 920px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ch { padding: 14px 18px; border-radius: 18px; background: #262626; border-left: 6px solid var(--o1); }
+.ch .tipo { font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.ch b { display: block; font-size: 22px; font-weight: 800; margin-top: 2px; }
+.ch p { font-size: 19px; color: #d6d6d6; font-weight: 500; line-height: 1.35; }
+#m5-lema p { font-size: 50px; }
+#m5-lema p:nth-child(2) { color: var(--texto); }
+#m5-lema p:nth-child(3) { color: var(--o1); }
+
+/* governo, cena 1: os lembretes do pastor ganham dono */
+.g1t { left: 130px; top: 110px; width: 1660px; }
+.g1t h2 { font-size: 76px; }
+.g1-rot { position: absolute; z-index: 5; left: 130px; top: 360px; font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--apagado); }
+.g-bil { position: absolute; z-index: 5; left: 0; top: 0; width: 360px; min-height: 92px; padding: 14px 20px 14px 22px; border-radius: 10px; background: #f4efe6; color: #2a2a2a; font-size: 25px; font-weight: 700; line-height: 1.25; box-shadow: 0 12px 26px rgba(0,0,0,.5); border: 2px solid transparent; display: flex; align-items: center; gap: 14px; }
+.g-bil i { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--grad); color: #1a1a1a; font-style: normal; font-size: 20px; font-weight: 900; display: grid; place-items: center; }
+#g1 .frase-baixo { top: 960px; }
+#g1 .frase-baixo span { color: var(--o1); }
+.g-dono { z-index: 4; }
+
+/* governo, cena 2: o mesmo item em três pautas */
+.g-pauta { width: 500px; padding: 28px 30px; }
+.g-pauta li { position: relative; padding: 0 8px; border-radius: 6px; }
+.g-selo { position: absolute; right: 6px; padding: 4px 10px; border-radius: 999px; background: #fe7003; color: #fff; font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.g-bolha { position: absolute; z-index: 5; left: 1270px; top: 845px; width: 520px; padding: 16px 20px; border-radius: 4px 20px 20px 20px; background: #262626; border: 2px solid #ffffff1c; font-size: 24px; font-weight: 600; line-height: 1.35; }
+.g-bolha b { display: block; font-size: 17px; color: #25d366; margin-bottom: 4px; }
+.g-bolha span { display: block; margin-top: 8px; font-size: 18px; font-weight: 700; color: #8a8a8a; text-align: right; }
+
+/* governo, cena 3: da ata ao feito */
+.g-ata { position: absolute; z-index: 4; left: 130px; top: 360px; width: 430px; height: 560px; padding: 28px 30px; border-radius: 10px; background: #f4efe6; color: #2a2a2a; box-shadow: 0 16px 34px rgba(0,0,0,.55); }
+.g-ata small { font-size: 15px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fe7003; }
+.g-ata b { display: block; margin-top: 8px; font-size: 28px; font-weight: 800; line-height: 1.15; }
+.g-ata > span { display: block; margin-top: 6px; font-size: 18px; font-weight: 600; color: #8a8172; }
+.g-linhas { margin-top: 26px; display: flex; flex-direction: column; gap: 22px; }
+.g-linhas i { display: block; height: 8px; border-radius: 4px; background: #c9c2b6; }
+.g-col { position: absolute; z-index: 3; top: 360px; width: 380px; height: 600px; border-radius: 22px; border: 2px dashed #ffffff1c; padding: 14px 20px; }
+.g-col span { font-size: 22px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.g-dec { position: absolute; z-index: 4; width: 380px; height: 90px; padding: 12px 20px; border-radius: 18px; background: #2a2a2a; border: 2px solid #ffffff1c; }
+.g-dec b { display: block; font-size: 22px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-dec span { display: block; margin-top: 4px; font-size: 18px; font-weight: 600; color: var(--apagado); }
+.g-dec em { position: absolute; right: 12px; top: -14px; padding: 3px 10px; border-radius: 999px; background: #25d366; color: #111; font-style: normal; font-size: 14px; font-weight: 800; }
+.g-placar { position: absolute; z-index: 5; left: 1480px; top: 965px; width: 380px; padding: 14px 22px; border-radius: 22px; background: #2e2616; border: 2px solid var(--o1); }
+.g-placar span { font-size: 17px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.g-placar b { display: block; font-size: 52px; font-weight: 900; line-height: 1.05; }
+.g-placar b em { font-style: normal; display: inline-block; color: var(--o1); font-variant-numeric: tabular-nums; }
+.g-placar small { font-size: 18px; font-weight: 600; color: var(--apagado); }
+
+/* governo, cena 5: uma agenda e o ano */
+.g-cal { position: absolute; z-index: 4; left: 130px; top: 330px; width: 980px; }
+.g-cal-cab { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 8px; }
+.g-cal-cab b { grid-column: 1 / -1; font-size: 30px; font-weight: 800; margin-bottom: 6px; }
+.g-cal-cab span { font-size: 17px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--apagado); text-align: center; }
+.g-cal-grade { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.g-dia { height: 104px; padding: 6px 8px; border-radius: 12px; background: #262626; border: 2px solid #ffffff14; display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+.g-dia small { font-size: 17px; font-weight: 800; color: var(--apagado); }
+.g-ev { display: block; padding: 4px 6px; border-radius: 6px; background: var(--grad); color: #1a1a1a; font-size: 14px; font-weight: 800; line-height: 1.2; }
+.g-ev.choque { background: #ff5a3c; color: #fff; }
+.g-meses { position: absolute; z-index: 4; left: 130px; top: 975px; width: 980px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+.g-meses i { height: 50px; border-radius: 12px; background: #262626; border: 2px solid #ffffff1c; display: grid; place-items: center; font-style: normal; font-size: 18px; font-weight: 800; text-transform: uppercase; }
+.g-aviso { position: absolute; z-index: 5; left: 130px; top: 1050px; width: 980px; padding: 12px 18px; border-radius: 14px; background: #262626; border-left: 6px solid #ff5a3c; font-size: 22px; font-weight: 700; }
+.g-rel { position: absolute; z-index: 4; left: 1200px; top: 500px; width: 660px; padding: 22px 26px; border-radius: 22px; background: #2e2616; border: 2px solid var(--o1); }
+.g-rel small { font-size: 17px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.g-rel > div { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+.g-rel p { font-size: 21px; font-weight: 700; color: #dcdcdc; display: flex; align-items: baseline; gap: 12px; }
+.g-rel p b { font-size: 46px; font-weight: 900; color: var(--texto); font-variant-numeric: tabular-nums; }
+.g-rel > span { display: block; margin-top: 10px; font-size: 17px; color: #8a8a8a; font-weight: 600; }
+#g5-lema { left: 1200px; top: 830px; width: 680px; }
+#g5-lema p { font-size: 46px; }
+#g2 .sub, #g3 .sub, #g4 .sub, #g5 .sub { max-width: 1660px; }

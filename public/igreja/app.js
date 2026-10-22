@@ -24,7 +24,7 @@ document.body.insertAdjacentHTML("afterbegin", `<svg width="0" height="0" style=
 // ligação que se desenha, e um pulso de luz que corre por ela
 function ligacoes(svg, rotas) {
   return rotas.map(d => {
-    const p = el("path", { d }, svg);
+    const p = el("path", { d, class: "lig" }, svg);
     const L = p.getTotalLength();
     p.style.strokeDasharray = L; p.style.strokeDashoffset = L; p.dataset.L = L;
     return p;
@@ -55,7 +55,7 @@ const CLASSE = {
   adultos: { nome: "Adultos", tema: "Cosmovisão cristã", bg: "#0f3b33", ink: "#f3ead8", ac: "#d4af37", papel: "#efe7d4", ff: "Georgia, 'Times New Roman', serif",
     titulos: ["Criação", "Queda", "Redenção", "Trabalho", "Família", "Tecnologia", "Arte", "Cidade", "Missão"],
     textos: ["Gênesis 1", "Gênesis 3", "Romanos 3", "Gênesis 2.15", "Efésios 5", "Gênesis 11", "Êxodo 31", "Jeremias 29", "Mateus 28"],
-    mats: [["biblia", "Bíblia"], ["livro", "Livro-base do líder"], ["livro", "Confissão de Westminster"], ["artigo", "Artigos de cosmovisão"], ["nota", "Essência: toda a vida sob Cristo"]] },
+    mats: [["biblia", "Bíblia"], ["livro", "Livro-base do líder"], ["livro", "Confissão de fé da igreja"], ["artigo", "Artigos de cosmovisão"], ["nota", "Essência: toda a vida sob Cristo"]] },
   casais: { nome: "Casais", tema: "Família e fé", bg: "#f6e3d7", ink: "#5a2323", ac: "#c4553f", papel: "#ffffff", ff: "Georgia, 'Times New Roman', serif",
     titulos: ["Aliança", "Diálogo", "Perdão", "Finanças", "Filhos", "Serviço", "Tempo", "Crises", "Legado"],
     textos: ["Gênesis 2.24", "Tiago 1.19", "Colossenses 3.13", "Provérbios 3.9", "Deuteronômio 6.6-7", "Gálatas 5.13", "Efésios 5.16", "Salmo 46", "Salmo 78.4"],
@@ -129,16 +129,27 @@ const FALAS = {
   eliseu: ["Time da Palavra", "Sou o Eliseu Edição.", "Pego os trechos do Gideão e faço vídeos verticais, com legenda, enquadramento no rosto e trilha baixa.", "Sua igreja posta cortes toda semana, sem um voluntário editando de madrugada."],
   lucas: ["Time da Palavra", "Eu sou o Lucas Lição.", "Da mesma pregação eu escrevo o estudo dos grupos, o devocional da semana e um resumo do sermão.", "Os grupos estudam o que foi pregado, e a igreja inteira caminha no mesmo texto."],
   rute: ["Time da Palavra", "Sou a Rute Revisão.", "Antes de qualquer coisa sair, eu confiro com o que foi pregado: nenhum corte tira frase do contexto, nenhum estudo inventa.", "O senhor publica tranquilo, porque a mensagem continua sendo a sua."],
-  marcos: ["Comunicação", "Eu sou o Marcos Mensagem.", "Escrevo as legendas, os carrosséis e os convites, numa linguagem que chega a quem ainda não conhece a igreja.", "O que foi pregado vira conversa nas redes, e não só aviso."],
-  dorcas: ["Comunicação", "Sou a Dorcas Disparo.", "Organizo o calendário, agendo em cada rede e mando pelo WhatsApp para os membros. Só publico depois do seu sim.", "A semana inteira tem conteúdo, e ninguém da equipe precisa lembrar de postar."],
+  marcos: ["Time da Comunicação", "Eu sou o Marcos Mensagem.", "Escrevo as legendas, os carrosséis e os convites, numa linguagem que chega a quem ainda não conhece a igreja.", "O que foi pregado vira conversa nas redes, e não só aviso."],
+  bezalel: ["Time da Comunicação", "Sou o Bezalel Branding.", "Crio a identidade da igreja uma vez, com marca, cores e letras, e desenho as artes de cada ministério, de cada ciclo da EBD e de cada evento.", "A igreja aparece com a mesma cara em tudo, do boletim ao Instagram."],
+  hirao: ["Time da Comunicação", "Eu sou o Hirão Hotsite.", "Cuido do site da igreja e faço as páginas de evento, de inscrição e o link da bio.", "Quem quer ir ao acampamento se inscreve em um minuto, pelo celular."],
+  filipe: ["Time da Comunicação", "Sou o Filipe Farol.", "Acompanho o que o bairro está falando e trago pautas que fazem ponte com o evangelho e com o que a igreja já faz.", "A igreja fala com quem mora perto sobre o que importa para essa pessoa."],
+  tabita: ["Time da Comunicação", "Eu sou a Tabita Tom.", "Antes de qualquer peça sair, confiro a voz, o tom e a marca da igreja. Nada sai com erro, com exagero ou fora do jeito de vocês.", "Tudo o que a igreja publica tem o jeito da igreja."],
+  josue: ["Projetos", "Oi, pastor. Eu sou o Josué Jornada.", "Quando o senhor quiser começar um congresso, um acampamento ou o aniversário da igreja, eu faço as perguntas, proponho caminhos de tema e monto o plano de trás para frente, com o que cada time faz.", "O senhor tem com quem pensar o projeto, e nada fica esquecido."],
+  dorcas: ["Time da Comunicação", "Sou a Dorcas Disparo.", "Organizo o calendário, agendo em cada rede e mando pelo WhatsApp para os membros. Só publico depois do seu sim.", "A semana inteira tem conteúdo, e ninguém da equipe precisa lembrar de postar."],
   priscila: ["Time do Ensino", "Oi! Eu sou a Priscila Programa.", "O líder de cada classe me entrega o tema, os livros-base e a essência do que quer ensinar. Eu monto o ciclo e distribuo o trabalho para o time.", "Cada classe recebe o curso inteiro, com começo, meio e fim."],
   apolo: ["Time do Ensino", "Sou o Apolo Aula.", "Escrevo cada encontro e o guia do professor, com o texto bíblico no centro e a aplicação no fim.", "O professor chega no domingo sabendo o que ensinar e como conduzir a turma."],
   sara: ["Time do Ensino", "Eu sou a Sara Slide.", "Monto os slides e o material de apoio de cada aula, sempre na identidade daquela classe.", "A turma vê uma apresentação bonita e coerente do primeiro ao último encontro."],
-  calebe: ["Time do Ensino", "Sou o Calebe Catecismo.", "Cuido das versões para crianças e adolescentes, da classe de catecúmenos e do plano de leitura.", "Os pequenos aprendem a mesma verdade, no tamanho certo para a idade deles."],
+  calebe: ["Time do Ensino", "Sou o Calebe Catecismo.", "Cuido das versões para crianças e adolescentes, da classe de novos membros e do plano de leitura.", "Os pequenos aprendem a mesma verdade, no tamanho certo para a idade deles."],
   natanael: ["Time do Ensino", "Eu sou o Natanael Norma.", "Leio tudo antes de chegar ao professor e confiro com a confissão de fé da igreja.", "O conselho pode confiar: o que se ensina na EBD é o que a igreja confessa."],
-  lidia: ["Cuidado", "Oi, eu sou a Lídia Lar.", "Atendo quem chega pelo link da bio a qualquer hora: horários, endereço, ministério infantil. Quando a pessoa quer visitar, aviso o acolhimento na hora.", "Quem bate à porta da igreja pela internet nunca fica sem resposta."],
+  lidia: ["Time do Cuidado", "Oi, eu sou a Lídia Lar.", "Atendo quem chega pelo link da bio a qualquer hora: horários, endereço, ministério infantil. Quando a pessoa quer visitar, aviso o acolhimento na hora.", "Quem bate à porta da igreja pela internet nunca fica sem resposta."],
+  isabel: ["Time do Cuidado", "Oi, pastor. Eu sou a Isabel Integra.", "Acompanho cada visitante depois do primeiro domingo: as boas-vindas, o convite para um grupo, a classe de novos membros. E lembro o líder do grupo de ligar em até 36 horas.", "Quem visitou a igreja não se perde entre o domingo e o grupo."],
+  epafras: ["Time do Cuidado", "Sou o Epafras Escuta.", "Leio os grupos da igreja que o senhor autorizou, e não respondo em nenhum. À noite mando um boletim curto: o que pede a sua ação, o que um líder precisa ver e os motivos de gratidão.", "O senhor sabe da irmã internada no mesmo dia, e não na semana seguinte."],
+  ana: ["Time do Cuidado", "Eu sou a Ana Amparo.", "Cuido da agenda pastoral: enfermos, enlutados, aniversários e pedidos de oração. Cada nome vira uma visita, uma ligação ou uma mensagem marcada na sua semana.", "Ninguém da igreja passa sozinho por um momento difícil."],
+  tercio: ["Time do Governo", "Oi, pastor. Eu sou o Tércio Tinta.", "O secretário me manda as notas ou a gravação da reunião, e no dia seguinte ele tem o rascunho da ata e o quadro de decisões, com dono e prazo. Também mantenho o rol de membros em dia e monto o relatório do ano.", "Nenhuma decisão do conselho fica só na memória de alguém."],
+  zacarias: ["Time do Governo", "Sou o Zacarias Zelo.", "Cada decisão do conselho tem um dono. Eu lembro essa pessoa antes do prazo, com educação, e conto ao senhor o que andou e o que parou.", "A próxima reunião começa pelo que foi feito, e não pelo que foi esquecido."],
+  febe: ["Time do Governo", "Sou a Febe Folhinha.", "Cuido da agenda oficial da igreja. Quando alguém tenta marcar no mesmo salão e horário, eu aviso na hora. Os outros agentes consultam a mesma agenda.", "A igreja inteira olha para um calendário só."],
 };
-const NOMES = { gideao: "Gideão Garimpo", eliseu: "Eliseu Edição", lucas: "Lucas Lição", rute: "Rute Revisão", marcos: "Marcos Mensagem", dorcas: "Dorcas Disparo", priscila: "Priscila Programa", apolo: "Apolo Aula", sara: "Sara Slide", calebe: "Calebe Catecismo", natanael: "Natanael Norma", lidia: "Lídia Lar" };
+const NOMES = { gideao: "Gideão Garimpo", eliseu: "Eliseu Edição", lucas: "Lucas Lição", rute: "Rute Revisão", marcos: "Marcos Mensagem", dorcas: "Dorcas Disparo", priscila: "Priscila Programa", apolo: "Apolo Aula", sara: "Sara Slide", calebe: "Calebe Catecismo", natanael: "Natanael Norma", lidia: "Lídia Lar", josue: "Josué Jornada", bezalel: "Bezalel Branding", hirao: "Hirão Hotsite", filipe: "Filipe Farol", tabita: "Tabita Tom", isabel: "Isabel Integra", epafras: "Epafras Escuta", ana: "Ana Amparo", tercio: "Tércio Tinta", zacarias: "Zacarias Zelo", febe: "Febe Folhinha" };
 function abreAgente(id) {
   fecha();
   const [min, ...falas] = FALAS[id];
@@ -165,116 +176,18 @@ document.addEventListener("click", e => {
   if (m && FALAS[m[1]]) { e.stopPropagation(); abreAgente(m[1]); }
 }, true);
 
-// ================= INÍCIO 1: domingo =================
-function i1() {
-  const svg = $("#i1-cena");
-  const cruz = el("g", { opacity: 0 }, svg);
-  el("rect", { x: 1384, y: 120, width: 32, height: 380, rx: 6, fill: "none", stroke: "#ffac13", "stroke-width": 3, opacity: .5 }, cruz);
-  el("rect", { x: 1300, y: 200, width: 200, height: 32, rx: 6, fill: "none", stroke: "#ffac13", "stroke-width": 3, opacity: .5 }, cruz);
-  const pastor = el("g", { opacity: 0 }, svg);
-  el("circle", { cx: 1400, cy: 470, r: 48, fill: "#3b3b3b", stroke: "#ffac13", "stroke-width": 3, "stroke-opacity": .7 }, pastor);
-  el("path", { d: "M1310 640 C1310 560 1350 530 1400 530 C1450 530 1490 560 1490 640 Z", fill: "#333", stroke: "#ffac13", "stroke-width": 3, "stroke-opacity": .55 }, pastor);
-  el("path", { d: "M1290 640 H1510 L1540 780 H1260 Z", fill: "#262626", stroke: "#fe7003", "stroke-width": 4, "stroke-opacity": .8 }, pastor);
-  const livro = el("path", { d: "M1360 640 L1400 628 L1440 640 L1440 664 L1400 652 L1360 664 Z", fill: "#ffac13", opacity: .85 }, pastor);
-  const cab = [];
-  [[850, 24, 8], [925, 28, 8], [1010, 33, 9], [1110, 38, 9]].forEach(([y, r, n], i) => {
-    for (let j = 0; j < n; j++) {
-      const x = 990 + j * (r * 3.3 + 8) + (i % 2) * 24;
-      const g = el("g", { opacity: 0 }, svg);
-      el("circle", { cx: x, cy: y, r, fill: "#2a2a2a", stroke: "#ffac13", "stroke-width": 2, "stroke-opacity": .35 }, g);
-      el("path", { d: `M${x - r * 1.4} ${y + r * 3} Q${x} ${y + r * .8} ${x + r * 1.4} ${y + r * 3} Z`, fill: "#262626" }, g);
-      cab.push(g);
-    }
-  });
-  const cels = [];
-  for (let i = 0; i < 12; i++) {
-    const g = el("g", { opacity: 0 }, svg), w = 56 + rnd() * 24, hh = w * 1.75;
-    el("rect", { x: -w / 2, y: -hh / 2, width: w, height: hh, rx: 12, fill: "#1a1a1a", stroke: "#ffac13", "stroke-width": 3 }, g);
-    el("path", { d: "M-8 -12 L12 0 L-8 12 Z", fill: i % 3 === 0 ? "#ff0033" : "#ffac13" }, g);
-    cels.push({ g, x: 1000 + rnd() * 880, y0: 800 - rnd() * 80, s: .7 + rnd() * .5 });
-  }
-  const celulares = gsap.timeline({ paused: true });
-  cels.forEach((c, i) => {
-    gsap.set(c.g, { x: c.x, y: c.y0, scale: c.s });
-    celulares.fromTo(c.g, { y: c.y0, opacity: 0 }, { y: -80, duration: 7 + rnd() * 3, ease: "none", repeat: -1, keyframes: { opacity: [0, .9, .9, 0] } }, i * .55);
-  });
-  const vida = gsap.timeline({ paused: true })
-    .to(pastor, { y: -6, duration: 2.2, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
-    .to(livro, { opacity: .5, duration: 1.4, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
-    .to($("#i1-dica i"), { y: 8, duration: .8, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
-  gsap.set(["#i1-h", "#i1-p", "#i1-dica"], { autoAlpha: 0 });
-  const tl = gsap.timeline({ paused: true })
-    .fromTo("#i1-h", foco, { ...nitido, duration: 1 })
-    .to(cruz, { opacity: 1, duration: 1.4 }, .2)
-    .fromTo(pastor, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.1, ease: "back.out(1.4)" }, .5)
-    .to(cab, { opacity: 1, duration: .5, stagger: .05 }, 1)
-    .fromTo("#i1-p", foco, { ...nitido, duration: .9 }, 2)
-    .add(() => celulares.play(), 3)
-    .to("#i1-dica", { autoAlpha: 1, duration: .6 }, 4.5);
-  return { enter() { tl.restart(); vida.play(); }, leave() { tl.pause(0); celulares.pause(0); vida.pause(0); } };
-}
-
-// ================= INÍCIO 2: a igreja acende =================
-const SALAS = [
-  { nome: "Palavra", efeito: ["a pregação alcança", "a semana inteira"], ag: "gideao", x: 1090, y: 500, w: 660, hgt: 230 },
-  { nome: "Ensino", efeito: ["aulas prontas", "e revisadas"], ag: "priscila", x: 1090, y: 760, w: 150, hgt: 260 },
-  { nome: "Comunicação", efeito: ["a igreja fala", "com clareza"], ag: "bezalel", x: 1260, y: 760, w: 150, hgt: 260 },
-  { nome: "Cuidado", efeito: ["ninguém fica", "sem resposta"], ag: "lidia", x: 1430, y: 760, w: 150, hgt: 260 },
-  { nome: "Governo", efeito: ["decisões", "cumpridas"], ag: "tercio", x: 1600, y: 760, w: 150, hgt: 260 },
-];
-function i2() {
-  const svg = $("#i2-cena");
-  const predio = el("g", {}, svg);
-  const tracos = [
-    el("path", { d: "M1040 470 L1420 250 L1800 470", fill: "none", stroke: "#ffac13", "stroke-width": 5, "stroke-linejoin": "round" }, predio),
-    el("path", { d: "M1060 470 V1050 H1780 V470", fill: "none", stroke: "#5a5a5a", "stroke-width": 4 }, predio),
-    el("path", { d: "M1420 250 V150 M1385 185 H1455", fill: "none", stroke: "#ffac13", "stroke-width": 6, "stroke-linecap": "round" }, predio),
-  ];
-  tracos.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
-  const defs = el("defs", {}, svg);
-  const salas = SALAS.map((s, i) => {
-    const g = el("g", { opacity: 0 }, svg);
-    const r = el("rect", { x: s.x, y: s.y, width: s.w, height: s.hgt, rx: 14, fill: "#262626", stroke: "#444", "stroke-width": 3 }, g);
-    const grande = i === 0, cx = grande ? s.x + 90 : s.x + s.w / 2, cy = grande ? s.y + s.hgt / 2 : s.y + 62, R = grande ? 56 : 40;
-    const cp = el("clipPath", { id: "sala" + i }, defs); el("circle", { cx, cy, r: R }, cp);
-    el("image", { href: `assets/avatares/${s.ag}.webp`, x: cx - R, y: cy - R, width: R * 2, height: R * 2, "clip-path": `url(#sala${i})` }, g);
-    el("circle", { cx, cy, r: R, fill: "none", stroke: "#ffac13", "stroke-width": 3 }, g);
-    const tx = grande ? s.x + 180 : cx, anchor = grande ? "start" : "middle", ty = grande ? s.y + 100 : s.y + 140;
-    const t = el("text", { x: tx, y: ty, "text-anchor": anchor, fill: "#f2f2f2", "font-size": grande ? 44 : 19, "font-weight": 800 }, g); t.textContent = s.nome;
-    s.efeito.forEach((linha, k) => { const e = el("text", { x: tx, y: ty + (grande ? 46 : 32) + k * (grande ? 36 : 26), "text-anchor": anchor, fill: "#b9b9b9", "font-size": grande ? 30 : 18, "font-weight": 500 }, g); e.textContent = linha; });
-    return { g, r };
-  });
-  // a porta e as pessoas que chegam
-  el("rect", { x: 1385, y: 1035, width: 70, height: 15, rx: 4, fill: "#ffac13", opacity: .8 }, svg);
-  const pessoas = gsap.timeline({ paused: true });
-  for (let i = 0; i < 14; i++) {
-    const lado = i % 2 ? 1 : -1, x0 = 1420 + lado * (420 + rnd() * 260);
-    const p = el("circle", { cx: 0, cy: 0, r: 9, fill: "#ffac13", opacity: 0 }, svg);
-    pessoas.fromTo(p, { attr: { cx: x0, cy: 1120 + rnd() * 40 } }, { attr: { cx: 1420, cy: 1060 }, duration: 5 + rnd() * 2, ease: "none", repeat: -1, keyframes: { opacity: [0, 1, 1, 0] } }, i * .7);
-  }
-  gsap.set(["#i2-h", "#i2-p", "#i2-cta"], { autoAlpha: 0 });
-  const tl = gsap.timeline({ paused: true })
-    .fromTo("#i2-h", foco, { ...nitido, duration: 1 })
-    .to(tracos, { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut", stagger: .2 }, .3)
-    .fromTo("#i2-p", foco, { ...nitido, duration: .9 }, 1.2);
-  salas.forEach((s, i) => {
-    const at = 1.8 + i * .55;
-    tl.fromTo(s.g, { opacity: 0, scale: .9, transformOrigin: "center" }, { opacity: 1, scale: 1, duration: .6, ease: "back.out(1.5)" }, at)
-      .to(s.r, { attr: { fill: "#3a2a12", stroke: "#ffac13" }, duration: .5 }, at + .3);
-  });
-  tl.add(() => pessoas.play(), 3).fromTo("#i2-cta", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .6, ease: "back.out(2)" }, 4.8);
-  const vida = gsap.timeline({ paused: true, repeat: -1 });
-  salas.forEach((s, i) => vida.to(s.r, { attr: { fill: "#4a3312" }, duration: .9, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * 1.2));
-  return { enter() { tl.restart(); gsap.delayedCall(5, () => vida.restart()); }, leave() { tl.pause(0); pessoas.pause(0); vida.pause(0); } };
-}
+// ================= INÍCIO: a abertura em 3D mora no abertura.js =================
+// o módulo carrega depois deste arquivo; se a cena entrar antes, ele pega o pedido pendente
+const ato = n => () => ({ enter() { window.ABERTURA ? window.ABERTURA.ato(n) : (window.ABERTURA_PEND = n); }, leave() {} });
+const i1 = ato(1), i2 = ato(2);
 
 // ================= TIMES =================
 const TIMES = [
   { id: "palavra", nome: "Palavra", rostos: ["gideao", "eliseu", "lucas", "rute"], dor: "Sua pregação de domingo chega a quem não estava no culto?", bem: "Cada sermão vira cortes, estudo e posts para a semana inteira, e quem assistiu encontra o caminho até a igreja." },
   { id: "ensino", nome: "Ensino", rostos: ["priscila", "apolo", "sara", "natanael"], dor: "A EBD depende de um professor que prepara tudo sozinho na véspera?", bem: "O trimestre chega planejado, com aulas, guia do professor e slides, revisados contra a confissão da igreja." },
-  { id: "comunicacao", nome: "Comunicação", rostos: ["bezalel", "marcos", "hirao", "dorcas"], dor: "Os avisos da igreja ficam presos no púlpito e no grupo do WhatsApp?", bem: "Tudo o que sai para fora ganha forma, texto e data, com a identidade da sua igreja." },
+  { id: "comunicacao", nome: "Comunicação", rostos: ["bezalel", "marcos", "hirao", "dorcas"], dor: "O Instagram da sua igreja é um mural de avisos?", bem: "Conteúdo que edifica quem está dentro e conversa com quem está fora. E cada evento sai pronto, da arte à inscrição." },
   { id: "cuidado", nome: "Cuidado", rostos: ["lidia", "isabel", "epafras", "ana"], dor: "Quem visitou a igreja no domingo recebeu uma mensagem durante a semana?", bem: "O visitante é recebido na hora, o acolhimento é avisado e ninguém some sem que o pastor saiba." },
-  { id: "governo", nome: "Governo", rostos: ["tercio", "zacarias", "jetro", "febe"], dor: "As decisões do conselho se perdem entre uma reunião e outra?", bem: "Atas, prazos e escalas em dia, e a liderança livre para cuidar de gente." },
+  { id: "governo", nome: "Governo", rostos: ["tercio", "zacarias", "febe"], dor: "Você ainda é o lembrete da sua igreja?", bem: "O que foi decidido tem dono e prazo, o domingo tem gente e a agenda é uma só. E você volta a pastorear." },
 ];
 function t1() {
   const box = $("#t1-cartoes");
@@ -796,9 +709,713 @@ function e5() {
   return { enter() { tl.restart(); vida.restart(); }, leave() { tl.pause(0); vida.pause(0); } };
 }
 
+// ================= COMUNICAÇÃO: a identidade da igreja de exemplo, que o Bezalel cria =================
+const MARCA = `<svg class="mk" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><path d="M10 54 V30 A20 20 0 0 1 50 30 V54"/><path d="M20 46 A10 10 0 0 1 40 46" stroke="var(--pa)"/><path d="M10 50 Q30 40 50 50"/></svg>`;
+// uma peça na identidade da igreja: cada ministério troca só o acento
+const peca = (k, t, s, w, hh, o = {}) => h(`<div class="peca${o.cls ? " " + o.cls : ""}" style="--pb:${o.pb || "#1d2b53"};--pa:${o.pa || "#ff6b4a"};--pt:${o.pt || "#f6efe4"};width:${w}px;height:${hh}px;font-size:${o.fs || Math.min(w / 16, hh / 12)}px">${MARCA}<i class="faixa"></i><small>${k}</small><strong>${t}</strong><span>${s}</span></div>`);
+
+// ================= COMUNICAÇÃO: o feed da igreja de exemplo =================
+// três tipos de publicação: aviso (o mural de hoje), para dentro (edifica) e para fora (conversa)
+const AVISOS_FEED = [["Culto de jovens", "sábado, 19h30"], ["Santa Ceia", "domingo"], ["Congresso", "inscrições abertas"], ["Chá das mulheres", "dia 12"], ["Aniversário da igreja", "38 anos"], ["Ensaio do coral", "sábado, 16h"], ["Acampamento", "novembro"], ["Culto de oração", "quarta, 20h"], ["EBD", "novo trimestre"], ["Mutirão", "sábado, 8h"], ["Reunião de pais", "domingo"], ["Bazar", "dia 20"]];
+const FEED_VIVO = [
+  ["den", "Devocional da semana", "Salmo 23"], ["fora", "Você também sentiu a chuva de ontem?", "a igreja ajuda"], ["den", "O fardo que ele tira", "corte de domingo"],
+  ["fora", "Enem no domingo", "uma palavra para quem vai prestar"], ["av", "Congresso Inteiro", "inscrições abertas"], ["den", "O Seu Antônio conta", "testemunho"],
+  ["fora", "Primeira vez numa igreja?", "o que esperar"], ["den", "Estudo do grupo", "Oseias 11"], ["fora", "Café na praça", "sábado, 9h"],
+];
+const tile = (tipo, t, s, cor) => `<div class="tile t-${tipo}"><b>${t}</b><i>${s}</i><span class="cor">&#9829; ${cor}</span></div>`;
+
+// ================= COMUNICAÇÃO 1: a chamada =================
+const EQUIPE_COM = [["bezalel", "Bezalel Branding"], ["marcos", "Marcos Mensagem"], ["hirao", "Hirão Hotsite"], ["dorcas", "Dorcas Disparo"], ["filipe", "Filipe Farol"], ["tabita", "Tabita Tom"]];
+function m1() {
+  const eq = $("#m1-eq");
+  EQUIPE_COM.forEach(([id, nome]) => eq.append(h(`<div><img src="assets/avatares/${id}.webp" alt=""><b>${nome}</b></div>`)));
+  const grade = $("#m1-grade");
+  const casas = AVISOS_FEED.slice(0, 9).map(([t, s], i) => { const c = h(`<div class="casa">${tile("av", t, s, 2)}</div>`); grade.append(c); return c; });
+  const vira = (i, html) => gsap.timeline()
+    .to(casas[i], { rotationY: 90, duration: .22, ease: "power2.in" })
+    .add(() => { casas[i].innerHTML = html; })
+    .to(casas[i], { rotationY: 0, duration: .32, ease: "back.out(2)" });
+  const paraAvisos = () => casas.forEach((c, i) => { gsap.set(c, { rotationY: 0 }); c.innerHTML = tile("av", ...AVISOS_FEED[i], 2); });
+  gsap.set(["#m1-k", "#m1-h", "#m1-f", "#m1-dica", "#m1-cel", ...eq.children], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#m1-k", foco, { ...nitido, duration: .6 })
+    .fromTo("#m1-h", foco, { ...nitido, duration: 1 }, .2)
+    .fromTo("#m1-cel", { autoAlpha: 0, y: 80, rotation: 4 }, { autoAlpha: 1, y: 0, rotation: -3, duration: 1, ease: "power3.out" }, .5)
+    .fromTo(casas, { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: .4, ease: "back.out(2)", stagger: .06 }, .9);
+  // o mural vira feed: casa por casa, do aviso para o que edifica e conversa
+  [4, 0, 2, 1, 6, 3, 8, 5, 7].forEach((i, k) => tl.add(() => vira(i, tile(...FEED_VIVO[i], 20 + (i * 17) % 60)), 2.4 + k * .22));
+  tl.fromTo("#m1-f", { autoAlpha: 0, scale: .8, filter: "blur(10px)" }, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: .8, ease: "back.out(2)" }, 3.2)
+    .fromTo(eq.children, { autoAlpha: 0, y: 30, scale: .7 }, { autoAlpha: 1, y: 0, scale: 1, duration: .6, ease: "back.out(1.8)", stagger: .08 }, 3.7)
+    .to("#m1-dica", { autoAlpha: 1, duration: .6 }, 4.6);
+  const vida = gsap.timeline({ paused: true })
+    .to("#m1-cel", { y: -10, rotation: -2, duration: 2.6, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to("#m1-dica i", { y: 8, duration: .8, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return { enter() { paraAvisos(); tl.restart(); dc = gsap.delayedCall(4.5, () => vida.restart()); }, leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); paraAvisos(); } };
+}
+
+// ================= COMUNICAÇÃO 2: hoje, o mural =================
+function m2() {
+  const grade = $("#m2-grade");
+  AVISOS_FEED.concat(AVISOS_FEED).forEach(([t, s], i) => grade.append(h(tile("av", t, s, 1 + (i * 7) % 3))));
+  const svg = $("#m2-cena");
+  const viz = pessoa(svg, "#ffac13");
+  const dedo = el("path", { d: "M0 0 v-60", stroke: "#ffac13", "stroke-width": 10, "stroke-linecap": "round", opacity: 0 }, svg);
+  gsap.set(["#m2-tit", "#m2-sub", "#m2-perfil", "#m2-balao", "#m2-f"], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#m2-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#m2-sub", foco, { ...nitido, duration: .7 }, .3)
+    .fromTo("#m2-perfil", { autoAlpha: 0, x: -80 }, { autoAlpha: 1, x: 0, duration: .8, ease: "power3.out" }, .6)
+    .fromTo(viz, { opacity: 0, x: 1180, y: 900, scale: 3.6 }, { opacity: 1, duration: .6 }, 1.2)
+    // a vizinha rola o feed: aviso, aviso, aviso
+    .to(grade, { y: -560, duration: 3.2, ease: "power1.inOut" }, 1.8)
+    .to(viz, { attr: { stroke: "#8a8a8a" }, duration: 2.4 }, 2.2)
+    .fromTo("#m2-balao", { autoAlpha: 0, scale: .6, y: 20 }, { autoAlpha: 1, scale: 1, y: 0, duration: .5, ease: "back.out(2.4)" }, 4.2)
+    .to("#m2-balao", { autoAlpha: 0, duration: .4 }, 6.2)
+    .to(viz, { x: 2050, opacity: 0, duration: 1.4, ease: "power1.in" }, 6.3)
+    .fromTo("#m2-f", { autoAlpha: 0, y: 30, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 6.6);
+  const vida = gsap.to("#m2-perfil", { y: -8, duration: 2.4, yoyo: true, repeat: -1, ease: "sine.inOut", paused: true });
+  let dc = null;
+  return {
+    enter() { gsap.set(grade, { y: 0 }); gsap.set(viz, { attr: { stroke: "#ffac13" } }); tl.restart(); dc = gsap.delayedCall(7.4, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); },
+  };
+}
+
+// ================= COMUNICAÇÃO 3: o feed que vive =================
+const CONVERSAS = [
+  ["Joana", "comentário", "Que palavra! Mandei para a minha mãe."],
+  ["Paulo", "direct", "Moro aqui perto. Vocês recebem doações para quem perdeu tudo na chuva?"],
+  ["Lídia Lar", "resposta", "Recebemos sim, Paulo! Sábado, das 9h às 12h, no salão. Quer que alguém da diaconia te procure?"],
+  ["Bruna", "direct", "Nunca fui numa igreja. Posso ir de calça jeans?"],
+  ["Lídia Lar", "resposta", "Pode, Bruna! Domingo às 10h. Vou pedir para alguém te esperar na porta."],
+];
+function m3() {
+  const grade = $("#m3-grade"), svg = $("#m3-liga"), conv = $("#m3-conv");
+  const casas = FEED_VIVO.map(() => { const c = h(`<div class="casa vazia"></div>`); grade.append(c); return c; });
+  // quem faz cada publicação: o corte vem da Palavra, o resto da Comunicação
+  const DONO = ["#m3-gid", "#m3-fil", "#m3-gid", "#m3-fil", "#m3-bez", "#m3-mar", "#m3-mar", "#m3-mar", "#m3-bez"];
+  const AY = { "#m3-gid": 420, "#m3-mar": 600, "#m3-bez": 780, "#m3-fil": 960 };
+  const ligas = ligacoes(svg, Object.values(AY).map(y => `M330 ${y} C520 ${y} 560 640 735 640`));
+  const bolhas = CONVERSAS.map(([quem, onde, txt]) => h(`<div class="cv${quem === "Lídia Lar" ? " lid" : ""}"><small>${quem} &middot; ${onde}</small>${txt}</div>`));
+  gsap.set(["#m3-tit", "#m3-sub", "#m3-cel", "#m3-leg", "#m3-lid", ...Object.keys(AY)], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#m3-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#m3-sub", foco, { ...nitido, duration: .7 }, .3)
+    .fromTo("#m3-cel", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: .8, ease: "power3.out" }, .5);
+  Object.keys(AY).forEach((a, k) => pop(tl, a, .8 + k * .12));
+  ligas.forEach((l, k) => desenha(tl, l, 1.2 + k * .1, .6));
+  // cada publicação sai do agente e pousa no feed
+  [4, 0, 1, 2, 3, 5, 6, 7, 8].forEach((i, k) => {
+    const at = 2 + k * .38, dono = DONO[i];
+    tl.fromTo(dono + " img", { scale: 1 }, { scale: 1.15, duration: .15, yoyo: true, repeat: 1 }, at)
+      .add(() => { casas[i].classList.remove("vazia"); casas[i].innerHTML = tile(...FEED_VIVO[i], 20 + (i * 17) % 60); }, at + .1)
+      .fromTo(casas[i], { x: -420, y: AY[dono] - 640, scale: .4, autoAlpha: 0 }, { x: 0, y: 0, scale: 1, autoAlpha: 1, duration: .6, ease: "power3.out" }, at + .1);
+  });
+  tl.fromTo("#m3-leg", { autoAlpha: 0 }, { autoAlpha: 1, duration: .5 }, 5.6);
+  pop(tl, "#m3-lid", 5.8);
+  // e começam as conversas: de quem está dentro e de quem está fora
+  bolhas.forEach((b, k) => tl.add(() => { conv.append(b); gsap.fromTo(b, { autoAlpha: 0, y: 30, scale: .9 }, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: "back.out(2)" }); if (b.classList.contains("lid")) gsap.fromTo("#m3-lid img", { scale: 1 }, { scale: 1.15, duration: .2, yoyo: true, repeat: 1 }); }, 6 + k * .9));
+  const pulsos = ligas.map((l, i) => pulso(svg, l, 1.6, i * .4));
+  const vida = gsap.timeline({ paused: true }).to("#m3-cel", { y: -8, duration: 2.4, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  const limpa = () => { conv.innerHTML = ""; casas.forEach(c => { c.className = "casa vazia"; c.innerHTML = ""; gsap.set(c, { clearProps: "all" }); }); };
+  let dc = null;
+  return {
+    enter() { limpa(); zeraLigas(ligas); tl.restart(); dc = gsap.delayedCall(5.5, () => { pulsos.forEach(p => p.restart(true)); vida.restart(); }); },
+    leave() { dc && dc.kill(); tl.pause(0); pulsos.forEach(p => p.pause(0)); vida.pause(0); limpa(); },
+  };
+}
+
+// ================= COMUNICAÇÃO 4: um projeto inteiro =================
+const PAPO = [
+  ["p", "Vamos pensar o congresso de jovens do ano que vem."],
+  ["j", "Para quem é, quando, quantos jovens e o que eles devem levar para casa?"],
+  ["p", "Jovens da cidade, uns 200. Que a vida inteira é de Cristo."],
+  ["j", "Proponho o tema Inteiro, com Romanos 12.1. Aqui está o plano de 90 dias e o que cada time faz."],
+];
+const ONDAS = [["90 dias", "anúncio"], ["60 dias", "1º lote"], ["30 dias", "preletores"], ["7 dias", "últimas vagas"], ["o dia", "contagem"]];
+function m4() {
+  const papo = $("#m4-papo"), svg = $("#m4-liga");
+  const falas = PAPO.map(([quem, t]) => { const f = h(`<div class="pp ${quem}"><small>${quem === "p" ? "O pastor" : "Josué Jornada"}</small>${t}</div>`); papo.append(f); return f; });
+  $("#m4-arte-in").append(peca("Congresso de jovens", "Inteiro", "Romanos 12.1 · 14 a 16/11", 230, 288, { pa: "#ffd23f" }), peca("Inscrições", "Inteiro", "200 vagas", 130, 231, { pb: "#ff6b4a", pa: "#ffd23f", pt: "#1d2b53", fs: 11 }));
+  $("#m4-pag-in").innerHTML = `<div class="pg-cab">${MARCA}<span>Esperança do Vale</span></div><div class="pg-corpo"><small>Congresso de jovens</small><b>Inteiro</b><span>14 a 16/11 &middot; R$ 120</span><u>Nome</u><u>Idade</u><u>WhatsApp</u><i>Pagar com Pix ou cartão</i></div>`;
+  const linha = $("#m4-linha");
+  const marcos = ONDAS.map(([d, o]) => { const m = h(`<div class="marco"><i></i><b>${d}</b><span>${o}</span></div>`); linha.append(m); return m; });
+  const pvs = $$("#m4-pac .pv"), voln = $("#m4-voln");
+  const [ida] = ligacoes(svg, ["M560 1105 C700 1105 680 470 735 470"]);
+  gsap.set(["#m4-tit", "#m4-sub", "#m4-jos", "#m4-ok", "#m4-tab", ...falas, ...pvs, ...marcos], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#m4-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#m4-sub", foco, { ...nitido, duration: .7 }, .3);
+  pop(tl, "#m4-jos", .6);
+  falas.forEach((f, k) => tl.fromTo(f, { autoAlpha: 0, y: 24, scale: .92 }, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: "back.out(2)" }, 1.1 + k * 1.05));
+  tl.fromTo("#m4-ok", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .5, ease: "back.out(2.5)" }, 5.4);
+  desenha(tl, ida, 5.8, .5);
+  // o pacote se monta: cada parte com o seu dono
+  pvs.forEach((p, k) => tl.fromTo(p, { autoAlpha: 0, y: 50, scale: .85, filter: "blur(8px)" }, { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: .6, ease: "back.out(1.6)" }, 6.2 + k * .35));
+  tl.fromTo(marcos, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .35, ease: "back.out(2.5)", stagger: .18 }, 7.1)
+    .fromTo(".onda-linha", { "--p": 0 }, { "--p": 1, duration: 1, ease: "power1.inOut" }, 7.1)
+    .to({ n: 0 }, { n: 3, duration: 1.2, ease: "power2.out", onUpdate() { voln.textContent = Math.round(this.targets()[0].n); } }, 7.4)
+    .fromTo("#m4-tab", { autoAlpha: 0, x: -50 }, { autoAlpha: 1, x: 0, duration: .5, ease: "power3.out" }, 8.4);
+  const vida = gsap.timeline({ paused: true })
+    .to(pvs, { y: -6, duration: 2.2, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .3 }, 0)
+    .to("#m4-ok", { scale: 1.04, duration: .9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return {
+    enter() { zeraLigas([ida]); voln.textContent = 0; tl.restart(); dc = gsap.delayedCall(9, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); },
+  };
+}
+
+// ================= COMUNICAÇÃO 5: gente chegando =================
+const CHEGAM = [
+  ["inscrição", "Rafa, 17 anos", "vem com dois amigos da escola"],
+  ["direct", "Paulo", "Vi o post da chuva. Como eu ajudo?"],
+  ["inscrição", "Lívia, 19 anos", "primeira vez num congresso"],
+  ["comentário", "Dona Marta", "Que bom ver a igreja falando com o bairro."],
+  ["direct", "Bruna", "Posso visitar no domingo?"],
+  ["inscrição", "Caio, 16 anos", "o pai pagou no Pix"],
+];
+function m5() {
+  const box = $("#m5-chegam"), nB = $("#m5-n"), barra = $("#m5-barra");
+  const itens = CHEGAM.map(([tipo, quem, t]) => { const c = h(`<div class="ch"><span class="tipo">${tipo}</span><b>${quem}</b><p>${t}</p></div>`); box.append(c); return c; });
+  const lema = $$("#m5-lema p"), btns = $$("#m5-fecho .cta");
+  gsap.set(["#m5-tit", "#m5-inscr", ...itens, ...lema, ...btns], { autoAlpha: 0 });
+  const conta = { n: 0 };
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#m5-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#m5-inscr", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: .7, ease: "power3.out" }, .4)
+    .fromTo(conta, { n: 0 }, { n: 187, duration: 4.2, ease: "power2.out", onUpdate() { nB.textContent = Math.round(conta.n); barra.style.width = (conta.n / 200 * 100) + "%"; } }, .9)
+    .fromTo(itens, { autoAlpha: 0, x: -50, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .5, ease: "power3.out", stagger: .55 }, 1.2);
+  lema.forEach((p, i) => tl.fromTo(p, { autoAlpha: 0, x: -40, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 4.6 + i * .8));
+  tl.fromTo(btns, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)", stagger: .12 }, 7.2);
+  const vida = gsap.to(itens, { y: -5, duration: 1.8, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .25, paused: true });
+  let dc = null;
+  return { enter() { nB.textContent = 0; barra.style.width = "0%"; tl.restart(); dc = gsap.delayedCall(7.5, () => vida.restart()); }, leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); } };
+}
+
+// ================= CUIDADO 1: a chamada =================
+const EQUIPE_CUIDADO = [["lidia", "Lídia Lar"], ["isabel", "Isabel Integra"], ["epafras", "Epafras Escuta"], ["ana", "Ana Amparo"]];
+// uma pessoa desenhada na origem, para mover com x, y e scale
+const pessoa = (svg, cor = "#777") => {
+  const g = el("g", { stroke: cor, "stroke-width": 4, opacity: 0 }, svg);
+  el("circle", { cx: 0, cy: -60, r: 18, fill: "#2a2a2a" }, g);
+  el("path", { d: "M-30 0 C-30 -28 -16 -38 0 -38 C16 -38 30 -28 30 0 Z", fill: "#262626" }, g);
+  return g;
+};
+function c1() {
+  const eq = $("#c1-eq");
+  EQUIPE_CUIDADO.forEach(([id, nome]) => eq.append(h(`<div><img src="assets/avatares/${id}.webp" alt=""><b>${nome}</b></div>`)));
+  const svg = $("#c1-cena");
+  // a porta da igreja, aberta e acesa
+  const luz = el("path", { d: "M1400 900 V640 A110 110 0 0 1 1620 640 V900 Z", fill: "#3a2a12", opacity: 0 }, svg);
+  const [porta] = ligacoes(svg, ["M1380 900 V640 A130 130 0 0 1 1640 640 V900"]);
+  porta.setAttribute("style", porta.getAttribute("style") + ";fill:none;stroke:#ffac13;stroke-width:7;stroke-linejoin:round");
+  const [chao] = ligacoes(svg, ["M1150 900 H1880"]);
+  chao.setAttribute("style", chao.getAttribute("style") + ";stroke:#4a4a4a;stroke-width:4");
+  const halo = el("circle", { cx: 1510, cy: 720, r: 220, fill: "none", stroke: "#ffac13", "stroke-width": 3, opacity: 0 }, svg);
+  const defs = el("defs", {}, svg), cp = el("clipPath", { id: "c1-lid" }, defs); el("circle", { cx: 1510, cy: 430, r: 50 }, cp);
+  const lid = el("g", { opacity: 0 }, svg);
+  el("image", { href: "assets/avatares/lidia.webp", x: 1460, y: 380, width: 100, height: 100, "clip-path": "url(#c1-lid)" }, lid);
+  el("circle", { cx: 1510, cy: 430, r: 50, fill: "none", stroke: "#ffac13", "stroke-width": 4 }, lid);
+  // gente que chega de longe e entra pela porta; ao chegar, ganha a cor da casa
+  const gente = gsap.timeline({ paused: true });
+  for (let i = 0; i < 9; i++) {
+    const p = pessoa(svg), x0 = i % 2 ? 1150 + rnd() * 200 : 1700 + rnd() * 180;
+    gente.fromTo(p, { x: x0, y: 1150, scale: 1.1 }, { x: 1510, y: 890, scale: .55, duration: 4.2, ease: "power1.in", repeat: -1, repeatDelay: 1.2, keyframes: { opacity: [0, 1, 1, 1, 0] } }, i * .6)
+      .fromTo(p, { attr: { stroke: "#777" } }, { attr: { stroke: "#ffac13" }, duration: 1, repeat: -1, repeatDelay: 4.4 }, i * .6 + 3);
+  }
+  gsap.set(["#c1-k", "#c1-h", "#c1-f", "#c1-dica", ...eq.children], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#c1-k", foco, { ...nitido, duration: .6 })
+    .fromTo("#c1-h", foco, { ...nitido, duration: 1 }, .2)
+    .add(() => { zeraLigas([porta, chao]); }, 0);
+  desenha(tl, chao, .6, .8); desenha(tl, porta, .9, 1.2);
+  tl.to(luz, { opacity: 1, duration: 1 }, 1.8)
+    .fromTo(lid, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .7, ease: "back.out(1.8)" }, 2)
+    .add(() => gente.play(0), 2.2)
+    .fromTo("#c1-f", { autoAlpha: 0, scale: .8, filter: "blur(10px)" }, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: .8, ease: "back.out(2)" }, 2.6)
+    .fromTo(eq.children, { autoAlpha: 0, y: 30, scale: .7 }, { autoAlpha: 1, y: 0, scale: 1, duration: .6, ease: "back.out(1.8)", stagger: .1 }, 3.1)
+    .to("#c1-dica", { autoAlpha: 1, duration: .6 }, 4.2);
+  const vida = gsap.timeline({ paused: true })
+    .fromTo(halo, { attr: { r: 160, opacity: .6 } }, { attr: { r: 300, opacity: 0 }, duration: 2.6, repeat: -1, ease: "power1.out" }, 0)
+    .to(luz, { opacity: .7, duration: 1.5, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to(lid, { y: -8, duration: 2, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to("#c1-dica i", { y: 8, duration: .8, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return {
+    enter() { tl.restart(); dc = gsap.delayedCall(2, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); gente.pause(0); vida.pause(0); gsap.set(luz, { opacity: 0 }); },
+  };
+}
+
+// ================= CUIDADO 2: como é hoje =================
+function c2() {
+  const svg = $("#c2-cena");
+  // o cartão do visitante
+  const cartao = el("g", { opacity: 0 }, svg);
+  el("rect", { x: 220, y: 420, width: 300, height: 360, rx: 14, fill: "#f4efe6" }, cartao);
+  el("rect", { x: 220, y: 420, width: 300, height: 16, rx: 6, fill: "#fe7003" }, cartao);
+  const tt = el("text", { x: 248, y: 486, fill: "#2a2a2a", "font-size": 26, "font-weight": 800 }, cartao); tt.textContent = "Cartão do visitante";
+  ["Nome", "Telefone", "Bairro", "Como conheceu"].forEach((r, i) => {
+    const t = el("text", { x: 248, y: 540 + i * 62, fill: "#8a8172", "font-size": 17, "font-weight": 700 }, cartao); t.textContent = r;
+    el("rect", { x: 248, y: 556 + i * 62, width: 244, height: 3, fill: "#c9c2b6" }, cartao);
+  });
+  // a letra de quem preenche
+  const letra = [0, 1, 2, 3].map(i => {
+    let d = `M252 ${550 + i * 62}`;
+    for (let j = 0; j < 7 + (i % 2) * 3; j++) d += ` q8 -14 14 0 t14 0`;
+    return el("path", { d, fill: "none", stroke: "#2c4470", "stroke-width": 3, "stroke-linecap": "round", opacity: 0 }, cartao);
+  });
+  letra.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; p.dataset.L = L; });
+  // a caixa de cartões, já com a semana passada dentro
+  const caixa = el("g", { opacity: 0 }, svg);
+  const velhos = [0, 1, 2, 3].map(i => el("rect", { x: 760 + i * 16, y: 700 - i * 6, width: 260, height: 120, rx: 8, fill: "#d9d2c4", stroke: "#b8b0a0", "stroke-width": 2, transform: `rotate(${(i - 1.5) * 4} ${890 + i * 16} 760)` }, caixa));
+  el("path", { d: "M720 760 H1100 L1080 960 H740 Z", fill: "#2e2e2e", stroke: "#666", "stroke-width": 4, "stroke-linejoin": "round" }, caixa);
+  const tc = el("text", { x: 910, y: 880, "text-anchor": "middle", fill: "#9a9a9a", "font-size": 24, "font-weight": 700 }, caixa); tc.textContent = "Cartões de visitante";
+  // a semana que passa sem contato
+  const DIAS = ["seg", "ter", "qua", "qui", "sex", "sáb"];
+  const dias = DIAS.map((d, i) => {
+    const g = el("g", { opacity: 0 }, svg), x = 1220 + i * 104;
+    const r = el("rect", { x, y: 420, width: 88, height: 88, rx: 16, fill: "#262626", stroke: "#444", "stroke-width": 3 }, g);
+    const t = el("text", { x: x + 44, y: 474, "text-anchor": "middle", fill: "#b9b9b9", "font-size": 24, "font-weight": 800 }, g); t.textContent = d;
+    const xis = el("path", { d: `M${x + 30} 540 l28 28 M${x + 58} 540 l-28 28`, stroke: "#6a6a6a", "stroke-width": 5, "stroke-linecap": "round", opacity: 0 }, g);
+    return { g, r, xis };
+  });
+  const semMsg = el("text", { x: 1532, y: 640, "text-anchor": "middle", fill: "#8a8a8a", "font-size": 28, "font-weight": 700, opacity: 0 }, svg); semMsg.textContent = "nenhuma mensagem";
+  // a visitante, que esfria e vai embora
+  const vis = pessoa(svg, "#ffac13");
+  gsap.set(vis, { x: 1540, y: 900, scale: 1.6 });
+  gsap.set(["#c2-tit", "#c2-sub", "#c2-f"], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#c2-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#c2-sub", foco, { ...nitido, duration: .8 }, .3)
+    .fromTo(cartao, { opacity: 0, y: 40, svgOrigin: "370 600" }, { opacity: 1, y: 0, duration: .7, ease: "back.out(1.6)" }, .7)
+    .to(vis, { opacity: 1, duration: .6 }, .9)
+    .to(caixa, { opacity: 1, duration: .6 }, 1.1);
+  letra.forEach((p, i) => tl.set(p, { opacity: 1 }, 1.3 + i * .35).to(p, { strokeDashoffset: 0, duration: .35, ease: "none" }, 1.3 + i * .35));
+  // o cartão vai para a caixa e some entre os outros
+  tl.to(cartao, { x: 560, y: 260, scale: .55, rotation: 8, svgOrigin: "370 600", duration: .9, ease: "power2.inOut" }, 3)
+    .to(cartao, { opacity: 0, duration: .3 }, 3.75)
+    .fromTo(velhos, { y: 0 }, { y: -10, duration: .12, yoyo: true, repeat: 1, stagger: .03 }, 3.8);
+  dias.forEach(({ g, r, xis }, i) => {
+    const at = 4.2 + i * .45;
+    tl.fromTo(g, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(2)" }, at)
+      .to(r, { attr: { stroke: "#ffac13" }, duration: .15 }, at)
+      .to(r, { attr: { stroke: "#444" }, duration: .3 }, at + .3)
+      .to(xis, { opacity: 1, duration: .2 }, at + .25)
+      .to(vis, { attr: { stroke: gsap.utils.interpolate("#ffac13", "#4a4a4a", (i + 1) / 6) }, duration: .4 }, at + .2);
+  });
+  tl.to(semMsg, { opacity: 1, duration: .5 }, 5.6)
+    .to(vis, { x: 1980, opacity: 0, duration: 1.6, ease: "power1.in" }, 7.2)
+    .fromTo("#c2-f", { autoAlpha: 0, y: 30, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 7.4);
+  const vida = gsap.timeline({ paused: true, repeat: -1 });
+  velhos.forEach((v, i) => vida.to(v, { y: -5, duration: 1.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * .3));
+  vida.to(semMsg, { opacity: .45, duration: 1.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return {
+    enter() { gsap.set(vis, { x: 1540, opacity: 0, attr: { stroke: "#ffac13" } }); tl.restart(); dc = gsap.delayedCall(8.4, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); },
+  };
+}
+
+// ================= CUIDADO 3: do primeiro oi ao grupo =================
+const IC = {
+  cel: `<svg viewBox="0 0 52 52"><rect x="15" y="4" width="22" height="44" rx="5"/><path d="M22 41 H30"/><path d="M20 15 H32 M20 22 H28"/></svg>`,
+  igreja: `<svg viewBox="0 0 52 52"><path d="M8 48 V26 L26 12 L44 26 V48 Z"/><path d="M26 12 V3 M21 7 H31"/><path d="M21 48 V36 A5 5 0 0 1 31 36 V48"/></svg>`,
+  msg: `<svg viewBox="0 0 52 52"><path d="M6 10 H46 V36 H22 L12 45 V36 H6 Z"/><path d="M18 23 C18 19 23 18 26 22 C29 18 34 19 34 23 C34 28 26 31 26 31 C26 31 18 28 18 23 Z"/></svg>`,
+  relogio: `<svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="21" stroke="#444"/><circle class="arco" cx="26" cy="26" r="21" transform="rotate(-90 26 26)"/><text x="26" y="31" text-anchor="middle">0h</text></svg>`,
+  grupo: `<svg viewBox="0 0 52 52"><circle cx="26" cy="16" r="6"/><circle cx="11" cy="24" r="5"/><circle cx="41" cy="24" r="5"/><path d="M14 46 C14 34 19 28 26 28 C33 28 38 34 38 46"/><path d="M2 44 C2 37 5 33 11 33 M50 44 C50 37 47 33 41 33"/></svg>`,
+};
+const ETAPAS = [
+  [270, "Sábado, 22h", "Pergunta o horário pelo link da bio", "cel"],
+  [610, "Domingo, 10h", "Visita o culto, e a recepção já sabe o nome dela", "igreja"],
+  [950, "Segunda", "Recebe as boas-vindas da igreja", "msg"],
+  [1290, "Em até 36 horas", "O líder do grupo liga para ela", "relogio"],
+  [1630, "Quinta, 20h", "Chega ao grupo da casa", "grupo"],
+];
+function c3() {
+  const svg = $("#c3-liga"), box = $("#c3-etapas"), Y = 640;
+  let d = `M140 ${Y} L${ETAPAS[0][0]} ${Y}`;
+  ETAPAS.slice(1).forEach(([x], i) => { const x0 = ETAPAS[i][0]; d += ` Q${(x0 + x) / 2} ${Y + (i % 2 ? 46 : -46)} ${x} ${Y}`; });
+  d += ` L1790 ${Y}`;
+  const [trilho] = ligacoes(svg, [d]);
+  const L = +trilho.dataset.L;
+  // onde, no comprimento do trilho, fica cada parada (o x só cresce, então basta uma busca binária)
+  const naX = x => { let a = 0, b = L; for (let k = 0; k < 30; k++) { const m = (a + b) / 2; trilho.getPointAtLength(m).x < x ? a = m : b = m; } return a; };
+  const paradas = ETAPAS.map(([x]) => naX(x));
+  const nos = ETAPAS.map(([x]) => el("circle", { cx: x, cy: Y, r: 14, fill: "#262626", stroke: "#555", "stroke-width": 4, opacity: 0 }, svg));
+  const ligaAg = ligacoes(svg, ["M270 540 V620", "M1120 540 C1120 590 950 580 950 620", "M1120 540 C1120 590 1290 580 1290 620"]);
+  const etapas = ETAPAS.map(([x, quando, oque, ic]) => {
+    const e = h(`<div class="etapa" style="left:${x}px"><span class="ic">${IC[ic]}</span><small>${quando}</small><b>${oque}</b></div>`);
+    box.append(e); return e;
+  });
+  const arco = $(".arco", etapas[3]), horas = $("text", etapas[3]), C = 2 * Math.PI * 21;
+  arco.style.strokeDasharray = C;
+  // a visitante que anda pelo trilho
+  const vis = el("g", { opacity: 0 }, svg);
+  el("circle", { r: 26, fill: "#ffac13" }, vis);
+  const ini = el("text", { y: 9, "text-anchor": "middle", fill: "#1a1a1a", "font-size": 26, "font-weight": 800 }, vis); ini.textContent = "C";
+  const nome = el("text", { y: -40, "text-anchor": "middle", fill: "#f2f2f2", "font-size": 22, "font-weight": 800 }, vis); nome.textContent = "Carla";
+  const pos = { l: paradas[0] };
+  const poe = () => { const q = trilho.getPointAtLength(pos.l); vis.setAttribute("transform", `translate(${q.x} ${q.y})`); };
+  gsap.set(["#c3-tit", "#c3-sub", "#c3-lid", "#c3-isa", "#c3-f", ...etapas], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#c3-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#c3-sub", foco, { ...nitido, duration: .7 }, .3);
+  desenha(tl, trilho, .6, 1.2);
+  tl.to(nos, { opacity: 1, duration: .3, stagger: .12 }, 1.2);
+  pop(tl, "#c3-lid", 1.4); pop(tl, "#c3-isa", 1.6);
+  ligaAg.forEach((p, i) => desenha(tl, p, 1.8 + i * .1, .4));
+  tl.add(() => { pos.l = paradas[0]; poe(); }, 2.2).to(vis, { opacity: 1, duration: .4 }, 2.2);
+  const chega = (i, at) => {
+    tl.to(nos[i], { attr: { fill: "#3a2a12", stroke: "#ffac13", r: 18 }, duration: .3 }, at)
+      .fromTo(etapas[i], { autoAlpha: 0, y: 40, filter: "blur(8px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .55, ease: "back.out(1.6)" }, at);
+  };
+  chega(0, 2.3);
+  tl.fromTo("#c3-lid img", { scale: 1 }, { scale: 1.15, duration: .2, yoyo: true, repeat: 1 }, 2.4);
+  let at = 3.2;
+  for (let i = 1; i < ETAPAS.length; i++) {
+    tl.to(pos, { l: paradas[i], duration: .9, ease: "power2.inOut", onUpdate: poe }, at);
+    chega(i, at + .8);
+    if (i === 2 || i === 3) tl.fromTo("#c3-isa img", { scale: 1 }, { scale: 1.15, duration: .2, yoyo: true, repeat: 1 }, at + .8);
+    if (i === 3) {
+      // o relógio das 36 horas: o líder liga antes de acabar
+      const o = { h: 0 };
+      tl.to(o, { h: 20, duration: 1.2, ease: "power1.inOut", onUpdate: () => { horas.textContent = Math.round(o.h) + "h"; arco.style.strokeDashoffset = C * (1 - o.h / 36); } }, at + 1)
+        .add(() => { horas.textContent = "✓"; }, at + 2.3);
+      at += 1.6;
+    }
+    at += 1.5;
+  }
+  tl.fromTo("#c3-f", { autoAlpha: 0, y: 30, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, at);
+  const corre = pulso(svg, trilho, 4);
+  const vida = gsap.timeline({ paused: true })
+    .to($$("#c3-lid img, #c3-isa img"), { y: -6, duration: 1.8, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .4 }, 0);
+  let dc = null;
+  return {
+    enter() {
+      zeraLigas([trilho, ...ligaAg]); horas.textContent = "0h"; arco.style.strokeDashoffset = C; gsap.set(vis, { opacity: 0 });
+      gsap.set(nos, { attr: { fill: "#262626", stroke: "#555", r: 14 } });
+      tl.restart(); dc = gsap.delayedCall(at + 1, () => { corre.restart(true); vida.restart(); });
+    },
+    leave() { dc && dc.kill(); tl.pause(0); corre.pause(0); vida.pause(0); },
+  };
+}
+
+// ================= CUIDADO 4: o boletim da noite =================
+const GRUPOS = [
+  ["Grupo de quinta", "#25d366", ["Quinta tem estudo normal?", "A irmã Marta foi internada hoje cedo", "Vamos orar por ela"]],
+  ["Mulheres", "#e1306c", ["O avô da Sônia faleceu", "O velório é amanhã às 9h", "Quem pode levar um lanche?"]],
+  ["Louvor", "#ffac13", ["Domingo o Léo não pode tocar", "Alguém conhece um baixista?", "Ensaio sábado às 16h"]],
+  ["Casais", "#25f4ee", ["Pedro e Ana vão ser pais!", "Que alegria, glória a Deus", "Jantar dos casais dia 30"]],
+  ["Jovens", "#a78bfa", ["Quem vai no acampamento?", "Inscrição até sexta", "Culto de sábado às 19h30"]],
+  ["Diaconia", "#ff5a3c", ["Cestas montadas para sábado", "Faltam duas famílias para visitar", "Obrigado, irmãos"]],
+];
+const BOLETIM = [
+  ["acao", "Pede sua ação", "A irmã Marta foi internada", "grupo de quinta"],
+  ["acao", "Pede sua ação", "Luto na família da Sônia", "grupo das mulheres"],
+  ["lider", "Ver com o líder", "Louvor sem baixista no domingo", "grupo do louvor"],
+  ["grat", "Motivo de gratidão", "Pedro e Ana esperam o primeiro filho", "grupo de casais"],
+];
+function c4() {
+  const box = $("#c4-grupos"), svg = $("#c4-liga"), avisos = $("#c4-avisos"), contaB = $("#c4-conta b"), hora = $("#c4-hora");
+  const cy = i => 350 + i * 108 + 48;
+  const tiles = GRUPOS.map(([nome, cor, msgs], i) => {
+    const t = h(`<div class="grupo" style="top:${cy(i) - 48}px"><span class="ini" style="background:${cor}">${nome[0]}</span><div><b>${nome}</b><span>${msgs[0]}</span></div><em>0</em></div>`);
+    box.append(t); return t;
+  });
+  const ligas = ligacoes(svg, GRUPOS.map((_, i) => `M630 ${cy(i)} C760 ${cy(i)} 760 640 885 640`));
+  const [saida] = ligacoes(svg, ["M1035 640 H1375"]);
+  const notas = BOLETIM.map(([tipo, rot, oque, de]) => h(`<div class="aviso ${tipo}"><small>${rot}</small><b>${oque}</b><span>${de}</span></div>`));
+  const conta = GRUPOS.map(() => 0);
+  let total = 0;
+  // as mensagens correm nos grupos o dia inteiro; o Epafras só lê
+  const fluxo = gsap.timeline({ paused: true, repeat: -1 });
+  for (let k = 0; k < 18; k++) {
+    const i = (k * 5) % GRUPOS.length, at = k * .38, t = tiles[i];
+    fluxo.add(() => {
+      const [, , msgs] = GRUPOS[i];
+      conta[i]++; total += 4 + (k % 5);
+      $("span", $("div", t)).textContent = msgs[conta[i] % msgs.length];
+      $("em", t).textContent = conta[i]; contaB.textContent = total;
+      gsap.fromTo(t, { borderColor: "#25d366" }, { borderColor: "#ffffff1c", duration: .8 });
+      gsap.fromTo($("em", t), { scale: 1.4 }, { scale: 1, duration: .4, ease: "back.out(3)" });
+    }, at);
+  }
+  const pulsos = ligas.map((l, i) => pulso(svg, l, 1.3, i * .25));
+  gsap.set(["#c4-tit", "#c4-sub", "#c4-epa", "#c4-cel", "#c4-conta", hora, ...tiles], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#c4-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#c4-sub", foco, { ...nitido, duration: .7 }, .3)
+    .fromTo(tiles, { autoAlpha: 0, x: -80, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .55, ease: "power3.out", stagger: .09 }, .5)
+    .fromTo("#c4-cel", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: .8, ease: "power3.out" }, .8)
+    .to(["#c4-conta", hora], { autoAlpha: 1, duration: .4 }, 1.2);
+  pop(tl, "#c4-epa", 1);
+  ligas.forEach((l, i) => desenha(tl, l, 1.2 + i * .08, .6));
+  tl.add(() => { fluxo.play(0); pulsos.forEach(p => p.restart(true)); }, 1.8);
+  // o relógio anda até as 22h
+  const o = { m: 18 * 60 };
+  tl.to(o, { m: 22 * 60, duration: 4.5, ease: "none", onUpdate: () => { const m = Math.round(o.m / 5) * 5; hora.textContent = `${Math.floor(m / 60)}:${pad(m % 60)}`; } }, 1.8)
+    .fromTo(hora, { scale: 1 }, { scale: 1.25, duration: .25, yoyo: true, repeat: 1 }, 6.3)
+    .fromTo("#c4-epa img", { scale: 1 }, { scale: 1.15, duration: .2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 6.4);
+  desenha(tl, saida, 6.6, .5);
+  notas.forEach((n, i) => tl.add(() => { avisos.append(n); gsap.fromTo(n, { autoAlpha: 0, y: -30, scale: .9 }, { autoAlpha: 1, y: 0, scale: 1, duration: .5, ease: "back.out(1.8)" }); }, 7.1 + i * .55));
+  const vida = gsap.to("#c4-epa img", { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut", paused: true });
+  return {
+    enter() { conta.fill(0); total = 0; contaB.textContent = 0; hora.textContent = "18:00"; avisos.innerHTML = ""; tiles.forEach((t, i) => { $("em", t).textContent = 0; $("span", $("div", t)).textContent = GRUPOS[i][2][0]; }); zeraLigas([...ligas, saida]); tl.restart(); vida.play(); },
+    leave() { tl.pause(0); fluxo.pause(0); pulsos.forEach(p => p.pause(0)); vida.pause(0); avisos.innerHTML = ""; },
+  };
+}
+
+// ================= CUIDADO 5: ninguém esquecido =================
+const IC_AG = {
+  hospital: `<svg viewBox="0 0 54 54"><rect x="6" y="6" width="42" height="42" rx="10"/><path d="M27 16 V38 M16 27 H38"/></svg>`,
+  luto: `<svg viewBox="0 0 54 54"><rect x="20" y="22" width="14" height="26" rx="3"/><path d="M27 22 V16"/><path d="M27 4 C33 11 33 15 27 16 C21 15 21 11 27 4 Z"/></svg>`,
+  bolo: `<svg viewBox="0 0 54 54"><rect x="8" y="26" width="38" height="22" rx="4"/><path d="M8 34 C14 38 20 30 27 34 C34 38 40 30 46 34"/><path d="M19 26 V18 M27 26 V16 M35 26 V18"/></svg>`,
+  oracao: `<svg viewBox="0 0 54 54"><path d="M27 46 C27 46 8 34 8 20 C8 12 18 8 27 17 C36 8 46 12 46 20 C46 34 27 46 27 46 Z"/></svg>`,
+  cafe: `<svg viewBox="0 0 54 54"><path d="M8 20 H38 V34 A12 12 0 0 1 26 46 H20 A12 12 0 0 1 8 34 Z"/><path d="M38 24 H42 A6 6 0 0 1 42 36 H38"/><path d="M18 6 C15 10 21 12 18 16 M28 6 C25 10 31 12 28 16"/></svg>`,
+};
+const SEMANA_PASTOR = [
+  ["seg", "hospital", "Visitar a irmã Marta no hospital", "do boletim da noite"],
+  ["ter", "luto", "Ligar para a família da Sônia", "luto na família"],
+  ["qua", "bolo", "Os 80 anos da Dona Cida", "aniversário"],
+  ["qui", "oracao", "Orar com o Marcos pelo emprego", "pedido de oração"],
+  ["sex", "cafe", "Café com a Carla, que visitou domingo", "da Isabel Integra"],
+];
+function c5() {
+  const ag = $("#c5-agenda");
+  const linhas = SEMANA_PASTOR.map(([dia, ic, oque, de]) => { const l = h(`<div class="compromisso"><span class="dia-c">${dia}</span>${IC_AG[ic]}<div><b>${oque}</b><span>${de}</span></div></div>`); ag.append(l); return l; });
+  const lema = $$("#c5-lema p"), btns = $$("#c5-fecho .cta");
+  gsap.set(["#c5-tit", "#c5-sub", "#c5-ana", ...linhas, ...lema, ...btns], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#c5-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#c5-sub", foco, { ...nitido, duration: .7 }, .3);
+  pop(tl, "#c5-ana", .6);
+  // cada pedido sai da Ana e pousa na semana do pastor
+  linhas.forEach((l, i) => {
+    const at = 1.3 + i * .6;
+    tl.fromTo("#c5-ana img", { scale: 1 }, { scale: 1.12, duration: .15, yoyo: true, repeat: 1 }, at)
+      .fromTo(l, { autoAlpha: 0, x: 900, y: 100 - i * 130, scale: .3, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: .8, ease: "power3.out" }, at + .1)
+      .fromTo($(".dia-c", l), { scale: 1.5 }, { scale: 1, duration: .4, ease: "back.out(3)" }, at + .8);
+  });
+  lema.forEach((p, i) => tl.fromTo(p, { autoAlpha: 0, x: -40, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 4.8 + i * .7));
+  tl.fromTo(btns, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)", stagger: .12 }, 6.4);
+  const vida = gsap.timeline({ paused: true })
+    .to("#c5-ana img", { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to($$(".dia-c", ag), { scale: 1.08, duration: .9, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .3 }, 1);
+  let dc = null;
+  return { enter() { tl.restart(); dc = gsap.delayedCall(7, () => vida.restart()); }, leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); } };
+}
+
+// ================= GOVERNO 1: a chamada =================
+const EQUIPE_GOVERNO = [["tercio", "Tércio Tinta"], ["zacarias", "Zacarias Zelo"], ["febe", "Febe Folhinha"]];
+// os lembretes que hoje moram na cabeça do pastor, onde caem bagunçados, e o agente que fica com cada um
+const LEMBRETES = [
+  ["Cobrar o orçamento do salão", 1, 150, 430], ["Ver se a reforma do telhado andou", 1, 590, 470], ["Passar a limpo a ata de setembro", 0, 1030, 420],
+  ["Salão no sábado: jovens ou mulheres?", 2, 1470, 460], ["Marcar a data do batismo", 2, 240, 700], ["Quatro membros novos no rol", 0, 690, 750],
+  ["Responder os jovens sobre o retiro", 1, 1130, 690], ["Montar o relatório do ano", 0, 1530, 730],
+]
+const COL_G1 = [420, 960, 1500];
+function g1() {
+  const box = $("#g1-bil");
+  const donos = EQUIPE_GOVERNO.map(([id, nome], i) => {
+    const d = h(`<div class="assina g-dono" style="left:${COL_G1[i]}px;top:470px"><img src="assets/avatares/${id}.webp" alt=""><b>${nome}</b></div>`);
+    box.append(d); return d;
+  });
+  // onde cada lembrete pousa na coluna do seu dono
+  const fila = [0, 0, 0, 0];
+  const bils = LEMBRETES.map(([txt, dono, x, y]) => {
+    const b = h(`<div class="g-bil"><i>✓</i>${txt}</div>`);
+    box.append(b);
+    b.dataset.x = x; b.dataset.y = y; b.dataset.r = (rnd() - .5) * 10;
+    b.dataset.cx = COL_G1[dono] - 180; b.dataset.cy = 575 + fila[dono]++ * 112;
+    return b;
+  });
+  const checks = bils.map(b => $("i", b));
+  gsap.set(["#g1-k", "#g1-h", "#g1-rot", "#g1-f", "#g1-dica", ...donos, ...bils, ...checks], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#g1-k", foco, { ...nitido, duration: .6 })
+    .fromTo("#g1-h", foco, { ...nitido, duration: 1 }, .2)
+    .fromTo("#g1-rot", foco, { ...nitido, duration: .5 }, .8);
+  // a semana cai em lembretes soltos, devagar o bastante para ler
+  bils.forEach((b, i) => tl.fromTo(b, { autoAlpha: 0, x: +b.dataset.x, y: +b.dataset.y - 120, rotation: 0, scale: .7 },
+    { autoAlpha: 1, x: +b.dataset.x, y: +b.dataset.y, rotation: +b.dataset.r, scale: 1, duration: .5, ease: "back.out(1.6)" }, 1.1 + i * .4));
+  // chegam os quatro donos, e cada lembrete vai para a coluna do seu, sem sumir
+  tl.to("#g1-rot", { autoAlpha: 0, duration: .4 }, 5.2);
+  donos.forEach((d, i) => pop(tl, d, 5.4 + i * .12));
+  bils.forEach((b, i) => {
+    const at = 6.1 + i * .22, dono = LEMBRETES[i][1];
+    tl.to(b, { x: +b.dataset.cx, y: +b.dataset.cy, rotation: 0, duration: .8, ease: "power3.inOut" }, at)
+      .to(b, { borderColor: "#ffac13", backgroundColor: "#2e2616", color: "#f2f2f2", duration: .3 }, at + .7)
+      .fromTo(checks[i], { autoAlpha: 0, scale: 2 }, { autoAlpha: 1, scale: 1, duration: .35, ease: "back.out(3)" }, at + .75)
+      .fromTo($("img", donos[dono]), { scale: 1 }, { scale: 1.15, duration: .15, yoyo: true, repeat: 1 }, at + .7);
+  });
+  tl.fromTo("#g1-f", { autoAlpha: 0, y: 30, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 8.4)
+    .to("#g1-dica", { autoAlpha: 1, duration: .6 }, 9.2);
+  // enquanto o pastor lê, os lembretes tremem de leve; depois de organizados, quem respira são os donos
+  const treme = gsap.timeline({ paused: true });
+  bils.forEach((b, i) => treme.to(b, { rotation: `+=${i % 2 ? 2 : -2}`, duration: .9, yoyo: true, repeat: 3, ease: "sine.inOut" }, i * .15));
+  tl.add(() => treme.restart(), 4.4).add(() => treme.pause(), 6);
+  const vida = gsap.timeline({ paused: true })
+    .to($$(".g-dono img", box), { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .3 }, 0)
+    .to("#g1-dica i", { y: 8, duration: .8, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return {
+    enter() { gsap.set(bils, { borderColor: "#00000000", backgroundColor: "#f4efe6", color: "#2a2a2a" }); tl.restart(); dc = gsap.delayedCall(9.4, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); treme.pause(0); vida.pause(0); },
+  };
+}
+
+// ================= GOVERNO 2: como é hoje =================
+const PAUTAS = [
+  ["Março", ["Reforma do salão social", "Calendário do semestre", "Recepção de membros", "Compra de cadeiras"]],
+  ["Junho", ["Culto de fim de ano", "Reforma do salão social", "Relatório das mulheres", "Retiro dos casais"]],
+  ["Setembro", ["Congresso de jovens", "Rol de membros", "Reforma do salão social", "Orçamento de 2027"]],
+];
+function g2() {
+  const box = $("#g2-pautas");
+  const folhas = PAUTAS.map(([mes, itens], i) => {
+    const f = h(`<div class="papel-avisos g-pauta" style="left:${130 + i * 570}px;top:${400 + i * 20}px;transform:rotate(${(i - 1) * 2}deg)"><b>Pauta de ${mes.toLowerCase()}</b><ol>${itens.map(t => `<li${t.startsWith("Reforma") ? ' class="volta"' : ""}><i>•</i>${t}</li>`).join("")}</ol></div>`);
+    box.append(f); return f;
+  });
+  const voltas = $$(".volta", box);
+  const selos = voltas.map((v, i) => { const s = h(`<em class="g-selo">${i ? "de novo" : "decidido"}</em>`); v.append(s); return s; });
+  gsap.set(["#g2-tit", "#g2-sub", "#g2-f", "#g2-bolha", "#g2-sem", ...folhas, ...selos], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#g2-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#g2-sub", foco, { ...nitido, duration: .8 }, .3);
+  folhas.forEach((f, i) => {
+    const at = .9 + i * 1.3;
+    tl.fromTo(f, { autoAlpha: 0, y: 80, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .7, ease: "power3.out" }, at)
+      .fromTo(voltas[i], { backgroundColor: "#ffac1300" }, { backgroundColor: "#ffac1366", duration: .3 }, at + .7)
+      .fromTo(selos[i], { autoAlpha: 0, scale: 1.8 }, { autoAlpha: 1, scale: 1, duration: .4, ease: "back.out(3)" }, at + .8);
+  });
+  tl.fromTo("#g2-bolha", { autoAlpha: 0, y: 40, scale: .9 }, { autoAlpha: 1, y: 0, scale: 1, duration: .6, ease: "back.out(1.8)" }, 5)
+    .to("#g2-sem", { autoAlpha: 1, duration: .5 }, 6.2)
+    .fromTo("#g2-f", { autoAlpha: 0, y: 30, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 6.6);
+  const vida = gsap.timeline({ paused: true })
+    .to(selos, { scale: 1.1, duration: .8, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .3 }, 0)
+    .to("#g2-sem", { opacity: .4, duration: 1.1, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return { enter() { tl.restart(); dc = gsap.delayedCall(7.5, () => vida.restart()); }, leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); } };
+}
+
+// ================= GOVERNO 3: da ata ao feito (momento-herói) =================
+const DECISOES = [
+  ["Orçamentos da reforma", "Marcos", "4 nov"],
+  ["Classe de novos membros", "Pr. Davi", "1º nov"],
+  ["Rol com os novos membros", "Secretário", "21 out"],
+  ["Compra das cadeiras novas", "Diaconia", "20 nov"],
+  ["Resposta aos jovens", "Pr. Davi", "20 out"],
+];
+const COLS_G3 = [["Decidido", 640], ["Andando", 1060], ["Feito", 1480]];
+function g3() {
+  const cols = $("#g3-cols"), linhas = $("#g3-linhas"), nB = $("#g3-n");
+  COLS_G3.forEach(([nome, x]) => cols.append(h(`<div class="g-col" style="left:${x}px"><span>${nome}</span></div>`)));
+  const heads = $$(".g-col", cols);
+  for (let i = 0; i < 9; i++) linhas.append(h(`<i style="width:${60 + (i * 37) % 40}%"></i>`));
+  const ls = $$("i", linhas);
+  const cards = DECISOES.map(([oque, quem, ate], i) => {
+    const c = h(`<div class="g-dec" style="left:640px;top:${430 + i * 104}px"><b>${oque}</b><span>${quem} · até ${ate}</span><em>lembrete enviado</em></div>`);
+    cols.append(c); return c;
+  });
+  const lembr = cards.map(c => $("em", c));
+  gsap.set(["#g3-tit", "#g3-sub", "#g3-ata", "#g3-ter", "#g3-zac", "#g3-placar", ...heads, ...cards, ...lembr], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#g3-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#g3-sub", foco, { ...nitido, duration: .7 }, .3)
+    .fromTo("#g3-ata", { autoAlpha: 0, x: -60, rotation: -3 }, { autoAlpha: 1, x: 0, rotation: 0, duration: .7, ease: "power3.out" }, .6);
+  pop(tl, "#g3-ter", .8);
+  // o Tércio escreve a ata
+  tl.fromTo(ls, { scaleX: 0 }, { scaleX: 1, transformOrigin: "left center", duration: .18, ease: "none", stagger: .14 }, 1.2)
+    .fromTo("#g3-ter img", { scale: 1 }, { scale: 1.12, duration: .2, yoyo: true, repeat: 5, ease: "sine.inOut" }, 1.2)
+    .fromTo(heads, { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: .4, stagger: .12 }, 2.2);
+  // cada decisão sai da ata com dono e prazo
+  cards.forEach((c, i) => tl.fromTo(c, { autoAlpha: 0, x: -360, y: 0, scale: .5 }, { autoAlpha: 1, x: 0, scale: 1, duration: .55, ease: "power3.out" }, 2.6 + i * .18));
+  // o Zacarias leva cada uma ao dono, e todas começam a andar
+  pop(tl, "#g3-zac", 3.7);
+  cards.forEach((c, i) => {
+    const at = 4.2 + i * .14;
+    tl.fromTo(lembr[i], { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: .3, ease: "back.out(3)" }, at)
+      .to(c, { x: 420, duration: .6, ease: "power2.inOut" }, at + .25)
+      .to(lembr[i], { autoAlpha: 0, duration: .3 }, at + 1.2);
+  });
+  tl.fromTo("#g3-zac img", { scale: 1 }, { scale: 1.12, duration: .2, yoyo: true, repeat: 3 }, 4.2);
+  // quatro ficam prontas; a reforma segue andando
+  const n = { v: 0 };
+  [1, 2, 3, 4].forEach((ci, k) => {
+    const at = 6 + k * .45;
+    tl.to(cards[ci], { x: 840, y: -104, duration: .6, ease: "power3.inOut" }, at)
+      .to(cards[ci], { borderColor: "#25d366", duration: .3 }, at + .5)
+      .to(n, { v: k + 1, duration: .2, onUpdate: () => { nB.textContent = Math.round(n.v); } }, at + .5);
+  });
+  // a próxima reunião abre com o placar
+  tl.fromTo("#g3-placar", { autoAlpha: 0, scale: .6, filter: "blur(10px)" }, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: .7, ease: "back.out(1.8)" }, 6)
+    .fromTo("#g3-placar", { boxShadow: "0 0 0 0 #ffac1300" }, { boxShadow: "0 0 80px 10px #ffac1388", duration: .5, yoyo: true, repeat: 1 }, 8.1)
+    .fromTo(heads[2], { color: "#b9b9b9" }, { color: "#25d366", duration: .4 }, 8.1);
+  const vida = gsap.timeline({ paused: true })
+    .to($$("#g3-ter img, #g3-zac img"), { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .4 }, 0)
+    .to("#g3-n", { scale: 1.08, duration: .9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  let dc = null;
+  return {
+    enter() { nB.textContent = 0; gsap.set(cards, { borderColor: "#ffffff1c" }); tl.restart(); dc = gsap.delayedCall(9, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); },
+  };
+}
+
+// ================= GOVERNO 5: uma agenda, um ano em ordem =================
+// novembro de 2026 começa num domingo
+const EVENTOS = [[1, "Santa Ceia"], [3, "Mulheres"], [6, "Ensaio do louvor"], [8, "Novos membros"], [14, "Jovens · salão"], [18, "Conselho"], [28, "Congresso · Josué"]];
+const REL = [["12", "membros recebidos"], ["5", "batismos"], ["3", "transferências"], ["38", "decisões cumpridas"]];
+function g5() {
+  const cal = $("#g5-cal"), meses = $("#g5-meses"), nums = $("#g5-nums");
+  cal.append(h(`<div class="g-cal-cab"><b>Novembro de 2026</b><span>dom</span><span>seg</span><span>ter</span><span>qua</span><span>qui</span><span>sex</span><span>sáb</span></div>`));
+  const grade = h(`<div class="g-cal-grade"></div>`); cal.append(grade);
+  const dias = [];
+  for (let d = 1; d <= 30; d++) { const c = h(`<div class="g-dia"><small>${d}</small></div>`); grade.append(c); dias[d] = c; }
+  const chips = EVENTOS.map(([d, t]) => { const c = h(`<span class="g-ev">${t}</span>`); dias[d].append(c); return c; });
+  const mulheres = h(`<span class="g-ev choque">Mulheres · salão</span>`); dias[14].append(mulheres);
+  "jan fev mar abr mai jun jul ago set out nov dez".split(" ").forEach(m => meses.append(h(`<i>${m}</i>`)));
+  const ms = $$("i", meses);
+  REL.forEach(([n, t]) => nums.append(h(`<p><b>${n}</b>${t}</p>`)));
+  const lema = $$("#g5-lema p"), btns = $$("#g5-fecho .cta");
+  gsap.set(["#g5-tit", "#g5-sub", "#g5-feb", "#g5-aviso", "#g5-rel", cal, ...chips, mulheres, ...ms, ...lema, ...btns], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#g5-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#g5-sub", foco, { ...nitido, duration: .7 }, .3)
+    .fromTo(cal, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: .7, ease: "power3.out" }, .6);
+  pop(tl, "#g5-feb", .9);
+  // os calendários de cada departamento caem numa agenda só
+  chips.forEach((c, i) => tl.fromTo(c, { autoAlpha: 0, x: 500, y: -200, scale: .4 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: .6, ease: "power3.out" }, 1.4 + i * .25));
+  // o choque de salão aparece na hora de marcar, e as mulheres vão para o dia 21
+  tl.fromTo(mulheres, { autoAlpha: 0, x: 500, y: -200, scale: .4 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: .6, ease: "power3.out" }, 3.4)
+    .to(dias[14], { borderColor: "#ff5a3c", backgroundColor: "#3d1d1a", duration: .25, yoyo: true, repeat: 3 }, 4)
+    .fromTo("#g5-aviso", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)" }, 4.1)
+    .fromTo("#g5-feb img", { scale: 1 }, { scale: 1.15, duration: .2, yoyo: true, repeat: 3 }, 4.1)
+    .to(mulheres, { autoAlpha: 0, duration: .25 }, 5)
+    .add(() => { dias[21].append(mulheres); mulheres.classList.remove("choque"); mulheres.textContent = "Mulheres · salão"; }, 5.3)
+    .fromTo(mulheres, { autoAlpha: 0, y: -30 }, { autoAlpha: 1, y: 0, duration: .45, ease: "back.out(2)", immediateRender: false }, 5.3)
+    // o ano inteiro passa, e o relatório já está montado
+    .fromTo(ms, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .25, stagger: .09 }, 6)
+    .to(ms, { backgroundColor: "#2e2616", borderColor: "#ffac13", duration: .2, stagger: .09 }, 6.2)
+    .fromTo("#g5-rel", { autoAlpha: 0, x: 60, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .7, ease: "power3.out" }, 7.3)
+    .fromTo($$("p", nums), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .4, stagger: .12 }, 7.6);
+  lema.forEach((p, i) => tl.fromTo(p, { autoAlpha: 0, x: -40, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 8.4 + i * .7));
+  tl.fromTo(btns, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)", stagger: .12 }, 9.8);
+  const vida = gsap.timeline({ paused: true })
+    .to("#g5-feb img", { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to(chips, { y: -3, duration: 1.2, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .2 }, 0);
+  let dc = null;
+  return {
+    enter() { dias[14].append(mulheres); mulheres.classList.add("choque"); gsap.set(dias[14], { borderColor: "#ffffff14", backgroundColor: "#262626" }); gsap.set(ms, { backgroundColor: "#262626", borderColor: "#ffffff1c" }); tl.restart(); dc = gsap.delayedCall(10.4, () => vida.restart()); },
+    leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); },
+  };
+}
+
 // ================= rotas, cenas e navegação =================
-const VISTAS = { inicio: $("#v-inicio"), times: $("#v-times"), palavra: $("#v-palavra"), ensino: $("#v-ensino") };
-const motores = { i1: i1(), i2: i2(), t1: t1(), p1: p1(), p2: p2(), p3: p3(), p4: p4(), p5: p5(), e1: e1(), e2: e2(), e3: e3(), e4: e4(), e5: e5() };
+const VISTAS = { inicio: $("#v-inicio"), times: $("#v-times"), palavra: $("#v-palavra"), ensino: $("#v-ensino"), comunicacao: $("#v-comunicacao"), cuidado: $("#v-cuidado"), governo: $("#v-governo") };
+const motores = { i1: i1(), i2: i2(), t1: t1(), p1: p1(), p2: p2(), p3: p3(), p4: p4(), p5: p5(), e1: e1(), e2: e2(), e3: e3(), e4: e4(), e5: e5(), m1: m1(), m2: m2(), m3: m3(), m4: m4(), m5: m5(), c1: c1(), c2: c2(), c3: c3(), c4: c4(), c5: c5(), g1: g1(), g2: g2(), g3: g3(), g5: g5() };
 const pontos = $("#pontos");
 let vista = null, cena = null;
 function ativa(id) {
@@ -813,6 +1430,7 @@ function mostra(v) {
   fecha();
   cena && motores[cena] && motores[cena].leave(); cena = null;
   for (const k in VISTAS) VISTAS[k].hidden = k !== v;
+  if (v !== "inicio") window.ABERTURA && window.ABERTURA.para();
   vista = v;
   VISTAS[v].scrollTop = 0;
   $$("#barra a").forEach(a => a.classList.toggle("on", a.dataset.v === v || (!!VISTAS[v].dataset.nome && a.dataset.v === "times")));

@@ -2,12 +2,12 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
 <title>Times de agentes para igrejas</title>
 <meta name="description" content="Uma igreja com IA a serviço do Reino: o que acontece quando um time de agentes entra, e o pastor continua pregando.">
 <link rel="icon" href="assets/img/md-icone.svg">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2026-10-22-g9">
 </head>
 <body>
 
@@ -20,26 +20,26 @@
 
 <!-- ================= INÍCIO: visão geral ================= -->
 <div class="vista" id="v-inicio">
+  <canvas id="ab-canvas" aria-hidden="true"></canvas>
+  <div class="ab-veu" aria-hidden="true"></div>
   <section class="dobra" id="i1">
     <div class="palco">
-      <div class="fundo"></div>
-      <svg class="cena" id="i1-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
-      <div class="txt t1">
-        <h1 id="i1-h">Domingo de manhã,<br>o pastor prega.</h1>
-        <p id="i1-p">Hoje a mesma pregação também chega a quem está no celular, longe do templo. Ele continua com a vocação dele. Uma equipe cuida do que vem depois.</p>
+      <div class="txt ab-t1">
+        <h1 id="i1-h"><span>O pastor foi chamado</span><span>para a Palavra</span><span>e a oração.</span></h1>
+        <p class="ab-frase" id="i1-f">A semana dele virou outra coisa.</p>
       </div>
       <div class="dica" id="i1-dica">Deslize para cima<i></i></div>
     </div>
   </section>
   <section class="dobra" id="i2">
     <div class="palco">
-      <div class="fundo"></div>
-      <div class="txt t1 i2t">
-        <h2 id="i2-h">Uma igreja com IA a serviço do Reino</h2>
-        <p id="i2-p">Cinco times de agentes trabalham nos bastidores, cada um num ministério. O pastor prega, a liderança cuida das pessoas, e o trabalho repetido da semana tem quem faça.</p>
+      <div class="txt ab-t2">
+        <span class="kicker" id="i2-k">Como em Atos 6</span>
+        <h2 id="i2-h">A igreja se organizou para a Palavra não ficar de lado.</h2>
+        <blockquote class="ab-verso" id="i2-v">“E, quanto a nós, nos consagraremos à oração e ao ministério da palavra.”<cite>Atos 6.4</cite></blockquote>
+        <p id="i2-p">Os agentes fazem o trabalho repetido. O cuidado continua com gente.</p>
         <a class="cta" id="i2-cta" href="#times">Conhecer os times</a>
       </div>
-      <svg class="cena" id="i2-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
     </div>
   </section>
 </div>
@@ -251,6 +251,236 @@
   </section>
 </div>
 
+<!-- ================= TIME DA COMUNICAÇÃO ================= -->
+<div class="vista" id="v-comunicacao" data-nome="Time da Comunicação" hidden>
+
+  <!-- 1. a chamada -->
+  <section class="dobra" id="m1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <div class="txt p1t">
+        <span class="kicker" id="m1-k">Time da Comunicação</span>
+        <h2 id="m1-h">O Instagram da sua igreja é um mural de avisos?</h2>
+        <p class="frase" id="m1-f">Edifica quem está dentro. Conversa com quem está fora.</p>
+        <div class="equipe" id="m1-eq"></div>
+      </div>
+      <div class="ig-cel" id="m1-cel"><div class="ig-grade" id="m1-grade"></div></div>
+      <div class="dica" id="m1-dica">Deslize para ver<i></i></div>
+    </div>
+  </section>
+
+  <!-- 2. hoje, o mural -->
+  <section class="dobra" id="m2">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="m2-tit">Hoje, o mural</h2>
+      <p class="sub" id="m2-sub">Nove chamadas de evento. Nenhuma conversa.</p>
+      <div class="ig-perfil" id="m2-perfil">
+        <div class="ig-topo"><span class="ig-av"></span><div><b>Igreja Esperança do Vale</b><span>412 publicações &middot; 1.230 seguidores</span></div></div>
+        <div class="ig-janela"><div class="ig-grade" id="m2-grade"></div></div>
+      </div>
+      <svg class="cena" id="m2-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="balao-v" id="m2-balao">Nada aqui é para mim.</div>
+      <p class="frase-baixo" id="m2-f" style="left:820px;top:960px;max-width:1000px">Quem não é crente rola o feed e vai embora.</p>
+    </div>
+  </section>
+
+  <!-- 3. o feed que vive -->
+  <section class="dobra" id="m3">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="m3-tit">O feed que vive</h2>
+      <p class="sub" id="m3-sub">Para dentro, edifica. Para fora, conversa.</p>
+      <svg class="liga" id="m3-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="assina" id="m3-gid" style="left:260px;top:420px"><img src="assets/avatares/gideao.webp" alt=""><b>Gideão Garimpo</b><i>o corte de domingo</i></div>
+      <div class="assina" id="m3-mar" style="left:260px;top:600px"><img src="assets/avatares/marcos.webp" alt=""><b>Marcos Mensagem</b><i>o texto</i></div>
+      <div class="assina" id="m3-bez" style="left:260px;top:780px"><img src="assets/avatares/bezalel.webp" alt=""><b>Bezalel Branding</b><i>a arte</i></div>
+      <div class="assina" id="m3-fil" style="left:260px;top:960px"><img src="assets/avatares/filipe.webp" alt=""><b>Filipe Farol</b><i>o que o bairro fala</i></div>
+      <div class="ig-cel grande" id="m3-cel"><div class="ig-grade" id="m3-grade"></div></div>
+      <div class="legenda-feed" id="m3-leg"><span class="den">para dentro</span><span class="fora">para fora</span><span class="av">aviso, no lugar dele</span></div>
+      <div class="conversas" id="m3-conv"></div>
+      <div class="assina" id="m3-lid" style="left:1780px;top:1010px"><img src="assets/avatares/lidia.webp" alt=""><b>Lídia Lar</b><i>responde</i></div>
+    </div>
+  </section>
+
+  <!-- 4. um projeto inteiro -->
+  <section class="dobra" id="m4">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="m4-tit">Um projeto inteiro</h2>
+      <p class="sub" id="m4-sub">O pastor conversa com o Josué. O resto sai pronto.</p>
+      <svg class="liga" id="m4-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="assina big" id="m4-jos" style="left:180px;top:420px"><img src="assets/avatares/josue.webp" alt=""><b>Josué Jornada</b><i>Projetos</i></div>
+      <div class="papo" id="m4-papo"></div>
+      <div class="aprova" id="m4-ok" style="left:90px;top:1080px">&#10003; O pastor aprovou o plano</div>
+      <div class="pacote-ev" id="m4-pac">
+        <div class="pv" id="m4-arte"><div class="duo" id="m4-arte-in"></div><em><b>Bezalel</b> identidade e artes</em></div>
+        <div class="pv" id="m4-pag"><div class="pagina-m" id="m4-pag-in"></div><em><b>Hirão</b> inscrição e pagamento</em></div>
+        <div class="pv ondas" id="m4-ondas"><div class="onda-linha" id="m4-linha"></div><em><b>Dorcas</b> divulgação em ondas</em></div>
+        <div class="pv vol" id="m4-vol"><span class="vol-n"><b id="m4-voln">0</b> de 3</span><span>dias do salão na agenda</span><em><b>Febe</b> do Governo</em></div>
+      </div>
+      <div class="selo-rute" id="m4-tab" style="left:1240px;top:1060px"><img src="assets/avatares/tabita.webp" alt=""><span><b>Tabita Tom</b> conferiu tudo</span></div>
+    </div>
+  </section>
+
+  <!-- 5. o efeito -->
+  <section class="dobra" id="m5">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="m5-tit">Gente chegando</h2>
+      <div class="inscr" id="m5-inscr"><small>Congresso Inteiro</small><div class="inscr-n"><b id="m5-n">0</b><span>inscritos</span></div><div class="barra-i"><i id="m5-barra"></i></div><span class="inscr-meta">meta: 200 jovens <small>(exemplo)</small></span></div>
+      <div class="chegam" id="m5-chegam"></div>
+      <div class="lema" id="m5-lema" style="left:1180px;top:330px;width:700px"><p>Quem está dentro é edificado.</p><p>Quem está fora é convidado.</p><p>Cada evento sai pronto.</p></div>
+      <div class="fecho" id="m5-fecho" style="left:1180px;top:1010px;width:720px">
+        <a class="cta" href="#times">Ver os outros times</a>
+        <a class="cta sec" href="#inicio">Voltar ao início</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TIME DO CUIDADO ================= -->
+<div class="vista" id="v-cuidado" data-nome="Time do Cuidado" hidden>
+
+  <!-- 1. a chamada -->
+  <section class="dobra" id="c1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <div class="txt p1t">
+        <span class="kicker" id="c1-k">Time do Cuidado</span>
+        <h2 id="c1-h">Quem visitou a igreja no domingo recebeu uma mensagem durante a semana?</h2>
+        <p class="frase" id="c1-f">Ninguém some sem que o pastor saiba.</p>
+        <div class="equipe" id="c1-eq"></div>
+      </div>
+      <svg class="cena" id="c1-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="dica" id="c1-dica">Deslize para ver<i></i></div>
+    </div>
+  </section>
+
+  <!-- 2. como é hoje -->
+  <section class="dobra" id="c2">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="c2-tit">Hoje, depois do culto</h2>
+      <p class="sub" id="c2-sub">O visitante preenche o cartão. E a semana passa.</p>
+      <svg class="cena" id="c2-cena" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <p class="frase-baixo" id="c2-f">O cartão fica na gaveta. A pessoa não volta.</p>
+    </div>
+  </section>
+
+  <!-- 3. do primeiro oi ao grupo -->
+  <section class="dobra" id="c3">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="c3-tit">Do primeiro oi ao grupo</h2>
+      <p class="sub" id="c3-sub">A Lídia recebe. A Isabel acompanha. A igreja abraça.</p>
+      <svg class="liga" id="c3-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div class="assina" id="c3-lid" style="left:270px;top:450px"><img src="assets/avatares/lidia.webp" alt=""><b>Lídia Lar</b></div>
+      <div class="assina" id="c3-isa" style="left:1120px;top:450px"><img src="assets/avatares/isabel.webp" alt=""><b>Isabel Integra</b></div>
+      <div id="c3-etapas"></div>
+      <p class="frase-baixo" id="c3-f">Os agentes avisam. Quem abraça é gente da igreja.</p>
+    </div>
+  </section>
+
+  <!-- 4. o boletim da noite -->
+  <section class="dobra" id="c4">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="c4-tit">O boletim da noite</h2>
+      <p class="sub" id="c4-sub">Lê os grupos autorizados. Não responde em nenhum.</p>
+      <svg class="liga" id="c4-liga" viewBox="0 0 1920 1200" aria-hidden="true"></svg>
+      <div id="c4-grupos"></div>
+      <div class="assina big" id="c4-epa" style="left:960px;top:640px"><img src="assets/avatares/epafras.webp" alt=""><b>Epafras Escuta</b><i>só lê</i></div>
+      <div class="relogio" id="c4-hora">18:00</div>
+      <div class="cel boletim" id="c4-cel">
+        <div class="cel-cab"><svg viewBox="0 0 48 32" aria-hidden="true"><circle cx="24" cy="10" r="7"/><path d="M8 30c1-9 8-13 16-13s15 4 16 13"/></svg><span>Para o pastor</span></div>
+        <div class="avisos" id="c4-avisos"></div>
+      </div>
+      <div class="conta" id="c4-conta" style="left:110px;top:1060px"><b>0</b> mensagens lidas hoje <small>(exemplo)</small></div>
+    </div>
+  </section>
+
+  <!-- 5. ninguém esquecido -->
+  <section class="dobra" id="c5">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="c5-tit">Ninguém fica esquecido</h2>
+      <p class="sub" id="c5-sub">Cada pedido vira uma visita marcada.</p>
+      <div class="agenda" id="c5-agenda"></div>
+      <div class="assina big" id="c5-ana" style="left:1500px;top:440px"><img src="assets/avatares/ana.webp" alt=""><b>Ana Amparo</b><i>marca na agenda</i></div>
+      <div class="lema" id="c5-lema"><p>O time avisa.</p><p>Quem cuida é a igreja.</p></div>
+      <div class="fecho" id="c5-fecho" style="left:1200px;top:1000px;width:700px">
+        <a class="cta" href="#times">Ver os outros times</a>
+        <a class="cta sec" href="#inicio">Voltar ao início</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TIME DO GOVERNO ================= -->
+<div class="vista" id="v-governo" data-nome="Time do Governo" hidden>
+
+  <!-- 1. a chamada -->
+  <section class="dobra" id="g1">
+    <div class="palco">
+      <div class="fundo"></div>
+      <div class="txt g1t">
+        <span class="kicker" id="g1-k">Time do Governo</span>
+        <h2 id="g1-h">Você ainda é o lembrete da sua igreja?</h2>
+      </div>
+      <span class="g1-rot" id="g1-rot">A semana do pastor</span>
+      <div id="g1-bil"></div>
+      <p class="frase-baixo" id="g1-f">Cada lembrete ganha um dono. <span>Você só confere.</span></p>
+      <div class="dica" id="g1-dica">Deslize para ver<i></i></div>
+    </div>
+  </section>
+
+  <!-- 2. como é hoje -->
+  <section class="dobra" id="g2">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="g2-tit">Hoje, entre uma reunião e outra</h2>
+      <p class="sub" id="g2-sub">As decisões do conselho se perdem entre uma reunião e outra.</p>
+      <div id="g2-pautas"></div>
+      <div class="g-bolha" id="g2-bolha"><b>Grupo da liderança</b>Quem ficou de ver o orçamento do salão?<span id="g2-sem">sem resposta</span></div>
+      <p class="frase-baixo" id="g2-f">A decisão espera três meses até alguém lembrar dela.</p>
+    </div>
+  </section>
+
+  <!-- 3. da ata ao feito -->
+  <section class="dobra" id="g3">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="g3-tit">Da ata ao feito</h2>
+      <p class="sub" id="g3-sub">O secretário manda as notas. O Tércio escreve. O Zacarias acompanha.</p>
+      <div class="g-ata" id="g3-ata"><small>Rascunho para o secretário</small><b>Ata da reunião do Conselho</b><span>2026-10-14</span><div class="g-linhas" id="g3-linhas"></div></div>
+      <div class="assina" id="g3-ter" style="left:345px;top:1010px"><img src="assets/avatares/tercio.webp" alt=""><b>Tércio Tinta</b></div>
+      <div id="g3-cols"></div>
+      <div class="assina" id="g3-zac" style="left:1250px;top:1010px"><img src="assets/avatares/zacarias.webp" alt=""><b>Zacarias Zelo</b><i>lembra cada dono</i></div>
+      <div class="g-placar" id="g3-placar"><span>Próxima reunião</span><b><em id="g3-n">0</em> de 5</b><small>decisões feitas (exemplo)</small></div>
+    </div>
+  </section>
+
+  <!-- 4. uma agenda, um ano em ordem -->
+  <section class="dobra" id="g5">
+    <div class="palco">
+      <div class="fundo"></div>
+      <h2 class="tit" id="g5-tit">Uma agenda, um ano em ordem</h2>
+      <p class="sub" id="g5-sub">A Febe junta os calendários. O Tércio fecha o ano.</p>
+      <div class="g-cal" id="g5-cal"></div>
+      <div class="g-meses" id="g5-meses"></div>
+      <div class="assina" id="g5-feb" style="left:1300px;top:400px"><img src="assets/avatares/febe.webp" alt=""><b>Febe Folhinha</b></div>
+      <div class="g-aviso" id="g5-aviso">Mesmo salão, mesmo horário. A Febe avisou antes de marcar.</div>
+      <div class="g-rel" id="g5-rel"><small>Relatório do ano · pronto em dezembro</small><div id="g5-nums"></div><span>Montado com o que entrou nas atas (exemplo)</span></div>
+      <div class="lema" id="g5-lema"><p>A casa em ordem.</p><p>O pastor livre para a oração e a Palavra.</p></div>
+      <div class="fecho" id="g5-fecho" style="left:1200px;top:1060px;width:700px">
+        <a class="cta" href="#times">Ver os outros times</a>
+        <a class="cta sec" href="#inicio">Voltar ao início</a>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- ================= modal ================= -->
 <div id="modal" aria-hidden="true">
   <div class="caixa" id="m-caixa"></div>
@@ -258,7 +488,9 @@
 </div>
 
 <script src="assets/js/gsap.min.js"></script>
-<script src="assets/ebd/ebd.js"></script>
-<script src="app.js"></script>
+<script src="assets/ebd/ebd.js?v=2026-10-22-g9"></script>
+<script src="app.js?v=2026-10-22-g9"></script>
+<script type="importmap">{ "imports": { "three": "./assets/js/three/three.module.min.js", "three/addons/": "./assets/js/three/addons/" } }</script>
+<script type="module" src="abertura.js?v=2026-10-22-g9"></script>
 </body>
 </html>
