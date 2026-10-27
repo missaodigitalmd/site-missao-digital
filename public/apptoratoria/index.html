@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<title>A Última Cidade</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --ink:#06080b; --ice:#9fb4c4; --ice2:#dfe8ee; --snow:#f4f8fb;
+  --amber:#ffb347; --amber2:#e8761c; --rust:#c2412b; --card:rgba(62,72,82,.82);
+  --slab:'Roboto Slab',Georgia,serif; --cond:'Barlow Condensed','Arial Narrow',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;color:var(--snow)}
+body{cursor:default}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;background:var(--ink);transform-origin:center center}
+.layer{position:absolute;inset:0}
+img.full,video.full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* mundo */
+#world{transform-origin:50% 42%}
+#heat{position:absolute;left:50%;top:453px;width:1100px;height:1100px;margin:-550px 0 0 -550px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,179,71,.55) 0%,rgba(232,118,28,.25) 30%,rgba(232,118,28,0) 62%);mix-blend-mode:screen;opacity:0}
+#roads{position:absolute;inset:0;width:100%;height:100%}
+#dark{background:#000;opacity:0;pointer-events:none}
+#frost{pointer-events:none;opacity:0;background-size:cover;mix-blend-mode:screen}
+#vignette{pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 45%,rgba(0,0,0,.85) 100%)}
+#grain{pointer-events:none;opacity:.08;mix-blend-mode:overlay}
+#flash{background:#fff;opacity:0;pointer-events:none}
+#redflash{background:radial-gradient(ellipse,rgba(194,65,43,0) 30%,rgba(194,65,43,.7));opacity:0;pointer-events:none}
+
+/* mascara de tinta */
+.ink{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:0% 0%;mask-size:0% 0%}
+
+/* tipografia */
+.title{position:absolute;left:0;right:0;text-align:center;font-family:var(--slab);font-weight:900;text-transform:uppercase;
+  letter-spacing:.02em;line-height:1.02;text-shadow:0 4px 30px rgba(0,0,0,.9),0 0 2px #000}
+.kicker{font-family:var(--cond);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--ice);text-shadow:0 2px 12px #000}
+.rule{display:block;height:2px;width:520px;margin:22px auto;background:linear-gradient(90deg,transparent,var(--ice2),transparent)}
+.amber{color:var(--amber)} .rust{color:#ff6b4a}
+
+/* HUD */
+#hud{pointer-events:none}
+#thermo{position:absolute;left:50%;top:-220px;width:210px;height:210px;margin-left:-105px}
+#thermo .dial{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#1b232b 55%,#0b0f13 70%);
+  border:3px solid #6f7f8c;box-shadow:0 0 0 8px rgba(0,0,0,.6),0 10px 40px #000}
+#thermo .val{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--slab);font-weight:900;font-size:74px;letter-spacing:-.02em}
+#thermo .unit{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:var(--cond);font-size:26px;letter-spacing:.2em;color:var(--ice)}
+#thermo svg{position:absolute;inset:-14px;width:238px;height:238px}
+#day{position:absolute;left:calc(50% + 140px);top:116px;font-family:var(--slab);font-weight:700;font-size:34px;letter-spacing:.18em;color:var(--snow);opacity:0;white-space:nowrap;
+  padding:8px 26px 8px 34px;background:linear-gradient(90deg,rgba(10,14,18,.9),rgba(10,14,18,.55));border-top:1px solid rgba(223,232,238,.5);border-bottom:1px solid rgba(223,232,238,.5);box-shadow:0 8px 24px rgba(0,0,0,.6)}
+#day::before{content:'';position:absolute;left:-14px;top:50%;width:22px;height:2px;background:rgba(223,232,238,.7)}
+#toast{position:absolute;left:50%;top:40px;transform:translateX(-50%);font-family:var(--cond);font-weight:700;font-size:26px;letter-spacing:.25em;color:var(--ice2);background:rgba(0,0,0,.6);padding:8px 20px;opacity:0;z-index:60}
+#pop{position:absolute;right:56px;top:46px;font-family:var(--cond);font-weight:600;font-size:34px;letter-spacing:.12em;opacity:0;text-align:right}
+#pop b{font-family:var(--slab);font-size:64px;display:block;line-height:1;color:var(--snow)}
+#bars{position:absolute;left:50%;bottom:-240px;width:1500px;margin-left:-750px;display:flex;gap:80px;justify-content:center}
+.bar{width:660px}
+.bar .lbl{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--cond);font-weight:700;font-size:38px;letter-spacing:.18em;margin-bottom:10px;text-shadow:0 2px 10px #000}
+.bar .lbl .n{font-family:var(--slab);font-weight:900;font-size:50px;letter-spacing:0}
+.bar .lbl .d{font-family:var(--slab);font-weight:900;font-size:44px;margin-left:16px;opacity:0}
+.bar .track{position:relative;height:44px;border:2px solid rgba(223,232,238,.7);background:rgba(0,0,0,.6);box-shadow:0 0 0 5px rgba(0,0,0,.45),0 8px 30px #000;overflow:hidden}
+.bar .fill,.bar .ghost{position:absolute;left:0;top:0;bottom:0;width:0}
+.bar .ghost{opacity:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.55) 0 10px,rgba(255,255,255,.2) 10px 20px)}
+#hope .fill{background:linear-gradient(90deg,#a85a12,var(--amber));box-shadow:0 0 30px rgba(255,179,71,.7)}
+#disc .fill{background:linear-gradient(90deg,#5e1a10,var(--rust));box-shadow:0 0 30px rgba(194,65,43,.7)}
+.bar .tick{position:absolute;top:0;bottom:0;width:2px;background:rgba(0,0,0,.5)}
+
+/* cartao de evento */
+#ui{pointer-events:none}
+#ui *{pointer-events:auto}
+.card{position:absolute;left:50%;top:300px;width:1560px;margin-left:-780px;background:var(--card);
+  backdrop-filter:blur(6px);border:2px solid rgba(223,232,238,.55);outline:1px solid rgba(223,232,238,.25);outline-offset:-14px;
+  box-shadow:0 30px 90px rgba(0,0,0,.85);display:flex;gap:56px;padding:56px 64px 50px}
+.card .orn{position:absolute;width:90px;height:90px;opacity:.75}
+.card .seal{position:absolute;left:50%;top:-62px;margin-left:-62px;width:124px;height:124px;border-radius:50%;
+  background:radial-gradient(circle,#f3f1ea 50%,#cfcabd 72%);border:5px solid #c9a24a;box-shadow:0 0 0 3px #3b3222,inset 0 0 0 3px #e8d9a8,0 8px 30px #000;display:grid;place-items:center;z-index:2}
+.card .seal::before{content:'';position:absolute;inset:-20px;border-radius:50%;z-index:-1;background:repeating-conic-gradient(#b8913d 0 7deg,transparent 7deg 15deg);
+  -webkit-mask:radial-gradient(circle,transparent 58%,#000 59%);mask:radial-gradient(circle,transparent 58%,#000 59%);animation:spin 24s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card .seal svg{width:66px;height:66px}
+.portrait{flex:none;width:340px;height:440px;border:2px solid rgba(223,232,238,.5);position:relative;overflow:hidden;background:#111}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .stamp{position:absolute;left:50%;top:78%;transform:translate(-50%,-50%) rotate(-12deg);font-family:var(--slab);font-weight:900;font-size:70px;
+  padding:10px 24px;border:6px solid currentColor;text-transform:uppercase;white-space:nowrap;opacity:0;background:rgba(0,0,0,.35)}
+.portrait .tag{position:absolute;left:50%;top:-40px;transform:translateX(-50%);transform-origin:50% 0;opacity:0}
+.body{flex:1;display:flex;flex-direction:column}
+.body h2{font-family:var(--slab);font-weight:900;font-size:76px;text-transform:uppercase;line-height:1;text-shadow:0 3px 14px rgba(0,0,0,.6)}
+.body .sub{font-family:var(--cond);font-weight:600;font-size:34px;letter-spacing:.25em;color:var(--ice2);margin-bottom:16px;text-transform:uppercase}
+.facts{display:flex;flex-wrap:wrap;gap:18px;margin-top:28px;overflow:hidden}
+.fact{font-family:var(--cond);font-weight:700;font-size:46px;letter-spacing:.06em;text-transform:uppercase;padding:14px 30px;
+  background:rgba(0,0,0,.45);border-left:6px solid var(--amber);opacity:0}
+.fact.cold{border-left-color:var(--ice)}
+.opts{display:flex;flex-direction:column;gap:16px;padding-top:24px}
+.opt{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;font-family:var(--slab);font-weight:700;font-size:44px;text-transform:uppercase;
+  color:#1a1f24;background:linear-gradient(#f6f7f6,#d9dcdc);padding:18px 60px;cursor:pointer;opacity:0;
+  clip-path:polygon(28px 0,calc(100% - 28px) 0,100% 50%,calc(100% - 28px) 100%,28px 100%,0 50%);transition:filter .15s}
+.opt .k{font-family:var(--cond);font-size:30px;letter-spacing:.2em;color:#5a6670}
+.opt.sel{background:linear-gradient(#ffd08a,var(--amber));filter:drop-shadow(0 0 22px rgba(255,179,71,.9))}
+.opt .eff{font-family:var(--cond);font-weight:700;font-size:34px;letter-spacing:.06em;white-space:nowrap}
+.opt .eff .h{color:#8a4b00}.opt .eff .dd{color:#8e2414;margin-left:18px}
+
+/* livro de leis */
+.book{position:absolute;left:50%;top:170px;width:1400px;height:700px;margin-left:-700px;display:flex;perspective:2400px}
+.page{flex:1;background:linear-gradient(90deg,#d8d2c2,#efe9da);color:#2a2620;padding:60px 64px;box-shadow:0 30px 80px #000;position:relative}
+.page.l{transform-origin:right center;border-right:2px solid #9b9280}
+.page.r{transform-origin:left center}
+.page h3{font-family:var(--slab);font-weight:900;font-size:58px;text-transform:uppercase;margin-bottom:26px}
+.law{font-family:var(--slab);font-weight:700;font-size:40px;padding:14px 0;border-bottom:1px solid #b3aa95;display:flex;justify-content:space-between;opacity:0}
+.law i{font-style:normal;white-space:nowrap;margin-left:16px;font-family:var(--cond);font-size:32px;letter-spacing:.08em}
+.law .s{color:#2f6b2f}.law .c{color:#9d2a17}
+.bigstamp{position:absolute;font-family:var(--slab);font-weight:900;text-transform:uppercase;border:10px solid currentColor;padding:14px 40px;opacity:0;white-space:nowrap}
+
+/* botao do jogo */
+.gamebtn{position:absolute;left:50%;transform:translateX(-50%);min-width:900px;text-align:center;font-family:var(--slab);font-weight:700;font-size:54px;
+  text-transform:uppercase;padding:26px 60px;background:linear-gradient(rgba(40,60,72,.9),rgba(20,32,40,.9));border:2px solid rgba(223,232,238,.6);outline:1px solid rgba(223,232,238,.3);outline-offset:6px;box-shadow:0 20px 60px #000}
+
+#restart{position:absolute;right:30px;bottom:26px;font-family:var(--cond);font-weight:600;font-size:22px;letter-spacing:.2em;color:rgba(223,232,238,.55);
+  background:rgba(0,0,0,.4);border:1px solid rgba(223,232,238,.3);padding:8px 16px;cursor:pointer;display:none;z-index:50}
+#restart:hover{color:#fff}
+#hint{position:absolute;left:0;right:0;bottom:60px;text-align:center;font-family:var(--cond);font-size:28px;letter-spacing:.3em;color:rgba(223,232,238,.5)}
+#cursorhide{cursor:none}
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- mundo -->
+  <div id="world" class="layer">
+    <img id="cityimg" class="full" src="assets/cidade.jpg" alt="">
+    <div id="heat"></div>
+    <svg id="roads" viewBox="0 0 1920 1080"></svg>
+    <canvas id="people" class="layer" width="1920" height="1080"></canvas>
+  </div>
+  <img id="genimg" class="full" src="assets/gerador.jpg" alt="" style="opacity:0">
+  <img id="houseimg" class="full" src="assets/casa.jpg" alt="" style="opacity:0">
+  <video id="intro" class="full ink" src="video/abertura-web.mp4" muted playsinline preload="auto"></video>
+  <video id="endvid" class="full" playsinline preload="auto" style="opacity:0"></video>
+  <div id="dark" class="layer"></div>
+  <canvas id="snow" class="layer" width="1920" height="1080" style="pointer-events:none"></canvas>
+  <div id="frost" class="layer"></div>
+  <div id="vignette" class="layer"></div>
+  <canvas id="grain" class="layer" width="480" height="270"></canvas>
+  <div id="redflash" class="layer"></div>
+
+  <div id="hud" class="layer">
+    <div id="thermo"><svg viewBox="0 0 238 238"><circle cx="119" cy="119" r="112" fill="none" stroke="rgba(159,180,196,.25)" stroke-width="6"/>
+      <circle id="tarc" cx="119" cy="119" r="112" fill="none" stroke="#9fb4c4" stroke-width="6" stroke-dasharray="704" stroke-dashoffset="350" transform="rotate(-90 119 119)"/></svg>
+      <div class="dial"></div><div class="val" id="tval">-20</div><div class="unit">°C</div></div>
+    <div id="day">DIA 1</div>
+    <div id="pop">PESSOAS<b id="popn">80</b></div>
+    <div id="bars">
+      <div class="bar" id="hope"><div class="lbl"><span>ESPERANÇA<span class="d"></span></span><span class="n">0</span></div><div class="track"><div class="ghost"></div><div class="fill"></div></div></div>
+      <div class="bar" id="disc"><div class="lbl"><span>DESCONTENTAMENTO<span class="d"></span></span><span class="n">0</span></div><div class="track"><div class="ghost"></div><div class="fill"></div></div></div>
+    </div>
+  </div>
+
+  <div id="ui" class="layer"></div>
+  <div id="flash" class="layer"></div>
+  <div id="toast"></div>
+  <button id="restart">↺ RECOMEÇAR</button>
+  <div id="hint">ESPAÇO PARA COMEÇAR</div>
+</div>
+
+<script src="lib/gsap.min.js"></script>
+<script>
+// ---------- palco ----------
+const $=s=>document.querySelector(s), stage=$('#stage'), ui=$('#ui');
+function fit(){gsap.set(stage,{xPercent:-50,yPercent:-50,scale:Math.min(innerWidth/1920,innerHeight/1080)})}
+addEventListener('resize',fit);
+const W=1920,H=1080,CX=960,CY=453; // gerador medido na cidade.png
+
+// ---------- som ----------
+const S={};['vento','boom','whoosh','riser','coracao','sino','clique'].forEach(n=>{S[n]=new Audio('sons/'+n+'.mp3');S[n].preload='auto'});
+S.vento.loop=true;S.coracao.loop=true;
+let MUTED=false;
+function toggleMute(){MUTED=!MUTED;Object.values(S).forEach(a=>a.muted=MUTED);$('#endvid').muted=MUTED;const t=$('#toast');t.textContent=MUTED?'SOM DESLIGADO':'SOM LIGADO';gsap.fromTo(t,{opacity:1},{opacity:0,duration:.6,delay:1.2})}
+function sfx(n,v=.8){if(MUTED)return;const a=S[n].cloneNode();a.volume=v;a.play().catch(()=>{})}
+function amb(n,v,d=2){const a=S[n];if(a.paused&&v>0){a.volume=0;a.play().catch(()=>{})}gsap.to(a,{volume:v,duration:d,onComplete:()=>{if(v===0)a.pause()}})}
+
+// ---------- texturas geradas ----------
+function inkMask(seed=1){ // mancha de tinta com respingos, usada como mascara
+  const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');let r=seed*9301;
+  const rnd=()=>((r=(r*9301+49297)%233280)/233280);
+  g.fillStyle='#000';g.beginPath();g.arc(256,256,150,0,7);g.fill();
+  for(let i=0;i<70;i++){const a=rnd()*6.283,d=120+rnd()*70,s=10+rnd()*55;g.beginPath();g.arc(256+Math.cos(a)*d,256+Math.sin(a)*d,s,0,7);g.fill()}
+  for(let i=0;i<140;i++){const a=rnd()*6.283,d=190+rnd()*60,s=1+rnd()*7;g.beginPath();g.arc(256+Math.cos(a)*d,256+Math.sin(a)*d,s,0,7);g.fill()}
+  return c.toDataURL();
+}
+const INK=inkMask(3);
+document.querySelectorAll('.ink').forEach(e=>{e.style.webkitMaskImage=e.style.maskImage=`url(${INK})`});
+function frostTex(){ // cristais de geada nascendo das bordas
+  const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+  const grd=g.createRadialGradient(CX,CY,300,CX,CY,1150);grd.addColorStop(0,'rgba(200,225,240,0)');grd.addColorStop(.55,'rgba(200,225,240,.25)');grd.addColorStop(1,'rgba(235,245,252,.95)');
+  g.fillStyle=grd;g.fillRect(0,0,W,H);g.strokeStyle='rgba(240,250,255,.35)';g.shadowColor='rgba(220,240,255,.9)';g.shadowBlur=6;
+  function br(x,y,a,l,d){if(d>6||l<6)return;const x2=x+Math.cos(a)*l,y2=y+Math.sin(a)*l;g.lineWidth=Math.max(.6,3-d*.4);g.beginPath();g.moveTo(x,y);g.lineTo(x2,y2);g.stroke();
+    br(x2,y2,a+(Math.random()-.5)*.5,l*.82,d+1);if(Math.random()<.6)br(x2,y2,a+(Math.random()<.5?1:-1)*(.5+Math.random()*.6),l*.55,d+1)}
+  for(let i=0;i<70;i++){const e=Math.random()*4|0;let x,y;if(e==0){x=Math.random()*W;y=0}else if(e==1){x=W;y=Math.random()*H}else if(e==2){x=Math.random()*W;y=H}else{x=0;y=Math.random()*H}
+    br(x,y,Math.atan2(CY-y,CX-x)+(Math.random()-.5)*1.2,22+Math.random()*40,0)}
+  return c.toDataURL();
+}
+$('#frost').style.backgroundImage=`url(${frostTex()})`;
+// grao
+(function(){const c=$('#grain'),g=c.getContext('2d');function f(){const d=g.createImageData(480,270);for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}g.putImageData(d,0,0);setTimeout(()=>requestAnimationFrame(f),70)}f()})();
+
+// ---------- neve ----------
+const snow={amt:.35,wind:1};const flakes=[];for(let i=0;i<900;i++)flakes.push({x:Math.random()*W,y:Math.random()*H,z:Math.random()});
+(function(){const c=$('#snow'),g=c.getContext('2d');function f(){g.clearRect(0,0,W,H);const n=Math.floor(flakes.length*snow.amt);
+  for(let i=0;i<n;i++){const p=flakes[i];const sp=(2+p.z*9);p.x+=sp*1.1*snow.wind;p.y+=sp*.7;if(p.x>W+20){p.x=-20;p.y=Math.random()*H}if(p.y>H+20){p.y=-20;p.x=Math.random()*W-200}
+    g.strokeStyle=`rgba(240,248,255,${.25+p.z*.6})`;g.lineWidth=1+p.z*2.4;g.beginPath();g.moveTo(p.x,p.y);g.lineTo(p.x-sp*1.6*snow.wind,p.y-sp);g.stroke()}
+  requestAnimationFrame(f)}f()})();
+
+// ---------- ruas radiais (viram a cruz) ----------
+const roads=$('#roads');const RAD=[];
+for(let i=0;i<8;i++){const a=i*Math.PI/4-Math.PI/2;const L=i%2?620:[330,0,400,0,640,0,400][i]; // braços pares formam uma cruz latina
+  const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',CX);l.setAttribute('y1',CY);
+  l.setAttribute('x2',CX+Math.cos(a)*L);l.setAttribute('y2',CY+Math.sin(a)*L);l.setAttribute('stroke','#ffb347');l.setAttribute('stroke-width',6);
+  l.setAttribute('stroke-linecap','round');l.style.opacity=0;l.style.filter='drop-shadow(0 0 12px #ffb347)';roads.appendChild(l);RAD.push(l)}
+
+// ---------- pessoas ----------
+const ppl={alive:1,grey:0,list:[],walkers:[]};
+for(let i=0;i<150;i++){ppl.list.push({r:150+Math.random()*300,a:Math.random()*6.283,s:(Math.random()-.5)*.004,on:0})}
+function walker(n,color,dir){ // pessoas saindo da cidade por uma rua
+  for(let i=0;i<n;i++)ppl.walkers.push({a:dir,r:130-i*24,v:1.1+Math.random()*.3,c:color,o:1})}
+(function(){const c=$('#people'),g=c.getContext('2d');function f(){g.clearRect(0,0,W,H);
+  for(const p of ppl.list){if(!p.on)continue;p.a+=p.s*ppl.alive;const x=CX+Math.cos(p.a)*p.r,y=CY+Math.sin(p.a)*p.r*.8;
+    g.fillStyle=ppl.grey?`rgba(150,165,175,${p.on})`:`rgba(255,214,150,${p.on})`;g.beginPath();g.arc(x,y,3.4,0,7);g.fill()}
+  for(const w of ppl.walkers){w.r+=w.v*1.6;if(w.r>620)w.o-=.01;if(w.r<0||w.o<=0)continue;const x=CX+Math.cos(w.a)*w.r,y=CY+Math.sin(w.a)*w.r;
+    g.fillStyle=w.c.replace('A',Math.max(0,w.o));g.shadowColor=w.c.replace('A',1);g.shadowBlur=10;g.beginPath();g.arc(x,y,9,0,7);g.fill();g.shadowBlur=0}
+  ppl.walkers=ppl.walkers.filter(w=>w.o>0);requestAnimationFrame(f)}f()})();
+function peopleOn(v=1,d=2){ppl.list.forEach((p,i)=>gsap.to(p,{on:v,duration:.4,delay:Math.random()*d}))}
+
+// ---------- estado do jogo ----------
+const START={hope:55,disc:30,pop:80};let G={...START,harsh:0,choices:[]};
+const hud={hope:0,disc:0,pop:80,temp:-20};
+function setBarsInstant(){['hope','disc'].forEach(k=>{$(`#${k} .fill`).style.width=Math.max(0,Math.min(100,hud[k]))+'%';$(`#${k} .n`).textContent=Math.round(Math.max(0,Math.min(100,hud[k])))})}
+gsap.ticker.add(()=>{setBarsInstant();$('#tval').textContent=Math.round(hud.temp);$('#popn').textContent=Math.round(hud.pop);
+  $('#tarc').setAttribute('stroke-dashoffset',704-704*Math.min(1,Math.abs(hud.temp)/80))});
+function barsTo(h,d,dur=1.6,ease='elastic.out(1,.45)'){return gsap.to(hud,{hope:h,disc:d,duration:dur,ease})}
+
+// ---------- utilidades ----------
+// ponytail: toda espera agendada de uma batida morre quando outra batida comeca
+let PEND=[];const _dc=gsap.delayedCall.bind(gsap);gsap.delayedCall=(...a)=>{const t=_dc(...a);PEND.push(t);return t};
+function killPending(){PEND.forEach(t=>t.kill());PEND=[]}
+function clearUI(){gsap.killTweensOf('#ui *');ui.innerHTML=''}
+function el(html){const t=document.createElement('div');t.innerHTML=html.trim();const n=t.firstChild;ui.appendChild(n);return n}
+function shake(i=12,d=.5){gsap.fromTo(stage,{x:0,y:0},{x:()=>gsap.utils.random(-i,i),y:()=>gsap.utils.random(-i,i),duration:.05,repeat:Math.round(d/.05),yoyo:true,onComplete:()=>gsap.set(stage,{x:0,y:0})})}
+function flash(o=.8,red=false){gsap.fromTo(red?'#redflash':'#flash',{opacity:o},{opacity:0,duration:red?1.2:.6})}
+function inkIn(t,dur=2.2){gsap.fromTo(t,{webkitMaskSize:'0% 0%',maskSize:'0% 0%'},{webkitMaskSize:'420% 420%',maskSize:'420% 420%',duration:dur,ease:'power2.in'})}
+function title(txt,{y=380,size=150,kick='',color='',from='scale'}={}){
+  const n=el(`<div class="title" style="top:${y}px;font-size:${size}px;${color?'color:'+color:''}">${kick?`<div class="kicker" style="font-size:${Math.max(30,size*.26)}px">${kick}</div><span class="rule"></span>`:''}<div class="t">${txt}</div></div>`);
+  const t=n.querySelector('.t');
+  if(from==='scale')gsap.from(t,{scale:1.6,opacity:0,filter:'blur(20px)',duration:1.1,ease:'power3.out'});
+  else if(from==='letters'){t.innerHTML=txt.split('<br>').map(line=>line.split(' ').map(w=>`<span style="display:inline-block;white-space:nowrap">${w.split('').map(c=>`<span class="ch" style="display:inline-block">${c}</span>`).join('')}</span>`).join(' ')).join('<br>');gsap.from(t.querySelectorAll('.ch'),{y:80,opacity:0,rotate:()=>gsap.utils.random(-20,20),stagger:.035,duration:.7,ease:'back.out(2)'})}
+  if(kick)gsap.from(n.querySelectorAll('.kicker,.rule'),{opacity:0,y:-20,scaleX:.2,duration:.8,stagger:.15});
+  return n}
+const world=$('#world');
+function cam(o,d=2.5){return gsap.to(world,{...o,duration:d,ease:'power2.inOut'})}
+function setWorld({img=1,heat=null,dark=null,frost=null,snowAmt=null,people=null,hudOn=null}={}){
+  gsap.to('#cityimg',{opacity:img,duration:1.5});
+  if(heat!==null)gsap.to('#heat',{opacity:heat,duration:1.5});
+  if(dark!==null)gsap.to('#dark',{opacity:dark,duration:1.5});
+  if(frost!==null)gsap.to('#frost',{opacity:frost,duration:2});
+  if(snowAmt!==null)gsap.to(snow,{amt:snowAmt,duration:2});
+  if(hudOn!==null)hudShow(hudOn);
+}
+let hudVisible=false;
+function hudShow(on){if(on===hudVisible)return;hudVisible=on;
+  gsap.to('#thermo',{top:on?36:-240,duration:1.2,ease:on?'back.out(1.6)':'power2.in'});
+  gsap.to('#day',{opacity:on?1:0,duration:1});gsap.to('#pop',{opacity:on?1:0,duration:1});
+  gsap.to('#bars',{bottom:on?44:-240,duration:1.2,ease:on?'back.out(1.4)':'power2.in'})}
+gsap.to('#heat',{scale:1.06,duration:1.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
+
+// ---------- icones ----------
+const ICON={ // gravuras escuras no selo dourado, uma por enquete
+ child:'<svg viewBox="0 0 48 48" fill="#2a2216"><circle cx="16" cy="9" r="5.5"/><path d="M8 45V25a8 8 0 0 1 16 0v20h-4.5V34h-7v11z"/><circle cx="34" cy="20" r="4.2"/><path d="M28 45V32a6 6 0 0 1 12 0v13h-3.5v-8h-5v8z"/><path d="M23 28l6 1.5-.8 3-6-1.5z"/></svg>',
+ bed:'<svg viewBox="0 0 48 48" fill="#2a2216"><path d="M20 3h8v7h7v8h-7v7h-8v-7h-7v-8h7z"/><path d="M3 44V28h4v6h11v-5a3 3 0 0 1 3-3h18a6 6 0 0 1 6 6v12h-4v-4H7v4z"/><circle cx="12" cy="30" r="3.5"/></svg>',
+ bread:'<svg viewBox="0 0 48 48" fill="none" stroke="#2a2216" stroke-width="3.2"><rect x="11" y="5" width="20" height="25" rx="2.5" fill="#2a2216"/><path d="M11 11h20M11 24h20" stroke="#f3f1ea" stroke-width="2"/><ellipse cx="34" cy="33" rx="6" ry="4" transform="rotate(35 34 33)"/><ellipse cx="40" cy="41" rx="6" ry="4" transform="rotate(35 40 41)"/><path d="M28 28l2 2"/></svg>'};
+const ORN='<svg class="orn" viewBox="0 0 90 90" fill="none" stroke="#dfe8ee" stroke-width="2"><path d="M6 84V40C6 20 20 6 40 6h44"/><path d="M14 70c0-18 8-30 24-34 10-2 16 6 10 12s-16 0-12-6"/></svg>';
+
+// ---------- votacoes ----------
+const VOTES=[
+ {id:'v1',icon:'child',img:'assets/crianca.jpg',sub:'Dia 3 · O frio vai apertar',title:'As crianças',
+  facts:[['14 crianças','cold'],['Carvão não chega',''],['Elas estão com medo','cold']],
+  opts:[{t:'Mandar trabalhar',h:-15,d:5,harsh:1,stamp:'Mina',col:'#ff6b4a',fx:()=>walker(14,'rgba(255,214,150,A)',Math.PI*.25)},
+        {t:'Proteger a infância',h:10,d:20,harsh:0,stamp:'Abrigo',col:'#ffb347',fx:()=>{gsap.fromTo('#heat',{scale:1.5},{scale:1,duration:2})}}]},
+ {id:'v2',icon:'bed',img:'assets/felipe.jpg',sub:'Dia 5 · A enfermaria',title:'Felipe',
+  facts:[['Perdeu as pernas','cold'],['Pai de dois',''],['4 leitos · 9 na fila','cold']],
+  opts:[{t:'Manter no leito',h:10,d:25,harsh:0,stamp:'Mantido',col:'#ffb347',fx:()=>{}},
+        {t:'Mandar para casa',h:-10,d:5,harsh:1,stamp:'Sem cuidado',col:'#9fb4c4',fx:()=>gsap.to(hud,{pop:'-=1',duration:1})},
+        {t:'Exilar da cidade',h:-25,d:-5,harsh:1,stamp:'Exilado',col:'#ff6b4a',fx:()=>{walker(1,'rgba(255,107,74,A)',Math.PI*.5);gsap.to(hud,{pop:'-=1',duration:1})}}]},
+ {id:'v3',icon:'bread',img:'assets/ladrao.jpg',sub:'Dia 8 · A cidade tem fome',title:'O ladrão',
+  facts:[['Roubou ração','cold'],['O filho tem febre',''],['Prender tira 3 do trabalho','cold']],
+  opts:[{t:'Prender',h:-5,d:15,harsh:0,stamp:'Preso',col:'#9fb4c4',fx:()=>{}},
+        {t:'Exilar no gelo',h:-20,d:-10,harsh:1,stamp:'Exilado',col:'#ff6b4a',fx:()=>{walker(1,'rgba(255,107,74,A)',Math.PI);gsap.to(hud,{pop:'-=1',duration:1})}},
+        {t:'Perdoar',h:10,d:30,harsh:0,stamp:'Perdoado',col:'#ffb347',fx:()=>{}}]}];
+let voteState=null;
+function voteCard(v){
+  clearUI();
+  const c=el(`<div class="card">${ORN.replace('class="orn"','class="orn" style="left:14px;top:14px"')}${ORN.replace('class="orn"','class="orn" style="right:14px;top:14px;transform:scaleX(-1)"')}
+   <div class="seal">${ICON[v.icon]}</div>
+   <div class="portrait ink"><img src="${v.img}" alt=""><div class="stamp"></div><div class="tag"></div></div>
+   <div class="body"><div class="sub">${v.sub}</div><h2>${v.title}</h2>
+   <div class="facts">${v.facts.map(f=>`<div class="fact ${f[1]}">${f[0]}</div>`).join('')}</div><div class="opts"></div></div></div>`);
+  const p=c.querySelector('.portrait');p.style.webkitMaskImage=p.style.maskImage=`url(${INK})`;
+  sfx('whoosh',.7);
+  gsap.from(c,{y:-900,rotate:-3,duration:1,ease:'back.out(1.1)'});
+  gsap.from(c.querySelector('.seal'),{scale:0,rotate:-180,duration:.8,delay:.7,ease:'back.out(2)'});
+  gsap.fromTo(p,{webkitMaskSize:'0% 0%',maskSize:'0% 0%'},{webkitMaskSize:'360% 360%',maskSize:'360% 360%',duration:1.8,delay:.8,ease:'power2.in'});
+  gsap.from(p.querySelector('img'),{scale:1.25,duration:6,ease:'power1.out'});
+  gsap.from(c.querySelector('h2'),{x:80,opacity:0,duration:.8,delay:.9});
+  gsap.to(c.querySelectorAll('.fact'),{opacity:1,x:0,startAt:{x:60},stagger:.45,delay:1.6,duration:.6,ease:'power3.out',onStart:()=>sfx('clique',.4)});
+  return c}
+function showOptions(v){
+  const c=ui.querySelector('.card');if(!c)return;
+  gsap.to(c.querySelector('.facts'),{opacity:0,height:0,marginTop:0,duration:.5});
+  const box=c.querySelector('.opts');
+  box.innerHTML=v.opts.map((o,i)=>`<div class="opt" data-i="${i}"><span><span class="k">${i+1}</span>&nbsp;&nbsp;${o.t}</span><span class="eff"></span></div>`).join('');
+  gsap.to(box.children,{opacity:1,x:0,startAt:{x:-60},stagger:.15,duration:.5,ease:'power3.out'});
+  voteState={v,sel:-1,done:false};
+  box.querySelectorAll('.opt').forEach(o=>{o.onmouseenter=()=>preview(+o.dataset.i);o.onclick=ev=>{ev.stopPropagation();const k=+o.dataset.i;if(voteState&&voteState.sel===k)decide();else preview(k)}});
+}
+function fmt(n){return (n>0?'▲ +':'▼ ')+n}
+function preview(i){
+  if(!voteState||voteState.done)return;const {v}=voteState;if(i<0||i>=v.opts.length)return;
+  voteState.sel=i;const o=v.opts[i];
+  ui.querySelectorAll('.opt').forEach((e,k)=>e.classList.toggle('sel',k===i));
+  ui.querySelectorAll('.opt .eff').forEach((e,k)=>{e.innerHTML=k===i?`<span class="h">${fmt(o.h)}</span><span class="dd">${fmt(o.d)}</span>`:''});
+  const nh=Math.max(0,Math.min(100,G.hope+o.h)),nd=Math.max(0,Math.min(100,G.disc+o.d));
+  ghost('hope',G.hope,nh,o.h);ghost('disc',G.disc,nd,o.d);
+  sfx('clique',.5);shake(4,.25);
+  if(o.d>=20||o.h<=-15){flash(.35,true);amb('coracao',.6,.6)}else amb('coracao',.25,.6)
+}
+function ghost(k,cur,nxt,delta){
+  const gEl=$(`#${k} .ghost`),dEl=$(`#${k} .d`);gsap.killTweensOf([gEl,dEl]);
+  const lo=Math.min(cur,nxt),hi=Math.max(cur,nxt);
+  gsap.set(gEl,{left:lo+'%',width:(hi-lo)+'%'});
+  gsap.fromTo(gEl,{opacity:1},{opacity:.25,duration:.35,repeat:-1,yoyo:true});
+  dEl.textContent=(delta>0?'+':'')+delta;dEl.style.color=(k==='hope'?delta>=0:delta<=0)?'#ffd08a':'#ff6b4a';
+  gsap.fromTo(dEl,{opacity:0,y:20,scale:1.6},{opacity:1,y:0,scale:1,duration:.4,ease:'back.out(3)'});
+  gsap.fromTo(`#${k} .track`,{x:-8},{x:0,duration:.4,ease:'elastic.out(1,.3)'})
+}
+function clearGhost(){['hope','disc'].forEach(k=>{gsap.killTweensOf($(`#${k} .ghost`));gsap.to(`#${k} .ghost`,{opacity:0,duration:.3});gsap.to(`#${k} .d`,{opacity:0,duration:.5,delay:1.2})})}
+function decide(){
+  if(!voteState||voteState.done||voteState.sel<0)return;voteState.done=true;
+  const {v,sel}=voteState,o=v.opts[sel];
+  G.hope+=o.h;G.disc+=o.d;G.harsh+=o.harsh;G.choices[VOTES.indexOf(v)]=sel;
+  amb('coracao',0,.4);clearGhost();
+  sfx('boom',.9);flash(.9);shake(22,.6);if(o.h<0||o.d>=20)flash(.6,true);
+  ui.querySelectorAll('.opt').forEach((e,k)=>{if(k!==sel)gsap.to(e,{opacity:.12,x:-30,duration:.4})});
+  const st=ui.querySelector('.stamp');st.textContent=o.stamp;st.style.color=o.col;
+  gsap.fromTo(st,{opacity:0,scale:3},{opacity:1,scale:1,duration:.35,ease:'power4.in',delay:.15});
+  gsap.to(ui.querySelector('.portrait img'),{filter:o.harsh?'grayscale(1) brightness(.6)':'brightness(1.1) sepia(.3)',duration:1.2});
+  barsTo(G.hope,G.disc,2.2);
+  gsap.to(world,{scale:'+=0.04',duration:.15,yoyo:true,repeat:1});
+  o.fx();
+  // a carta sobe e deixa a cidade reagir
+  gsap.to(ui.querySelector('.card'),{x:-640,y:-230,scale:.42,duration:1.4,delay:2.6,ease:'power3.inOut'});
+  gsap.to(world,{scale:1.35,duration:3,delay:2.6,ease:'power2.inOut'});gsap.to('#dark',{opacity:0,duration:1.5,delay:2.6});
+}
+
+// ---------- finais ----------
+function ending(){
+  if(G.hope<=0)return{k:'d',t:'A esperança<br>acabou.',img:'#cityimg',dark:.6,frost:1};
+  if(G.disc>=100)return{k:'c',t:'O povo te exilou<br>no gelo.',img:'#genimg'};
+  if(G.harsh>=2)return{k:'b',t:'A cidade sobreviveu.',t2:'Mas valeu a pena?',img:'#cityimg'};
+  return{k:'a',t:'A cidade sobreviveu.',img:'#cityimg'}}
+function playEnding(){
+  const e=ending();clearUI();hudShow(false);$('#restart').style.display='block';
+  const v=$('#endvid');v.src=`video/final-${e.k}.mp4`;
+  let ok=true;v.onerror=()=>{ok=false};
+  sfx('riser',.8);amb('vento',.12,1); // vento baixo: a narracao do video manda
+  const mine=cur; // ponytail: se Navas ja avancou, o final nao desenha nada por cima da batida nova
+  gsap.to('#dark',{opacity:1,duration:1.2,onComplete:()=>{if(cur!==mine)return;
+    if(ok){v.muted=MUTED;v.volume=1;v.currentTime=0;v.play().catch(()=>{v.muted=true;v.play().catch(()=>{})});gsap.to(v,{opacity:1,duration:1})} // sem permissao de som, ao menos a imagem roda
+    else{gsap.to(e.img,{opacity:1,duration:.1});if(e.frost)gsap.to('#frost',{opacity:1,duration:3})}
+    gsap.to('#dark',{opacity:e.dark??.15,duration:2});
+    if(!ok)gsap.fromTo(world,{scale:1},{scale:1.12,duration:12,ease:'none'});
+    sfx('boom',.9);
+    let dita=false;const frase=()=>{if(cur!==mine||dita)return;dita=true;title(e.t,{y:e.t2?300:380,size:130,from:'letters'});sfx('boom',.7);amb('vento',.5,2);
+      if(e.t2)gsap.delayedCall(1.6,()=>{title(e.t2,{y:600,size:110,color:'#ffb347'});sfx('sino',.7)})};
+    // a frase so entra quando a narracao do video termina; sem video, entra logo
+    if(ok){v.onended=frase;gsap.delayedCall((v.duration||8)+1.5,frase); // rede de seguranca se o video travar
+      gsap.to('#dark',{opacity:.55,duration:1.5,delay:Math.max(0,(v.duration||8)-1.5)})}else gsap.delayedCall(1.5,frase)}})}
+
+// ---------- batidas ----------
+const vi=k=>VOTES[k];
+const BEATS=[
+ // 0 espera
+ {f(){clearUI();gsap.set('#cityimg',{opacity:0});gsap.set('#dark',{opacity:1});snow.amt=0;$('#hint').style.display='block'}},
+ // 1 o mundo acabou no gelo
+ {f(){$('#hint').style.display='none';clearUI();amb('vento',.55,3);gsap.to(snow,{amt:.25,duration:4});
+   gsap.fromTo('#frost',{opacity:0,scale:1.3},{opacity:1,scale:1,duration:5,ease:'power2.out'});
+   gsap.delayedCall(.9,()=>title('Um mundo que acabou<br>no gelo',{y:390,size:110,from:'letters'}))}},
+ // 2 1886, o gerador
+ {f(){clearUI();sfx('boom',.9);shake(14,.4);gsap.to('#frost',{opacity:.35,duration:1.5});
+   const v=$('#intro');v.currentTime=4;v.play().catch(()=>{});gsap.set('#dark',{opacity:0});inkIn(v,2.5);
+   const n=title('1886',{y:360,size:300,from:'scale'});n.querySelector('.t').style.letterSpacing='.08em';
+   gsap.to(n,{opacity:0,duration:1,delay:3.2});
+   gsap.delayedCall(6,()=>{gsap.to('#genimg',{opacity:1,duration:2});gsap.to(v,{opacity:0,duration:2,onComplete:()=>v.pause()});
+     gsap.fromTo('#genimg',{scale:1.15,filter:'brightness(.25) saturate(.4)'},{scale:1,filter:'brightness(1) saturate(1)',duration:5,ease:'power2.out'});
+     gsap.delayedCall(2.4,()=>{sfx('boom',.7);flash(.4);el('<div style="position:absolute;left:50%;top:80%;width:40px;height:40px;margin:-20px;border-radius:50%;border:6px solid #ffb347;box-shadow:0 0 40px #ffb347" id="wave"></div>');
+       gsap.to('#wave',{scale:60,opacity:0,borderWidth:1,duration:3,ease:'power2.out'})})})}},
+ // 3 cada dia mais frio
+ {f(){clearUI();gsap.to('#genimg',{opacity:1,duration:.8});gsap.to('#intro',{opacity:0,duration:.8});gsap.to('#dark',{opacity:0,duration:.8});hud.temp=-20;gsap.to('#thermo',{top:36,duration:1,ease:'back.out(1.6)'});
+   gsap.to(hud,{temp:-50,duration:6,ease:'steps(3)'});gsap.to('#frost',{opacity:1,duration:6});gsap.to(snow,{amt:.8,wind:1.8,duration:6});
+   gsap.to('#genimg',{filter:'brightness(.55) saturate(.5)',duration:6});
+   [0,2,4].forEach((t,i)=>gsap.delayedCall(t+1,()=>{shake(8+i*6,.4);sfx('whoosh',.5)}));
+   title('Mais frio<br>a cada dia',{y:400,size:140,from:'scale'})}},
+ // 4 e um jogo
+ {f(){clearUI();gsap.to('#genimg',{opacity:0,duration:2});gsap.set('#cityimg',{opacity:0});gsap.to('#cityimg',{opacity:1,duration:2});
+   setWorld({heat:1,frost:.45,snowAmt:.45});gsap.to(snow,{wind:1,duration:2});gsap.fromTo(world,{scale:1.6},{scale:1,duration:4,ease:'power3.out'});
+   hud.hope=0;hud.disc=0;hud.temp=-40;hudShow(true);sfx('riser',.6);
+   gsap.delayedCall(1.2,()=>{gsap.to('#dark',{opacity:.45,duration:1});title('A Última Cidade',{y:380,size:150,kick:'Frostpunk',from:'letters'});gsap.delayedCall(1.8,()=>sfx('boom',.8))})}},
+ // 5 um povo, duas medidas
+ {f(){clearUI();gsap.to('#dark',{opacity:0,duration:1.5});peopleOn(1,2.5);ppl.grey=0;ppl.alive=1;
+   gsap.delayedCall(2.4,()=>{barsTo(START.hope,START.disc,1.8,'power3.out');sfx('whoosh',.6);
+     gsap.fromTo('#bars .bar',{scale:1.15},{scale:1,stagger:.3,duration:.8,ease:'elastic.out(1,.4)'})})}},
+ // 6a sem esperanca
+ {f(){clearUI();barsTo(4,START.disc,2,'power2.in');ppl.alive=0;gsap.delayedCall(1,()=>{ppl.grey=1});
+   gsap.to('#heat',{opacity:.3,duration:2});title('Sem esperança,<br>desistem de viver',{y:300,size:100});amb('coracao',.4,1)}},
+ // 6b descontentamento
+ {f(){clearUI();amb('coracao',0,1);ppl.grey=0;ppl.alive=1;gsap.to('#heat',{opacity:1,duration:1});barsTo(START.hope,97,2,'power2.in');
+   gsap.delayedCall(1.6,()=>{flash(.7,true);shake(18,.6);sfx('boom',.8);walker(1,'rgba(255,107,74,A)',Math.PI*.75)});
+   title('Revoltados,<br>te expulsam para o gelo',{y:300,size:100})}},
+ // 6c todos morrem
+ {f(){clearUI();barsTo(0,0,2,'power2.in');gsap.to('#heat',{opacity:0,duration:2.5});gsap.to('#dark',{opacity:.55,duration:3});gsap.to('#frost',{opacity:1,duration:3});
+   peopleOn(0,2.5);gsap.to(hud,{temp:-70,duration:3});sfx('whoosh',.6);title('Governe mal,<br>e todos morrem',{y:300,size:110});
+   gsap.delayedCall(4.2,()=>{sfx('riser',.5);gsap.to('#heat',{opacity:1,duration:1.4});gsap.to('#dark',{opacity:0,duration:1.4});gsap.to('#frost',{opacity:.45,duration:1.4});
+     peopleOn(1,1);barsTo(START.hope,START.disc,1.4,'power2.out');gsap.to(hud,{temp:-40,duration:1.4})})}},
+ // 7 livro de leis
+ {f(){clearUI();restoreCity();hudShow(false);gsap.to('#dark',{opacity:.6,duration:1});sfx('whoosh',.7);
+   const b=el(`<div class="book"><div class="page l"><h3>Livro de Leis</h3>
+     ${['Trabalho infantil','Turno de 24 horas','Sopa no lugar da refeição','Vala comum'].map(t=>`<div class="law">${t}<i><span class="s">salva</span> · <span class="c">custa</span></i></div>`).join('')}</div>
+     <div class="page r"><h3>&nbsp;</h3>${['Prisão','Exílio','Amputação','Serragem no pão'].map(t=>`<div class="law">${t}<i><span class="s">salva</span> · <span class="c">custa</span></i></div>`).join('')}</div></div>`);
+   gsap.from(b.querySelector('.l'),{rotateY:90,duration:1.2,ease:'power3.out'});gsap.from(b.querySelector('.r'),{rotateY:-90,duration:1.2,ease:'power3.out'});
+   gsap.from(b,{y:300,opacity:0,duration:1});gsap.to(b.querySelectorAll('.law'),{opacity:1,x:0,startAt:{x:-40},stagger:.25,delay:1,duration:.5});
+   gsap.delayedCall(3.6,()=>{const t=el('<div class="title" style="top:900px;font-size:64px"><span class="amber">Cada lei salva alguém.</span>&nbsp; <span class="rust">Cada lei custa alguém.</span></div>');gsap.from(t,{y:40,opacity:0,duration:.8});sfx('boom',.5)})}},
+ // 8 a lei assinada
+ {f(){clearUI();hudShow(false);gsap.to('#dark',{opacity:.7,duration:1});
+   const p=el(`<div class="page" style="position:absolute;left:50%;top:150px;width:900px;height:620px;margin-left:-450px;flex:none">
+     <h3>Lei nº 13</h3><div class="law" style="opacity:1;font-size:46px;border:0">Turno estendido de 14 horas</div>
+     <svg viewBox="0 0 600 160" style="position:absolute;left:150px;bottom:110px;width:600px"><path id="sig" d="M10 110 C60 20 90 140 140 80 S220 30 250 100 S330 140 370 60 S470 40 590 90" fill="none" stroke="#1b2a4a" stroke-width="6" stroke-linecap="round"/></svg>
+     <div style="position:absolute;left:150px;right:150px;bottom:100px;border-top:2px solid #6d6555"></div></div>`);
+   gsap.from(p,{y:600,rotate:6,duration:1,ease:'power3.out'});
+   const sg=p.querySelector('#sig'),L=sg.getTotalLength();gsap.fromTo(sg,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:1.6,delay:1,ease:'power1.inOut'});
+   gsap.delayedCall(2.8,()=>{const s=el('<div class="bigstamp" style="left:50%;top:330px;font-size:110px;color:#a3241a;transform:translateX(-50%) rotate(-14deg)">Aprovada</div>');
+     gsap.fromTo(s,{opacity:0,scale:3},{opacity:.92,scale:1,duration:.3,ease:'power4.in',onComplete:()=>{sfx('boom',1);shake(26,.5);flash(.5)}})});
+   gsap.delayedCall(4.8,()=>{gsap.to(p,{y:-80,opacity:.25,scale:.85,duration:1});ui.querySelector('.bigstamp')&&gsap.to(ui.querySelector('.bigstamp'),{opacity:.15,duration:1});
+     title('E se fosse<br>de verdade?',{y:420,size:150,from:'letters'})})}},
+ // 9 voces sao o capitao
+ {f(){clearUI();hudShow(true);gsap.to('#dark',{opacity:0,duration:1});sfx('riser',.7);cam({scale:1.9,rotate:8},2.4).then(()=>cam({scale:1.15,rotate:0},1.6));
+   gsap.delayedCall(2.4,()=>{sfx('boom',.9);flash(.6);shake(16,.4);const b=el('<div class="gamebtn" style="top:470px">Agora o capitão são vocês</div>');
+     gsap.from(b,{scaleX:0,opacity:0,duration:.7,ease:'back.out(1.6)'});gsap.to(b,{boxShadow:'0 0 60px rgba(255,179,71,.6)',duration:1,repeat:-1,yoyo:true})})}},
+ // votacao 1
+ {f(){cam({scale:1.15},1);hudShow(true);gsap.to('#dark',{opacity:.35,duration:1});hud.temp=-40;$('#day').textContent='DIA 3';voteCard(vi(0))}},
+ {vote:0,f(){showOptions(vi(0))}},
+ // votacao 2
+ {f(){cam({scale:1.15},1);gsap.to('#dark',{opacity:.35,duration:1});gsap.to(hud,{temp:-45,duration:1.5});$('#day').textContent='DIA 5';voteCard(vi(1))}},
+ {vote:1,f(){showOptions(vi(1))}},
+ // 10 quanto ele rende
+ {f(){const c=ui.querySelector('.card');if(!c)return;gsap.to(c,{x:0,y:0,scale:1,duration:.8,ease:'power3.out'});cam({scale:1.15},1);gsap.to('#dark',{opacity:.35,duration:1});
+   const t=c.querySelector('.tag');t.innerHTML=`<svg width="300" height="230" viewBox="0 0 300 230"><line x1="150" y1="0" x2="150" y2="60" stroke="#dfe8ee" stroke-width="3"/>
+     <path d="M70 60h160l30 40v110H40V100z" fill="#e9dfc5" stroke="#5b4a2a" stroke-width="4"/><circle cx="150" cy="88" r="10" fill="#333"/>
+     <text x="150" y="150" text-anchor="middle" font-family="Roboto Slab" font-weight="900" font-size="36" fill="#a3241a">QUANTO</text>
+     <text x="150" y="190" text-anchor="middle" font-family="Roboto Slab" font-weight="900" font-size="36" fill="#a3241a">ELE RENDE?</text></svg>`;
+   gsap.fromTo(t,{opacity:0,y:-300},{opacity:1,y:60,duration:.8,ease:'bounce.out'});gsap.to(t,{rotate:6,duration:1.4,repeat:-1,yoyo:true,ease:'sine.inOut',delay:.8});
+   gsap.to(c.querySelector('.portrait img'),{scale:1.15,duration:5});sfx('clique',.7)}},
+ // votacao 3
+ {f(){cam({scale:1.15},1);gsap.to('#dark',{opacity:.35,duration:1});gsap.to(hud,{temp:-55,duration:1.5});$('#day').textContent='DIA 8';voteCard(vi(2))}},
+ {vote:2,f(){showOptions(vi(2))}},
+ // final
+ {f(){playEnding()}},
+ // 11 alguem paga
+ {f(){exitEnding();clearUI();gsap.to('#dark',{opacity:.7,duration:1.2});
+   const s=el(`<svg viewBox="0 0 900 560" style="position:absolute;left:50%;top:170px;width:900px;margin-left:-450px">
+     <line x1="450" y1="40" x2="450" y2="520" stroke="#dfe8ee" stroke-width="10"/><rect x="330" y="510" width="240" height="20" fill="#dfe8ee"/>
+     <g id="beam"><line x1="120" y1="120" x2="780" y2="120" stroke="#dfe8ee" stroke-width="10"/>
+       <g id="pl"><line x1="120" y1="120" x2="120" y2="300" stroke="#9fb4c4" stroke-width="3"/><path d="M40 300h160a80 30 0 0 1-160 0" fill="#ffb347"/><text x="120" y="380" fill="#ffb347" font-family="Barlow Condensed" font-weight="700" font-size="44" text-anchor="middle">A CIDADE</text></g>
+       <g id="pr"><line x1="780" y1="120" x2="780" y2="300" stroke="#9fb4c4" stroke-width="3"/><path d="M700 300h160a80 30 0 0 1-160 0" fill="#9fb4c4"/><text x="780" y="380" fill="#dfe8ee" font-family="Barlow Condensed" font-weight="700" font-size="44" text-anchor="middle">O MAIS FRACO</text></g></g></svg>`);
+   gsap.from(s,{opacity:0,y:60,duration:1});
+   gsap.to(s.querySelector('#beam'),{rotate:14,svgOrigin:'450 120',duration:1.6,delay:1.4,ease:'bounce.out',onStart:()=>sfx('boom',.7)});
+   gsap.to(s.querySelectorAll('#pl,#pr'),{rotate:-14,svgOrigin:(i)=>i?'780 120':'120 120',duration:1.6,delay:1.4,ease:'bounce.out'});
+   gsap.delayedCall(2.8,()=>title('Alguém paga',{y:800,size:110,color:'#ff6b4a'}))}},
+ // 12 joao 11
+ {f(){clearUI();gsap.to('#dark',{opacity:.85,duration:1.5});gsap.to('#heat',{opacity:.3,duration:2});
+   const p=el(`<div class="page" style="position:absolute;left:50%;top:300px;width:900px;height:420px;margin-left:-450px;display:grid;place-items:center;flex:none">
+     <div style="text-align:center"><div style="font-family:var(--cond);font-size:44px;letter-spacing:.3em;color:#6d6555">EVANGELHO DE</div>
+     <div style="font-family:var(--slab);font-weight:900;font-size:170px;line-height:1">JOÃO 11</div></div></div>`);
+   gsap.fromTo(p,{scaleY:0,opacity:0},{scaleY:1,opacity:1,duration:1.4,ease:'power3.out'});sfx('whoosh',.6)}},
+ // 13 a frase de caifas
+ {f(){clearUI();gsap.to('#dark',{opacity:.9,duration:1});amb('vento',.25,2);
+   const L=['“Convém','que morra um só homem','pelo povo”'],ys=[210,410,610],fx=[{y:-200},{x:-1200},{x:1200}];
+   L.forEach((t,i)=>gsap.delayedCall(i*1.3,()=>{const n=title(t,{y:ys[i],size:i==1?118:140,from:'none'});gsap.from(n,{...fx[i],opacity:0,duration:.9,ease:'power4.out'});sfx('boom',.6+i*.15);shake(8+i*6,.3)}));
+   gsap.delayedCall(4.4,()=>{const n=el('<div class="kicker" style="position:absolute;left:0;right:0;top:850px;text-align:center;font-size:40px">CAIFÁS · JOÃO 11.50</div>');gsap.from(n,{opacity:0,duration:1})})}},
+ // 14 meu livro de leis
+ {f(){clearUI();
+   const b=el(`<div class="book"><div class="page l"><h3>Livro de Leis</h3>${['Trabalho infantil','Exílio','Vala comum'].map(t=>`<div class="law" style="opacity:.6">${t}</div>`).join('')}</div>
+     <div class="page r" style="display:grid;place-items:center;text-align:center"><div style="font-family:var(--slab);font-weight:900;font-size:58px;line-height:1.15">Convém que morra um só homem pelo povo</div></div></div>`);
+   gsap.from(b,{scale:.6,opacity:0,duration:1,ease:'back.out(1.4)'});
+   gsap.delayedCall(1.6,()=>{const s=el('<div class="bigstamp" style="left:1140px;top:640px;font-size:80px;color:#a3241a;transform:rotate(-10deg)">Lei</div>');
+     gsap.fromTo(s,{opacity:0,scale:3},{opacity:.95,scale:1,duration:.3,ease:'power4.in',onComplete:()=>{sfx('boom',1);shake(24,.5);flash(.4)}})})}},
+ // 15 a cruz
+ {f(){clearUI();exitEnding();gsap.to('#cityimg',{opacity:1,duration:1});gsap.to('#dark',{opacity:.55,duration:1.5});cam({scale:1,rotate:0},2);
+   RAD.forEach(l=>gsap.to(l,{opacity:.85,duration:1}));
+   gsap.delayedCall(1.6,()=>{RAD.forEach((l,i)=>{if(i%2)gsap.to(l,{opacity:0,duration:1.2})});sfx('riser',.6)});
+   gsap.delayedCall(3,()=>{gsap.to('#heat',{opacity:0,duration:2});RAD.forEach((l,i)=>{if(!(i%2))gsap.to(l,{opacity:1,strokeWidth:16,duration:1.6})});
+     gsap.to('#dark',{opacity:.35,duration:2});sfx('sino',.8);flash(.5)});
+   gsap.delayedCall(4.8,()=>{title('Quem paga é o Rei',{y:870,size:96,color:'#ffb347',from:'letters'})})}},
+ // 16 minha casa
+ {f(){clearUI();RAD.forEach(l=>gsap.to(l,{opacity:0,duration:1.2}));gsap.to('#cityimg',{opacity:0,duration:2});gsap.to('#houseimg',{opacity:1,duration:2});
+   gsap.fromTo('#houseimg',{scale:1.4},{scale:1,duration:4,ease:'power2.out'});gsap.to('#dark',{opacity:.25,duration:1.5});gsap.to('#heat',{opacity:0,duration:1});
+   const words=['Missão','Seminário','Igreja','Trabalho'];
+   words.forEach((w,i)=>{const n=el(`<div class="kicker" style="position:absolute;left:960px;top:540px;font-size:54px;color:#ffb347;font-weight:700">${w}</div>`);
+     const o={a:i*Math.PI/2};gsap.from(n,{opacity:0,duration:1,delay:1+i*.4});
+     gsap.to(o,{a:'+='+Math.PI*2,duration:14,repeat:-1,ease:'none',onUpdate:()=>{gsap.set(n,{x:Math.cos(o.a)*560-n.offsetWidth/2,y:Math.sin(o.a)*330-30})}})});
+   gsap.delayedCall(2.4,()=>{const t=el('<div class="title" style="top:60px;font-size:84px">A minha cidade pequena</div>');gsap.from(t,{opacity:0,y:-40,duration:1})})}},
+ // 17 agora nao
+ {f(){clearUI();gsap.to('#dark',{opacity:.6,duration:1});
+   const d=el(`<div style="position:absolute;left:50%;top:150px;width:720px;height:720px;margin-left:-360px;box-shadow:0 30px 90px #000;background:#fff url(assets/desenho.jpg) center/cover"></div>`);
+   gsap.from(d,{y:700,rotate:-10,duration:1.1,ease:'power3.out'});sfx('whoosh',.5);
+   gsap.delayedCall(2.6,()=>{const s=el('<div class="bigstamp" style="left:50%;top:430px;font-size:130px;color:#a3241a;transform:translateX(-50%) rotate(-12deg);background:rgba(255,255,255,.2)">Agora não</div>');
+     gsap.fromTo(s,{opacity:0,scale:3},{opacity:.95,scale:1,duration:.3,ease:'power4.in',onComplete:()=>{sfx('boom',1);shake(20,.4)}})});
+   gsap.delayedCall(5,()=>{const s=ui.querySelector('.bigstamp');if(!s)return;sfx('whoosh',.5);
+     s.style.clipPath='polygon(0 0,100% 0,100% 100%,0 100%)';gsap.to(s,{opacity:.25,rotate:-4,y:30,filter:'blur(2px)',duration:1.4});gsap.to(d,{filter:'brightness(1.1)',duration:1.4})})}},
+ // 18 a pergunta
+ {f(){clearUI();gsap.to('#dark',{opacity:.75,duration:1});title('Quem está pagando<br>para a minha cidade<br>funcionar?',{y:270,size:120,from:'letters'})}},
+ // 19 alguem ja pagou
+ {f(){clearUI();gsap.to(snow,{amt:0,duration:4});amb('vento',0,4);gsap.to('#frost',{opacity:0,duration:4});gsap.to('#dark',{opacity:0,duration:3});
+   gsap.to('#houseimg',{filter:'brightness(1.25) sepia(.35) saturate(1.3)',duration:5});
+   const g=el('<div style="position:absolute;left:50%;top:50%;width:1600px;height:1600px;margin:-800px;border-radius:50%;background:radial-gradient(circle,rgba(255,190,110,.6),rgba(255,140,40,0) 60%);mix-blend-mode:screen"></div>');
+   gsap.fromTo(g,{scale:.1,opacity:0},{scale:1,opacity:1,duration:5,ease:'power2.out'});sfx('sino',.6);
+   gsap.delayedCall(1.8,()=>title('Alguém já pagou<br>por mim',{y:380,size:130}))}},
+ // 20 obrigado
+ {f(){clearUI();gsap.to('#dark',{opacity:1,duration:2.5});gsap.delayedCall(2.2,()=>title('Obrigado',{y:460,size:110,kick:'Navarro Lamounier'}))}},
+];
+function restoreCity(){ppl.grey=0;ppl.alive=1;peopleOn(1,.8);gsap.to('#heat',{opacity:1,duration:1});gsap.to('#frost',{opacity:.45,duration:1});gsap.to('#cityimg',{opacity:1,duration:1});
+  barsTo(G.hope,G.disc,1.2,'power2.out');gsap.to(hud,{temp:-40,duration:1});hudShow(true)}
+function exitEnding(){const v=$('#endvid');v.onended=null;gsap.to(v,{opacity:0,duration:1,onComplete:()=>v.pause()});gsap.to('#genimg',{opacity:0,duration:1});$('#restart').style.display='none';hudShow(false)}
+
+// ---------- navegacao ----------
+let cur=0;
+function go(i){if(i<0||i>=BEATS.length)return;
+  const b=BEATS[cur];if(b.vote!==undefined&&!(voteState&&voteState.done)&&i>cur)return; // espera a decisao
+  if(i<cur){gsap.globalTimeline.getChildren(false,true,false).forEach(t=>{if(t.vars&&t.vars.repeat!==-1)t.progress(1)})}
+  cur=i;killPending();BEATS[i].f()}
+function restart(){G={...START,harsh:0,choices:[]};voteState=null;exitEnding();clearUI();
+  gsap.to('#dark',{opacity:.35,duration:1});gsap.to('#cityimg',{opacity:1,duration:1});gsap.to('#frost',{opacity:.45,duration:1});
+  hudShow(true);hud.pop=80;barsTo(START.hope,START.disc,1.2,'power2.out');
+  const k=BEATS.findIndex(b=>b.vote===0)-1;cur=k;killPending();BEATS[k].f()}
+$('#restart').onclick=ev=>{ev.stopPropagation();restart()};
+// toque: terço da esquerda volta, o resto avança (na votação, tocar a opção mostra o preço e tocar de novo confirma)
+if(matchMedia('(pointer:coarse)').matches)stage.addEventListener('click',ev=>{if(ev.target.closest('.opt'))return;ev.clientX<innerWidth/3?go(cur-1):go(cur+1)});
+addEventListener('keydown',e=>{
+  if([' ','ArrowRight','PageDown','ArrowDown'].includes(e.key)){e.preventDefault();go(cur+1)}
+  else if(['ArrowLeft','PageUp','ArrowUp'].includes(e.key)){e.preventDefault();go(cur-1)}
+  else if(['1','2','3'].includes(e.key))preview(+e.key-1);
+  else if(e.key==='Enter')decide();
+  else if(e.key==='r'||e.key==='R')restart();
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  else if(e.key==='m'||e.key==='M')toggleMute();
+  else if(e.key==='h'||e.key==='H')document.body.style.cursor=document.body.style.cursor==='none'?'default':'none';
+});
+fit();
+// salto direto para uma batida: index.html#12
+BEATS[0].f();
+if(location.hash){const k=parseInt(location.hash.slice(1));if(k>0){$('#hint').style.display='none';for(let i=1;i<=k;i++){cur=i;killPending();BEATS[i].f()}gsap.globalTimeline.getChildren(true,true,false).forEach(t=>{if(t.vars.repeat!==-1)t.progress(1)})}}
+</script>
+</body>
+</html>
