@@ -135,21 +135,19 @@ const FALAS = {
   filipe: ["Time da Comunicação", "Sou o Filipe Farol.", "Acompanho o que o bairro está falando e trago pautas que fazem ponte com o evangelho e com o que a igreja já faz.", "A igreja fala com quem mora perto sobre o que importa para essa pessoa."],
   tabita: ["Time da Comunicação", "Eu sou a Tabita Tom.", "Antes de qualquer peça sair, confiro a voz, o tom e a marca da igreja. Nada sai com erro, com exagero ou fora do jeito de vocês.", "Tudo o que a igreja publica tem o jeito da igreja."],
   josue: ["Projetos", "Oi, pastor. Eu sou o Josué Jornada.", "Quando o senhor quiser começar um congresso, um acampamento ou o aniversário da igreja, eu faço as perguntas, proponho caminhos de tema e monto o plano de trás para frente, com o que cada time faz.", "O senhor tem com quem pensar o projeto, e nada fica esquecido."],
-  dorcas: ["Time da Comunicação", "Sou a Dorcas Disparo.", "Organizo o calendário, agendo em cada rede e mando pelo WhatsApp para os membros. Só publico depois do seu sim.", "A semana inteira tem conteúdo, e ninguém da equipe precisa lembrar de postar."],
-  priscila: ["Time do Ensino", "Oi! Eu sou a Priscila Programa.", "O líder de cada classe me entrega o tema, os livros-base e a essência do que quer ensinar. Eu monto o ciclo e distribuo o trabalho para o time.", "Cada classe recebe o curso inteiro, com começo, meio e fim."],
-  apolo: ["Time do Ensino", "Sou o Apolo Aula.", "Escrevo cada encontro e o guia do professor, com o texto bíblico no centro e a aplicação no fim.", "O professor chega no domingo sabendo o que ensinar e como conduzir a turma."],
+  dorcas: ["Time da Comunicação", "Sou a Dorcas Disparo.", "Organizo o calendário, agendo em cada rede e mando pelo WhatsApp para os membros. Tudo sai no pacote da semana, depois do seu sim.", "A semana inteira tem conteúdo, e ninguém da equipe precisa lembrar de postar."],
+  priscila: ["Time do Ensino", "Oi! Eu sou a Priscila Programa.", "O líder de cada classe me entrega o tema, os livros-base e a essência do que quer ensinar. Eu monto o ciclo, inclusive a classe de novos membros e o plano de leitura, e distribuo o trabalho para o time.", "Cada classe recebe o curso inteiro, com começo, meio e fim."],
+  apolo: ["Time do Ensino", "Sou o Apolo Aula.", "Escrevo cada encontro e o guia do professor, para todas as idades, das crianças aos adultos, com o texto bíblico no centro e a aplicação no fim.", "O professor chega no domingo sabendo o que ensinar e como conduzir a turma."],
   sara: ["Time do Ensino", "Eu sou a Sara Slide.", "Monto os slides e o material de apoio de cada aula, sempre na identidade daquela classe.", "A turma vê uma apresentação bonita e coerente do primeiro ao último encontro."],
-  calebe: ["Time do Ensino", "Sou o Calebe Catecismo.", "Cuido das versões para crianças e adolescentes, da classe de novos membros e do plano de leitura.", "Os pequenos aprendem a mesma verdade, no tamanho certo para a idade deles."],
   natanael: ["Time do Ensino", "Eu sou o Natanael Norma.", "Leio tudo antes de chegar ao professor e confiro com a confissão de fé da igreja.", "O conselho pode confiar: o que se ensina na EBD é o que a igreja confessa."],
+  esdras: ["Time do Ensino", "Oi! Eu sou o Esdras Explica.", "Fico no grupo de WhatsApp de cada classe e conheço o material dela inteiro. Quando alguém me chama com uma dúvida, explico com outras palavras, abro o versículo e mostro onde está na aula. O que passa do material eu levo ao professor.", "No sábado o professor recebe as dúvidas da semana e sabe quem precisa de atenção, e no fim do ciclo o líder do Ensino recebe o relatório de cada classe."],
   lidia: ["Time do Cuidado", "Oi, eu sou a Lídia Lar.", "Atendo quem chega pelo link da bio a qualquer hora: horários, endereço, ministério infantil. Quando a pessoa quer visitar, aviso o acolhimento na hora.", "Quem bate à porta da igreja pela internet nunca fica sem resposta."],
   isabel: ["Time do Cuidado", "Oi, pastor. Eu sou a Isabel Integra.", "Acompanho cada visitante depois do primeiro domingo: as boas-vindas, o convite para um grupo, a classe de novos membros. E lembro o líder do grupo de ligar em até 36 horas.", "Quem visitou a igreja não se perde entre o domingo e o grupo."],
-  epafras: ["Time do Cuidado", "Sou o Epafras Escuta.", "Leio os grupos da igreja que o senhor autorizou, e não respondo em nenhum. À noite mando um boletim curto: o que pede a sua ação, o que um líder precisa ver e os motivos de gratidão.", "O senhor sabe da irmã internada no mesmo dia, e não na semana seguinte."],
-  ana: ["Time do Cuidado", "Eu sou a Ana Amparo.", "Cuido da agenda pastoral: enfermos, enlutados, aniversários e pedidos de oração. Cada nome vira uma visita, uma ligação ou uma mensagem marcada na sua semana.", "Ninguém da igreja passa sozinho por um momento difícil."],
-  tercio: ["Time do Governo", "Oi, pastor. Eu sou o Tércio Tinta.", "O secretário me manda as notas ou a gravação da reunião, e no dia seguinte ele tem o rascunho da ata e o quadro de decisões, com dono e prazo. Também mantenho o rol de membros em dia e monto o relatório do ano.", "Nenhuma decisão do conselho fica só na memória de alguém."],
-  zacarias: ["Time do Governo", "Sou o Zacarias Zelo.", "Cada decisão do conselho tem um dono. Eu lembro essa pessoa antes do prazo, com educação, e conto ao senhor o que andou e o que parou.", "A próxima reunião começa pelo que foi feito, e não pelo que foi esquecido."],
+  epafras: ["Time do Cuidado · módulo opcional", "Sou o Epafras Escuta.", "Leio os grupos da igreja que o conselho autorizou, e não respondo em nenhum. À noite mando um boletim curto e ponho na sua semana o que pede cuidado: a visita, a ligação, o aniversário, o pedido de oração.", "O senhor sabe da irmã internada no mesmo dia, e a visita já aparece marcada."],
+  tercio: ["Time do Governo", "Oi, pastor. Eu sou o Tércio Tinta.", "O secretário me manda as notas ou a gravação da reunião, e no dia seguinte ele tem o rascunho da ata e o quadro de decisões, com dono e prazo. Depois eu lembro cada dono antes do prazo, mantenho o rol de membros em dia e monto o relatório do ano.", "Nenhuma decisão do conselho fica só na memória de alguém."],
   febe: ["Time do Governo", "Sou a Febe Folhinha.", "Cuido da agenda oficial da igreja. Quando alguém tenta marcar no mesmo salão e horário, eu aviso na hora. Os outros agentes consultam a mesma agenda.", "A igreja inteira olha para um calendário só."],
 };
-const NOMES = { gideao: "Gideão Garimpo", eliseu: "Eliseu Edição", lucas: "Lucas Lição", rute: "Rute Revisão", marcos: "Marcos Mensagem", dorcas: "Dorcas Disparo", priscila: "Priscila Programa", apolo: "Apolo Aula", sara: "Sara Slide", calebe: "Calebe Catecismo", natanael: "Natanael Norma", lidia: "Lídia Lar", josue: "Josué Jornada", bezalel: "Bezalel Branding", hirao: "Hirão Hotsite", filipe: "Filipe Farol", tabita: "Tabita Tom", isabel: "Isabel Integra", epafras: "Epafras Escuta", ana: "Ana Amparo", tercio: "Tércio Tinta", zacarias: "Zacarias Zelo", febe: "Febe Folhinha" };
+const NOMES = { gideao: "Gideão Garimpo", eliseu: "Eliseu Edição", lucas: "Lucas Lição", rute: "Rute Revisão", marcos: "Marcos Mensagem", dorcas: "Dorcas Disparo", priscila: "Priscila Programa", apolo: "Apolo Aula", sara: "Sara Slide", natanael: "Natanael Norma", esdras: "Esdras Explica", lidia: "Lídia Lar", josue: "Josué Jornada", bezalel: "Bezalel Branding", hirao: "Hirão Hotsite", filipe: "Filipe Farol", tabita: "Tabita Tom", isabel: "Isabel Integra", epafras: "Epafras Escuta", tercio: "Tércio Tinta", febe: "Febe Folhinha" };
 function abreAgente(id) {
   fecha();
   const [min, ...falas] = FALAS[id];
@@ -184,10 +182,10 @@ const i1 = ato(1), i2 = ato(2);
 // ================= TIMES =================
 const TIMES = [
   { id: "palavra", nome: "Palavra", rostos: ["gideao", "eliseu", "lucas", "rute"], dor: "Sua pregação de domingo chega a quem não estava no culto?", bem: "Cada sermão vira cortes, estudo e posts para a semana inteira, e quem assistiu encontra o caminho até a igreja." },
-  { id: "ensino", nome: "Ensino", rostos: ["priscila", "apolo", "sara", "natanael"], dor: "A EBD depende de um professor que prepara tudo sozinho na véspera?", bem: "O trimestre chega planejado, com aulas, guia do professor e slides, revisados contra a confissão da igreja." },
+  { id: "ensino", nome: "Ensino", rostos: ["priscila", "apolo", "sara", "natanael", "esdras"], dor: "A EBD depende de um professor que prepara tudo sozinho na véspera?", bem: "O trimestre chega planejado, com aulas, guia do professor e slides, revisados contra a confissão da igreja. E a classe tira dúvidas durante a semana." },
   { id: "comunicacao", nome: "Comunicação", rostos: ["bezalel", "marcos", "hirao", "dorcas"], dor: "O Instagram da sua igreja é um mural de avisos?", bem: "Conteúdo que edifica quem está dentro e conversa com quem está fora. E cada evento sai pronto, da arte à inscrição." },
-  { id: "cuidado", nome: "Cuidado", rostos: ["lidia", "isabel", "epafras", "ana"], dor: "Quem visitou a igreja no domingo recebeu uma mensagem durante a semana?", bem: "O visitante é recebido na hora, o acolhimento é avisado e ninguém some sem que o pastor saiba." },
-  { id: "governo", nome: "Governo", rostos: ["tercio", "zacarias", "febe"], dor: "Você ainda é o lembrete da sua igreja?", bem: "O que foi decidido tem dono e prazo, o domingo tem gente e a agenda é uma só. E você volta a pastorear." },
+  { id: "cuidado", nome: "Cuidado", rostos: ["lidia", "isabel", "epafras"], dor: "Quem visitou a igreja no domingo recebeu uma mensagem durante a semana?", bem: "O visitante é recebido na hora, o acolhimento é avisado e ninguém some sem que o pastor saiba." },
+  { id: "governo", nome: "Governo", rostos: ["tercio", "febe"], dor: "Você ainda é o lembrete da sua igreja?", bem: "O que foi decidido tem dono e prazo, o domingo tem gente e a agenda é uma só. E você volta a pastorear." },
 ];
 function t1() {
   const box = $("#t1-cartoes");
@@ -459,7 +457,7 @@ function p5() {
 
 // ================= ENSINO 1: a chamada =================
 const AULAS = ["Criação", "Queda", "Redenção", "Consumação", "Trabalho", "Família", "Tecnologia", "Dinheiro", "Arte", "Ciência", "Corpo", "Cidade", "Missão"];
-const EQUIPE_ENSINO = [["priscila", "Priscila Programa"], ["apolo", "Apolo Aula"], ["sara", "Sara Slide"], ["calebe", "Calebe Catecismo"], ["natanael", "Natanael Norma"]];
+const EQUIPE_ENSINO = [["priscila", "Priscila Programa"], ["apolo", "Apolo Aula"], ["sara", "Sara Slide"], ["natanael", "Natanael Norma"], ["esdras", "Esdras Explica"]];
 function e1() {
   const eq = $("#e1-eq");
   EQUIPE_ENSINO.forEach(([id, nome]) => eq.append(h(`<div><img src="assets/avatares/${id}.webp" alt=""><b>${nome}</b></div>`)));
@@ -540,7 +538,7 @@ const ICONE_MAT = {
 function e3() {
   const svg = $("#e3-liga"), box = $("#e3-classes"), matsBox = $("#e3-mats"), chipsBox = $("#e3-chips"), curso = $("#e3-curso");
   const ids = Object.keys(CLASSE), cy = i => 340 + i * 150 + 59, PX = 960, PY = 520, MY = k => 330 + k * 104;
-  const AGS = ["#e3-apo", "#e3-sar", "#e3-cal", "#e3-nat"], AX = [700, 880, 1060, 1240];
+  const AGS = ["#e3-apo", "#e3-sar", "#e3-nat"], AX = [760, 960, 1160];
   const cards = ids.map((id, i) => {
     const c = CLASSE[id], b = h(`<button class="classe" style="${vars(c)}"><b>${c.nome}</b><span>${c.tema}</span></button>`);
     b.style.top = (cy(i) - 59) + "px"; box.append(b); b.onclick = () => { escolheu = true; roda(i); }; return b;
@@ -691,8 +689,8 @@ function e5() {
   });
   // ideias que sobem da turma
   const ideias = alunos.filter((_, i) => i % 3 === 0).map(a => el("circle", { cx: a.x, cy: a.y - a.r - 10, r: 7, fill: "#ffac13", opacity: 0 }, svg));
-  const frases = $$("#e5-frases p"), btns = $$("#e5-fecho .cta");
-  gsap.set(["#e5-tit", "#e5-tela", ...frases, ...btns], { autoAlpha: 0 });
+  const frases = $$("#e5-frases p");
+  gsap.set(["#e5-tit", "#e5-tela", ...frases], { autoAlpha: 0 });
   const tl = gsap.timeline({ paused: true })
     .fromTo("#e5-tit", foco, { ...nitido, duration: .7 })
     .fromTo(tela, { opacity: 0 }, { opacity: 1, duration: .5 }, .3)
@@ -701,12 +699,61 @@ function e5() {
     .to(alunos.map(a => a.g), { opacity: 1, duration: .4, stagger: .04 }, 1.1)
     .to(alunos.map(a => a.c), { attr: { stroke: "#ffac13", fill: "#3a2a12" }, duration: .4, stagger: { each: .06, from: "random" } }, 2.2);
   frases.forEach((f, i) => tl.fromTo(f, { autoAlpha: 0, x: -60, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .7, ease: "power3.out" }, 2.4 + i * 1.1));
-  tl.fromTo(btns, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)", stagger: .12 }, 6);
   const vida = gsap.timeline({ paused: true })
     .to(braco, { attr: { d: "M1110 640 L1180 540" }, duration: 1.2, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
     .to(prof, { y: -5, duration: 2, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
   ideias.forEach((d, i) => vida.fromTo(d, { attr: { opacity: 0 }, y: 0 }, { keyframes: { attr: [{ opacity: 1 }, { opacity: 0 }] }, y: -70, duration: 2.2, repeat: -1, ease: "power1.out" }, 2.5 + i * .5));
   return { enter() { tl.restart(); vida.restart(); }, leave() { tl.pause(0); vida.pause(0); } };
+}
+
+// ================= ENSINO 6: o Esdras no grupo da classe =================
+// a conversa é sobre o Encontro 07 real do Adolas (Abraão: a promessa e o selo)
+const GRUPO_EBD = [
+  ["Theo", "#25f4ee", "Esdras, por que só Deus passou entre os animais? O Abraão não tinha que passar também?"],
+  ["esd", "Quem passava pelo corredor dizia: se eu quebrar a promessa, que eu fique como esses animais. Abraão estava num sono profundo, e só a tocha de Deus passou. Deus assinou sozinho.", "Gênesis 15.17 · Encontro 07, ponto 3"],
+  ["Júlia", "#e1306c", "E o que isso tem a ver com Jesus?"],
+  ["esd", "Na ceia, Jesus chamou o próprio sangue de sangue da aliança. O preço que Deus aceitou no corredor foi pago na cruz. Leva essa para a classe no domingo!", "Mateus 26.28 · Encontro 07, ponto 6"],
+];
+function e6() {
+  const svg = $("#e6-liga"), conv = $("#e6-conversa"), janela = conv.parentNode;
+  const [ida, volta, aoProf, aoLider] = ligacoes(svg, ["M650 560 C760 560 800 600 895 600", "M895 640 C800 640 760 700 650 700", "M1025 600 C1120 600 1160 450 1270 450", "M1025 620 C1120 620 1160 800 1270 800"]);
+  const msgs = GRUPO_EBD.map(([quem, a, b]) => quem === "esd"
+    ? h(`<div class="zm esd"><b><img src="assets/avatares/esdras.webp" alt="">Esdras Explica</b>${a}<span class="ref">${b}</span></div>`)
+    : h(`<div class="zm"><b style="color:${a}">${quem}</b>${b}</div>`));
+  msgs.forEach(m => conv.append(m));
+  gsap.set(["#e6-tit", "#e6-sub", "#e6-cel", "#e6-esd", "#e6-prof", "#e6-lider", "#e6-f", ...$$("#e6-fecho .cta"), ...msgs], { autoAlpha: 0 });
+  const tl = gsap.timeline({ paused: true })
+    .fromTo("#e6-tit", foco, { ...nitido, duration: .7 })
+    .fromTo("#e6-sub", foco, { ...nitido, duration: .7 }, .3)
+    .fromTo("#e6-cel", { autoAlpha: 0, x: -80 }, { autoAlpha: 1, x: 0, duration: .8, ease: "power3.out" }, .6);
+  pop(tl, "#e6-esd", 1);
+  // pergunta, o fio vai ao Esdras, a resposta volta para o grupo
+  let at = 1.6;
+  msgs.forEach((m, i) => {
+    const dele = i % 2 === 1;
+    if (dele) { desenha(tl, volta, at - .5, .5); tl.fromTo("#e6-esd img", { scale: 1 }, { scale: 1.12, duration: .2, yoyo: true, repeat: 1 }, at - .5); }
+    tl.fromTo(m, { autoAlpha: 0, y: 24, scale: .92, transformOrigin: "0% 0%" }, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: "back.out(2)" }, at);
+    // como no celular: a janela rola até a mensagem nova, e depois a pessoa rola à vontade
+    // (medido na hora, porque a vista está escondida quando a cena é montada)
+    tl.add(() => {
+      const sobe = m.offsetTop + m.offsetHeight - janela.clientHeight;
+      if (sobe > janela.scrollTop) gsap.to(janela, { scrollTop: sobe, duration: .4, ease: "power2.out" });
+    }, at);
+    if (!dele) desenha(tl, ida, at + .5, .5);
+    at += dele ? 2.4 : 1.2;
+  });
+  desenha(tl, aoProf, at, .6);
+  tl.fromTo("#e6-prof", { autoAlpha: 0, x: 60, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .6, ease: "power3.out" }, at + .4)
+    .fromTo($$("#e6-prof li"), { autoAlpha: 0, x: 30 }, { autoAlpha: 1, x: 0, duration: .35, stagger: .15 }, at + .8);
+  at += 2;
+  desenha(tl, aoLider, at, .6);
+  tl.fromTo("#e6-lider", { autoAlpha: 0, x: 60, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .6, ease: "power3.out" }, at + .4)
+    .fromTo("#e6-f", { autoAlpha: 0, y: 30, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, at + 1.4)
+    .fromTo($$("#e6-fecho .cta"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)", stagger: .12 }, at + 2.2);
+  const vida = gsap.timeline({ paused: true })
+    .to("#e6-esd img", { y: -6, duration: 1.8, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to("#e6-cel", { y: -8, duration: 2.6, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
+  return { enter() { zeraLigas([ida, volta, aoProf, aoLider]); janela.scrollTop = 0; tl.restart(); vida.restart(); }, leave() { tl.pause(0); vida.pause(0); } };
 }
 
 // ================= COMUNICAÇÃO: a identidade da igreja de exemplo, que o Bezalel cria =================
@@ -895,7 +942,7 @@ function m5() {
 }
 
 // ================= CUIDADO 1: a chamada =================
-const EQUIPE_CUIDADO = [["lidia", "Lídia Lar"], ["isabel", "Isabel Integra"], ["epafras", "Epafras Escuta"], ["ana", "Ana Amparo"]];
+const EQUIPE_CUIDADO = [["lidia", "Lídia Lar"], ["isabel", "Isabel Integra"], ["epafras", "Epafras Escuta"]];
 // uma pessoa desenhada na origem, para mover com x, y e scale
 const pessoa = (svg, cor = "#777") => {
   const g = el("g", { stroke: cor, "stroke-width": 4, opacity: 0 }, svg);
@@ -1187,36 +1234,36 @@ function c5() {
   const ag = $("#c5-agenda");
   const linhas = SEMANA_PASTOR.map(([dia, ic, oque, de]) => { const l = h(`<div class="compromisso"><span class="dia-c">${dia}</span>${IC_AG[ic]}<div><b>${oque}</b><span>${de}</span></div></div>`); ag.append(l); return l; });
   const lema = $$("#c5-lema p"), btns = $$("#c5-fecho .cta");
-  gsap.set(["#c5-tit", "#c5-sub", "#c5-ana", ...linhas, ...lema, ...btns], { autoAlpha: 0 });
+  gsap.set(["#c5-tit", "#c5-sub", "#c5-epa", ...linhas, ...lema, ...btns], { autoAlpha: 0 });
   const tl = gsap.timeline({ paused: true })
     .fromTo("#c5-tit", foco, { ...nitido, duration: .7 })
     .fromTo("#c5-sub", foco, { ...nitido, duration: .7 }, .3);
-  pop(tl, "#c5-ana", .6);
-  // cada pedido sai da Ana e pousa na semana do pastor
+  pop(tl, "#c5-epa", .6);
+  // cada pedido sai do Epafras e pousa na semana do pastor
   linhas.forEach((l, i) => {
     const at = 1.3 + i * .6;
-    tl.fromTo("#c5-ana img", { scale: 1 }, { scale: 1.12, duration: .15, yoyo: true, repeat: 1 }, at)
+    tl.fromTo("#c5-epa img", { scale: 1 }, { scale: 1.12, duration: .15, yoyo: true, repeat: 1 }, at)
       .fromTo(l, { autoAlpha: 0, x: 900, y: 100 - i * 130, scale: .3, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: .8, ease: "power3.out" }, at + .1)
       .fromTo($(".dia-c", l), { scale: 1.5 }, { scale: 1, duration: .4, ease: "back.out(3)" }, at + .8);
   });
   lema.forEach((p, i) => tl.fromTo(p, { autoAlpha: 0, x: -40, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: .8, ease: "power3.out" }, 4.8 + i * .7));
   tl.fromTo(btns, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5, ease: "back.out(2)", stagger: .12 }, 6.4);
   const vida = gsap.timeline({ paused: true })
-    .to("#c5-ana img", { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
+    .to("#c5-epa img", { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0)
     .to($$(".dia-c", ag), { scale: 1.08, duration: .9, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .3 }, 1);
   let dc = null;
   return { enter() { tl.restart(); dc = gsap.delayedCall(7, () => vida.restart()); }, leave() { dc && dc.kill(); tl.pause(0); vida.pause(0); } };
 }
 
 // ================= GOVERNO 1: a chamada =================
-const EQUIPE_GOVERNO = [["tercio", "Tércio Tinta"], ["zacarias", "Zacarias Zelo"], ["febe", "Febe Folhinha"]];
+const EQUIPE_GOVERNO = [["tercio", "Tércio Tinta"], ["febe", "Febe Folhinha"]];
 // os lembretes que hoje moram na cabeça do pastor, onde caem bagunçados, e o agente que fica com cada um
 const LEMBRETES = [
-  ["Cobrar o orçamento do salão", 1, 150, 430], ["Ver se a reforma do telhado andou", 1, 590, 470], ["Passar a limpo a ata de setembro", 0, 1030, 420],
-  ["Salão no sábado: jovens ou mulheres?", 2, 1470, 460], ["Marcar a data do batismo", 2, 240, 700], ["Quatro membros novos no rol", 0, 690, 750],
-  ["Responder os jovens sobre o retiro", 1, 1130, 690], ["Montar o relatório do ano", 0, 1530, 730],
+  ["Cobrar o orçamento do salão", 0, 150, 430], ["Quem usa o salão no sábado?", 1, 590, 470], ["Passar a limpo a ata de setembro", 0, 1030, 420],
+  ["Data do retiro dos jovens", 1, 1470, 460], ["Marcar a data do batismo", 1, 240, 700], ["Quatro membros novos no rol", 0, 690, 750],
+  ["Montar o relatório do ano", 0, 1130, 690],
 ]
-const COL_G1 = [420, 960, 1500];
+const COL_G1 = [640, 1280];
 function g1() {
   const box = $("#g1-bil");
   const donos = EQUIPE_GOVERNO.map(([id, nome], i) => {
@@ -1321,7 +1368,7 @@ function g3() {
     cols.append(c); return c;
   });
   const lembr = cards.map(c => $("em", c));
-  gsap.set(["#g3-tit", "#g3-sub", "#g3-ata", "#g3-ter", "#g3-zac", "#g3-placar", ...heads, ...cards, ...lembr], { autoAlpha: 0 });
+  gsap.set(["#g3-tit", "#g3-sub", "#g3-ata", "#g3-ter", "#g3-placar", ...heads, ...cards, ...lembr], { autoAlpha: 0 });
   const tl = gsap.timeline({ paused: true })
     .fromTo("#g3-tit", foco, { ...nitido, duration: .7 })
     .fromTo("#g3-sub", foco, { ...nitido, duration: .7 }, .3)
@@ -1333,15 +1380,14 @@ function g3() {
     .fromTo(heads, { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: .4, stagger: .12 }, 2.2);
   // cada decisão sai da ata com dono e prazo
   cards.forEach((c, i) => tl.fromTo(c, { autoAlpha: 0, x: -360, y: 0, scale: .5 }, { autoAlpha: 1, x: 0, scale: 1, duration: .55, ease: "power3.out" }, 2.6 + i * .18));
-  // o Zacarias leva cada uma ao dono, e todas começam a andar
-  pop(tl, "#g3-zac", 3.7);
+  // o Tércio leva cada uma ao dono, e todas começam a andar
   cards.forEach((c, i) => {
     const at = 4.2 + i * .14;
     tl.fromTo(lembr[i], { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: .3, ease: "back.out(3)" }, at)
       .to(c, { x: 420, duration: .6, ease: "power2.inOut" }, at + .25)
       .to(lembr[i], { autoAlpha: 0, duration: .3 }, at + 1.2);
   });
-  tl.fromTo("#g3-zac img", { scale: 1 }, { scale: 1.12, duration: .2, yoyo: true, repeat: 3 }, 4.2);
+  tl.fromTo("#g3-ter img", { scale: 1 }, { scale: 1.12, duration: .2, yoyo: true, repeat: 3 }, 4.2);
   // quatro ficam prontas; a reforma segue andando
   const n = { v: 0 };
   [1, 2, 3, 4].forEach((ci, k) => {
@@ -1355,7 +1401,7 @@ function g3() {
     .fromTo("#g3-placar", { boxShadow: "0 0 0 0 #ffac1300" }, { boxShadow: "0 0 80px 10px #ffac1388", duration: .5, yoyo: true, repeat: 1 }, 8.1)
     .fromTo(heads[2], { color: "#b9b9b9" }, { color: "#25d366", duration: .4 }, 8.1);
   const vida = gsap.timeline({ paused: true })
-    .to($$("#g3-ter img, #g3-zac img"), { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .4 }, 0)
+    .to($$("#g3-ter img"), { y: -7, duration: 1.9, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: .4 }, 0)
     .to("#g3-n", { scale: 1.08, duration: .9, yoyo: true, repeat: -1, ease: "sine.inOut" }, 0);
   let dc = null;
   return {
@@ -1415,7 +1461,7 @@ function g5() {
 
 // ================= rotas, cenas e navegação =================
 const VISTAS = { inicio: $("#v-inicio"), times: $("#v-times"), palavra: $("#v-palavra"), ensino: $("#v-ensino"), comunicacao: $("#v-comunicacao"), cuidado: $("#v-cuidado"), governo: $("#v-governo") };
-const motores = { i1: i1(), i2: i2(), t1: t1(), p1: p1(), p2: p2(), p3: p3(), p4: p4(), p5: p5(), e1: e1(), e2: e2(), e3: e3(), e4: e4(), e5: e5(), m1: m1(), m2: m2(), m3: m3(), m4: m4(), m5: m5(), c1: c1(), c2: c2(), c3: c3(), c4: c4(), c5: c5(), g1: g1(), g2: g2(), g3: g3(), g5: g5() };
+const motores = { i1: i1(), i2: i2(), t1: t1(), p1: p1(), p2: p2(), p3: p3(), p4: p4(), p5: p5(), e1: e1(), e2: e2(), e3: e3(), e4: e4(), e5: e5(), e6: e6(), m1: m1(), m2: m2(), m3: m3(), m4: m4(), m5: m5(), c1: c1(), c2: c2(), c3: c3(), c4: c4(), c5: c5(), g1: g1(), g2: g2(), g3: g3(), g5: g5() };
 const pontos = $("#pontos");
 let vista = null, cena = null;
 function ativa(id) {

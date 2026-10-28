@@ -585,3 +585,28 @@ body.sem3d #ab-canvas { background: radial-gradient(ellipse at 65% 55%, #3a2a12,
 #g5-lema { left: 1200px; top: 830px; width: 680px; }
 #g5-lema p { font-size: 46px; }
 #g2 .sub, #g3 .sub, #g4 .sub, #g5 .sub { max-width: 1660px; }
+
+/* rodada 7: o selo do módulo opcional e a capa do Governo com dois donos */
+.opcional { position: absolute; z-index: 6; right: 110px; top: 120px; padding: 10px 20px; border-radius: 999px; border: 2px solid var(--o1); color: var(--o1); font-size: 20px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+#g1 .frase-baixo { top: 1030px; }
+
+/* ensino 6: o Esdras no grupo da classe */
+.cel.e6-cel { left: 130px; top: 330px; width: 520px; height: 640px; }
+.e6-cel .janela { height: 520px; }
+.e6-cel .zm { max-width: 440px; font-size: 19px; }
+.zm.esd { background: #2e2616; border-left: 4px solid var(--o1); }
+.zm.esd b { color: var(--o1); }
+.zm.esd .ref { display: block; margin-top: 6px; font-size: 15px; font-weight: 700; color: #ffac13cc; }
+.relat { position: absolute; z-index: 4; left: 1270px; width: 560px; padding: 22px 26px; border-radius: 20px; background: #262626; border: 2px solid #ffffff1a; }
+.relat.lider { border-color: var(--o1); background: #2e2616; }
+.relat small { font-size: 16px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--o1); }
+.relat b { display: block; margin-top: 6px; font-size: 27px; font-weight: 800; line-height: 1.2; }
+.relat ul { list-style: none; margin-top: 12px; }
+.relat li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-top: 1px solid #ffffff14; font-size: 20px; font-weight: 600; }
+.relat li em { font-style: normal; font-weight: 800; color: var(--o1); }
+.relat p { margin-top: 10px; font-size: 20px; font-weight: 600; line-height: 1.4; color: #dcdcdc; }
+.relat p i { color: var(--apagado); font-style: normal; }
+.zm.esd b { display: flex; align-items: center; gap: 8px; }
+.zm.esd b img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 2px solid var(--o1); }
+.e6-cel .janela { overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #ffac1366 transparent; padding-right: 6px; }
+.relat li span i { display: block; margin-top: 3px; font-size: 16px; font-style: normal; font-weight: 600; color: var(--apagado); }
