@@ -9,7 +9,7 @@ const MAX_PATCH = 256 * 1024;
 const MAX_DATA = 2 * 1024 * 1024;
 const MAX_FILE = 50 * 1024 * 1024;
 const QUOTA = 500 * 1024 * 1024;
-const BLOCKED = /\.(exe|bat|cmd|ps1|js|msi|com|scr|vbs|jar|sh|dll)$/i;
+const BLOCKED = /\.(exe|bat|cmd|ps1|js|msi|com|scr|vbs|jar|sh|dll)[\s.]*$/i;
 const KEY_RE = /^[A-Za-z0-9_.\-]{1,80}$/;
 
 const sql = postgres(Deno.env.get("SUPABASE_DB_URL")!, { max: 2, prepare: false, idle_timeout: 20 });
@@ -18,8 +18,10 @@ const sb = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SE
 });
 
 class Erro extends Error {
-  constructor(public status: number, public codigo: string, msg: string) { super(msg); }
+  constructor(public status: number, public codigo: string, msg: string, public extra: Record<string, unknown> = {}) { super(msg); }
 }
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const uuid = (v: unknown) => { if (typeof v !== "string" || !UUID.test(v)) throw new Erro(404, "arquivo", "Ficheiro não encontrado."); return v; };
 
 const hex = async (s: string) =>
   [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))]
@@ -60,7 +62,7 @@ const limpoValor = (v: unknown): boolean => {
 };
 
 const nomeSeguro = (n: string) =>
-  n.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9._-]+/g, "_").slice(-120) || "arquivo";
+  n.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9._-]+/g, "_").replace(/^\.+/, "").slice(-120) || "arquivo";
 
 async function acao(req: Request, b: Record<string, any>) {
   switch (b.acao) {
@@ -72,40 +74,54 @@ async function acao(req: Request, b: Record<string, any>) {
       const br = await porToken(b.token, "token_hash");
       const patch = b.patch;
       if (!patch || typeof patch !== "object" || Array.isArray(patch)) throw new Erro(400, "patch", "Pedido inválido.");
-      if (JSON.stringify(patch).length > MAX_PATCH) throw new Erro(413, "grande", "Esta alteração é grande demais. Divida o texto em partes.");
+      if (JSON.stringify(patch).length > MAX_PATCH) throw new Erro(413, "grande", "Esta alteração é grande demais. Divida o texto em partes ou use menos anexos de texto.");
       const chaves = Object.keys(patch);
-      if (!chaves.length) return { version: br.version, atualizadoEm: br.updated_at };
+      if (!chaves.length) return { version: br.version, anterior: br.version, atualizadoEm: br.updated_at };
       if (chaves.length > 200 || !chaves.every((k) => KEY_RE.test(k))) throw new Erro(400, "chave", "Pedido inválido.");
       if (!Object.values(patch).every(limpoValor)) throw new Erro(400, "valor", "Pedido inválido.");
+      const reps = chaves.filter((k) => k.startsWith("rep_"));
+      if (!reps.every((k) => Array.isArray(patch[k]) && patch[k].every((o: unknown) => o && typeof o === "object" && !Array.isArray(o)))) throw new Erro(400, "rep", "Pedido inválido.");
+      // blocos repetiveis substituem o array inteiro: so com a versao que o cliente viu, senao um aparelho apaga o que o outro acrescentou
+      const base = Number.isInteger(b.baseVersion) ? b.baseVersion : null;
+      const exigeBase = reps.length > 0 && base !== null;
       const [r] = await sql`
         update mpc.briefing set data = data || ${sql.json(patch)}, version = version + 1, updated_at = now()
-        where id = ${br.id} and octet_length((data || ${sql.json(patch)})::text) <= ${MAX_DATA}
-        returning version, updated_at`;
-      if (!r) throw new Erro(413, "total", "O formulário atingiu o tamanho máximo.");
+        where id = ${br.id} and octet_length((data || ${sql.json(patch)})::text) <= ${MAX_DATA} and (${!exigeBase} or version = ${base})
+        returning version, version - 1 as anterior, updated_at`;
+      if (!r) {
+        const [atual] = await sql`select data, version from mpc.briefing where id = ${br.id}`;
+        if (exigeBase && atual.version !== base)
+          throw new Erro(409, "desatualizado", "Há alterações mais recentes. A atualizar.", { data: atual.data, version: atual.version, arquivos: await listaArquivos(br.id) });
+        throw new Erro(413, "total", "O formulário atingiu o tamanho máximo.");
+      }
       await sql`insert into mpc.historico (briefing_id, chaves) values (${br.id}, ${chaves})`;
-      return { version: r.version, atualizadoEm: r.updated_at };
+      return { version: r.version, anterior: r.anterior, atualizadoEm: r.updated_at };
     }
     case "url_envio": {
       const br = await porToken(b.token, "token_hash");
       const { escopo, nome, mime } = b; const bytes = Number(b.bytes);
-      if (typeof escopo !== "string" || !KEY_RE.test(escopo) || typeof nome !== "string" || !nome || nome.length > 200 || !(bytes >= 0))
+      if (typeof escopo !== "string" || !KEY_RE.test(escopo) || typeof nome !== "string" || !nome.trim() || nome.length > 200 || !Number.isInteger(bytes) || bytes < 0)
         throw new Erro(400, "pedido", "Pedido inválido.");
-      if (BLOCKED.test(nome)) throw new Erro(400, "tipo", "Este tipo de ficheiro não é aceite (executáveis e scripts). Comprima num ZIP ou envie uma ligação.");
+      if (BLOCKED.test(nome.trim())) throw new Erro(400, "tipo", "Este tipo de ficheiro não é aceite (executáveis e scripts). Comprima num ZIP ou envie uma ligação.");
       if (bytes > MAX_FILE) throw new Erro(413, "arquivo_grande", "Ficheiro acima de 50 MB. Envie uma ligação (YouTube, Google Drive, WeTransfer) no campo de ligações.");
+      // envios nao confirmados ha mais de 2 h (validade do URL assinado) sao lixo: limpa antes de contar a quota
+      const velhos = await sql`delete from mpc.arquivo where briefing_id = ${br.id} and not confirmado and created_at < now() - interval '2 hours' returning path`;
+      if (velhos.length) await sb.storage.from(BUCKET).remove(velhos.map((v: any) => v.path));
       const [{ usado }] = await sql`select coalesce(sum(bytes),0)::bigint as usado from mpc.arquivo where briefing_id = ${br.id} and removido_em is null`;
       if (Number(usado) + bytes > QUOTA) throw new Erro(413, "quota", "Atingiu o limite total de anexos (500 MB). Envie ligações para o resto.");
       const id = crypto.randomUUID();
       const path = `${br.id}/${id}/${nomeSeguro(nome)}`;
       const { data, error } = await sb.storage.from(BUCKET).createSignedUploadUrl(path);
       if (error || !data) throw new Erro(500, "storage", "Não foi possível preparar o envio. Tente outra vez.");
-      await sql`insert into mpc.arquivo (id, briefing_id, escopo, nome, path, mime, bytes) values (${id}, ${br.id}, ${escopo}, ${nome}, ${path}, ${mime ?? null}, ${bytes})`;
+      await sql`insert into mpc.arquivo (id, briefing_id, escopo, nome, path, mime, bytes) values (${id}, ${br.id}, ${escopo}, ${nome}, ${path}, ${String(mime ?? "").slice(0, 100) || null}, ${bytes})`;
       return { arquivoId: id, urlEnvio: data.signedUrl };
     }
     case "confirmar_envio": {
       const br = await porToken(b.token, "token_hash");
-      const [a] = await sql`select * from mpc.arquivo where id = ${String(b.arquivoId)} and briefing_id = ${br.id} and removido_em is null`;
+      const [a] = await sql`select * from mpc.arquivo where id = ${uuid(b.arquivoId)} and briefing_id = ${br.id} and removido_em is null`;
       if (!a) throw new Erro(404, "arquivo", "Ficheiro não encontrado.");
-      const { data: info } = await sb.storage.from(BUCKET).info(a.path);
+      const { data: info, error: infoErr } = await sb.storage.from(BUCKET).info(a.path);
+      if (!info && infoErr && !/not.?found|does not exist|404/i.test(String((infoErr as any).message ?? "") + String((infoErr as any).statusCode ?? ""))) throw new Erro(503, "storage", "O armazenamento não respondeu. Tente outra vez.");
       if (!info) { await sql`delete from mpc.arquivo where id = ${a.id}`; throw new Erro(409, "sem_objeto", "O envio não chegou ao fim. Tente outra vez."); }
       const real = Number((info as any).size ?? a.bytes);
       if (real > MAX_FILE) { await sb.storage.from(BUCKET).remove([a.path]); await sql`delete from mpc.arquivo where id = ${a.id}`; throw new Erro(413, "arquivo_grande", "Ficheiro acima de 50 MB."); }
@@ -115,15 +131,16 @@ async function acao(req: Request, b: Record<string, any>) {
     }
     case "remover_arquivo": {
       const br = await porToken(b.token, "token_hash");
-      const [a] = await sql`update mpc.arquivo set removido_em = now() where id = ${String(b.arquivoId)} and briefing_id = ${br.id} and removido_em is null returning path, escopo`;
+      const [a] = await sql`update mpc.arquivo set removido_em = now() where id = ${uuid(b.arquivoId)} and briefing_id = ${br.id} and removido_em is null returning path, escopo`;
       if (!a) throw new Erro(404, "arquivo", "Ficheiro não encontrado.");
-      await sb.storage.from(BUCKET).remove([a.path]);
+      const { error: rmErr } = await sb.storage.from(BUCKET).remove([a.path]);
+      if (rmErr) console.error("remove", rmErr.message);
       await sql`insert into mpc.historico (briefing_id, chaves) values (${br.id}, ${["arquivo:" + a.escopo]})`;
       return { ok: true };
     }
     case "url_leitura": {
       const br = b.adminToken ? await porToken(b.adminToken, "admin_hash") : await porToken(b.token, "token_hash");
-      const [a] = await sql`select path, nome from mpc.arquivo where id = ${String(b.arquivoId)} and briefing_id = ${br.id} and confirmado and removido_em is null`;
+      const [a] = await sql`select path, nome from mpc.arquivo where id = ${uuid(b.arquivoId)} and briefing_id = ${br.id} and confirmado and removido_em is null`;
       if (!a) throw new Erro(404, "arquivo", "Ficheiro não encontrado.");
       const { data } = await sb.storage.from(BUCKET).createSignedUrl(a.path, 3600);
       return { url: data?.signedUrl };
@@ -157,7 +174,7 @@ Deno.serve(async (req) => {
     try { corpo = JSON.parse(raw); } catch { throw new Erro(400, "json", "Pedido inválido."); }
     return json(req, await acao(req, corpo));
   } catch (e) {
-    if (e instanceof Erro) return json(req, { erro: e.codigo, mensagem: e.message }, e.status);
+    if (e instanceof Erro) return json(req, { erro: e.codigo, mensagem: e.message, ...e.extra }, e.status);
     console.error(e);
     return json(req, { erro: "interno", mensagem: "Erro do servidor. Tente outra vez." }, 500);
   }

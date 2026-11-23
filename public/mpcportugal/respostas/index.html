@@ -20,8 +20,9 @@ header.top{padding:30px 0 6px}
 .hero{display:grid;gap:22px;grid-template-columns:minmax(0,1fr);align-items:start;margin-top:16px}
 .brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink2)}
 .brand svg{width:32px;height:32px;flex:none}
-h1{font-weight:900;text-transform:uppercase;font-size:clamp(28px,7.2vw,52px);line-height:1.06;margin:20px 0 6px;color:var(--ink2)}
+h1{text-wrap:balance;font-weight:900;text-transform:uppercase;font-size:clamp(28px,7.2vw,52px);line-height:1.06;margin:20px 0 6px;color:var(--ink2)}
 h1 span{display:inline-block;margin-top:6px;padding:2px 14px 5px;background:linear-gradient(135deg,var(--top),var(--base));color:#fff}
+.lead,.why{text-wrap:pretty}
 .lead{font-size:clamp(16px,2.3vw,18px);color:var(--ink2);max-width:600px;margin:0}
 .prog{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 10px 30px -18px rgba(33,33,33,.35)}
 .prog .big{font-weight:900;font-size:40px;line-height:1;color:var(--ink)}
@@ -61,9 +62,10 @@ label.l,.field>.l{display:block;font-weight:700;font-size:15px;margin:0 0 4px;co
 .hint{display:block;font-weight:500;font-size:13px;color:var(--ink3);margin:0 0 8px}
 input[type=text],input[type=email],input[type=tel],input[type=url],input[type=date],textarea,select{width:100%;font:500 16px 'Montserrat',sans-serif;color:var(--ink);background:#fff;border:1.5px solid #c9c9c9;border-radius:10px;padding:12px 14px;min-height:46px}
 textarea{min-height:104px;resize:vertical}
-input:focus,textarea:focus,select:focus{outline:3px solid rgba(254,112,3,.3);border-color:var(--base)}
+input:focus,textarea:focus,select:focus{outline:3px solid rgba(254,112,3,.45);border-color:#d45500}
+h2:focus{outline:none}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
-.opt{display:flex;align-items:center;gap:10px;min-height:46px;max-width:100%;border:1.5px solid #c9c9c9;border-radius:10px;padding:9px 14px;cursor:pointer;background:#fff;font-weight:600;font-size:15px;line-height:1.3;transition:border-color .15s,background .15s}
+.opt{display:flex;align-items:center;gap:10px;min-height:46px;max-width:100%;min-width:0;overflow-wrap:anywhere;border:1.5px solid #c9c9c9;border-radius:10px;padding:9px 14px;cursor:pointer;background:#fff;font-weight:600;font-size:15px;line-height:1.3;transition:border-color .15s,background .15s}
 .opt:hover{border-color:var(--ink)}
 .opt:has(input:checked){border-color:var(--base);background:var(--soft)}
 .opt:has(input:focus-visible){outline:3px solid rgba(254,112,3,.55);outline-offset:2px}
@@ -108,9 +110,9 @@ footer p{margin:0;max-width:640px}
 .qa+.qa{border-top:1px solid #f0f0f0}
 .qa .q{font-weight:700;font-size:13.5px;color:var(--ink3);margin:0 0 3px}
 .qa .a{white-space:pre-wrap;font-size:15.5px;color:var(--ink)}
-.qa .nada{color:#a0a0a0;font-style:italic}
+.qa .nada{color:#767676;font-style:italic}
 .qa.chg{border-left-color:var(--base);background:linear-gradient(90deg,var(--soft),transparent 70%)}
-.qa .tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--base);color:#fff;font-size:11px;font-weight:800}
+.qa .tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--base);color:#212121;font-size:11px;font-weight:800}
 .fl a{color:var(--ink);text-decoration-color:var(--base)}
 /* estado de gravação: fica no separador colante, sempre visível, sem tapar conteúdo */
 .savest{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink3);padding:0 0 8px;line-height:1.2}
@@ -329,21 +331,23 @@ let BR=null,SNAP={},showEmpty=false,cur=0;
 const txt=v=>Array.isArray(v)?v.join('; '):String(v==null?'':v);
 const has=v=>Array.isArray(v)?v.length>0:!!(v&&String(v).trim());
 const val=(x,get)=>{let v=get(x.id);if(x.other&&get(x.id+'__outro'))v=(Array.isArray(v)?v:[]).concat(['Outro: '+get(x.id+'__outro')]);return v};
+const reps=k=>Array.isArray(BR.data[k])?BR.data[k].filter(o=>o&&typeof o==='object'):[];
 const arqs=(sc,x)=>BR.arquivos.filter(a=>a.escopo===(sc==='_'?x.id:sc+'.'+x.id));
 const sk=(sc,id)=>sc+'|'+id;
 const nowOf=(x,get,sc)=>x.ty==='file'?arqs(sc,x).map(a=>a.id).join(','):txt(val(x,get));
 
 function snapOf(){const m={};S.forEach(s=>s.items.forEach(it=>{if(it.ty==='note')return;
   const add=(x,get,sc)=>{if(x.ty!=='note')m[sk(sc,x.id)]=nowOf(x,get,sc)};
-  if(it.rep)(BR.data['rep_'+it.rep]||[]).forEach(row=>it.f.forEach(x=>add(x,k=>row[k],row._id)));else it.f.forEach(x=>add(x,k=>BR.data[k],'_'))}));return m}
+  if(it.rep)reps('rep_'+it.rep).forEach(row=>it.f.forEach(x=>add(x,k=>row[k],row._id)));else it.f.forEach(x=>add(x,k=>BR.data[k],'_'))}));return m}
 const mudou=(sc,x,now)=>{const k=sk(sc,x.id);return k in SNAP?SNAP[k]!==now:now!==''};
 
 function answer(x,get,sc){
   const v=val(x,get),now=nowOf(x,get,sc),filled=x.ty==='file'?arqs(sc,x).length>0:has(v);
-  if(!filled&&!showEmpty)return null;
+  const apagou=!filled&&((sk(sc,x.id)) in SNAP)&&SNAP[sk(sc,x.id)]!=='';
+  if(!filled&&!showEmpty&&!apagou)return null;
   const ch=mudou(sc,x,now);
   const d=el('div','qa'+(ch?' chg':'')+(filled?'':' vazio'));
-  d.append(el('div','q',esc(x.l)+(ch?' <b class="tag">novo</b>':'')));
+  d.append(el('div','q',esc(x.l)+(ch?' <b class="tag">'+(apagou?'apagado':'novo')+'</b>':'')));
   if(x.ty==='file'&&filled){const ul=el('ul','fl');arqs(sc,x).forEach(a=>{const li=el('li');const th=el('span','th');
       if(/^image\//.test(a.mime||'')&&a.url)th.innerHTML='<img alt="" loading="lazy" src="'+esc(a.url)+'">';else th.textContent=(a.nome.split('.').pop()||'').slice(0,4).toUpperCase();
       li.append(th,el('span','nm','<a target="_blank" rel="noopener" href="'+esc(a.url||'#')+'">'+esc(a.nome)+'</a><small>'+kb(a.bytes)+'</small>'));ul.append(li)});d.append(ul)}
@@ -360,12 +364,12 @@ function render(){
           const v=val(x,get);if(x.ty==='file'?arqs(sc,x).length>0:has(v))a++;
           const d=answer(x,get,sc);if(d){c.append(d);any=1;if(d.classList.contains('chg'))ch++}});
         return any?c:null};
-      if(it.rep){(BR.data['rep_'+it.rep]||[]).forEach((row,ix)=>{const c=blk(it.title+' '+(ix+1)+(row.nome?': '+row.nome:''),it.f,k=>row[k],row._id);if(c)p.append(c)})}
+      if(it.rep){reps('rep_'+it.rep).forEach((row,ix)=>{const c=blk(it.title+' '+(ix+1)+(row.nome?': '+row.nome:''),it.f,k=>row[k],row._id);if(c)p.append(c)})}
       else{const c=blk(it.g,it.f,k=>BR.data[k],'_');if(c)p.append(c)}});
     if(!p.querySelector('.card'))p.append(el('div','note','Ainda sem respostas neste separador.'));
     ta+=a;tb+=b;
     const t=el('button','tab',esc(s.t)+'<small>'+a+'/'+b+(ch?' · '+ch+' novo'+(ch>1?'s':''):'')+'</small>');t.type='button';t.setAttribute('aria-current',i===cur?'true':'false');
-    t.classList.toggle('done',a>0&&a===b);t.onclick=()=>{cur=i;render();window.scrollTo({top:Math.max(0,$('#sent').offsetTop-8)})};tabs.append(t);main.append(p)});
+    t.classList.toggle('done',a>0&&a===b);t.onclick=()=>{cur=i;render();window.scrollTo({top:Math.max(0,$('#sent').offsetTop-8)});document.querySelectorAll('.tab')[cur].focus({preventScroll:true})};tabs.append(t);main.append(p)});
   $('#pa').textContent=ta;$('#pb').textContent=tb;$('#pbar').style.width=(tb?Math.round(100*ta/tb):0)+'%';
   const bar=el('div','fim');
   [['Copiar tudo em Markdown','btn',copiar],['Baixar cópia (JSON)','btn alt',baixar],[showEmpty?'Esconder perguntas sem resposta':'Mostrar perguntas sem resposta','btn alt',()=>{showEmpty=!showEmpty;render()}],['Marcar tudo como visto','btn alt',visto]].forEach(([tt,c,fn])=>{const q=el('button',c,tt);q.type='button';q.onclick=fn;bar.append(q)});
@@ -377,7 +381,7 @@ function md(){const out=['# Respostas do briefing da MPC Portugal','Última grav
     const put=(x,get,sc)=>{if(x.ty==='note'||(x.if&&get(x.if[0])!==x.if[1]))return;
       if(x.ty==='file'){const f=arqs(sc,x);if(f.length)out.push('- '+x.l+': '+f.map(a=>a.nome+' ('+a.url+')').join('; '));return}
       const v=val(x,get);if(has(v))out.push('- '+x.l+': '+txt(v))};
-    if(it.rep)(BR.data['rep_'+it.rep]||[]).forEach((row,i)=>{out.push('\n### '+it.title+' '+(i+1));it.f.forEach(x=>put(x,k=>row[k],row._id))});
+    if(it.rep)reps('rep_'+it.rep).forEach((row,i)=>{out.push('\n### '+it.title+' '+(i+1));it.f.forEach(x=>put(x,k=>row[k],row._id))});
     else{out.push('\n### '+it.g);it.f.forEach(x=>put(x,k=>BR.data[k],'_'))}})});return out.join('\n')}
 function copiar(){navigator.clipboard.writeText(md()).then(()=>alert('Copiado. As ligações dos anexos expiram em 1 hora.'),()=>alert('Não foi possível copiar.'))}
 function baixar(){const b=new Blob([JSON.stringify({em:new Date().toISOString(),data:BR.data,arquivos:BR.arquivos.map(a=>({escopo:a.escopo,nome:a.nome,bytes:a.bytes}))},null,2)],{type:'application/json'});const a=el('a');a.href=URL.createObjectURL(b);a.download='briefing-mpc-portugal.json';a.click()}

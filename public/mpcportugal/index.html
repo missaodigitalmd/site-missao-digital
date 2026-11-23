@@ -21,8 +21,9 @@ header.top{padding:30px 0 6px}
 .hero{display:grid;gap:22px;grid-template-columns:minmax(0,1fr);align-items:start;margin-top:16px}
 .brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink2)}
 .brand svg{width:32px;height:32px;flex:none}
-h1{font-weight:900;text-transform:uppercase;font-size:clamp(28px,7.2vw,52px);line-height:1.06;margin:20px 0 6px;color:var(--ink2)}
+h1{text-wrap:balance;font-weight:900;text-transform:uppercase;font-size:clamp(28px,7.2vw,52px);line-height:1.06;margin:20px 0 6px;color:var(--ink2)}
 h1 span{display:inline-block;margin-top:6px;padding:2px 14px 5px;background:linear-gradient(135deg,var(--top),var(--base));color:#fff}
+.lead,.why{text-wrap:pretty}
 .lead{font-size:clamp(16px,2.3vw,18px);color:var(--ink2);max-width:600px;margin:0}
 .prog{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 10px 30px -18px rgba(33,33,33,.35)}
 .prog .big{font-weight:900;font-size:40px;line-height:1;color:var(--ink)}
@@ -62,9 +63,10 @@ label.l,.field>.l{display:block;font-weight:700;font-size:15px;margin:0 0 4px;co
 .hint{display:block;font-weight:500;font-size:13px;color:var(--ink3);margin:0 0 8px}
 input[type=text],input[type=email],input[type=tel],input[type=url],input[type=date],textarea,select{width:100%;font:500 16px 'Montserrat',sans-serif;color:var(--ink);background:#fff;border:1.5px solid #c9c9c9;border-radius:10px;padding:12px 14px;min-height:46px}
 textarea{min-height:104px;resize:vertical}
-input:focus,textarea:focus,select:focus{outline:3px solid rgba(254,112,3,.3);border-color:var(--base)}
+input:focus,textarea:focus,select:focus{outline:3px solid rgba(254,112,3,.45);border-color:#d45500}
+h2:focus{outline:none}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
-.opt{display:flex;align-items:center;gap:10px;min-height:46px;max-width:100%;border:1.5px solid #c9c9c9;border-radius:10px;padding:9px 14px;cursor:pointer;background:#fff;font-weight:600;font-size:15px;line-height:1.3;transition:border-color .15s,background .15s}
+.opt{display:flex;align-items:center;gap:10px;min-height:46px;max-width:100%;min-width:0;overflow-wrap:anywhere;border:1.5px solid #c9c9c9;border-radius:10px;padding:9px 14px;cursor:pointer;background:#fff;font-weight:600;font-size:15px;line-height:1.3;transition:border-color .15s,background .15s}
 .opt:hover{border-color:var(--ink)}
 .opt:has(input:checked){border-color:var(--base);background:var(--soft)}
 .opt:has(input:focus-visible){outline:3px solid rgba(254,112,3,.55);outline-offset:2px}
@@ -109,9 +111,9 @@ footer p{margin:0;max-width:640px}
 .qa+.qa{border-top:1px solid #f0f0f0}
 .qa .q{font-weight:700;font-size:13.5px;color:var(--ink3);margin:0 0 3px}
 .qa .a{white-space:pre-wrap;font-size:15.5px;color:var(--ink)}
-.qa .nada{color:#a0a0a0;font-style:italic}
+.qa .nada{color:#767676;font-style:italic}
 .qa.chg{border-left-color:var(--base);background:linear-gradient(90deg,var(--soft),transparent 70%)}
-.qa .tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--base);color:#fff;font-size:11px;font-weight:800}
+.qa .tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--base);color:#212121;font-size:11px;font-weight:800}
 .fl a{color:var(--ink);text-decoration-color:var(--base)}
 /* estado de gravação: fica no separador colante, sempre visível, sem tapar conteúdo */
 .savest{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink3);padding:0 0 8px;line-height:1.2}
@@ -192,7 +194,7 @@ footer p{margin:0;max-width:640px}
     <aside class="prog" aria-label="Progresso">
       <div class="big"><span id="pa">0</span><small>de <span id="pb">0</span> respostas</small></div>
       <div class="trk"><i id="pbar"></i></div>
-      <p><b>Prazo sugerido: 29 de novembro.</b> Uma resposta curta hoje vale mais do que uma perfeita depois.</p>
+      <p><b>Prazo sugerido: 29 de novembro.</b> Não precisa de ser perfeito.</p>
     </aside>
   </div>
 </div></header>
@@ -330,10 +332,10 @@ const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;',
 const uid=()=>(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)+Date.now()).slice(0,12);
 const hhmm=()=>new Date().toLocaleTimeString('pt-PT',{hour:'2-digit',minute:'2-digit'});
 const kb=n=>n>=1048576?(n/1048576).toFixed(1).replace('.',',')+' MB':Math.max(1,Math.round(n/1024))+' KB';
-let D={},ARQ=[],SV=0,cur=0,timer=0,retry=0,retries=0,flushing=false,again=false;
-const dirty=new Set();
+let D={},ARQ=[],SV=0,cur=0,timer=0,retry=0,retries=0,flushing=false,again=false,loaded=LOCAL,stale=false,badMsg='',needRender=false,conflitos=0;
+const dirty=new Set(),inflight=new Set(),blocked=new Set(),GONE=new Set();let solo=false;
 const readLocal=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}};
-const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify({D,dirty:[...dirty]}))}catch(e){}};
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify({D,dirty:[...new Set([...dirty,...inflight])]}))}catch(e){}};
 const setSt=(t,c)=>{const s=$('#save');s.textContent=t;s.className='savest '+(c||'')};
 
 /* ---------- servidor ---------- */
@@ -342,42 +344,65 @@ async function api(body,keep){
   try{r=await fetch(FN,{method:'POST',keepalive:!!keep,headers:{'content-type':'application/json',apikey:ANON,authorization:'Bearer '+ANON},body:JSON.stringify(Object.assign({token:TOKEN},body))})}
   catch(e){throw Object.assign(new Error('Sem ligação'),{net:1})}
   let j=null;try{j=await r.json()}catch(e){}
-  if(!r.ok)throw Object.assign(new Error((j&&j.mensagem)||'Erro '+r.status),{status:r.status,codigo:j&&j.erro});
+  if(!r.ok)throw Object.assign(new Error((j&&j.mensagem)||'Erro '+r.status),{status:r.status,codigo:j&&j.erro,body:j});
   return j}
 function gate(t,p){document.body.classList.add('gate');$('#main').innerHTML='<section class="pane on"><div class="card"><h3>'+esc(t)+'</h3><p style="margin:0">'+p+'</p></div></section>'}
 
+const typing=()=>/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'');
+// junta o que o servidor tem com o que este aparelho tem: chaves sujas ganham aqui; blocos repetíveis sujos recebem as linhas novas do outro aparelho (por _id)
+function reconcile(s){
+  SV=s.version;if(s.arquivos)ARQ=s.arquivos;let mudou=false;const sd=s.data||{};
+  Object.keys(sd).forEach(k=>{const busy=dirty.has(k)||inflight.has(k);
+    if(k.startsWith('rep_')&&busy){const loc=D[k]||[],ids=new Set(loc.map(r=>r._id)),extra=(sd[k]||[]).filter(r=>r&&r._id&&!ids.has(r._id)&&!GONE.has(r._id));
+      if(extra.length){D[k]=loc.concat(extra);dirty.add(k);mudou=true}}
+    else if(!busy&&JSON.stringify(D[k])!==JSON.stringify(sd[k])){D[k]=sd[k];mudou=true}});
+  norm();persist();
+  if(mudou){if(typing())needRender=true;else rerender()}else drawFiles();
+  return mudou}
+addEventListener('focusout',()=>{if(needRender)setTimeout(()=>{if(needRender&&!typing()){needRender=false;rerender()}},250)});
+
 async function flush(){
   clearTimeout(timer);clearTimeout(retry);
-  if(LOCAL||!dirty.size)return;
+  if(LOCAL||!loaded)return;
+  let keys=[...dirty].filter(k=>!blocked.has(k));
+  if(!keys.length)return;
+  if(solo)keys=[keys[0]]; // depois de um erro de validação, uma chave de cada vez, para a má não travar as boas
   if(flushing){again=true;return}
-  flushing=true;again=false;const keys=[...dirty],patch={};
-  keys.forEach(k=>{patch[k]=D[k]===undefined?'':D[k]});dirty.clear();setSt('A guardar…','wait');
-  let fatal=false;
-  try{const r=await api({acao:'gravar',patch});SV=r.version;retries=0}
+  flushing=true;again=false;const patch={};
+  keys.forEach(k=>{patch[k]=D[k]===undefined?'':D[k];dirty.delete(k);inflight.add(k)});
+  setSt('A guardar…','wait');let ok=false;
+  try{const r=await api({acao:'gravar',patch,baseVersion:SV});
+    if(r.anterior!==undefined&&r.anterior!==SV)stale=true;
+    SV=r.version;retries=0;conflitos=0;ok=true}
   catch(e){
-    if(e.status===404){fatal=true;setSt('Ligação inválida. Peça um novo link a Navas.','off')}
-    else if(e.status&&e.status<500){fatal=true;setSt(e.message,'off')}
-    else{keys.forEach(k=>dirty.add(k));retries++;setSt('Sem ligação. Vamos tentar outra vez.','off');retry=setTimeout(flush,Math.min(30000,retries*4000))}}
-  flushing=false;persist();
-  if(!fatal&&!retries&&dirty.size)flush();
-  else if(!fatal&&!dirty.size&&!retries)setSt('Guardado às '+hhmm())}
-addEventListener('online',()=>{retries=0;flush()});
-addEventListener('pagehide',()=>{if(LOCAL||!dirty.size)return;const patch={};dirty.forEach(k=>{patch[k]=D[k]===undefined?'':D[k]});if(JSON.stringify(patch).length<60000)api({acao:'gravar',patch},1).catch(()=>{})});
+    keys.forEach(k=>dirty.add(k));
+    if(e.status===409&&e.codigo==='desatualizado'&&e.body&&conflitos++<3){keys.forEach(k=>inflight.delete(k));reconcile(e.body);flushing=false;persist();return flush()}
+    if(e.status===404){keys.forEach(k=>blocked.add(k));badMsg='Ligação inválida. Peça um novo link a Navas.';setSt(badMsg,'off')}
+    else if(e.status===400||e.status===413){if(keys.length>1){solo=true;retry=setTimeout(flush,0);keys.forEach(k=>inflight.delete(k));flushing=false;persist();return}keys.forEach(k=>blocked.add(k));badMsg=e.message;setSt(badMsg,'off')}
+    else{retries++;setSt('Sem ligação. Vamos tentar outra vez.','off');retry=setTimeout(flush,Math.min(30000,retries*4000))}}
+  keys.forEach(k=>inflight.delete(k));flushing=false;persist();
+  if(ok&&![...dirty].some(k=>!blocked.has(k)))solo=false;
+  if(ok){if(blocked.size)setSt(badMsg||'Parte do texto não foi guardada.','off');else setSt('Guardado às '+hhmm());if([...dirty].some(k=>!blocked.has(k)))flush()}}
+addEventListener('beforeunload',e=>{if(!LOCAL&&UP.some(u=>!u.erro)){e.preventDefault();e.returnValue=''}});
+addEventListener('online',()=>{retries=0;if(loaded)flush();else carregar()});
+addEventListener('pagehide',()=>{if(LOCAL||!loaded)return;const ks=[...new Set([...dirty,...inflight])].filter(k=>!blocked.has(k)),patch={};ks.forEach(k=>{patch[k]=D[k]===undefined?'':D[k]});if(ks.length&&new TextEncoder().encode(JSON.stringify(patch)).length<60000)api({acao:'gravar',patch,baseVersion:SV},1).catch(()=>{})});
 document.addEventListener('visibilitychange',async()=>{
-  if(document.visibilityState!=='visible'||LOCAL||!TOKEN||dirty.size||flushing||UP.length)return;
-  try{const r=await api({acao:'ler'});ARQ=r.arquivos;if(r.version!==SV){SV=r.version;D=r.data;norm();rerender()}else drawFiles()}catch(e){}});
+  if(document.visibilityState!=='visible'||LOCAL||!TOKEN||UP.length)return;
+  if(!loaded)return carregar();
+  try{const r=await api({acao:'ler'});if(r.version!==SV||stale){stale=false;reconcile(r)}else{ARQ=r.arquivos;drawFiles()}}catch(e){}});
 
 const save=(k,now)=>{
-  if(k)dirty.add(k);persist();applyIf();count();
+  if(k){dirty.add(k);blocked.delete(k);if(!blocked.size)badMsg=''}persist();applyIf();count();
   if(LOCAL){setSt('Guardado às '+hhmm());return}
+  if(!loaded){setSt('Sem ligação. O que escrever fica neste aparelho e segue quando a ligação voltar.','off');return}
   setSt('A guardar…','wait');clearTimeout(timer);
   if(now)flush();else timer=setTimeout(flush,800)};
 const applyIf=()=>IFS.forEach(o=>{if(o.w.isConnected)o.w.style.display=o.get(o.x.if[0])===o.x.if[1]?'':'none'});
-function norm(){['obr','proj'].forEach(r=>{const k='rep_'+r;if(!Array.isArray(D[k])||!D[k].length)D[k]=[{}];let ch=0;D[k].forEach(w=>{if(!w._id){w._id=uid();ch=1}});if(ch)dirty.add(k)})}
+function norm(){['obr','proj'].forEach(r=>{const k='rep_'+r;if(!Array.isArray(D[k])||!D[k].length)D[k]=[{}];let ch=0;D[k].forEach(w=>{if(!w._id){w._id=uid();ch=1}});if(ch&&loaded)dirty.add(k)})}
 
 /* ---------- anexos ---------- */
 const isImg=a=>/^image\//.test(a.mime||'');
-async function urlOf(a){const c=URLS.get(a.id);if(c&&c.t>Date.now())return c.u;const r=await api({acao:'url_leitura',arquivoId:a.id});URLS.set(a.id,{u:r.url,t:Date.now()+3000000});return r.url}
+function urlOf(a){const c=URLS.get(a.id);if(c&&c.t>Date.now())return c.p;const p=api({acao:'url_leitura',arquivoId:a.id}).then(r=>r.url);URLS.set(a.id,{p,t:Date.now()+3000000});p.catch(()=>URLS.delete(a.id));return p}
 function drawFiles(){FL.forEach(f=>f.isConnected&&f.draw())}
 function putFile(url,file,prog){return new Promise((ok,no)=>{
   const x=new XMLHttpRequest(),fd=new FormData();fd.append('cacheControl','3600');fd.append('',file);
@@ -388,13 +413,13 @@ function putFile(url,file,prog){return new Promise((ok,no)=>{
 const queue=[];let ativos=0;
 function pump(){while(ativos<3&&queue.length){const j=queue.shift();ativos++;j().finally(()=>{ativos--;pump()})}}
 function enviar(scope,file){
-  const it={scope,nome:file.name,pct:0,erro:''};UP.push(it);drawFiles();
+  const it={id:uid(),scope,nome:file.name,pct:0,erro:''};UP.push(it);drawFiles();
   const fim=()=>{if(!it.erro)UP.splice(UP.indexOf(it),1);else setTimeout(()=>{const i=UP.indexOf(it);if(i>=0){UP.splice(i,1);drawFiles()}},9000);drawFiles();count()};
   if(file.size>52428800){it.erro='Acima de 50 MB. Envie uma ligação (YouTube, Drive, WeTransfer) no campo de ligações.';fim();return}
   if(/\.(exe|bat|cmd|ps1|js|msi|com|scr|vbs|jar|sh|dll)$/i.test(file.name)){it.erro='Este tipo de ficheiro não é aceite. Comprima num ZIP ou envie uma ligação.';fim();return}
   queue.push(async()=>{try{
     const r=await api({acao:'url_envio',escopo:scope,nome:file.name,mime:file.type||'application/octet-stream',bytes:file.size});
-    await putFile(r.urlEnvio,file,p=>{it.pct=p;drawFiles()});
+    await putFile(r.urlEnvio,file,p=>{it.pct=p;const li=document.querySelector('[data-u="'+it.id+'"]');if(li){li.querySelector('small').textContent='A enviar… '+p+'%';li.querySelector('b').style.width=p+'%'}});
     const c=await api({acao:'confirmar_envio',arquivoId:r.arquivoId});ARQ.push(c.arquivo);
     setSt('Guardado às '+hhmm())}catch(e){it.erro=e.message}fim()});pump()}
 async function tirar(a){
@@ -402,7 +427,7 @@ async function tirar(a){
   try{await api({acao:'remover_arquivo',arquivoId:a.id});ARQ=ARQ.filter(x=>x.id!==a.id);drawFiles();count()}catch(e){alert(e.message)}}
 function fileBox(x,scope,w,id,get,set){
   const b=el('div','file');b.append(el('div','hint','Pode anexar vários ficheiros de uma vez: imagens, vídeos, PDF, ZIP e outros. Arraste-os para aqui ou escolha no botão.'));
-  const i=el('input','vh');i.type='file';i.id=id;i.multiple=true;const ul=el('ul','fl');
+  const i=el('input','vh');i.tabIndex=-1;i.type='file';i.id=id;i.multiple=true;const ul=el('ul','fl');
   const pick=el('button','btn alt sm','Escolher ficheiros');pick.type='button';pick.onclick=()=>i.click();
   const take=fs=>{fs=[...fs];if(!fs.length)return;if(LOCAL){set(x.id,(get(x.id)||[]).concat(fs.map(q=>q.name+' ('+kb(q.size)+')')));show()}else fs.forEach(f=>enviar(scope,f))};
   i.onchange=()=>{take(i.files);i.value=''};
@@ -415,7 +440,7 @@ function fileBox(x,scope,w,id,get,set){
       const th=el('span','th');if(isImg(a)){urlOf(a).then(u=>{if(th.isConnected){const im=new Image();im.alt='';im.src=u;th.append(im)}}).catch(()=>{})}else th.textContent=(a.nome.split('.').pop()||'').slice(0,4).toUpperCase();
       const nm=el('span','nm',esc(a.nome)+'<small>'+kb(a.bytes)+'</small>');
       const rm=el('button','btn ghost sm','Remover');rm.type='button';rm.setAttribute('aria-label','Remover '+a.nome);rm.onclick=()=>tirar(a);li.append(th,nm,rm);ul.append(li)});
-    UP.filter(u=>u.scope===scope).forEach(u=>{const li=el('li',u.erro?'err':'up');
+    UP.filter(u=>u.scope===scope).forEach(u=>{const li=el('li',u.erro?'err':'up');li.dataset.u=u.id;
       li.innerHTML=u.erro?'<span class="nm">'+esc(u.nome)+'<small>'+esc(u.erro)+'</small></span>':'<span class="nm">'+esc(u.nome)+'<small>A enviar… '+u.pct+'%</small><i class="bar2"><b style="width:'+u.pct+'%"></b></i></span>';ul.append(li)})};
   draw();b.append(pick,i,ul);FL.push({get isConnected(){return b.isConnected},draw});return b}
 
@@ -426,7 +451,8 @@ function fieldHTML(x,get,set,scope){
   const id='f'+Math.random().toString(36).slice(2,8);
   const v=get(x.id);
   if(x.ty==='radio'||x.ty==='check'){
-    w.innerHTML='<div class="l">'+esc(x.l)+'</div>'+(x.h?'<span class="hint">'+esc(x.h)+'</span>':'');
+    w.setAttribute('role','group');w.setAttribute('aria-labelledby',id+'l');
+    w.innerHTML='<div class="l" id="'+id+'l">'+esc(x.l)+'</div>'+(x.h?'<span class="hint">'+esc(x.h)+'</span>':'');
     const box=el('div','opts');const cur=x.ty==='check'?(Array.isArray(v)?v:[]):v;
     x.o.forEach(o=>{const lb=el('label','opt');const i=el('input');i.type=x.ty==='check'?'checkbox':'radio';i.name=id;i.value=o;
       i.checked=x.ty==='check'?cur.includes(o):cur===o;
@@ -440,13 +466,14 @@ function fieldHTML(x,get,set,scope){
   i.id=id;
   if(x.ty==='select'){i.innerHTML='<option value="">Escolha uma opção</option>'+x.o.map(o=>'<option>'+esc(o)+'</option>').join('')}
   else if(x.ty!=='area')i.type=x.ty;
-  i.value=v||'';i.oninput=()=>set(x.id,i.value);i.onchange=()=>set(x.id,i.value,x.ty==='select');w.append(i);return w}
+  if(x.ty==='email')i.autocomplete='email';if(x.ty==='tel')i.autocomplete='tel';if(x.id==='quem_nome')i.autocomplete='name';
+  i.value=v||'';i.oninput=()=>set(x.id,i.value);if(x.ty==='select')i.onchange=()=>set(x.id,i.value,1);w.append(i);return w}
 function repHTML(r){
   const wrap=el('div');const key='rep_'+r.rep;
   const draw=()=>{wrap.innerHTML='';D[key].forEach((row,ix)=>{
     const card=el('div','rep');const hd=el('div','hd');const ttl=el('span','',esc(r.title+' '+(ix+1)+(row.nome?': '+row.nome:'')));hd.append(ttl);
     if(D[key].length>1){const b=el('button','btn ghost sm','Remover');b.type='button';b.onclick=async()=>{if(!confirm('Remover este bloco?'))return;
-      const mine=ARQ.filter(a=>a.escopo.startsWith(row._id+'.'));D[key].splice(ix,1);save(key,1);draw();
+      const mine=ARQ.filter(a=>a.escopo.startsWith(row._id+'.'));GONE.add(row._id);D[key].splice(ix,1);save(key,1);draw();
       for(const a of mine){try{await api({acao:'remover_arquivo',arquivoId:a.id});ARQ=ARQ.filter(z=>z.id!==a.id)}catch(e){}}count()};hd.append(b)}
     const bd=el('div','bd');r.f.forEach(x=>bd.append(fieldHTML(x,k=>row[k],(k,val,now)=>{row[k]=val;save(key,now);if(k==='nome')ttl.textContent=r.title+' '+(ix+1)+(val?': '+val:'')},row._id+'.'+x.id)));
     card.append(hd,bd);wrap.append(card)});
@@ -473,7 +500,7 @@ function render(n){
 function rerender(){IFS.length=0;FL.length=0;$('#tabs').innerHTML='';$('#main').innerHTML='';render(cur)}
 function go(n,first){n=Math.max(0,Math.min(S.length-1,n));cur=n;const ps=document.querySelectorAll('.pane');ps.forEach((p,i)=>p.classList.toggle('on',i===n));
   const ts=document.querySelectorAll('.tab');ts.forEach((t,i)=>t.setAttribute('aria-current',i===n?'true':'false'));
-  if(!first){const y=ps[n].offsetTop-$('#nav').offsetHeight-8;if(window.scrollY>y)window.scrollTo({top:Math.max(0,y)})}
+  if(!first){const y=ps[n].offsetTop-$('#nav').offsetHeight-8;if(window.scrollY>y)window.scrollTo({top:Math.max(0,y)});const h=ps[n].querySelector('h2');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}}
   const sc=$('#tabs');sc.scrollTo({left:ts[n].offsetLeft-(sc.clientWidth-ts[n].offsetWidth)/2,behavior:first?'auto':'smooth'})}
 function filled(x,get,scope){if(x.ty==='note')return null;if(x.if&&get(x.if[0])!==x.if[1])return null;
   if(x.ty==='file')return LOCAL?(get(x.id)||[]).length>0:ARQ.some(a=>a.escopo===scope);
@@ -501,12 +528,20 @@ async function boot(){
   if(LOCAL){D=readLocal().D||{};norm();render();return}
   if(!TOKEN){gate('Falta o seu link pessoal','Este formulário abre com um link só seu. Peça-o a Navas, da Missão Digital, e abra-o neste aparelho.');return}
   const loc=readLocal();
-  try{const r=await api({acao:'ler'});D=r.data||{};ARQ=r.arquivos||[];SV=r.version;(loc.dirty||[]).forEach(k=>{D[k]=(loc.D||{})[k];dirty.add(k)})}
+  try{const r=await api({acao:'ler'});D=r.data||{};ARQ=r.arquivos||[];SV=r.version;loaded=true;(loc.dirty||[]).forEach(k=>{D[k]=(loc.D||{})[k];dirty.add(k)})}
   catch(e){
     if(e.status===404){gate('Este link não é válido','Peça a Navas, da Missão Digital, um link novo.');return}
-    D=loc.D||{};(loc.dirty||[]).forEach(k=>dirty.add(k));setTimeout(()=>setSt('Sem ligação. O que escrever fica neste aparelho e segue quando a ligação voltar.','off'),0);retry=setTimeout(flush,5000)}
+    if(!loc.D||!Object.keys(loc.D).length){gate('Sem ligação','Não foi possível abrir o formulário agora. Vamos tentar outra vez sozinhos; se demorar, confira a internet.');bootRetry=1;setTimeout(carregar,5000);return}
+    D=loc.D;(loc.dirty||[]).forEach(k=>dirty.add(k));norm();render();setSt('Sem ligação. O que escrever fica neste aparelho e segue quando a ligação voltar.','off');bootRetry=2;setTimeout(carregar,5000);return}
   norm();render();
   if(dirty.size)flush();else setSt(SV?'Tudo guardado':'Ainda nada guardado',SV?'':'idle')}
+let bootRetry=0;
+let tentando=false;
+async function carregar(){ // segunda tentativa de ler o servidor depois de um arranque sem ligação
+  if(loaded||!bootRetry||tentando)return;tentando=true;
+  try{const r=await api({acao:'ler'});if(bootRetry===1)return location.reload();loaded=true;bootRetry=0;reconcile(r);flush()}
+  catch(e){setTimeout(carregar,10000)}
+  tentando=false}
 boot();
 </script>
 </body>
